@@ -21,6 +21,8 @@ Expect one `orig` triple for JDK 11. Expect `orig` (JNI) and zero or more other 
 
 The selected benchmark's `readme.md` must map `orig` to the tested zstd-jni version and every non-`orig` prefix to a Markdown link for its GitHub branch. The chart report shows the `orig` version as plain text and links each other implementation to its branch. Fail generation when metadata for a compared prefix is missing or ambiguous.
 
+When the benchmark `readme.md` contains a `Test file to compress has … bytes` entry, include that input size in the chart report. Preserve JMH parameter names in workload labels. Render `chunkSize` values explicitly in bytes so, for example, `chunkSize=1 byte` cannot be mistaken for a variant or ordinal.
+
 ## Comparison rules
 
 - Compare every common JMH benchmark and parameter combination. Keep distinct parameter sets as distinct rows.
@@ -45,7 +47,7 @@ Use flamegraphs as qualitative evidence for hot paths and explain meaningful dif
 
 Write only these files inside the selected benchmark directory:
 
-- `comparison-jdk25-charts.md`: a title, a compact implementation-metadata line, a one-sentence explanation of the percentage convention, and the three chart embeds;
+- `comparison-jdk25-charts.md`: a title, compact implementation and available input-file metadata, a one-sentence explanation of the percentage convention, and the three chart embeds;
 - `comparison-jdk25-{performance,heap,native}.svg`: chart assets embedded by the chart-enhanced report.
 
 Do not add tables, artifact lists, findings, conclusions, calculation sections, or interpretation sections to the Markdown report. The absolute measurements and percentage deltas belong directly on the SVG bars. Do not imply causation from a flamegraph or claim resident-memory improvements from allocation profiling.

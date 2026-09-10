@@ -41,6 +41,7 @@ class Variant:
     native_path: Path
     flame_path: Path
     rows: dict[RowKey, Measurement]
+    parameter_names: tuple[str, ...]
     native_bytes: int
     native_samples: int
 
@@ -76,6 +77,15 @@ def parse_jmh(path: Path) -> dict[RowKey, Measurement]:
     if not rows:
         raise ValueError(f"No JMH result rows found in {path}")
     return rows
+
+
+def parse_parameter_names(path: Path) -> tuple[str, ...]:
+    for line in path.read_text(encoding="utf-8").splitlines():
+        parts = line.split()
+        if parts and parts[0] == "Benchmark" and "Mode" in parts:
+            mode_index = parts.index("Mode")
+            return tuple(part.removeprefix("(").removesuffix(")") for part in parts[1:mode_index])
+    raise ValueError(f"No JMH result header found in {path}")
 
 
 def parse_native(path: Path) -> tuple[int, int]:
@@ -116,6 +126,7 @@ def discover(directory: Path) -> list[Variant]:
                     native_path=native_path,
                     flame_path=flames[0],
                     rows=parse_jmh(jmh_path),
+                    parameter_names=parse_parameter_names(jmh_path),
                     native_bytes=native_bytes,
                     native_samples=native_samples,
                 )
@@ -162,6 +173,18 @@ def parse_implementation_metadata(
     if problems:
         raise ValueError("Invalid implementation metadata in readme.md:\n- " + "\n- ".join(problems))
     return metadata
+
+
+def parse_input_file_size(directory: Path) -> int | None:
+    text = (directory / "readme.md").read_text(encoding="utf-8")
+    matches = re.findall(
+        r"^Test file to compress has\s+`([\d,]+)\s+bytes`\s*$",
+        text,
+        re.MULTILINE | re.IGNORECASE,
+    )
+    if len(matches) > 1:
+        raise ValueError(f"Expected at most one test-file-size mapping in {directory / 'readme.md'}")
+    return int(matches[0].replace(",", "")) if matches else None
 
 
 def baseline_variant(variants: list[Variant], preferred_jdk: str) -> Variant:
@@ -438,8 +461,19 @@ def generate(
 
 def chart_categories(variants: list[Variant]) -> list[tuple[RowKey, str]]:
     categories = []
+    parameter_names = variants[0].parameter_names
+    if any(variant.parameter_names != parameter_names for variant in variants[1:]):
+        raise ValueError("JMH parameter names differ between compared variants")
     for key in common_primary_keys(variants):
-        params = ", ".join(key.params) if key.params and key.params != ("N/A",) else ""
+        if key.params and key.params != ("N/A",):
+            named_params = []
+            for index, value in enumerate(key.params):
+                name = parameter_names[index] if index < len(parameter_names) else f"parameter{index + 1}"
+                unit = " byte" if name == "chunkSize" and value == "1" else " bytes" if name == "chunkSize" else ""
+                named_params.append(f"{name}={value}{unit}")
+            params = ", ".join(named_params)
+        else:
+            params = ""
         label = base_name(key.benchmark)
         categories.append((key, f"{label} · {params}" if params else label))
     return categories
@@ -580,9 +614,15 @@ def generate_jdk25_charts(
     heap_path = directory / "comparison-jdk25-heap.svg"
     native_path = directory / "comparison-jdk25-native.svg"
     labels = [label for _, label in categories]
+    native_category = next(
+        label
+        for (key, label) in categories
+        if base_name(key.benchmark) == NATIVE_PROFILE_BENCHMARK
+        and NATIVE_PROFILE_PARAMETER in key.params
+    )
     render_bar_chart(performance_path, "Execution time (bar length relative to row worst)", variants, labels, performance_bars, performance_labels)
     render_bar_chart(heap_path, "On-heap allocation (bar length relative to row worst)", variants, labels, heap_bars, heap_labels)
-    render_bar_chart(native_path, "Estimated native allocation", variants, ["compressionThroughput · 64"], native_bars, native_labels)
+    render_bar_chart(native_path, "Estimated native allocation", variants, [native_category], native_bars, native_labels)
     return [performance_path, heap_path, native_path]
 
 
@@ -591,6 +631,7 @@ def generate_chart_report(
     chart_paths: list[Path],
     variants: list[Variant],
     metadata: dict[str, ImplementationMetadata],
+    input_file_size: int | None,
 ) -> str:
     implementation_items = []
     for variant in variants:
@@ -606,6 +647,7 @@ def generate_chart_report(
         "",
         "Implementations: " + "; ".join(implementation_items) + ".",
         "",
+        *([f"Input file: **{input_file_size:,} bytes**.", ""] if input_file_size is not None else []),
         "Every JDK 25 implementation is shown. Bar lengths are proportional to the measured value within each workload row, with the worst result as the longest bar. Labels show the absolute value and change versus JDK 25 `orig`; negative percentages mean less execution time or allocation and are better.",
         "",
         f"![Relative execution cost bar chart]({chart_paths[0].name})",
@@ -638,9 +680,12 @@ def main() -> None:
     jdk25_charts_output = args.jdk25_charts_output or directory / "comparison-jdk25-charts.md"
     jdk25_baseline = baseline_variant(jdk25_variants, "jdk-25")
     implementation_metadata = parse_implementation_metadata(directory, jdk25_variants)
+    input_file_size = parse_input_file_size(directory)
     chart_paths = generate_jdk25_charts(directory, jdk25_variants, jdk25_baseline, args.native_seconds)
     jdk25_charts_output.write_text(
-        generate_chart_report(directory, chart_paths, jdk25_variants, implementation_metadata),
+        generate_chart_report(
+            directory, chart_paths, jdk25_variants, implementation_metadata, input_file_size
+        ),
         encoding="utf-8",
     )
     print(jdk25_charts_output)
