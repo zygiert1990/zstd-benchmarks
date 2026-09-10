@@ -45,6 +45,12 @@ class Variant:
     native_samples: int
 
 
+@dataclass(frozen=True)
+class ImplementationMetadata:
+    label: str
+    url: str | None = None
+
+
 def parse_jmh(path: Path) -> dict[RowKey, Measurement]:
     rows: dict[RowKey, Measurement] = {}
     for line in path.read_text(encoding="utf-8").splitlines():
@@ -119,6 +125,43 @@ def discover(directory: Path) -> list[Variant]:
     if not variants:
         raise ValueError(f"No complete result triples found in {directory}")
     return variants
+
+
+def parse_implementation_metadata(
+    directory: Path, variants: list[Variant]
+) -> dict[str, ImplementationMetadata]:
+    readme_path = directory / "readme.md"
+    if not readme_path.is_file():
+        raise ValueError(f"Missing implementation metadata: {readme_path}")
+    text = readme_path.read_text(encoding="utf-8")
+    prefixes = sorted({variant.prefix for variant in variants})
+    metadata: dict[str, ImplementationMetadata] = {}
+    problems: list[str] = []
+    for prefix in prefixes:
+        if prefix == "orig":
+            matches = re.findall(
+                r"^`orig`\s+results\s+are\s+related\s+to\s+`([^`]+)`\s*$",
+                text,
+                re.MULTILINE | re.IGNORECASE,
+            )
+            if len(matches) == 1:
+                metadata[prefix] = ImplementationMetadata(matches[0])
+            else:
+                problems.append(f"expected one zstd-jni version mapping for `orig`, found {len(matches)}")
+            continue
+        pattern = (
+            rf"^`{re.escape(prefix)}`\s+results\s+are\s+based\s+on\s+branch:\s*"
+            r"\[([^\]]+)\]\((https://github\.com/[^)]+)\)\s*$"
+        )
+        matches = re.findall(pattern, text, re.MULTILINE | re.IGNORECASE)
+        if len(matches) == 1:
+            branch, url = matches[0]
+            metadata[prefix] = ImplementationMetadata(branch, url)
+        else:
+            problems.append(f"expected one GitHub branch mapping for `{prefix}`, found {len(matches)}")
+    if problems:
+        raise ValueError("Invalid implementation metadata in readme.md:\n- " + "\n- ".join(problems))
+    return metadata
 
 
 def baseline_variant(variants: list[Variant], preferred_jdk: str) -> Variant:
@@ -543,9 +586,25 @@ def generate_jdk25_charts(
     return [performance_path, heap_path, native_path]
 
 
-def generate_chart_report(directory: Path, chart_paths: list[Path]) -> str:
+def generate_chart_report(
+    directory: Path,
+    chart_paths: list[Path],
+    variants: list[Variant],
+    metadata: dict[str, ImplementationMetadata],
+) -> str:
+    implementation_items = []
+    for variant in variants:
+        item = metadata[variant.prefix]
+        if variant.prefix == "orig":
+            implementation_items.append(f"`orig` — zstd-jni `{item.label}`")
+        else:
+            implementation_items.append(
+                f"`{variant.prefix}` — branch [{item.label}]({item.url})"
+            )
     lines = [
         f"# {directory.name} benchmark comparison — JDK 25",
+        "",
+        "Implementations: " + "; ".join(implementation_items) + ".",
         "",
         "Every JDK 25 implementation is shown. Bar lengths are proportional to the measured value within each workload row, with the worst result as the longest bar. Labels show the absolute value and change versus JDK 25 `orig`; negative percentages mean less execution time or allocation and are better.",
         "",
@@ -578,9 +637,10 @@ def main() -> None:
         parser.error(f"no JDK 25 results found in {directory}")
     jdk25_charts_output = args.jdk25_charts_output or directory / "comparison-jdk25-charts.md"
     jdk25_baseline = baseline_variant(jdk25_variants, "jdk-25")
+    implementation_metadata = parse_implementation_metadata(directory, jdk25_variants)
     chart_paths = generate_jdk25_charts(directory, jdk25_variants, jdk25_baseline, args.native_seconds)
     jdk25_charts_output.write_text(
-        generate_chart_report(directory, chart_paths),
+        generate_chart_report(directory, chart_paths, jdk25_variants, implementation_metadata),
         encoding="utf-8",
     )
     print(jdk25_charts_output)

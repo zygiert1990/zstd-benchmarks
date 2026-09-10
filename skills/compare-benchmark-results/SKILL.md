@@ -19,6 +19,8 @@ Each `jdk-*` child contains triples keyed by an implementation prefix:
 
 Expect one `orig` triple for JDK 11. Expect `orig` (JNI) and zero or more other prefixes for JDK 25. Discover prefixes from files instead of assuming names such as `ffm` or `ffm-arena`. Report missing or ambiguous members of a triple and do not silently compare partial data.
 
+The selected benchmark's `readme.md` must map `orig` to the tested zstd-jni version and every non-`orig` prefix to a Markdown link for its GitHub branch. The chart report shows the `orig` version as plain text and links each other implementation to its branch. Fail generation when metadata for a compared prefix is missing or ambiguous.
+
 ## Comparison rules
 
 - Compare every common JMH benchmark and parameter combination. Keep distinct parameter sets as distinct rows.
@@ -43,7 +45,7 @@ Use flamegraphs as qualitative evidence for hot paths and explain meaningful dif
 
 Write only these files inside the selected benchmark directory:
 
-- `comparison-jdk25-charts.md`: a title, a one-sentence explanation of the percentage convention, and the three chart embeds;
+- `comparison-jdk25-charts.md`: a title, a compact implementation-metadata line, a one-sentence explanation of the percentage convention, and the three chart embeds;
 - `comparison-jdk25-{performance,heap,native}.svg`: chart assets embedded by the chart-enhanced report.
 
 Do not add tables, artifact lists, findings, conclusions, calculation sections, or interpretation sections to the Markdown report. The absolute measurements and percentage deltas belong directly on the SVG bars. Do not imply causation from a flamegraph or claim resident-memory improvements from allocation profiling.

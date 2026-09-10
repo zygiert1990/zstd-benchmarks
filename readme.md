@@ -1,6 +1,8 @@
 ## Quick start
 Needs Java 11 or above due to `nullOutputStream` usage.
 
+Commands for java 11 assume that there is a java binary under: `~/.sdkman/candidates/java/11.0.32-amzn/bin/java`
+
 To create jar: `mvn clean package`
 
 To run benchmarks (disable sleep on ubuntu 22): `gnome-session-inhibit --inhibit idle:suspend --reason "Running JMH" java -jar target/benchmarks.jar ZstdOutputStreamNoFinalizerBenchmark -prof gc`
