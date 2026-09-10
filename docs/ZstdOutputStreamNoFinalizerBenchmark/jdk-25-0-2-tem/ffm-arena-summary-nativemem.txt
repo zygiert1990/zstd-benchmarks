@@ -1,0 +1,2409 @@
+--- Execution profile ---
+Total samples       : 305010
+
+--- 24799699065 bytes (99.55%), 18177 samples
+  [ 0] malloc_hook
+  [ 1] ZSTD_resetCCtx_internal
+  [ 2] ZSTD_compressBegin_internal.lto_priv.0
+  [ 3] ZSTD_CCtx_init_compressStream2
+  [ 4] ZSTD_compressStream2
+  [ 5] ZSTD_compressStream2_simpleArgs
+  [ 6] nep_invoker_blob
+  [ 7] java.lang.invoke.LambdaForm$MH.0x00000000a10d3000.invoke
+  [ 8] java.lang.invoke.LambdaForm$MH.0x00000000a10d2800.invokeExact_MT
+  [ 9] jdk.internal.foreign.abi.DowncallStub.0x00000000a10cc000.invoke
+  [10] java.lang.invoke.LambdaForm$DMH.0x00000000a10cc400.invokeStatic
+  [11] java.lang.invoke.LambdaForm$MH.0x00000000a10d2c00.invoke
+  [12] java.lang.invoke.LambdaForm$MH.0x00000000a10d2000.invokeExact_MT
+  [13] com.github.luben.zstd.ZstdBinding.compressStream2
+  [14] com.github.luben.zstd.ZstdOutputStreamNoFinalizer.compressStream2
+  [15] com.github.luben.zstd.ZstdOutputStreamNoFinalizer.write
+  [16] com.github.luben.zstd.ZstdOutputStream.write
+  [17] org.zygiert.ZstdOutputStreamNoFinalizerBenchmark.compressionThroughput
+  [18] org.zygiert.jmh_generated.ZstdOutputStreamNoFinalizerBenchmark_compressionThroughput_jmhTest.compressionThroughput_avgt_jmhStub
+  [19] org.zygiert.jmh_generated.ZstdOutputStreamNoFinalizerBenchmark_compressionThroughput_jmhTest.compressionThroughput_AverageTime
+  [20] java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial
+  [21] java.lang.invoke.LambdaForm$MH.0x00000000a1061c00.invoke
+  [22] java.lang.invoke.LambdaForm$MH.0x00000000a1062000.invokeExact_MT
+  [23] jdk.internal.reflect.DirectMethodHandleAccessor.invokeImpl
+  [24] jdk.internal.reflect.DirectMethodHandleAccessor.invoke
+  [25] java.lang.reflect.Method.invoke
+  [26] org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call
+  [27] org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call
+  [28] java.util.concurrent.FutureTask.run
+  [29] java.util.concurrent.Executors$RunnableAdapter.call
+  [30] java.util.concurrent.FutureTask.run
+  [31] java.util.concurrent.ThreadPoolExecutor.runWorker
+  [32] java.util.concurrent.ThreadPoolExecutor$Worker.run
+  [33] java.lang.Thread.runWith
+  [34] java.lang.Thread.run
+
+--- 96119976 bytes (0.39%), 18177 samples
+  [ 0] malloc_hook
+  [ 1] ZSTD_createCCtx_advanced
+  [ 2] ZSTD_createCStream
+  [ 3] nep_invoker_blob
+  [ 4] java.lang.invoke.LambdaForm$MH.0x00000000a10d4800.invoke
+  [ 5] java.lang.invoke.LambdaForm$MH.0x00000000a10d0800.invokeExact_MT
+  [ 6] jdk.internal.foreign.abi.DowncallStub.0x00000000a10c5800.invoke
+  [ 7] java.lang.invoke.DirectMethodHandle$Holder.invokeStatic
+  [ 8] java.lang.invoke.LambdaForm$MH.0x00000000a10d4400.invoke
+  [ 9] java.lang.invoke.Invokers$Holder.invokeExact_MT
+  [10] com.github.luben.zstd.ZstdBinding.createCStream
+  [11] com.github.luben.zstd.ZstdOutputStreamNoFinalizer.<init>
+  [12] com.github.luben.zstd.ZstdOutputStream.<init>
+  [13] com.github.luben.zstd.ZstdOutputStream.<init>
+  [14] org.zygiert.ZstdOutputStreamNoFinalizerBenchmark.compressionThroughput
+  [15] org.zygiert.jmh_generated.ZstdOutputStreamNoFinalizerBenchmark_compressionThroughput_jmhTest.compressionThroughput_avgt_jmhStub
+  [16] org.zygiert.jmh_generated.ZstdOutputStreamNoFinalizerBenchmark_compressionThroughput_jmhTest.compressionThroughput_AverageTime
+  [17] java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial
+  [18] java.lang.invoke.LambdaForm$MH.0x00000000a1061c00.invoke
+  [19] java.lang.invoke.LambdaForm$MH.0x00000000a1062000.invokeExact_MT
+  [20] jdk.internal.reflect.DirectMethodHandleAccessor.invokeImpl
+  [21] jdk.internal.reflect.DirectMethodHandleAccessor.invoke
+  [22] java.lang.reflect.Method.invoke
+  [23] org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call
+  [24] org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call
+  [25] java.util.concurrent.FutureTask.run
+  [26] java.util.concurrent.Executors$RunnableAdapter.call
+  [27] java.util.concurrent.FutureTask.run
+  [28] java.util.concurrent.ThreadPoolExecutor.runWorker
+  [29] java.util.concurrent.ThreadPoolExecutor$Worker.run
+  [30] java.lang.Thread.runWith
+  [31] java.lang.Thread.run
+
+--- 3199152 bytes (0.01%), 199947 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] VM_HandshakeAllThreads::doit
+  [ 4] VM_Operation::evaluate
+  [ 5] VMThread::evaluate_operation
+  [ 6] VMThread::inner_execute
+  [ 7] VMThread::run
+  [ 8] Thread::call_run
+  [ 9] thread_native_entry
+  [10] start_thread
+  [11] clone3
+
+--- 2743992 bytes (0.01%), 828 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1RemSet::prepare_for_scan_heap_roots
+  [ 4] G1YoungCollector::pre_evacuate_collection_set
+  [ 5] G1YoungCollector::collect
+  [ 6] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 7] VM_G1CollectForAllocation::doit
+  [ 8] VM_Operation::evaluate
+  [ 9] VMThread::evaluate_operation
+  [10] VMThread::inner_execute
+  [11] VMThread::run
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 1761504 bytes (0.01%), 18349 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] stringStream::write
+  [ 4] outputStream::do_vsnprintf_and_write_with_automatic_buffer
+  [ 5] outputStream::print
+  [ 6] VMThread::inner_execute
+  [ 7] VMThread::run
+  [ 8] Thread::call_run
+  [ 9] thread_native_entry
+  [10] start_thread
+  [11] clone3
+
+--- 1094064 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1EvacFailureRegions::pre_collection
+  [ 4] G1YoungCollector::pre_evacuate_collection_set
+  [ 5] G1YoungCollector::collect
+  [ 6] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 7] VM_G1CollectForAllocation::doit
+  [ 8] VM_Operation::evaluate
+  [ 9] VMThread::evaluate_operation
+  [10] VMThread::inner_execute
+  [11] VMThread::run
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 1094064 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1HeapRegionClaimer::G1HeapRegionClaimer
+  [ 4] G1YoungCollector::pre_evacuate_collection_set
+  [ 5] G1YoungCollector::collect
+  [ 6] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 7] VM_G1CollectForAllocation::doit
+  [ 8] VM_Operation::evaluate
+  [ 9] VMThread::evaluate_operation
+  [10] VMThread::inner_execute
+  [11] VMThread::run
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 1094064 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1HeapRegionClaimer::G1HeapRegionClaimer
+  [ 4] G1PostEvacuateCollectionSetCleanupTask2::G1PostEvacuateCollectionSetCleanupTask2
+  [ 5] G1YoungCollector::post_evacuate_collection_set
+  [ 6] G1YoungCollector::collect
+  [ 7] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 8] VM_G1CollectForAllocation::doit
+  [ 9] VM_Operation::evaluate
+  [10] VMThread::evaluate_operation
+  [11] VMThread::inner_execute
+  [12] VMThread::run
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 1094064 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1HeapRegionClaimer::G1HeapRegionClaimer
+  [ 4] G1RemSet::merge_heap_roots
+  [ 5] G1YoungCollector::evacuate_initial_collection_set
+  [ 6] G1YoungCollector::collect
+  [ 7] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 8] VM_G1CollectForAllocation::doit
+  [ 9] VM_Operation::evaluate
+  [10] VMThread::evaluate_operation
+  [11] VMThread::inner_execute
+  [12] VMThread::run
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 540848 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] ChunkPool::allocate_chunk
+  [ 3] Arena::grow
+  [ 4] BarrierSetC2::compute_liveness_at_stubs
+  [ 5] G1BarrierSetC2::late_barrier_analysis
+  [ 6] PhaseOutput::Output
+  [ 7] Compile::Code_Gen
+  [ 8] Compile::Compile
+  [ 9] C2Compiler::compile_method
+  [10] CompileBroker::invoke_compiler_on_method
+  [11] CompileBroker::compiler_thread_loop
+  [12] JavaThread::thread_main_inner
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 269552 bytes (0.00%), 34 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1HeapRegionClaimer::G1HeapRegionClaimer
+  [ 4] G1CollectionSetChooser::build
+  [ 5] G1ConcurrentMark::remark
+  [ 6] VM_G1PauseConcurrent::doit
+  [ 7] VM_Operation::evaluate
+  [ 8] VMThread::evaluate_operation
+  [ 9] VMThread::inner_execute
+  [10] VMThread::run
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 269552 bytes (0.00%), 34 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1HeapRegionClaimer::G1HeapRegionClaimer
+  [ 4] G1ConcurrentMark::remark
+  [ 5] VM_G1PauseConcurrent::doit
+  [ 6] VM_Operation::evaluate
+  [ 7] VMThread::evaluate_operation
+  [ 8] VMThread::inner_execute
+  [ 9] VMThread::run
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 269552 bytes (0.00%), 34 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1HeapRegionClaimer::G1HeapRegionClaimer
+  [ 4] G1CollectedHeap::unload_classes_and_code
+  [ 5] G1ConcurrentMark::remark
+  [ 6] VM_G1PauseConcurrent::doit
+  [ 7] VM_Operation::evaluate
+  [ 8] VMThread::evaluate_operation
+  [ 9] VMThread::inner_execute
+  [10] VMThread::run
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 269552 bytes (0.00%), 34 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1HeapRegionClaimer::G1HeapRegionClaimer
+  [ 4] G1ConcurrentMark::clear_bitmap
+  [ 5] G1ConcurrentMark::cleanup_for_next_mark
+  [ 6] G1ConcurrentMarkThread::phase_clear_bitmap_for_next_mark
+  [ 7] G1ConcurrentMarkThread::concurrent_mark_cycle_do
+  [ 8] G1ConcurrentMarkThread::run_service
+  [ 9] ConcurrentGCThread::run
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 269552 bytes (0.00%), 34 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1HeapRegionClaimer::G1HeapRegionClaimer
+  [ 4] G1ConcurrentMark::pre_concurrent_start
+  [ 5] G1YoungCollector::pre_evacuate_collection_set
+  [ 6] G1YoungCollector::collect
+  [ 7] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 8] VM_G1CollectForAllocation::doit
+  [ 9] VM_Operation::evaluate
+  [10] VMThread::evaluate_operation
+  [11] VMThread::inner_execute
+  [12] VMThread::run
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 269552 bytes (0.00%), 34 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1HeapRegionClaimer::G1HeapRegionClaimer
+  [ 4] G1ConcurrentRebuildAndScrub::rebuild_and_scrub
+  [ 5] G1ConcurrentMarkThread::phase_rebuild_and_scrub
+  [ 6] G1ConcurrentMarkThread::concurrent_mark_cycle_do
+  [ 7] G1ConcurrentMarkThread::run_service
+  [ 8] ConcurrentGCThread::run
+  [ 9] Thread::call_run
+  [10] thread_native_entry
+  [11] start_thread
+  [12] clone3
+
+--- 221728 bytes (0.00%), 338 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1ParScanThreadStateSet::state_for_worker
+  [ 4] G1EvacuateRegionsBaseTask::work
+  [ 5] WorkerThread::run
+  [ 6] Thread::call_run
+  [ 7] thread_native_entry
+  [ 8] start_thread
+  [ 9] clone3
+
+--- 166976 bytes (0.00%), 1014 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1ParScanThreadState::G1ParScanThreadState
+  [ 4] G1ParScanThreadStateSet::state_for_worker
+  [ 5] G1EvacuateRegionsBaseTask::work
+  [ 6] WorkerThread::run
+  [ 7] Thread::call_run
+  [ 8] thread_native_entry
+  [ 9] start_thread
+  [10] clone3
+
+--- 164872 bytes (0.00%), 4 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] ChunkPool::allocate_chunk
+  [ 3] Arena::grow
+  [ 4] PhaseIFG::init
+  [ 5] PhaseCFG::global_code_motion
+  [ 6] PhaseCFG::do_global_code_motion
+  [ 7] Compile::Code_Gen
+  [ 8] Compile::Compile
+  [ 9] C2Compiler::compile_method
+  [10] CompileBroker::invoke_compiler_on_method
+  [11] CompileBroker::compiler_thread_loop
+  [12] JavaThread::thread_main_inner
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 153600 bytes (0.00%), 60 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1CardSetMemoryManager::G1CardSetMemoryManager
+  [ 4] G1CollectionSetCandidates::set_candidates_from_marking
+  [ 5] G1CollectionSetChooser::build
+  [ 6] G1ConcurrentMark::remark
+  [ 7] VM_G1PauseConcurrent::doit
+  [ 8] VM_Operation::evaluate
+  [ 9] VMThread::evaluate_operation
+  [10] VMThread::inner_execute
+  [11] VMThread::run
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 146880 bytes (0.00%), 2040 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] WeakProcessorTimes::WeakProcessorTimes
+  [ 4] G1ConcurrentMark::weak_refs_work
+  [ 5] G1ConcurrentMark::remark
+  [ 6] VM_G1PauseConcurrent::doit
+  [ 7] VM_Operation::evaluate
+  [ 8] VMThread::evaluate_operation
+  [ 9] VMThread::inner_execute
+  [10] VMThread::run
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 145416 bytes (0.00%), 18177 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] jdk.internal.misc.Unsafe.allocateMemory0
+  [ 3] jdk.internal.misc.Unsafe.allocateMemory
+  [ 4] jdk.internal.foreign.SegmentFactories.allocateMemoryWrapper
+  [ 5] jdk.internal.foreign.SegmentFactories.allocateNativeInternal
+  [ 6] jdk.internal.foreign.SegmentFactories.allocateNativeSegment
+  [ 7] jdk.internal.foreign.ArenaImpl.allocate
+  [ 8] jdk.internal.foreign.ArenaImpl.allocate
+  [ 9] java.lang.foreign.SegmentAllocator.allocate
+  [10] com.github.luben.zstd.ZstdBinding.allocSizeT
+  [11] com.github.luben.zstd.ZstdOutputStreamNoFinalizer.<init>
+  [12] com.github.luben.zstd.ZstdOutputStream.<init>
+  [13] com.github.luben.zstd.ZstdOutputStream.<init>
+  [14] org.zygiert.ZstdOutputStreamNoFinalizerBenchmark.compressionThroughput
+  [15] org.zygiert.jmh_generated.ZstdOutputStreamNoFinalizerBenchmark_compressionThroughput_jmhTest.compressionThroughput_avgt_jmhStub
+  [16] org.zygiert.jmh_generated.ZstdOutputStreamNoFinalizerBenchmark_compressionThroughput_jmhTest.compressionThroughput_AverageTime
+  [17] java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial
+  [18] java.lang.invoke.LambdaForm$MH.0x00000000a1061c00.invoke
+  [19] java.lang.invoke.LambdaForm$MH.0x00000000a1062000.invokeExact_MT
+  [20] jdk.internal.reflect.DirectMethodHandleAccessor.invokeImpl
+  [21] jdk.internal.reflect.DirectMethodHandleAccessor.invoke
+  [22] java.lang.reflect.Method.invoke
+  [23] org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call
+  [24] org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call
+  [25] java.util.concurrent.FutureTask.run
+  [26] java.util.concurrent.Executors$RunnableAdapter.call
+  [27] java.util.concurrent.FutureTask.run
+  [28] java.util.concurrent.ThreadPoolExecutor.runWorker
+  [29] java.util.concurrent.ThreadPoolExecutor$Worker.run
+  [30] java.lang.Thread.runWith
+  [31] java.lang.Thread.run
+
+--- 145416 bytes (0.00%), 18177 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] jdk.internal.misc.Unsafe.allocateMemory0
+  [ 3] jdk.internal.misc.Unsafe.allocateMemory
+  [ 4] jdk.internal.foreign.SegmentFactories.allocateMemoryWrapper
+  [ 5] jdk.internal.foreign.SegmentFactories.allocateNativeInternal
+  [ 6] jdk.internal.foreign.SegmentFactories.allocateNativeSegment
+  [ 7] jdk.internal.foreign.ArenaImpl.allocate
+  [ 8] jdk.internal.foreign.ArenaImpl.allocate
+  [ 9] java.lang.foreign.SegmentAllocator.allocate
+  [10] com.github.luben.zstd.ZstdBinding.allocSizeT
+  [11] com.github.luben.zstd.ZstdOutputStreamNoFinalizer.<init>
+  [12] com.github.luben.zstd.ZstdOutputStream.<init>
+  [13] com.github.luben.zstd.ZstdOutputStream.<init>
+  [14] org.zygiert.ZstdOutputStreamNoFinalizerBenchmark.compressionThroughput
+  [15] org.zygiert.jmh_generated.ZstdOutputStreamNoFinalizerBenchmark_compressionThroughput_jmhTest.compressionThroughput_avgt_jmhStub
+  [16] org.zygiert.jmh_generated.ZstdOutputStreamNoFinalizerBenchmark_compressionThroughput_jmhTest.compressionThroughput_AverageTime
+  [17] java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial
+  [18] java.lang.invoke.LambdaForm$MH.0x00000000a1061c00.invoke
+  [19] java.lang.invoke.LambdaForm$MH.0x00000000a1062000.invokeExact_MT
+  [20] jdk.internal.reflect.DirectMethodHandleAccessor.invokeImpl
+  [21] jdk.internal.reflect.DirectMethodHandleAccessor.invoke
+  [22] java.lang.reflect.Method.invoke
+  [23] org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call
+  [24] org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call
+  [25] java.util.concurrent.FutureTask.run
+  [26] java.util.concurrent.Executors$RunnableAdapter.call
+  [27] java.util.concurrent.FutureTask.run
+  [28] java.util.concurrent.ThreadPoolExecutor.runWorker
+  [29] java.util.concurrent.ThreadPoolExecutor$Worker.run
+  [30] java.lang.Thread.runWith
+  [31] java.lang.Thread.run
+
+--- 103744 bytes (0.00%), 338 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1EvacuationRootClosures::create_root_closures
+  [ 4] G1ParScanThreadState::G1ParScanThreadState
+  [ 5] G1ParScanThreadStateSet::state_for_worker
+  [ 6] G1EvacuateRegionsBaseTask::work
+  [ 7] WorkerThread::run
+  [ 8] Thread::call_run
+  [ 9] thread_native_entry
+  [10] start_thread
+  [11] clone3
+
+--- 102672 bytes (0.00%), 414 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] ReallocateHeap
+  [ 3] GrowableBitMap<CHeapBitMap>::resize
+  [ 4] G1EvacFailureRegions::pre_collection
+  [ 5] G1YoungCollector::pre_evacuate_collection_set
+  [ 6] G1YoungCollector::collect
+  [ 7] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 8] VM_G1CollectForAllocation::doit
+  [ 9] VM_Operation::evaluate
+  [10] VMThread::evaluate_operation
+  [11] VMThread::inner_execute
+  [12] VMThread::run
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 98256 bytes (0.00%), 3 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] ChunkPool::allocate_chunk
+  [ 3] Arena::grow
+  [ 4] DebugInformationRecorder::DebugInformationRecorder
+  [ 5] Compilation::initialize
+  [ 6] Compilation::compile_method
+  [ 7] Compilation::Compilation
+  [ 8] Compiler::compile_method
+  [ 9] CompileBroker::invoke_compiler_on_method
+  [10] CompileBroker::compiler_thread_loop
+  [11] JavaThread::thread_main_inner
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 98256 bytes (0.00%), 3 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] ChunkPool::allocate_chunk
+  [ 3] Arena::grow
+  [ 4] nmethod::cleanup_inline_caches_impl
+  [ 5] nmethod::do_unloading
+  [ 6] CodeCacheUnloadingTask::work
+  [ 7] G1ParallelCleaningTask::work
+  [ 8] WorkerThread::run
+  [ 9] Thread::call_run
+  [10] thread_native_entry
+  [11] start_thread
+  [12] clone3
+
+--- 91936 bytes (0.00%), 1352 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1PLABAllocator::G1PLABAllocator
+  [ 4] G1ParScanThreadState::G1ParScanThreadState
+  [ 5] G1ParScanThreadStateSet::state_for_worker
+  [ 6] G1EvacuateRegionsBaseTask::work
+  [ 7] WorkerThread::run
+  [ 8] Thread::call_run
+  [ 9] thread_native_entry
+  [10] start_thread
+  [11] clone3
+
+--- 77280 bytes (0.00%), 34 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1CollectionSetChooser::build
+  [ 4] G1ConcurrentMark::remark
+  [ 5] VM_G1PauseConcurrent::doit
+  [ 6] VM_Operation::evaluate
+  [ 7] VMThread::evaluate_operation
+  [ 8] VMThread::inner_execute
+  [ 9] VMThread::run
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 34224 bytes (0.00%), 690 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1PostEvacuateCollectionSetCleanupTask2::G1PostEvacuateCollectionSetCleanupTask2
+  [ 4] G1YoungCollector::post_evacuate_collection_set
+  [ 5] G1YoungCollector::collect
+  [ 6] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 7] VM_G1CollectForAllocation::doit
+  [ 8] VM_Operation::evaluate
+  [ 9] VMThread::evaluate_operation
+  [10] VMThread::inner_execute
+  [11] VMThread::run
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 32752 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] ChunkPool::allocate_chunk
+  [ 3] Arena::grow
+  [ 4] LinearScan::create_interval
+  [ 5] LinearScan::add_def
+  [ 6] LinearScan::build_intervals
+  [ 7] LinearScan::do_linear_scan
+  [ 8] Compilation::emit_lir
+  [ 9] Compilation::compile_java_method
+  [10] Compilation::compile_method
+  [11] Compilation::Compilation
+  [12] Compiler::compile_method
+  [13] CompileBroker::invoke_compiler_on_method
+  [14] CompileBroker::compiler_thread_loop
+  [15] JavaThread::thread_main_inner
+  [16] Thread::call_run
+  [17] thread_native_entry
+  [18] start_thread
+  [19] clone3
+
+--- 32752 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] ChunkPool::allocate_chunk
+  [ 3] Arena::grow
+  [ 4] LinearScan::allocate_registers
+  [ 5] LinearScan::do_linear_scan
+  [ 6] Compilation::emit_lir
+  [ 7] Compilation::compile_java_method
+  [ 8] Compilation::compile_method
+  [ 9] Compilation::Compilation
+  [10] Compiler::compile_method
+  [11] CompileBroker::invoke_compiler_on_method
+  [12] CompileBroker::compiler_thread_loop
+  [13] JavaThread::thread_main_inner
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 32752 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] ChunkPool::allocate_chunk
+  [ 3] Arena::grow
+  [ 4] Compilation::emit_code_body
+  [ 5] Compilation::compile_java_method
+  [ 6] Compilation::compile_method
+  [ 7] Compilation::Compilation
+  [ 8] Compiler::compile_method
+  [ 9] CompileBroker::invoke_compiler_on_method
+  [10] CompileBroker::compiler_thread_loop
+  [11] JavaThread::thread_main_inner
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 32752 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] ChunkPool::allocate_chunk
+  [ 3] Arena::grow
+  [ 4] LIR_List::cmp
+  [ 5] LIRGenerator::increment_event_counter_impl
+  [ 6] LIRGenerator::increment_event_counter
+  [ 7] LIRGenerator::do_Base
+  [ 8] non-virtual thunk to LIRGenerator::block_do
+  [ 9] BlockList::iterate_forward
+  [10] Compilation::emit_lir
+  [11] Compilation::compile_java_method
+  [12] Compilation::compile_method
+  [13] Compilation::Compilation
+  [14] Compiler::compile_method
+  [15] CompileBroker::invoke_compiler_on_method
+  [16] CompileBroker::compiler_thread_loop
+  [17] JavaThread::thread_main_inner
+  [18] Thread::call_run
+  [19] thread_native_entry
+  [20] start_thread
+  [21] clone3
+
+--- 32752 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] ChunkPool::allocate_chunk
+  [ 3] Arena::grow
+  [ 4] ValueStack::ValueStack
+  [ 5] GraphBuilder::copy_state_exhandling
+  [ 6] GraphBuilder::invoke
+  [ 7] GraphBuilder::iterate_bytecodes_for_block
+  [ 8] GraphBuilder::iterate_all_blocks
+  [ 9] GraphBuilder::GraphBuilder
+  [10] IRScope::IRScope
+  [11] IR::IR
+  [12] Compilation::build_hir
+  [13] Compilation::compile_java_method
+  [14] Compilation::compile_method
+  [15] Compilation::Compilation
+  [16] Compiler::compile_method
+  [17] CompileBroker::invoke_compiler_on_method
+  [18] CompileBroker::compiler_thread_loop
+  [19] JavaThread::thread_main_inner
+  [20] Thread::call_run
+  [21] thread_native_entry
+  [22] start_thread
+  [23] clone3
+
+--- 32640 bytes (0.00%), 408 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] ReferenceProcessorPhaseTimes::ReferenceProcessorPhaseTimes
+  [ 4] G1ConcurrentMark::weak_refs_work
+  [ 5] G1ConcurrentMark::remark
+  [ 6] VM_G1PauseConcurrent::doit
+  [ 7] VM_Operation::evaluate
+  [ 8] VMThread::evaluate_operation
+  [ 9] VMThread::inner_execute
+  [10] VMThread::run
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 28704 bytes (0.00%), 276 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1PreEvacuateCollectionSetBatchTask::JavaThreadRetireTLABAndFlushLogs::set_max_workers
+  [ 4] G1BatchedTask::set_max_workers
+  [ 5] G1CollectedHeap::run_batch_task
+  [ 6] G1YoungCollector::pre_evacuate_collection_set
+  [ 7] G1YoungCollector::collect
+  [ 8] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 9] VM_G1CollectForAllocation::doit
+  [10] VM_Operation::evaluate
+  [11] VMThread::evaluate_operation
+  [12] VMThread::inner_execute
+  [13] VMThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 26496 bytes (0.00%), 690 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1MonotonicArenaFreeMemoryTask::calculate_return_infos
+  [ 4] G1MonotonicArenaFreeMemoryTask::free_excess_arena_memory
+  [ 5] G1MonotonicArenaFreeMemoryTask::execute
+  [ 6] G1ServiceThread::run_task
+  [ 7] G1ServiceThread::run_service
+  [ 8] ConcurrentGCThread::run
+  [ 9] Thread::call_run
+  [10] thread_native_entry
+  [11] start_thread
+  [12] clone3
+
+--- 24336 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1HeapRegionManager::rebuild_free_list
+  [ 4] G1CollectedHeap::rebuild_free_region_list
+  [ 5] G1YoungCollector::post_evacuate_collection_set
+  [ 6] G1YoungCollector::collect
+  [ 7] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 8] VM_G1CollectForAllocation::doit
+  [ 9] VM_Operation::evaluate
+  [10] VMThread::evaluate_operation
+  [11] VMThread::inner_execute
+  [12] VMThread::run
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 24288 bytes (0.00%), 276 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1PreEvacuateCollectionSetBatchTask::G1PreEvacuateCollectionSetBatchTask
+  [ 4] G1YoungCollector::pre_evacuate_collection_set
+  [ 5] G1YoungCollector::collect
+  [ 6] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 7] VM_G1CollectForAllocation::doit
+  [ 8] VM_Operation::evaluate
+  [ 9] VMThread::evaluate_operation
+  [10] VMThread::inner_execute
+  [11] VMThread::run
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 23528 bytes (0.00%), 414 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1ParScanThreadStateSet::G1ParScanThreadStateSet
+  [ 4] G1YoungCollector::collect
+  [ 5] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 6] VM_G1CollectForAllocation::doit
+  [ 7] VM_Operation::evaluate
+  [ 8] VMThread::evaluate_operation
+  [ 9] VMThread::inner_execute
+  [10] VMThread::run
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 20160 bytes (0.00%), 240 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1CardSet::G1CardSet
+  [ 4] G1CollectionSetCandidates::set_candidates_from_marking
+  [ 5] G1CollectionSetChooser::build
+  [ 6] G1ConcurrentMark::remark
+  [ 7] VM_G1PauseConcurrent::doit
+  [ 8] VM_Operation::evaluate
+  [ 9] VMThread::evaluate_operation
+  [10] VMThread::inner_execute
+  [11] VMThread::run
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 16224 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1PostEvacuateCollectionSetCleanupTask2::FreeCollectionSetTask::set_max_workers
+  [ 4] G1BatchedTask::set_max_workers
+  [ 5] G1CollectedHeap::run_batch_task
+  [ 6] G1YoungCollector::post_evacuate_collection_set
+  [ 7] G1YoungCollector::collect
+  [ 8] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 9] VM_G1CollectForAllocation::doit
+  [10] VM_Operation::evaluate
+  [11] VMThread::evaluate_operation
+  [12] VMThread::inner_execute
+  [13] VMThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 10560 bytes (0.00%), 120 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1CollectionSetCandidates::set_candidates_from_marking
+  [ 4] G1CollectionSetChooser::build
+  [ 5] G1ConcurrentMark::remark
+  [ 6] VM_G1PauseConcurrent::doit
+  [ 7] VM_Operation::evaluate
+  [ 8] VMThread::evaluate_operation
+  [ 9] VMThread::inner_execute
+  [10] VMThread::run
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 9600 bytes (0.00%), 30 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1MonotonicArena::allocate
+  [ 4] G1CardSet::add_card
+  [ 5] void OopOopIterateDispatch<G1RebuildRemSetClosure>::Table::oop_oop_iterate<InstanceMirrorKlass, narrowOop>
+  [ 6] G1RebuildRSAndScrubTask::G1RebuildRSAndScrubRegionClosure::do_heap_region
+  [ 7] G1HeapRegionManager::par_iterate
+  [ 8] G1RebuildRSAndScrubTask::work
+  [ 9] WorkerThread::run
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 8208 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] BufferNode::Allocator::allocate
+  [ 4] PtrQueueSet::install_new_buffer
+  [ 5] SATBMarkQueueSet::enqueue_known_active
+  [ 6] java.lang.ref.ReferenceQueue.remove
+  [ 7] [unknown]
+
+--- 8064 bytes (0.00%), 8 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] ChunkPool::allocate_chunk
+  [ 3] Arena::Arena
+  [ 4] PartialArrayStateAllocator::PartialArrayStateAllocator
+  [ 5] PartialArraySplitter::PartialArraySplitter
+  [ 6] G1ParScanThreadState::G1ParScanThreadState
+  [ 7] G1ParScanThreadStateSet::state_for_worker
+  [ 8] G1EvacuateRegionsBaseTask::work
+  [ 9] WorkerThread::run
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 6624 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1RemSet::create_cleanup_after_scan_heap_roots_task
+  [ 4] G1PostEvacuateCollectionSetCleanupTask1::G1PostEvacuateCollectionSetCleanupTask1
+  [ 5] G1YoungCollector::post_evacuate_collection_set
+  [ 6] G1YoungCollector::collect
+  [ 7] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 8] VM_G1CollectForAllocation::doit
+  [ 9] VM_Operation::evaluate
+  [10] VMThread::evaluate_operation
+  [11] VMThread::inner_execute
+  [12] VMThread::run
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 6080 bytes (0.00%), 311 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1PostEvacuateCollectionSetCleanupTask1::G1PostEvacuateCollectionSetCleanupTask1
+  [ 4] G1YoungCollector::post_evacuate_collection_set
+  [ 5] G1YoungCollector::collect
+  [ 6] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 7] VM_G1CollectForAllocation::doit
+  [ 8] VM_Operation::evaluate
+  [ 9] VMThread::evaluate_operation
+  [10] VMThread::inner_execute
+  [11] VMThread::run
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 4480 bytes (0.00%), 70 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1CollectionSetCandidates::remove
+  [ 4] G1CollectionSet::select_candidates_from_marking
+  [ 5] G1CollectionSet::finalize_old_part
+  [ 6] G1YoungCollector::pre_evacuate_collection_set
+  [ 7] G1YoungCollector::collect
+  [ 8] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 9] VM_G1CollectForAllocation::doit
+  [10] VM_Operation::evaluate
+  [11] VMThread::evaluate_operation
+  [12] VMThread::inner_execute
+  [13] VMThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 4480 bytes (0.00%), 14 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1MonotonicArena::allocate
+  [ 4] G1CardSet::add_card
+  [ 5] void OopOopIterateDispatch<G1RebuildRemSetClosure>::Table::oop_oop_iterate<InstanceKlass, narrowOop>
+  [ 6] G1RebuildRSAndScrubTask::G1RebuildRSAndScrubRegionClosure::do_heap_region
+  [ 7] G1HeapRegionManager::par_iterate
+  [ 8] G1RebuildRSAndScrubTask::work
+  [ 9] WorkerThread::run
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 4432 bytes (0.00%), 311 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] GrowableArrayWithAllocator<G1AbstractSubTask*, GrowableArrayCHeap<G1AbstractSubTask*, (MemTag)5> >::grow
+  [ 4] G1BatchedTask::add_serial_task
+  [ 5] G1PostEvacuateCollectionSetCleanupTask1::G1PostEvacuateCollectionSetCleanupTask1
+  [ 6] G1YoungCollector::post_evacuate_collection_set
+  [ 7] G1YoungCollector::collect
+  [ 8] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 9] VM_G1CollectForAllocation::doit
+  [10] VM_Operation::evaluate
+  [11] VMThread::evaluate_operation
+  [12] VMThread::inner_execute
+  [13] VMThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 4416 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] GrowableArrayWithAllocator<G1AbstractSubTask*, GrowableArrayCHeap<G1AbstractSubTask*, (MemTag)5> >::grow
+  [ 4] G1BatchedTask::add_parallel_task
+  [ 5] G1YoungCollector::post_evacuate_collection_set
+  [ 6] G1YoungCollector::collect
+  [ 7] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 8] VM_G1CollectForAllocation::doit
+  [ 9] VM_Operation::evaluate
+  [10] VMThread::evaluate_operation
+  [11] VMThread::inner_execute
+  [12] VMThread::run
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 4160 bytes (0.00%), 13 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1MonotonicArena::allocate
+  [ 4] G1CardSet::add_card
+  [ 5] void OopOopIterateDispatch<G1RebuildRemSetClosure>::Table::oop_oop_iterate<ObjArrayKlass, narrowOop>
+  [ 6] G1RebuildRSAndScrubTask::G1RebuildRSAndScrubRegionClosure::do_heap_region
+  [ 7] G1HeapRegionManager::par_iterate
+  [ 8] G1RebuildRSAndScrubTask::work
+  [ 9] WorkerThread::run
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 3840 bytes (0.00%), 120 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1CardSet::clear
+  [ 4] G1CSetCandidateGroupList::clear
+  [ 5] G1PostEvacuateCollectionSetCleanupTask2::FreeCollectionSetTask::~FreeCollectionSetTask
+  [ 6] G1BatchedTask::~G1BatchedTask
+  [ 7] G1YoungCollector::post_evacuate_collection_set
+  [ 8] G1YoungCollector::collect
+  [ 9] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [10] VM_G1CollectForAllocation::doit
+  [11] VM_Operation::evaluate
+  [12] VMThread::evaluate_operation
+  [13] VMThread::inner_execute
+  [14] VMThread::run
+  [15] Thread::call_run
+  [16] thread_native_entry
+  [17] start_thread
+  [18] clone3
+
+--- 3840 bytes (0.00%), 12 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1MonotonicArena::allocate
+  [ 4] G1CardSet::add_card
+  [ 5] void OopOopIterateDispatch<G1RebuildRemSetClosure>::Table::oop_oop_iterate<InstanceRefKlass, narrowOop>
+  [ 6] G1RebuildRSAndScrubTask::G1RebuildRSAndScrubRegionClosure::do_heap_region
+  [ 7] G1HeapRegionManager::par_iterate
+  [ 8] G1RebuildRSAndScrubTask::work
+  [ 9] WorkerThread::run
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 3312 bytes (0.00%), 276 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] GrowableArrayWithAllocator<G1AbstractSubTask*, GrowableArrayCHeap<G1AbstractSubTask*, (MemTag)5> >::grow
+  [ 4] G1BatchedTask::add_parallel_task
+  [ 5] G1PostEvacuateCollectionSetCleanupTask2::G1PostEvacuateCollectionSetCleanupTask2
+  [ 6] G1YoungCollector::post_evacuate_collection_set
+  [ 7] G1YoungCollector::collect
+  [ 8] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 9] VM_G1CollectForAllocation::doit
+  [10] VM_Operation::evaluate
+  [11] VMThread::evaluate_operation
+  [12] VMThread::inner_execute
+  [13] VMThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 3312 bytes (0.00%), 276 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] GrowableArrayWithAllocator<G1AbstractSubTask*, GrowableArrayCHeap<G1AbstractSubTask*, (MemTag)5> >::grow
+  [ 4] G1BatchedTask::add_serial_task
+  [ 5] G1PostEvacuateCollectionSetCleanupTask2::G1PostEvacuateCollectionSetCleanupTask2
+  [ 6] G1YoungCollector::post_evacuate_collection_set
+  [ 7] G1YoungCollector::collect
+  [ 8] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 9] VM_G1CollectForAllocation::doit
+  [10] VM_Operation::evaluate
+  [11] VMThread::evaluate_operation
+  [12] VMThread::inner_execute
+  [13] VMThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 2760 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::strdup
+  [ 2] Mutex::Mutex
+  [ 3] TaskTerminator::TaskTerminator
+  [ 4] G1YoungCollector::evacuate_initial_collection_set
+  [ 5] G1YoungCollector::collect
+  [ 6] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 7] VM_G1CollectForAllocation::doit
+  [ 8] VM_Operation::evaluate
+  [ 9] VMThread::evaluate_operation
+  [10] VMThread::inner_execute
+  [11] VMThread::run
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 2760 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::strdup
+  [ 2] Mutex::Mutex
+  [ 3] TaskTerminator::TaskTerminator
+  [ 4] G1YoungCollector::process_discovered_references
+  [ 5] G1YoungCollector::post_evacuate_collection_set
+  [ 6] G1YoungCollector::collect
+  [ 7] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 8] VM_G1CollectForAllocation::doit
+  [ 9] VM_Operation::evaluate
+  [10] VMThread::evaluate_operation
+  [11] VMThread::inner_execute
+  [12] VMThread::run
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 2704 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1RemSet::merge_heap_roots
+  [ 4] G1YoungCollector::evacuate_initial_collection_set
+  [ 5] G1YoungCollector::collect
+  [ 6] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 7] VM_G1CollectForAllocation::doit
+  [ 8] VM_Operation::evaluate
+  [ 9] VMThread::evaluate_operation
+  [10] VMThread::inner_execute
+  [11] VMThread::run
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 2240 bytes (0.00%), 35 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1CSetCandidateGroupList::G1CSetCandidateGroupList
+  [ 4] G1CollectionSet::select_candidates_from_marking
+  [ 5] G1CollectionSet::finalize_old_part
+  [ 6] G1YoungCollector::pre_evacuate_collection_set
+  [ 7] G1YoungCollector::collect
+  [ 8] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 9] VM_G1CollectForAllocation::doit
+  [10] VM_Operation::evaluate
+  [11] VMThread::evaluate_operation
+  [12] VMThread::inner_execute
+  [13] VMThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 2240 bytes (0.00%), 70 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1CardSet::clear
+  [ 4] G1CSetCandidateGroup::clear
+  [ 5] G1RemSet::merge_heap_roots
+  [ 6] G1YoungCollector::evacuate_initial_collection_set
+  [ 7] G1YoungCollector::collect
+  [ 8] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 9] VM_G1CollectForAllocation::doit
+  [10] VM_Operation::evaluate
+  [11] VMThread::evaluate_operation
+  [12] VMThread::inner_execute
+  [13] VMThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 2208 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AnyObj::operator new
+  [ 3] G1MonotonicArenaFreeMemoryTask::calculate_return_infos
+  [ 4] G1MonotonicArenaFreeMemoryTask::free_excess_arena_memory
+  [ 5] G1MonotonicArenaFreeMemoryTask::execute
+  [ 6] G1ServiceThread::run_task
+  [ 7] G1ServiceThread::run_service
+  [ 8] ConcurrentGCThread::run
+  [ 9] Thread::call_run
+  [10] thread_native_entry
+  [11] start_thread
+  [12] clone3
+
+--- 1904 bytes (0.00%), 68 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1ConcurrentMark::pre_concurrent_start
+  [ 4] G1YoungCollector::pre_evacuate_collection_set
+  [ 5] G1YoungCollector::collect
+  [ 6] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 7] VM_G1CollectForAllocation::doit
+  [ 8] VM_Operation::evaluate
+  [ 9] VMThread::evaluate_operation
+  [10] VMThread::inner_execute
+  [11] VMThread::run
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 1860 bytes (0.00%), 60 samples
+  [ 0] malloc_hook
+  [ 1] os::strdup
+  [ 2] Mutex::Mutex
+  [ 3] G1CardSet::G1CardSet
+  [ 4] G1CollectionSetCandidates::set_candidates_from_marking
+  [ 5] G1CollectionSetChooser::build
+  [ 6] G1ConcurrentMark::remark
+  [ 7] VM_G1PauseConcurrent::doit
+  [ 8] VM_Operation::evaluate
+  [ 9] VMThread::evaluate_operation
+  [10] VMThread::inner_execute
+  [11] VMThread::run
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 1680 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] nmethod::new_nmethod
+  [ 3] ciEnv::register_method
+  [ 4] PhaseOutput::install_code
+  [ 5] Compile::Code_Gen
+  [ 6] Compile::Compile
+  [ 7] C2Compiler::compile_method
+  [ 8] CompileBroker::invoke_compiler_on_method
+  [ 9] CompileBroker::compiler_thread_loop
+  [10] JavaThread::thread_main_inner
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 1328 bytes (0.00%), 83 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AnyObj::operator new
+  [ 3] ClassUnloadingContext::ClassUnloadingContext
+  [ 4] G1CollectedHeap::unload_classes_and_code
+  [ 5] G1ConcurrentMark::remark
+  [ 6] VM_G1PauseConcurrent::doit
+  [ 7] VM_Operation::evaluate
+  [ 8] VMThread::evaluate_operation
+  [ 9] VMThread::inner_execute
+  [10] VMThread::run
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 1312 bytes (0.00%), 6 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] nmethod::new_nmethod
+  [ 3] ciEnv::register_method
+  [ 4] Compilation::install_code
+  [ 5] Compilation::compile_method
+  [ 6] Compilation::Compilation
+  [ 7] Compiler::compile_method
+  [ 8] CompileBroker::invoke_compiler_on_method
+  [ 9] CompileBroker::compiler_thread_loop
+  [10] JavaThread::thread_main_inner
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 1104 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] GrowableArrayWithAllocator<G1AbstractSubTask*, GrowableArrayCHeap<G1AbstractSubTask*, (MemTag)5> >::grow
+  [ 4] G1BatchedTask::add_parallel_task
+  [ 5] G1YoungCollector::pre_evacuate_collection_set
+  [ 6] G1YoungCollector::collect
+  [ 7] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 8] VM_G1CollectForAllocation::doit
+  [ 9] VM_Operation::evaluate
+  [10] VMThread::evaluate_operation
+  [11] VMThread::inner_execute
+  [12] VMThread::run
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 1104 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] GrowableArrayWithAllocator<G1AbstractSubTask*, GrowableArrayCHeap<G1AbstractSubTask*, (MemTag)5> >::grow
+  [ 4] G1BatchedTask::add_serial_task
+  [ 5] G1PreEvacuateCollectionSetBatchTask::G1PreEvacuateCollectionSetBatchTask
+  [ 6] G1YoungCollector::pre_evacuate_collection_set
+  [ 7] G1YoungCollector::collect
+  [ 8] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 9] VM_G1CollectForAllocation::doit
+  [10] VM_Operation::evaluate
+  [11] VMThread::evaluate_operation
+  [12] VMThread::inner_execute
+  [13] VMThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 1104 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] GrowableArrayWithAllocator<G1AbstractSubTask*, GrowableArrayCHeap<G1AbstractSubTask*, (MemTag)5> >::grow
+  [ 4] G1BatchedTask::add_parallel_task
+  [ 5] G1PostEvacuateCollectionSetCleanupTask1::G1PostEvacuateCollectionSetCleanupTask1
+  [ 6] G1YoungCollector::post_evacuate_collection_set
+  [ 7] G1YoungCollector::collect
+  [ 8] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 9] VM_G1CollectForAllocation::doit
+  [10] VM_Operation::evaluate
+  [11] VMThread::evaluate_operation
+  [12] VMThread::inner_execute
+  [13] VMThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 688 bytes (0.00%), 60 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] GrowableArrayWithAllocator<G1CSetCandidateGroup*, GrowableArray<G1CSetCandidateGroup*> >::grow
+  [ 4] G1CollectionSetCandidates::set_candidates_from_marking
+  [ 5] G1CollectionSetChooser::build
+  [ 6] G1ConcurrentMark::remark
+  [ 7] VM_G1PauseConcurrent::doit
+  [ 8] VM_Operation::evaluate
+  [ 9] VMThread::evaluate_operation
+  [10] VMThread::inner_execute
+  [11] VMThread::run
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 664 bytes (0.00%), 34 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] ClassUnloadingContext::ClassUnloadingContext
+  [ 4] G1CollectedHeap::unload_classes_and_code
+  [ 5] G1ConcurrentMark::remark
+  [ 6] VM_G1PauseConcurrent::doit
+  [ 7] VM_Operation::evaluate
+  [ 8] VMThread::evaluate_operation
+  [ 9] VMThread::inner_execute
+  [10] VMThread::run
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 663 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] Java_java_lang_ClassLoader_defineClass1
+  [ 2] java.lang.ClassLoader.defineClass1
+  [ 3] java.lang.ClassLoader.defineClass
+  [ 4] java.security.SecureClassLoader.defineClass
+  [ 5] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [ 6] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [ 7] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [ 8] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [ 9] java.lang.ClassLoader.loadClass
+
+--- 544 bytes (0.00%), 34 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AnyObj::operator new
+  [ 3] ClassUnloadingContext::free_nmethods
+  [ 4] G1CollectedHeap::unload_classes_and_code
+  [ 5] G1ConcurrentMark::remark
+  [ 6] VM_G1PauseConcurrent::doit
+  [ 7] VM_Operation::evaluate
+  [ 8] VMThread::evaluate_operation
+  [ 9] VMThread::inner_execute
+  [10] VMThread::run
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 517 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] Arguments::parse
+  [ 2] Java_one_profiler_AsyncProfiler_execute0
+  [ 3] org.openjdk.jmh.profile.AsyncProfiler$JavaApi.execute0
+  [ 4] org.openjdk.jmh.profile.AsyncProfiler$JavaApi.execute
+  [ 5] org.openjdk.jmh.profile.AsyncProfiler.execute
+  [ 6] org.openjdk.jmh.profile.AsyncProfiler.stopAndDump
+  [ 7] org.openjdk.jmh.profile.AsyncProfiler.afterIteration
+  [ 8] org.openjdk.jmh.runner.BenchmarkHandler.stopProfilers
+  [ 9] org.openjdk.jmh.runner.BenchmarkHandler.runIteration
+  [10] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [11] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [12] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [13] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [14] org.openjdk.jmh.runner.ForkedRunner.run
+  [15] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 512 bytes (0.00%), 4 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] GrowableArrayWithAllocator<G1CollectionSetCandidateInfo, GrowableArray<G1CollectionSetCandidateInfo> >::grow
+  [ 4] G1CollectionSetCandidates::set_candidates_from_marking
+  [ 5] G1CollectionSetChooser::build
+  [ 6] G1ConcurrentMark::remark
+  [ 7] VM_G1PauseConcurrent::doit
+  [ 8] VM_Operation::evaluate
+  [ 9] VMThread::evaluate_operation
+  [10] VMThread::inner_execute
+  [11] VMThread::run
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 432 bytes (0.00%), 6 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] CodeBlob::CodeBlob
+  [ 3] nmethod::nmethod
+  [ 4] nmethod::new_nmethod
+  [ 5] ciEnv::register_method
+  [ 6] Compilation::install_code
+  [ 7] Compilation::compile_method
+  [ 8] Compilation::Compilation
+  [ 9] Compiler::compile_method
+  [10] CompileBroker::invoke_compiler_on_method
+  [11] CompileBroker::compiler_thread_loop
+  [12] JavaThread::thread_main_inner
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 414 bytes (0.00%), 138 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] SubTasksDone::SubTasksDone
+  [ 4] G1RootProcessor::G1RootProcessor
+  [ 5] G1YoungCollector::evacuate_initial_collection_set
+  [ 6] G1YoungCollector::collect
+  [ 7] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 8] VM_G1CollectForAllocation::doit
+  [ 9] VM_Operation::evaluate
+  [10] VMThread::evaluate_operation
+  [11] VMThread::inner_execute
+  [12] VMThread::run
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 272 bytes (0.00%), 34 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] GrowableArrayWithAllocator<G1AbstractSubTask*, GrowableArrayCHeap<G1AbstractSubTask*, (MemTag)5> >::grow
+  [ 4] G1BatchedTask::add_serial_task
+  [ 5] G1ConcurrentMark::pre_concurrent_start
+  [ 6] G1YoungCollector::pre_evacuate_collection_set
+  [ 7] G1YoungCollector::collect
+  [ 8] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 9] VM_G1CollectForAllocation::doit
+  [10] VM_Operation::evaluate
+  [11] VMThread::evaluate_operation
+  [12] VMThread::inner_execute
+  [13] VMThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 272 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] ImmutableOopMapSet::build_from
+  [ 4] CodeBlob::CodeBlob
+  [ 5] nmethod::nmethod
+  [ 6] nmethod::new_nmethod
+  [ 7] ciEnv::register_method
+  [ 8] PhaseOutput::install_code
+  [ 9] Compile::Code_Gen
+  [10] Compile::Compile
+  [11] C2Compiler::compile_method
+  [12] CompileBroker::invoke_compiler_on_method
+  [13] CompileBroker::compiler_thread_loop
+  [14] JavaThread::thread_main_inner
+  [15] Thread::call_run
+  [16] thread_native_entry
+  [17] start_thread
+  [18] clone3
+
+--- 272 bytes (0.00%), 34 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] GrowableArrayWithAllocator<G1AbstractSubTask*, GrowableArrayCHeap<G1AbstractSubTask*, (MemTag)5> >::grow
+  [ 4] G1BatchedTask::add_parallel_task
+  [ 5] G1ConcurrentMark::pre_concurrent_start
+  [ 6] G1YoungCollector::pre_evacuate_collection_set
+  [ 7] G1YoungCollector::collect
+  [ 8] G1CollectedHeap::do_collection_pause_at_safepoint_helper
+  [ 9] VM_G1CollectForAllocation::doit
+  [10] VM_Operation::evaluate
+  [11] VMThread::evaluate_operation
+  [12] VMThread::inner_execute
+  [13] VMThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 264 bytes (0.00%), 6 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] ImmutableOopMapSet::build_from
+  [ 4] CodeBlob::CodeBlob
+  [ 5] nmethod::nmethod
+  [ 6] nmethod::new_nmethod
+  [ 7] ciEnv::register_method
+  [ 8] Compilation::install_code
+  [ 9] Compilation::compile_method
+  [10] Compilation::Compilation
+  [11] Compiler::compile_method
+  [12] CompileBroker::invoke_compiler_on_method
+  [13] CompileBroker::compiler_thread_loop
+  [14] JavaThread::thread_main_inner
+  [15] Thread::call_run
+  [16] thread_native_entry
+  [17] start_thread
+  [18] clone3
+
+--- 256 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] Java_one_profiler_AsyncProfiler_execute0
+  [ 2] org.openjdk.jmh.profile.AsyncProfiler$JavaApi.execute0
+  [ 3] org.openjdk.jmh.profile.AsyncProfiler$JavaApi.execute
+  [ 4] org.openjdk.jmh.profile.AsyncProfiler.execute
+  [ 5] org.openjdk.jmh.profile.AsyncProfiler.stopAndDump
+  [ 6] org.openjdk.jmh.profile.AsyncProfiler.afterIteration
+  [ 7] org.openjdk.jmh.runner.BenchmarkHandler.stopProfilers
+  [ 8] org.openjdk.jmh.runner.BenchmarkHandler.runIteration
+  [ 9] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [10] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [11] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [12] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [13] org.openjdk.jmh.runner.ForkedRunner.run
+  [14] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 216 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] CodeBlob::CodeBlob
+  [ 3] nmethod::nmethod
+  [ 4] nmethod::new_nmethod
+  [ 5] ciEnv::register_method
+  [ 6] PhaseOutput::install_code
+  [ 7] Compile::Code_Gen
+  [ 8] Compile::Compile
+  [ 9] C2Compiler::compile_method
+  [10] CompileBroker::invoke_compiler_on_method
+  [11] CompileBroker::compiler_thread_loop
+  [12] JavaThread::thread_main_inner
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 192 bytes (0.00%), 6 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] nmethod::nmethod
+  [ 4] nmethod::new_nmethod
+  [ 5] ciEnv::register_method
+  [ 6] Compilation::install_code
+  [ 7] Compilation::compile_method
+  [ 8] Compilation::Compilation
+  [ 9] Compiler::compile_method
+  [10] CompileBroker::invoke_compiler_on_method
+  [11] CompileBroker::compiler_thread_loop
+  [12] JavaThread::thread_main_inner
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 164 bytes (0.00%), 4 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] SymbolTable::do_add_if_needed
+  [ 4] SymbolTable::new_symbols
+  [ 5] ClassFileParser::parse_constant_pool_entries
+  [ 6] ClassFileParser::parse_stream
+  [ 7] ClassFileParser::ClassFileParser
+  [ 8] KlassFactory::create_from_stream
+  [ 9] SystemDictionary::resolve_class_from_stream
+  [10] jvm_define_class_common
+  [11] JVM_DefineClassWithSource
+  [12] Java_java_lang_ClassLoader_defineClass1
+  [13] java.lang.ClassLoader.defineClass1
+  [14] java.lang.ClassLoader.defineClass
+  [15] java.security.SecureClassLoader.defineClass
+  [16] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [17] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [18] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [19] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [20] java.lang.ClassLoader.loadClass
+
+--- 128 bytes (0.00%), 9 samples
+  [ 0] malloc_hook
+  [ 1] os::strdup
+  [ 2] Symbol::print_symbol_on
+  [ 3] Method::print_short_name
+  [ 4] CompileTask::print_impl
+  [ 5] CompileTask::print
+  [ 6] CompilationLog::log_compile
+  [ 7] CompileBroker::invoke_compiler_on_method
+  [ 8] CompileBroker::compiler_thread_loop
+  [ 9] JavaThread::thread_main_inner
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 104 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] MethodData::extra_data_lock
+  [ 4] ciMethodData::load_remaining_extra_data
+  [ 5] ciMethodData::load_data
+  [ 6] ciMethod::ensure_method_data
+  [ 7] Compilation::compile_java_method
+  [ 8] Compilation::compile_method
+  [ 9] Compilation::Compilation
+  [10] Compiler::compile_method
+  [11] CompileBroker::invoke_compiler_on_method
+  [12] CompileBroker::compiler_thread_loop
+  [13] JavaThread::thread_main_inner
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 80 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AnyObj::operator new
+  [ 3] PlaceholderTable::find_and_add
+  [ 4] SystemDictionary::resolve_with_circularity_detection
+  [ 5] ClassFileParser::post_process_parsed_stream
+  [ 6] KlassFactory::create_from_stream
+  [ 7] SystemDictionary::resolve_class_from_stream
+  [ 8] jvm_define_class_common
+  [ 9] JVM_DefineClassWithSource
+  [10] Java_java_lang_ClassLoader_defineClass1
+  [11] java.lang.ClassLoader.defineClass1
+  [12] java.lang.ClassLoader.defineClass
+  [13] java.security.SecureClassLoader.defineClass
+  [14] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [15] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [16] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [17] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [18] java.lang.ClassLoader.loadClass
+
+--- 80 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AnyObj::operator new
+  [ 3] PlaceholderTable::find_and_add
+  [ 4] SystemDictionary::resolve_with_circularity_detection
+  [ 5] ClassFileParser::parse_interfaces
+  [ 6] ClassFileParser::parse_stream
+  [ 7] ClassFileParser::ClassFileParser
+  [ 8] KlassFactory::create_from_stream
+  [ 9] SystemDictionary::resolve_class_from_stream
+  [10] jvm_define_class_common
+  [11] JVM_DefineClassWithSource
+  [12] Java_java_lang_ClassLoader_defineClass1
+  [13] java.lang.ClassLoader.defineClass1
+  [14] java.lang.ClassLoader.defineClass
+  [15] java.security.SecureClassLoader.defineClass
+  [16] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [17] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [18] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [19] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [20] java.lang.ClassLoader.loadClass
+
+--- 80 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AnyObj::operator new
+  [ 3] PlaceholderTable::find_and_add
+  [ 4] SystemDictionary::find_or_define_helper
+  [ 5] SystemDictionary::resolve_class_from_stream
+  [ 6] jvm_define_class_common
+  [ 7] JVM_DefineClassWithSource
+  [ 8] Java_java_lang_ClassLoader_defineClass1
+  [ 9] java.lang.ClassLoader.defineClass1
+  [10] java.lang.ClassLoader.defineClass
+  [11] java.security.SecureClassLoader.defineClass
+  [12] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [13] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [14] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [15] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [16] java.lang.ClassLoader.loadClass
+
+--- 80 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AnyObj::operator new
+  [ 3] PlaceholderTable::find_and_add
+  [ 4] SystemDictionary::resolve_instance_class_or_null
+  [ 5] JVM_FindClassFromBootLoader
+  [ 6] Java_java_lang_ClassLoader_findBootstrapClass
+  [ 7] java.lang.ClassLoader.findBootstrapClass
+  [ 8] java.lang.ClassLoader.findBootstrapClassOrNull
+  [ 9] java.lang.System$1.findBootstrapClassOrNull
+  [10] jdk.internal.loader.ClassLoaders$BootClassLoader.loadClassOrNull
+  [11] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [12] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [13] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [14] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [15] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [16] java.lang.ClassLoader.loadClass
+
+--- 64 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] OopMapCache::lookup
+  [ 4] frame::oops_interpreted_do
+  [ 5] JavaThread::oops_do_frames
+  [ 6] Thread::oops_do
+  [ 7] Threads::possibly_parallel_oops_do
+  [ 8] G1RootProcessor::process_java_roots
+  [ 9] G1RootProcessor::evacuate_roots
+  [10] G1EvacuateRegionsTask::scan_roots
+  [11] G1EvacuateRegionsBaseTask::work
+  [12] WorkerThread::run
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 64 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] nmethod::nmethod
+  [ 4] nmethod::new_nmethod
+  [ 5] ciEnv::register_method
+  [ 6] PhaseOutput::install_code
+  [ 7] Compile::Code_Gen
+  [ 8] Compile::Compile
+  [ 9] C2Compiler::compile_method
+  [10] CompileBroker::invoke_compiler_on_method
+  [11] CompileBroker::compiler_thread_loop
+  [12] JavaThread::thread_main_inner
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 64 bytes (0.00%), 4 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1CodeRootSet::add
+  [ 4] nmethod::oops_do
+  [ 5] G1CollectedHeap::register_nmethod
+  [ 6] nmethod::nmethod
+  [ 7] nmethod::new_nmethod
+  [ 8] ciEnv::register_method
+  [ 9] PhaseOutput::install_code
+  [10] Compile::Code_Gen
+  [11] Compile::Compile
+  [12] C2Compiler::compile_method
+  [13] CompileBroker::invoke_compiler_on_method
+  [14] CompileBroker::compiler_thread_loop
+  [15] JavaThread::thread_main_inner
+  [16] Thread::call_run
+  [17] thread_native_entry
+  [18] start_thread
+  [19] clone3
+
+--- 32 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] ImmutableOopMapSet::build_from
+  [ 4] CodeBlob::CodeBlob
+  [ 5] nmethod::nmethod
+  [ 6] nmethod::new_native_nmethod
+  [ 7] SharedRuntime::generate_native_wrapper
+  [ 8] AdapterHandlerLibrary::create_native_wrapper
+  [ 9] CompileBroker::compile_method
+  [10] CompileBroker::compile_method
+  [11] CompilationPolicy::event
+  [12] InterpreterRuntime::frequency_counter_overflow_inner
+  [13] InterpreterRuntime::frequency_counter_overflow
+  [14] java.lang.ref.Reference.getAndClearReferencePendingList
+  [15] java.lang.ref.Reference.processPendingReferences
+  [16] java.lang.ref.Reference$ReferenceHandler.run
+
+--- 32 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] CodeBlob::CodeBlob
+  [ 3] nmethod::nmethod
+  [ 4] nmethod::new_native_nmethod
+  [ 5] SharedRuntime::generate_native_wrapper
+  [ 6] AdapterHandlerLibrary::create_native_wrapper
+  [ 7] CompileBroker::compile_method
+  [ 8] CompileBroker::compile_method
+  [ 9] CompilationPolicy::event
+  [10] InterpreterRuntime::frequency_counter_overflow_inner
+  [11] InterpreterRuntime::frequency_counter_overflow
+  [12] java.lang.ref.Reference.waitForReferencePendingList
+  [13] java.lang.ref.Reference.processPendingReferences
+  [14] java.lang.ref.Reference$ReferenceHandler.run
+
+--- 32 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] CodeBlob::CodeBlob
+  [ 3] nmethod::nmethod
+  [ 4] nmethod::new_native_nmethod
+  [ 5] SharedRuntime::generate_native_wrapper
+  [ 6] AdapterHandlerLibrary::create_native_wrapper
+  [ 7] CompileBroker::compile_method
+  [ 8] CompileBroker::compile_method
+  [ 9] CompilationPolicy::event
+  [10] InterpreterRuntime::frequency_counter_overflow_inner
+  [11] InterpreterRuntime::frequency_counter_overflow
+  [12] java.lang.ref.Reference.getAndClearReferencePendingList
+  [13] java.lang.ref.Reference.processPendingReferences
+  [14] java.lang.ref.Reference$ReferenceHandler.run
+
+--- 32 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] ImmutableOopMapSet::build_from
+  [ 4] CodeBlob::CodeBlob
+  [ 5] nmethod::nmethod
+  [ 6] nmethod::new_native_nmethod
+  [ 7] SharedRuntime::generate_native_wrapper
+  [ 8] AdapterHandlerLibrary::create_native_wrapper
+  [ 9] CompileBroker::compile_method
+  [10] CompileBroker::compile_method
+  [11] CompilationPolicy::event
+  [12] InterpreterRuntime::frequency_counter_overflow_inner
+  [13] InterpreterRuntime::frequency_counter_overflow
+  [14] jdk.internal.misc.Unsafe.putInt
+  [15] java.util.concurrent.locks.AbstractQueuedSynchronizer$Node.setStatusRelaxed
+  [16] java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.enableWait
+  [17] java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos
+  [18] java.util.concurrent.LinkedBlockingQueue.poll
+  [19] java.util.concurrent.ExecutorCompletionService.poll
+  [20] org.openjdk.jmh.runner.BenchmarkHandler.runIteration
+  [21] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [22] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [23] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [24] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [25] org.openjdk.jmh.runner.ForkedRunner.run
+  [26] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 32 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] ImmutableOopMapSet::build_from
+  [ 4] CodeBlob::CodeBlob
+  [ 5] nmethod::nmethod
+  [ 6] nmethod::new_native_nmethod
+  [ 7] SharedRuntime::generate_native_wrapper
+  [ 8] AdapterHandlerLibrary::create_native_wrapper
+  [ 9] CompileBroker::compile_method
+  [10] CompileBroker::compile_method
+  [11] CompilationPolicy::event
+  [12] InterpreterRuntime::frequency_counter_overflow_inner
+  [13] InterpreterRuntime::frequency_counter_overflow
+  [14] java.lang.Object.wait0
+  [15] java.lang.Object.wait
+  [16] java.lang.Object.wait
+  [17] java.lang.ref.ReferenceQueue.remove0
+  [18] java.lang.ref.ReferenceQueue.remove
+  [19] java.lang.ref.Finalizer$FinalizerThread.run
+
+--- 32 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] ImmutableOopMapSet::build_from
+  [ 4] CodeBlob::CodeBlob
+  [ 5] nmethod::nmethod
+  [ 6] nmethod::new_native_nmethod
+  [ 7] SharedRuntime::generate_native_wrapper
+  [ 8] AdapterHandlerLibrary::create_native_wrapper
+  [ 9] CompileBroker::compile_method
+  [10] CompileBroker::compile_method
+  [11] CompilationPolicy::event
+  [12] InterpreterRuntime::frequency_counter_overflow_inner
+  [13] InterpreterRuntime::frequency_counter_overflow
+  [14] java.lang.ref.Reference.waitForReferencePendingList
+  [15] java.lang.ref.Reference.processPendingReferences
+  [16] java.lang.ref.Reference$ReferenceHandler.run
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] PlaceholderTable::find_and_add
+  [ 4] SystemDictionary::find_or_define_helper
+  [ 5] SystemDictionary::resolve_class_from_stream
+  [ 6] jvm_define_class_common
+  [ 7] JVM_DefineClassWithSource
+  [ 8] Java_java_lang_ClassLoader_defineClass1
+  [ 9] java.lang.ClassLoader.defineClass1
+  [10] java.lang.ClassLoader.defineClass
+  [11] java.security.SecureClassLoader.defineClass
+  [12] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [13] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [14] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [15] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [16] java.lang.ClassLoader.loadClass
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] PlaceholderTable::find_and_add
+  [ 4] SystemDictionary::resolve_instance_class_or_null
+  [ 5] JVM_FindClassFromBootLoader
+  [ 6] Java_java_lang_ClassLoader_findBootstrapClass
+  [ 7] java.lang.ClassLoader.findBootstrapClass
+  [ 8] java.lang.ClassLoader.findBootstrapClassOrNull
+  [ 9] java.lang.System$1.findBootstrapClassOrNull
+  [10] jdk.internal.loader.ClassLoaders$BootClassLoader.loadClassOrNull
+  [11] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [12] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [13] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [14] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [15] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [16] java.lang.ClassLoader.loadClass
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] PlaceholderTable::find_and_add
+  [ 4] SystemDictionary::resolve_with_circularity_detection
+  [ 5] ClassFileParser::post_process_parsed_stream
+  [ 6] KlassFactory::create_from_stream
+  [ 7] SystemDictionary::resolve_class_from_stream
+  [ 8] jvm_define_class_common
+  [ 9] JVM_DefineClassWithSource
+  [10] Java_java_lang_ClassLoader_defineClass1
+  [11] java.lang.ClassLoader.defineClass1
+  [12] java.lang.ClassLoader.defineClass
+  [13] java.security.SecureClassLoader.defineClass
+  [14] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [15] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [16] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [17] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [18] java.lang.ClassLoader.loadClass
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] PlaceholderTable::find_and_add
+  [ 4] SystemDictionary::resolve_with_circularity_detection
+  [ 5] ClassFileParser::parse_interfaces
+  [ 6] ClassFileParser::parse_stream
+  [ 7] ClassFileParser::ClassFileParser
+  [ 8] KlassFactory::create_from_stream
+  [ 9] SystemDictionary::resolve_class_from_stream
+  [10] jvm_define_class_common
+  [11] JVM_DefineClassWithSource
+  [12] Java_java_lang_ClassLoader_defineClass1
+  [13] java.lang.ClassLoader.defineClass1
+  [14] java.lang.ClassLoader.defineClass
+  [15] java.security.SecureClassLoader.defineClass
+  [16] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [17] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [18] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [19] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [20] java.lang.ClassLoader.loadClass
+
+--- 24 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] GrowableArrayWithAllocator<nmethod*, GrowableArrayCHeap<nmethod*, (MemTag)5> >::grow
+  [ 4] ClassUnloadingContext::register_unlinked_nmethod
+  [ 5] CodeCacheUnloadingTask::work
+  [ 6] G1ParallelCleaningTask::work
+  [ 7] WorkerThread::run
+  [ 8] Thread::call_run
+  [ 9] thread_native_entry
+  [10] start_thread
+  [11] clone3
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] CodeBlob::CodeBlob
+  [ 3] nmethod::nmethod
+  [ 4] nmethod::new_native_nmethod
+  [ 5] SharedRuntime::generate_native_wrapper
+  [ 6] AdapterHandlerLibrary::create_native_wrapper
+  [ 7] CompileBroker::compile_method
+  [ 8] CompileBroker::compile_method
+  [ 9] CompilationPolicy::event
+  [10] InterpreterRuntime::frequency_counter_overflow_inner
+  [11] InterpreterRuntime::frequency_counter_overflow
+  [12] java.lang.Object.wait0
+  [13] java.lang.Object.wait
+  [14] java.lang.Object.wait
+  [15] java.lang.ref.ReferenceQueue.remove0
+  [16] java.lang.ref.ReferenceQueue.remove
+  [17] java.lang.ref.Finalizer$FinalizerThread.run
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] CodeBlob::CodeBlob
+  [ 3] nmethod::nmethod
+  [ 4] nmethod::new_native_nmethod
+  [ 5] SharedRuntime::generate_native_wrapper
+  [ 6] AdapterHandlerLibrary::create_native_wrapper
+  [ 7] CompileBroker::compile_method
+  [ 8] CompileBroker::compile_method
+  [ 9] CompilationPolicy::event
+  [10] InterpreterRuntime::frequency_counter_overflow_inner
+  [11] InterpreterRuntime::frequency_counter_overflow
+  [12] jdk.internal.misc.Unsafe.putInt
+  [13] java.util.concurrent.locks.AbstractQueuedSynchronizer$Node.setStatusRelaxed
+  [14] java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.enableWait
+  [15] java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos
+  [16] java.util.concurrent.LinkedBlockingQueue.poll
+  [17] java.util.concurrent.ExecutorCompletionService.poll
+  [18] org.openjdk.jmh.runner.BenchmarkHandler.runIteration
+  [19] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [20] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [21] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [22] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [23] org.openjdk.jmh.runner.ForkedRunner.run
+  [24] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] InstanceKlass::get_jmethod_id
+  [ 4] Method::jmethod_id
+  [ 5] JvmtiEnv::GetClassMethods
+  [ 6] jvmti_GetClassMethods
+  [ 7] VM::ClassPrepare
+  [ 8] JvmtiExport::post_class_prepare
+  [ 9] InstanceKlass::link_class_impl
+  [10] InstanceKlass::initialize_impl
+  [11] InterpreterRuntime::_new
+  [12] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [13] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [14] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [15] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [16] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [17] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [18] org.openjdk.jmh.runner.ForkedRunner.run
+  [19] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 18 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::strdup
+  [ 2] Mutex::Mutex
+  [ 3] MethodData::extra_data_lock
+  [ 4] ciMethodData::load_remaining_extra_data
+  [ 5] ciMethodData::load_data
+  [ 6] ciMethod::ensure_method_data
+  [ 7] Compilation::compile_java_method
+  [ 8] Compilation::compile_method
+  [ 9] Compilation::Compilation
+  [10] Compiler::compile_method
+  [11] CompileBroker::invoke_compiler_on_method
+  [12] CompileBroker::compiler_thread_loop
+  [13] JavaThread::thread_main_inner
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] JvmtiEnv::GetClassMethods
+  [ 3] jvmti_GetClassMethods
+  [ 4] VM::ClassPrepare
+  [ 5] JvmtiExport::post_class_prepare
+  [ 6] InstanceKlass::link_class_impl
+  [ 7] InstanceKlass::initialize_impl
+  [ 8] InterpreterRuntime::_new
+  [ 9] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [10] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [11] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [12] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [13] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [14] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [15] org.openjdk.jmh.runner.ForkedRunner.run
+  [16] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] StringTable::do_intern
+  [ 4] StringTable::intern
+  [ 5] JVM_InternString
+  [ 6] java.lang.String.intern
+  [ 7] java.io.ObjectStreamField.<init>
+  [ 8] java.io.ObjectStreamClass.getDefaultSerialFields
+  [ 9] java.io.ObjectStreamClass.getSerialFields
+  [10] java.io.ObjectStreamClass.<init>
+  [11] java.io.ObjectStreamClass$Caches$1.computeValue
+  [12] java.io.ObjectStreamClass$Caches$1.computeValue
+  [13] java.io.ClassCache$1.computeValue
+  [14] java.io.ClassCache$1.computeValue
+  [15] java.lang.ClassValue.getFromHashMap
+  [16] java.lang.ClassValue.getFromBackup
+  [17] java.lang.ClassValue.get
+  [18] java.io.ClassCache.get
+  [19] java.io.ObjectStreamClass.lookup
+  [20] java.io.ObjectOutputStream.writeObject0
+  [21] java.io.ObjectOutputStream.writeObject
+  [22] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [23] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [24] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [25] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [26] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [27] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [28] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [29] org.openjdk.jmh.runner.ForkedRunner.run
+  [30] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1CodeRootSet::add
+  [ 4] nmethod::oops_do
+  [ 5] G1CollectedHeap::register_nmethod
+  [ 6] nmethod::nmethod
+  [ 7] nmethod::new_native_nmethod
+  [ 8] SharedRuntime::generate_native_wrapper
+  [ 9] AdapterHandlerLibrary::create_native_wrapper
+  [10] CompileBroker::compile_method
+  [11] CompileBroker::compile_method
+  [12] CompilationPolicy::event
+  [13] InterpreterRuntime::frequency_counter_overflow_inner
+  [14] InterpreterRuntime::frequency_counter_overflow
+  [15] java.lang.ref.Reference.getAndClearReferencePendingList
+  [16] java.lang.ref.Reference.processPendingReferences
+  [17] java.lang.ref.Reference$ReferenceHandler.run
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1CodeRootSet::add
+  [ 4] nmethod::oops_do
+  [ 5] G1CollectedHeap::register_nmethod
+  [ 6] nmethod::nmethod
+  [ 7] nmethod::new_nmethod
+  [ 8] ciEnv::register_method
+  [ 9] Compilation::install_code
+  [10] Compilation::compile_method
+  [11] Compilation::Compilation
+  [12] Compiler::compile_method
+  [13] CompileBroker::invoke_compiler_on_method
+  [14] CompileBroker::compiler_thread_loop
+  [15] JavaThread::thread_main_inner
+  [16] Thread::call_run
+  [17] thread_native_entry
+  [18] start_thread
+  [19] clone3
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] StringTable::do_intern
+  [ 4] StringTable::intern
+  [ 5] Reflection::new_field
+  [ 6] JVM_GetClassDeclaredFields
+  [ 7] java.lang.Class.getDeclaredFields0
+  [ 8] java.lang.Class.privateGetDeclaredFields
+  [ 9] java.lang.Class.getDeclaredField
+  [10] java.io.ObjectStreamClass.getDeclaredSUID
+  [11] java.io.ObjectStreamClass.<init>
+  [12] java.io.ObjectStreamClass$Caches$1.computeValue
+  [13] java.io.ObjectStreamClass$Caches$1.computeValue
+  [14] java.io.ClassCache$1.computeValue
+  [15] java.io.ClassCache$1.computeValue
+  [16] java.lang.ClassValue.getFromHashMap
+  [17] java.lang.ClassValue.getFromBackup
+  [18] java.lang.ClassValue.get
+  [19] java.io.ClassCache.get
+  [20] java.io.ObjectStreamClass.lookup
+  [21] java.io.ObjectOutputStream.writeObject0
+  [22] java.io.ObjectOutputStream.writeObject
+  [23] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [24] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [25] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [26] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [27] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [28] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [29] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [30] org.openjdk.jmh.runner.ForkedRunner.run
+  [31] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] G1CodeRootSet::add
+  [ 4] nmethod::oops_do
+  [ 5] G1CollectedHeap::register_nmethod
+  [ 6] nmethod::nmethod
+  [ 7] nmethod::new_native_nmethod
+  [ 8] SharedRuntime::generate_native_wrapper
+  [ 9] AdapterHandlerLibrary::create_native_wrapper
+  [10] CompileBroker::compile_method
+  [11] CompileBroker::compile_method
+  [12] CompilationPolicy::event
+  [13] InterpreterRuntime::frequency_counter_overflow_inner
+  [14] InterpreterRuntime::frequency_counter_overflow
+  [15] java.lang.ref.Reference.waitForReferencePendingList
+  [16] java.lang.ref.Reference.processPendingReferences
+  [17] java.lang.ref.Reference$ReferenceHandler.run
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] Dictionary::add_klass
+  [ 4] SystemDictionary::define_instance_class
+  [ 5] SystemDictionary::find_or_define_helper
+  [ 6] SystemDictionary::resolve_class_from_stream
+  [ 7] jvm_define_class_common
+  [ 8] JVM_DefineClassWithSource
+  [ 9] Java_java_lang_ClassLoader_defineClass1
+  [10] java.lang.ClassLoader.defineClass1
+  [11] java.lang.ClassLoader.defineClass
+  [12] java.security.SecureClassLoader.defineClass
+  [13] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [14] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [15] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [16] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [17] java.lang.ClassLoader.loadClass
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] StringTable::do_intern
+  [ 4] StringTable::intern
+  [ 5] Reflection::new_method
+  [ 6] get_class_declared_methods_helper
+  [ 7] JVM_GetClassDeclaredMethods
+  [ 8] java.lang.Class.getDeclaredMethods0
+  [ 9] java.lang.Class.privateGetDeclaredMethods
+  [10] java.lang.Class.getDeclaredMethod
+  [11] java.io.ObjectStreamClass.getPrivateMethod
+  [12] java.io.ObjectStreamClass.<init>
+  [13] java.io.ObjectStreamClass$Caches$1.computeValue
+  [14] java.io.ObjectStreamClass$Caches$1.computeValue
+  [15] java.io.ClassCache$1.computeValue
+  [16] java.io.ClassCache$1.computeValue
+  [17] java.lang.ClassValue.getFromHashMap
+  [18] java.lang.ClassValue.getFromBackup
+  [19] java.lang.ClassValue.get
+  [20] java.io.ClassCache.get
+  [21] java.io.ObjectStreamClass.lookup
+  [22] java.io.ObjectOutputStream.writeObject0
+  [23] java.io.ObjectOutputStream.writeObject
+  [24] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [25] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [26] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [27] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [28] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [29] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [30] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [31] org.openjdk.jmh.runner.ForkedRunner.run
+  [32] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] StringTable::do_intern
+  [ 4] StringTable::intern
+  [ 5] java_lang_Class::name
+  [ 6] JVM_InitClassName
+  [ 7] java.lang.Class.initClassName
+  [ 8] java.lang.Class.getName
+  [ 9] java.lang.Class.getPackageName
+  [10] java.lang.ClassLoader.postDefineClass
+  [11] java.lang.ClassLoader.defineClass
+  [12] java.security.SecureClassLoader.defineClass
+  [13] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [14] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [15] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [16] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [17] java.lang.ClassLoader.loadClass
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] ClassUnloadingContext::free_nmethods
+  [ 4] G1CollectedHeap::unload_classes_and_code
+  [ 5] G1ConcurrentMark::remark
+  [ 6] VM_G1PauseConcurrent::doit
+  [ 7] VM_Operation::evaluate
+  [ 8] VMThread::evaluate_operation
+  [ 9] VMThread::inner_execute
+  [10] VMThread::run
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 16 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] Compile::~Compile
+  [ 4] C2Compiler::compile_method
+  [ 5] CompileBroker::invoke_compiler_on_method
+  [ 6] CompileBroker::compiler_thread_loop
+  [ 7] JavaThread::thread_main_inner
+  [ 8] Thread::call_run
+  [ 9] thread_native_entry
+  [10] start_thread
+  [11] clone3
+
+--- 5 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] os::malloc
+  [ 2] AllocateHeap
+  [ 3] jni_GetStringUTFChars
+  [ 4] Java_one_profiler_AsyncProfiler_execute0
+  [ 5] org.openjdk.jmh.profile.AsyncProfiler$JavaApi.execute0
+  [ 6] org.openjdk.jmh.profile.AsyncProfiler$JavaApi.execute
+  [ 7] org.openjdk.jmh.profile.AsyncProfiler.execute
+  [ 8] org.openjdk.jmh.profile.AsyncProfiler.stopAndDump
+  [ 9] org.openjdk.jmh.profile.AsyncProfiler.afterIteration
+  [10] org.openjdk.jmh.runner.BenchmarkHandler.stopProfilers
+  [11] org.openjdk.jmh.runner.BenchmarkHandler.runIteration
+  [12] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [13] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [14] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [15] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [16] org.openjdk.jmh.runner.ForkedRunner.run
+  [17] org.openjdk.jmh.runner.ForkedMain.main
+
+       bytes  percent  samples  top
+  ----------  -------  -------  ---
+ 24912288882  100.00%   305010  malloc_hook

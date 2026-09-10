@@ -1,0 +1,2444 @@
+--- Execution profile ---
+Total samples       : 30552
+
+--- 20005390735 bytes (99.61%), 14663 samples
+  [ 0] malloc_hook
+  [ 1] ZSTD_resetCCtx_internal.lto_priv.0
+  [ 2] ZSTD_compressBegin_internal.lto_priv.0
+  [ 3] ZSTD_CCtx_init_compressStream2
+  [ 4] ZSTD_compressStream2
+  [ 5] Java_com_github_luben_zstd_ZstdOutputStreamNoFinalizer_compressStream
+  [ 6] com.github.luben.zstd.ZstdOutputStreamNoFinalizer.compressStream
+  [ 7] com.github.luben.zstd.ZstdOutputStreamNoFinalizer.write
+  [ 8] com.github.luben.zstd.ZstdOutputStream.write
+  [ 9] org.zygiert.ZstdOutputStreamNoFinalizerBenchmark.compressionThroughput
+  [10] org.zygiert.jmh_generated.ZstdOutputStreamNoFinalizerBenchmark_compressionThroughput_jmhTest.compressionThroughput_avgt_jmhStub
+  [11] org.zygiert.jmh_generated.ZstdOutputStreamNoFinalizerBenchmark_compressionThroughput_jmhTest.compressionThroughput_AverageTime
+  [12] jdk.internal.reflect.NativeMethodAccessorImpl.invoke0
+  [13] jdk.internal.reflect.NativeMethodAccessorImpl.invoke
+  [14] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke
+  [15] java.lang.reflect.Method.invoke
+  [16] org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call
+  [17] org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call
+  [18] java.util.concurrent.FutureTask.run
+  [19] java.util.concurrent.Executors$RunnableAdapter.call
+  [20] java.util.concurrent.FutureTask.run
+  [21] java.util.concurrent.ThreadPoolExecutor.runWorker
+  [22] java.util.concurrent.ThreadPoolExecutor$Worker.run
+  [23] java.lang.Thread.run
+
+--- 77537944 bytes (0.39%), 14663 samples
+  [ 0] calloc_hook
+  [ 1] Java_com_github_luben_zstd_ZstdOutputStreamNoFinalizer_createCStream
+  [ 2] com.github.luben.zstd.ZstdOutputStreamNoFinalizer.createCStream
+  [ 3] com.github.luben.zstd.ZstdOutputStreamNoFinalizer.<init>
+  [ 4] com.github.luben.zstd.ZstdOutputStream.<init>
+  [ 5] com.github.luben.zstd.ZstdOutputStream.<init>
+  [ 6] org.zygiert.ZstdOutputStreamNoFinalizerBenchmark.compressionThroughput
+  [ 7] org.zygiert.jmh_generated.ZstdOutputStreamNoFinalizerBenchmark_compressionThroughput_jmhTest.compressionThroughput_avgt_jmhStub
+  [ 8] org.zygiert.jmh_generated.ZstdOutputStreamNoFinalizerBenchmark_compressionThroughput_jmhTest.compressionThroughput_AverageTime
+  [ 9] jdk.internal.reflect.NativeMethodAccessorImpl.invoke0
+  [10] jdk.internal.reflect.NativeMethodAccessorImpl.invoke
+  [11] jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke
+  [12] java.lang.reflect.Method.invoke
+  [13] org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call
+  [14] org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call
+  [15] java.util.concurrent.FutureTask.run
+  [16] java.util.concurrent.Executors$RunnableAdapter.call
+  [17] java.util.concurrent.FutureTask.run
+  [18] java.util.concurrent.ThreadPoolExecutor.runWorker
+  [19] java.util.concurrent.ThreadPoolExecutor$Worker.run
+  [20] java.lang.Thread.run
+
+--- 211200 bytes (0.00%), 324 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] G1ParScanThreadState::G1ParScanThreadState
+  [ 3] G1ParScanThreadStateSet::state_for_worker
+  [ 4] G1ParTask::work
+  [ 5] GangWorker::loop
+  [ 6] Thread::call_run
+  [ 7] thread_native_entry
+  [ 8] start_thread
+  [ 9] clone3
+
+--- 75168 bytes (0.00%), 162 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] G1ParScanThreadStateSet::state_for_worker
+  [ 3] G1ParTask::work
+  [ 4] GangWorker::loop
+  [ 5] Thread::call_run
+  [ 6] thread_native_entry
+  [ 7] start_thread
+  [ 8] clone3
+
+--- 65488 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] BlockListBuilder::make_block_at
+  [ 4] BlockListBuilder::set_leaders
+  [ 5] BlockListBuilder::BlockListBuilder
+  [ 6] GraphBuilder::push_scope
+  [ 7] GraphBuilder::try_inline_full
+  [ 8] GraphBuilder::try_inline
+  [ 9] GraphBuilder::invoke
+  [10] GraphBuilder::iterate_bytecodes_for_block
+  [11] GraphBuilder::iterate_all_blocks
+  [12] GraphBuilder::try_inline_full
+  [13] GraphBuilder::try_inline
+  [14] GraphBuilder::invoke
+  [15] GraphBuilder::iterate_bytecodes_for_block
+  [16] GraphBuilder::iterate_all_blocks
+  [17] GraphBuilder::GraphBuilder
+  [18] IRScope::IRScope
+  [19] IR::IR
+  [20] Compilation::build_hir
+  [21] Compilation::compile_java_method
+  [22] Compilation::compile_method
+  [23] Compilation::Compilation
+  [24] Compiler::compile_method
+  [25] CompileBroker::invoke_compiler_on_method
+  [26] CompileBroker::compiler_thread_loop
+  [27] JavaThread::run
+  [28] Thread::call_run
+  [29] thread_native_entry
+  [30] start_thread
+  [31] clone3
+
+--- 33936 bytes (0.00%), 162 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] G1EvacuationRootClosures::create_root_closures
+  [ 3] G1ParScanThreadState::G1ParScanThreadState
+  [ 4] G1ParScanThreadStateSet::state_for_worker
+  [ 5] G1ParTask::work
+  [ 6] GangWorker::loop
+  [ 7] Thread::call_run
+  [ 8] thread_native_entry
+  [ 9] start_thread
+  [10] clone3
+
+--- 32744 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] Interval::add_range
+  [ 4] LinearScan::add_use
+  [ 5] LinearScan::build_intervals
+  [ 6] LinearScan::do_linear_scan
+  [ 7] Compilation::emit_lir
+  [ 8] Compilation::compile_java_method
+  [ 9] Compilation::compile_method
+  [10] Compilation::Compilation
+  [11] Compiler::compile_method
+  [12] CompileBroker::invoke_compiler_on_method
+  [13] CompileBroker::compiler_thread_loop
+  [14] JavaThread::run
+  [15] Thread::call_run
+  [16] thread_native_entry
+  [17] start_thread
+  [18] clone3
+
+--- 32744 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] LIR_List::move
+  [ 4] LIRGenerator::do_Invoke
+  [ 5] non-virtual thunk to LIRGenerator::block_do
+  [ 6] BlockList::iterate_forward
+  [ 7] Compilation::emit_lir
+  [ 8] Compilation::compile_java_method
+  [ 9] Compilation::compile_method
+  [10] Compilation::Compilation
+  [11] Compiler::compile_method
+  [12] CompileBroker::invoke_compiler_on_method
+  [13] CompileBroker::compiler_thread_loop
+  [14] JavaThread::run
+  [15] Thread::call_run
+  [16] thread_native_entry
+  [17] start_thread
+  [18] clone3
+
+--- 32744 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] LIRGenerator::do_Invoke
+  [ 4] non-virtual thunk to LIRGenerator::block_do
+  [ 5] BlockList::iterate_forward
+  [ 6] Compilation::emit_lir
+  [ 7] Compilation::compile_java_method
+  [ 8] Compilation::compile_method
+  [ 9] Compilation::Compilation
+  [10] Compiler::compile_method
+  [11] CompileBroker::invoke_compiler_on_method
+  [12] CompileBroker::compiler_thread_loop
+  [13] JavaThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 32744 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] LinearScan::number_instructions
+  [ 4] LinearScan::do_linear_scan
+  [ 5] Compilation::emit_lir
+  [ 6] Compilation::compile_java_method
+  [ 7] Compilation::compile_method
+  [ 8] Compilation::Compilation
+  [ 9] Compiler::compile_method
+  [10] CompileBroker::invoke_compiler_on_method
+  [11] CompileBroker::compiler_thread_loop
+  [12] JavaThread::run
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 32744 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] LinearScan::create_interval
+  [ 4] LinearScan::add_use
+  [ 5] LinearScan::build_intervals
+  [ 6] LinearScan::do_linear_scan
+  [ 7] Compilation::emit_lir
+  [ 8] Compilation::compile_java_method
+  [ 9] Compilation::compile_method
+  [10] Compilation::Compilation
+  [11] Compiler::compile_method
+  [12] CompileBroker::invoke_compiler_on_method
+  [13] CompileBroker::compiler_thread_loop
+  [14] JavaThread::run
+  [15] Thread::call_run
+  [16] thread_native_entry
+  [17] start_thread
+  [18] clone3
+
+--- 32744 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] LinearScan::compute_debug_info_for_scope
+  [ 4] LinearScan::compute_debug_info_for_scope
+  [ 5] LinearScan::compute_debug_info_for_scope
+  [ 6] LinearScan::compute_debug_info_for_scope
+  [ 7] LinearScan::assign_reg_num
+  [ 8] LinearScan::assign_reg_num
+  [ 9] LinearScan::do_linear_scan
+  [10] Compilation::emit_lir
+  [11] Compilation::compile_java_method
+  [12] Compilation::compile_method
+  [13] Compilation::Compilation
+  [14] Compiler::compile_method
+  [15] CompileBroker::invoke_compiler_on_method
+  [16] CompileBroker::compiler_thread_loop
+  [17] JavaThread::run
+  [18] Thread::call_run
+  [19] thread_native_entry
+  [20] start_thread
+  [21] clone3
+
+--- 32744 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] ResourceBitMap::ResourceBitMap
+  [ 4] LinearScan::compute_local_live_sets
+  [ 5] LinearScan::do_linear_scan
+  [ 6] Compilation::emit_lir
+  [ 7] Compilation::compile_java_method
+  [ 8] Compilation::compile_method
+  [ 9] Compilation::Compilation
+  [10] Compiler::compile_method
+  [11] CompileBroker::invoke_compiler_on_method
+  [12] CompileBroker::compiler_thread_loop
+  [13] JavaThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 32744 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] Interval::new_split_child
+  [ 4] Interval::split
+  [ 5] LinearScanWalker::split_before_usage
+  [ 6] LinearScanWalker::alloc_free_reg
+  [ 7] LinearScanWalker::activate_current
+  [ 8] IntervalWalker::walk_to
+  [ 9] LinearScan::allocate_registers
+  [10] LinearScan::do_linear_scan
+  [11] Compilation::emit_lir
+  [12] Compilation::compile_java_method
+  [13] Compilation::compile_method
+  [14] Compilation::Compilation
+  [15] Compiler::compile_method
+  [16] CompileBroker::invoke_compiler_on_method
+  [17] CompileBroker::compiler_thread_loop
+  [18] JavaThread::run
+  [19] Thread::call_run
+  [20] thread_native_entry
+  [21] start_thread
+  [22] clone3
+
+--- 32744 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] ImmutableOopMapSet::build_from
+  [ 4] CodeBlob::CodeBlob
+  [ 5] CompiledMethod::CompiledMethod
+  [ 6] nmethod::nmethod
+  [ 7] nmethod::new_nmethod
+  [ 8] ciEnv::register_method
+  [ 9] Compilation::compile_method
+  [10] Compilation::Compilation
+  [11] Compiler::compile_method
+  [12] CompileBroker::invoke_compiler_on_method
+  [13] CompileBroker::compiler_thread_loop
+  [14] JavaThread::run
+  [15] Thread::call_run
+  [16] thread_native_entry
+  [17] start_thread
+  [18] clone3
+
+--- 32744 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] GrowableArray<ResolveNode*>::grow
+  [ 4] PhiResolverState::reset
+  [ 5] LIRGenerator::move_to_phi
+  [ 6] LIRGenerator::do_Goto
+  [ 7] non-virtual thunk to LIRGenerator::block_do
+  [ 8] BlockList::iterate_forward
+  [ 9] Compilation::emit_lir
+  [10] Compilation::compile_java_method
+  [11] Compilation::compile_method
+  [12] Compilation::Compilation
+  [13] Compiler::compile_method
+  [14] CompileBroker::invoke_compiler_on_method
+  [15] CompileBroker::compiler_thread_loop
+  [16] JavaThread::run
+  [17] Thread::call_run
+  [18] thread_native_entry
+  [19] start_thread
+  [20] clone3
+
+--- 32744 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] GraphBuilder::if_null
+  [ 4] GraphBuilder::iterate_bytecodes_for_block
+  [ 5] GraphBuilder::iterate_all_blocks
+  [ 6] GraphBuilder::try_inline_full
+  [ 7] GraphBuilder::try_inline
+  [ 8] GraphBuilder::invoke
+  [ 9] GraphBuilder::iterate_bytecodes_for_block
+  [10] GraphBuilder::iterate_all_blocks
+  [11] GraphBuilder::try_inline_full
+  [12] GraphBuilder::try_inline
+  [13] GraphBuilder::invoke
+  [14] GraphBuilder::iterate_bytecodes_for_block
+  [15] GraphBuilder::iterate_all_blocks
+  [16] GraphBuilder::try_inline_full
+  [17] GraphBuilder::try_inline
+  [18] GraphBuilder::invoke
+  [19] GraphBuilder::iterate_bytecodes_for_block
+  [20] GraphBuilder::iterate_all_blocks
+  [21] GraphBuilder::try_inline_full
+  [22] GraphBuilder::try_inline
+  [23] GraphBuilder::invoke
+  [24] GraphBuilder::iterate_bytecodes_for_block
+  [25] GraphBuilder::iterate_all_blocks
+  [26] GraphBuilder::GraphBuilder
+  [27] IRScope::IRScope
+  [28] IR::IR
+  [29] Compilation::build_hir
+  [30] Compilation::compile_java_method
+  [31] Compilation::compile_method
+  [32] Compilation::Compilation
+  [33] Compiler::compile_method
+  [34] CompileBroker::invoke_compiler_on_method
+  [35] CompileBroker::compiler_thread_loop
+  [36] JavaThread::run
+  [37] Thread::call_run
+  [38] thread_native_entry
+  [39] start_thread
+  [40] clone3
+
+--- 32744 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] BlockBegin::insert_block_between
+  [ 4] IR::split_critical_edges
+  [ 5] Compilation::build_hir
+  [ 6] Compilation::compile_java_method
+  [ 7] Compilation::compile_method
+  [ 8] Compilation::Compilation
+  [ 9] Compiler::compile_method
+  [10] CompileBroker::invoke_compiler_on_method
+  [11] CompileBroker::compiler_thread_loop
+  [12] JavaThread::run
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 32744 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] non-virtual thunk to LIRGenerator::block_do
+  [ 4] BlockList::iterate_forward
+  [ 5] Compilation::emit_lir
+  [ 6] Compilation::compile_java_method
+  [ 7] Compilation::compile_method
+  [ 8] Compilation::Compilation
+  [ 9] Compiler::compile_method
+  [10] CompileBroker::invoke_compiler_on_method
+  [11] CompileBroker::compiler_thread_loop
+  [12] JavaThread::run
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 32744 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] ValueMap::ValueMap
+  [ 4] GlobalValueNumbering::GlobalValueNumbering
+  [ 5] Compilation::build_hir
+  [ 6] Compilation::compile_java_method
+  [ 7] Compilation::compile_method
+  [ 8] Compilation::Compilation
+  [ 9] Compiler::compile_method
+  [10] CompileBroker::invoke_compiler_on_method
+  [11] CompileBroker::compiler_thread_loop
+  [12] JavaThread::run
+  [13] Thread::call_run
+  [14] thread_native_entry
+  [15] start_thread
+  [16] clone3
+
+--- 32744 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] ChunkPool::allocate
+  [ 2] Arena::grow
+  [ 3] BlockListBuilder::make_block_at
+  [ 4] BlockListBuilder::set_leaders
+  [ 5] BlockListBuilder::BlockListBuilder
+  [ 6] GraphBuilder::push_scope
+  [ 7] GraphBuilder::try_inline_full
+  [ 8] GraphBuilder::try_inline
+  [ 9] GraphBuilder::invoke
+  [10] GraphBuilder::iterate_bytecodes_for_block
+  [11] GraphBuilder::iterate_all_blocks
+  [12] GraphBuilder::try_inline_full
+  [13] GraphBuilder::try_inline
+  [14] GraphBuilder::invoke
+  [15] GraphBuilder::iterate_bytecodes_for_block
+  [16] GraphBuilder::iterate_all_blocks
+  [17] GraphBuilder::try_inline_full
+  [18] GraphBuilder::try_inline
+  [19] GraphBuilder::invoke
+  [20] GraphBuilder::iterate_bytecodes_for_block
+  [21] GraphBuilder::iterate_all_blocks
+  [22] GraphBuilder::try_inline_full
+  [23] GraphBuilder::try_inline
+  [24] GraphBuilder::invoke
+  [25] GraphBuilder::iterate_bytecodes_for_block
+  [26] GraphBuilder::iterate_all_blocks
+  [27] GraphBuilder::GraphBuilder
+  [28] IRScope::IRScope
+  [29] IR::IR
+  [30] Compilation::build_hir
+  [31] Compilation::compile_java_method
+  [32] Compilation::compile_method
+  [33] Compilation::Compilation
+  [34] Compiler::compile_method
+  [35] CompileBroker::invoke_compiler_on_method
+  [36] CompileBroker::compiler_thread_loop
+  [37] JavaThread::run
+  [38] Thread::call_run
+  [39] thread_native_entry
+  [40] start_thread
+  [41] clone3
+
+--- 20512 bytes (0.00%), 54 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] G1ParScanThreadStateSet::G1ParScanThreadStateSet
+  [ 3] G1CollectedHeap::do_collection_pause_at_safepoint
+  [ 4] VM_G1CollectForAllocation::doit
+  [ 5] VM_Operation::evaluate
+  [ 6] VMThread::evaluate_operation
+  [ 7] VMThread::loop
+  [ 8] VMThread::run
+  [ 9] Thread::call_run
+  [10] thread_native_entry
+  [11] start_thread
+  [12] clone3
+
+--- 19216 bytes (0.00%), 27 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] G1CollectedHeap::free_collection_set
+  [ 3] G1CollectedHeap::do_collection_pause_at_safepoint
+  [ 4] VM_G1CollectForAllocation::doit
+  [ 5] VM_Operation::evaluate
+  [ 6] VMThread::evaluate_operation
+  [ 7] VMThread::loop
+  [ 8] VMThread::run
+  [ 9] Thread::call_run
+  [10] thread_native_entry
+  [11] start_thread
+  [12] clone3
+
+--- 14448 bytes (0.00%), 7 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] HeapRegionClaimer::HeapRegionClaimer
+  [ 3] G1ConcurrentMark::clear_bitmap
+  [ 4] G1ConcurrentMark::cleanup_for_next_mark
+  [ 5] G1ConcurrentMarkThread::run_service
+  [ 6] ConcurrentGCThread::run
+  [ 7] Thread::call_run
+  [ 8] thread_native_entry
+  [ 9] start_thread
+  [10] clone3
+
+--- 14448 bytes (0.00%), 7 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] HeapRegionClaimer::HeapRegionClaimer
+  [ 3] CollectionSetChooser::rebuild
+  [ 4] G1Policy::record_concurrent_mark_cleanup_end
+  [ 5] G1ConcurrentMark::cleanup
+  [ 6] VM_CGC_Operation::doit
+  [ 7] VM_Operation::evaluate
+  [ 8] VMThread::evaluate_operation
+  [ 9] VMThread::loop
+  [10] VMThread::run
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 14448 bytes (0.00%), 7 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] HeapRegionClaimer::HeapRegionClaimer
+  [ 3] G1ConcurrentMark::reclaim_empty_regions
+  [ 4] G1ConcurrentMark::remark
+  [ 5] VM_CGC_Operation::doit
+  [ 6] VM_Operation::evaluate
+  [ 7] VMThread::evaluate_operation
+  [ 8] VMThread::loop
+  [ 9] VMThread::run
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 14448 bytes (0.00%), 7 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] HeapRegionClaimer::HeapRegionClaimer
+  [ 3] G1ConcurrentMark::remark
+  [ 4] VM_CGC_Operation::doit
+  [ 5] VM_Operation::evaluate
+  [ 6] VMThread::evaluate_operation
+  [ 7] VMThread::loop
+  [ 8] VMThread::run
+  [ 9] Thread::call_run
+  [10] thread_native_entry
+  [11] start_thread
+  [12] clone3
+
+--- 14448 bytes (0.00%), 7 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] HeapRegionClaimer::HeapRegionClaimer
+  [ 3] G1RemSet::rebuild_rem_set
+  [ 4] G1ConcurrentMarkThread::run_service
+  [ 5] ConcurrentGCThread::run
+  [ 6] Thread::call_run
+  [ 7] thread_native_entry
+  [ 8] start_thread
+  [ 9] clone3
+
+--- 12744 bytes (0.00%), 27 samples
+  [ 0] malloc_hook
+  [ 1] _IO_new_fopen
+  [ 2] int subsystem_file_line_contents<int*>
+  [ 3] CgroupV2Subsystem::cpu_period
+  [ 4] CgroupSubsystem::active_processor_count
+  [ 5] os::active_processor_count
+  [ 6] ReferenceProcessor::process_soft_weak_final_refs
+  [ 7] ReferenceProcessor::process_discovered_references
+  [ 8] G1CollectedHeap::process_discovered_references
+  [ 9] G1CollectedHeap::post_evacuate_collection_set
+  [10] G1CollectedHeap::do_collection_pause_at_safepoint
+  [11] VM_G1CollectForAllocation::doit
+  [12] VM_Operation::evaluate
+  [13] VMThread::evaluate_operation
+  [14] VMThread::loop
+  [15] VMThread::run
+  [16] Thread::call_run
+  [17] thread_native_entry
+  [18] start_thread
+  [19] clone3
+
+--- 12744 bytes (0.00%), 27 samples
+  [ 0] malloc_hook
+  [ 1] _IO_new_fopen
+  [ 2] CgroupV2Subsystem::cpu_quota_val
+  [ 3] CgroupV2Subsystem::cpu_quota
+  [ 4] CgroupSubsystem::active_processor_count
+  [ 5] os::active_processor_count
+  [ 6] ReferenceProcessor::process_soft_weak_final_refs
+  [ 7] ReferenceProcessor::process_discovered_references
+  [ 8] G1CollectedHeap::process_discovered_references
+  [ 9] G1CollectedHeap::post_evacuate_collection_set
+  [10] G1CollectedHeap::do_collection_pause_at_safepoint
+  [11] VM_G1CollectForAllocation::doit
+  [12] VM_Operation::evaluate
+  [13] VMThread::evaluate_operation
+  [14] VMThread::loop
+  [15] VMThread::run
+  [16] Thread::call_run
+  [17] thread_native_entry
+  [18] start_thread
+  [19] clone3
+
+--- 9632 bytes (0.00%), 4 samples
+  [ 0] malloc_hook
+  [ 1] __GI___qsort_r
+  [ 2] CollectionSetChooser::rebuild
+  [ 3] G1Policy::record_concurrent_mark_cleanup_end
+  [ 4] G1ConcurrentMark::cleanup
+  [ 5] VM_CGC_Operation::doit
+  [ 6] VM_Operation::evaluate
+  [ 7] VMThread::evaluate_operation
+  [ 8] VMThread::loop
+  [ 9] VMThread::run
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 8192 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] _IO_file_doallocate
+  [ 2] __GI__IO_doallocbuf
+  [ 3] _IO_new_file_underflow
+  [ 4] _IO_default_uflow
+  [ 5] _IO_getline_info
+  [ 6] fgets
+  [ 7] CgroupV2Subsystem::mem_limit_val
+  [ 8] CgroupV2Subsystem::read_memory_limit_in_bytes
+  [ 9] CgroupSubsystem::memory_limit_in_bytes
+  [10] os::available_memory
+  [11] CompileBroker::possibly_add_compiler_threads
+  [12] CompileBroker::compiler_thread_loop
+  [13] JavaThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 6210 bytes (0.00%), 27 samples
+  [ 0] realloc_hook
+  [ 1] ReallocateHeap
+  [ 2] stringStream::write
+  [ 3] CgroupV2Subsystem::cpu_quota_val
+  [ 4] CgroupV2Subsystem::cpu_quota
+  [ 5] CgroupSubsystem::active_processor_count
+  [ 6] os::active_processor_count
+  [ 7] ReferenceProcessor::process_soft_weak_final_refs
+  [ 8] ReferenceProcessor::process_discovered_references
+  [ 9] G1CollectedHeap::process_discovered_references
+  [10] G1CollectedHeap::post_evacuate_collection_set
+  [11] G1CollectedHeap::do_collection_pause_at_safepoint
+  [12] VM_G1CollectForAllocation::doit
+  [13] VM_Operation::evaluate
+  [14] VMThread::evaluate_operation
+  [15] VMThread::loop
+  [16] VMThread::run
+  [17] Thread::call_run
+  [18] thread_native_entry
+  [19] start_thread
+  [20] clone3
+
+--- 6210 bytes (0.00%), 27 samples
+  [ 0] realloc_hook
+  [ 1] ReallocateHeap
+  [ 2] stringStream::write
+  [ 3] int subsystem_file_line_contents<int*>
+  [ 4] CgroupV2Subsystem::cpu_period
+  [ 5] CgroupSubsystem::active_processor_count
+  [ 6] os::active_processor_count
+  [ 7] ReferenceProcessor::process_soft_weak_final_refs
+  [ 8] ReferenceProcessor::process_discovered_references
+  [ 9] G1CollectedHeap::process_discovered_references
+  [10] G1CollectedHeap::post_evacuate_collection_set
+  [11] G1CollectedHeap::do_collection_pause_at_safepoint
+  [12] VM_G1CollectForAllocation::doit
+  [13] VM_Operation::evaluate
+  [14] VMThread::evaluate_operation
+  [15] VMThread::loop
+  [16] VMThread::run
+  [17] Thread::call_run
+  [18] thread_native_entry
+  [19] start_thread
+  [20] clone3
+
+--- 4704 bytes (0.00%), 98 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] ReferenceProcessorPhaseTimes::ReferenceProcessorPhaseTimes
+  [ 3] G1ConcurrentMark::weak_refs_work
+  [ 4] G1ConcurrentMark::remark
+  [ 5] VM_CGC_Operation::doit
+  [ 6] VM_Operation::evaluate
+  [ 7] VMThread::evaluate_operation
+  [ 8] VMThread::loop
+  [ 9] VMThread::run
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 3840 bytes (0.00%), 4 samples
+  [ 0] realloc_hook
+  [ 1] ReallocateHeap
+  [ 2] SurvRateGroup::stop_adding_regions
+  [ 3] G1Policy::record_collection_pause_start
+  [ 4] G1CollectedHeap::do_collection_pause_at_safepoint
+  [ 5] VM_G1CollectForAllocation::doit
+  [ 6] VM_Operation::evaluate
+  [ 7] VMThread::evaluate_operation
+  [ 8] VMThread::loop
+  [ 9] VMThread::run
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 3105 bytes (0.00%), 27 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] stringStream::write
+  [ 3] int subsystem_file_line_contents<int*>
+  [ 4] CgroupV2Subsystem::cpu_period
+  [ 5] CgroupSubsystem::active_processor_count
+  [ 6] os::active_processor_count
+  [ 7] ReferenceProcessor::process_soft_weak_final_refs
+  [ 8] ReferenceProcessor::process_discovered_references
+  [ 9] G1CollectedHeap::process_discovered_references
+  [10] G1CollectedHeap::post_evacuate_collection_set
+  [11] G1CollectedHeap::do_collection_pause_at_safepoint
+  [12] VM_G1CollectForAllocation::doit
+  [13] VM_Operation::evaluate
+  [14] VMThread::evaluate_operation
+  [15] VMThread::loop
+  [16] VMThread::run
+  [17] Thread::call_run
+  [18] thread_native_entry
+  [19] start_thread
+  [20] clone3
+
+--- 3105 bytes (0.00%), 27 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] stringStream::write
+  [ 3] CgroupV2Subsystem::cpu_quota_val
+  [ 4] CgroupV2Subsystem::cpu_quota
+  [ 5] CgroupSubsystem::active_processor_count
+  [ 6] os::active_processor_count
+  [ 7] ReferenceProcessor::process_soft_weak_final_refs
+  [ 8] ReferenceProcessor::process_discovered_references
+  [ 9] G1CollectedHeap::process_discovered_references
+  [10] G1CollectedHeap::post_evacuate_collection_set
+  [11] G1CollectedHeap::do_collection_pause_at_safepoint
+  [12] VM_G1CollectForAllocation::doit
+  [13] VM_Operation::evaluate
+  [14] VMThread::evaluate_operation
+  [15] VMThread::loop
+  [16] VMThread::run
+  [17] Thread::call_run
+  [18] thread_native_entry
+  [19] start_thread
+  [20] clone3
+
+--- 1536 bytes (0.00%), 6 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] CHeapBitMap::CHeapBitMap
+  [ 3] OtherRegionsTable::add_reference
+  [ 4] void OopOopIterateDispatch<G1RebuildRemSetClosure>::Table::oop_oop_iterate<InstanceKlass, unsigned int>
+  [ 5] G1RebuildRemSetTask::G1RebuildRemSetHeapRegionClosure::do_heap_region
+  [ 6] HeapRegionManager::par_iterate
+  [ 7] G1RebuildRemSetTask::work
+  [ 8] GangWorker::loop
+  [ 9] Thread::call_run
+  [10] thread_native_entry
+  [11] start_thread
+  [12] clone3
+
+--- 1508 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] Unsafe_DefineClass0
+  [ 3] jdk.internal.misc.Unsafe.defineClass0
+  [ 4] jdk.internal.misc.Unsafe.defineClass
+  [ 5] jdk.internal.reflect.ClassDefiner.defineClass
+  [ 6] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [ 7] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [ 8] java.security.AccessController.doPrivileged
+  [ 9] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [10] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [11] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [12] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [13] java.io.ObjectStreamClass.getSerializableConstructor
+  [14] java.io.ObjectStreamClass$2.run
+  [15] java.io.ObjectStreamClass$2.run
+  [16] java.security.AccessController.doPrivileged
+  [17] java.io.ObjectStreamClass.<init>
+  [18] java.io.ObjectStreamClass$Caches$1.computeValue
+  [19] java.io.ObjectStreamClass$Caches$1.computeValue
+  [20] java.io.ClassCache$1.computeValue
+  [21] java.io.ClassCache$1.computeValue
+  [22] java.lang.ClassValue.getFromHashMap
+  [23] java.lang.ClassValue.getFromBackup
+  [24] java.lang.ClassValue.get
+  [25] java.io.ClassCache.get
+  [26] java.io.ObjectStreamClass.lookup
+  [27] java.io.ObjectOutputStream.writeObject0
+  [28] java.io.ObjectOutputStream.writeObject
+  [29] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [30] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [31] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [32] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [33] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [34] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [35] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [36] org.openjdk.jmh.runner.ForkedRunner.run
+  [37] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 1296 bytes (0.00%), 27 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] SubTasksDone::SubTasksDone
+  [ 3] G1RootProcessor::G1RootProcessor
+  [ 4] G1CollectedHeap::evacuate_collection_set
+  [ 5] G1CollectedHeap::do_collection_pause_at_safepoint
+  [ 6] VM_G1CollectForAllocation::doit
+  [ 7] VM_Operation::evaluate
+  [ 8] VMThread::evaluate_operation
+  [ 9] VMThread::loop
+  [10] VMThread::run
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 1148 bytes (0.00%), 41 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] SubTasksDone::SubTasksDone
+  [ 3] SafepointSynchronize::do_cleanup_tasks
+  [ 4] SafepointSynchronize::begin
+  [ 5] VMThread::loop
+  [ 6] VMThread::run
+  [ 7] Thread::call_run
+  [ 8] thread_native_entry
+  [ 9] start_thread
+  [10] clone3
+
+--- 1120 bytes (0.00%), 8 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] ImmutableOopMapSet::build_from
+  [ 3] CodeBlob::CodeBlob
+  [ 4] CompiledMethod::CompiledMethod
+  [ 5] nmethod::nmethod
+  [ 6] nmethod::new_nmethod
+  [ 7] ciEnv::register_method
+  [ 8] Compilation::compile_method
+  [ 9] Compilation::Compilation
+  [10] Compiler::compile_method
+  [11] CompileBroker::invoke_compiler_on_method
+  [12] CompileBroker::compiler_thread_loop
+  [13] JavaThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 1064 bytes (0.00%), 6 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] SparsePRT::expand
+  [ 3] SparsePRT::add_card
+  [ 4] OtherRegionsTable::add_reference
+  [ 5] void OopOopIterateDispatch<G1RebuildRemSetClosure>::Table::oop_oop_iterate<InstanceKlass, unsigned int>
+  [ 6] G1RebuildRemSetTask::G1RebuildRemSetHeapRegionClosure::do_heap_region
+  [ 7] HeapRegionManager::par_iterate
+  [ 8] G1RebuildRemSetTask::work
+  [ 9] GangWorker::loop
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 944 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] _IO_new_fopen
+  [ 2] CgroupV2Subsystem::mem_limit_val
+  [ 3] CgroupV2Subsystem::read_memory_limit_in_bytes
+  [ 4] CgroupSubsystem::memory_limit_in_bytes
+  [ 5] os::available_memory
+  [ 6] CompileBroker::possibly_add_compiler_threads
+  [ 7] CompileBroker::compiler_thread_loop
+  [ 8] JavaThread::run
+  [ 9] Thread::call_run
+  [10] thread_native_entry
+  [11] start_thread
+  [12] clone3
+
+--- 872 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] PackageEntryTable::PackageEntryTable
+  [ 3] ClassLoaderData::ClassLoaderData
+  [ 4] ClassLoaderDataGraph::add
+  [ 5] SystemDictionary::resolve_from_stream
+  [ 6] jvm_define_class_common
+  [ 7] JVM_DefineClass
+  [ 8] Unsafe_DefineClass0
+  [ 9] jdk.internal.misc.Unsafe.defineClass0
+  [10] jdk.internal.misc.Unsafe.defineClass
+  [11] jdk.internal.reflect.ClassDefiner.defineClass
+  [12] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [13] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [14] java.security.AccessController.doPrivileged
+  [15] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [16] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [17] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [18] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [19] java.io.ObjectStreamClass.getSerializableConstructor
+  [20] java.io.ObjectStreamClass$2.run
+  [21] java.io.ObjectStreamClass$2.run
+  [22] java.security.AccessController.doPrivileged
+  [23] java.io.ObjectStreamClass.<init>
+  [24] java.io.ObjectStreamClass$Caches$1.computeValue
+  [25] java.io.ObjectStreamClass$Caches$1.computeValue
+  [26] java.io.ClassCache$1.computeValue
+  [27] java.io.ClassCache$1.computeValue
+  [28] java.lang.ClassValue.getFromHashMap
+  [29] java.lang.ClassValue.getFromBackup
+  [30] java.lang.ClassValue.get
+  [31] java.io.ClassCache.get
+  [32] java.io.ObjectStreamClass.lookup
+  [33] java.io.ObjectOutputStream.writeObject0
+  [34] java.io.ObjectOutputStream.writeObject
+  [35] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [36] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [37] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [38] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [39] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [40] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [41] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [42] org.openjdk.jmh.runner.ForkedRunner.run
+  [43] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 663 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] Java_java_lang_ClassLoader_defineClass1
+  [ 2] java.lang.ClassLoader.defineClass1
+  [ 3] java.lang.ClassLoader.defineClass
+  [ 4] java.security.SecureClassLoader.defineClass
+  [ 5] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [ 6] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [ 7] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [ 8] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [ 9] jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass
+  [10] java.lang.ClassLoader.loadClass
+
+--- 532 bytes (0.00%), 3 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] SparsePRT::expand
+  [ 3] SparsePRT::add_card
+  [ 4] OtherRegionsTable::add_reference
+  [ 5] void OopOopIterateDispatch<G1RebuildRemSetClosure>::Table::oop_oop_iterate<ObjArrayKlass, unsigned int>
+  [ 6] G1RebuildRemSetTask::G1RebuildRemSetHeapRegionClosure::do_heap_region
+  [ 7] HeapRegionManager::par_iterate
+  [ 8] G1RebuildRemSetTask::work
+  [ 9] GangWorker::loop
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 517 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] Arguments::parse
+  [ 2] Java_one_profiler_AsyncProfiler_execute0
+  [ 3] org.openjdk.jmh.profile.AsyncProfiler$JavaApi.execute0
+  [ 4] org.openjdk.jmh.profile.AsyncProfiler$JavaApi.execute
+  [ 5] org.openjdk.jmh.profile.AsyncProfiler.execute
+  [ 6] org.openjdk.jmh.profile.AsyncProfiler.stopAndDump
+  [ 7] org.openjdk.jmh.profile.AsyncProfiler.afterIteration
+  [ 8] org.openjdk.jmh.runner.BenchmarkHandler.stopProfilers
+  [ 9] org.openjdk.jmh.runner.BenchmarkHandler.runIteration
+  [10] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [11] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [12] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [13] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [14] org.openjdk.jmh.runner.ForkedRunner.run
+  [15] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 460 bytes (0.00%), 2 samples
+  [ 0] realloc_hook
+  [ 1] ReallocateHeap
+  [ 2] stringStream::write
+  [ 3] CgroupV2Subsystem::mem_limit_val
+  [ 4] CgroupV2Subsystem::read_memory_limit_in_bytes
+  [ 5] CgroupSubsystem::memory_limit_in_bytes
+  [ 6] os::available_memory
+  [ 7] CompileBroker::possibly_add_compiler_threads
+  [ 8] CompileBroker::compiler_thread_loop
+  [ 9] JavaThread::run
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 440 bytes (0.00%), 3 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] ClassLoaderData::ClassLoaderData
+  [ 3] ClassLoaderDataGraph::add
+  [ 4] SystemDictionary::resolve_from_stream
+  [ 5] jvm_define_class_common
+  [ 6] JVM_DefineClass
+  [ 7] Unsafe_DefineClass0
+  [ 8] jdk.internal.misc.Unsafe.defineClass0
+  [ 9] jdk.internal.misc.Unsafe.defineClass
+  [10] jdk.internal.reflect.ClassDefiner.defineClass
+  [11] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [12] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [13] java.security.AccessController.doPrivileged
+  [14] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [15] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [16] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [17] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [18] java.io.ObjectStreamClass.getSerializableConstructor
+  [19] java.io.ObjectStreamClass$2.run
+  [20] java.io.ObjectStreamClass$2.run
+  [21] java.security.AccessController.doPrivileged
+  [22] java.io.ObjectStreamClass.<init>
+  [23] java.io.ObjectStreamClass$Caches$1.computeValue
+  [24] java.io.ObjectStreamClass$Caches$1.computeValue
+  [25] java.io.ClassCache$1.computeValue
+  [26] java.io.ClassCache$1.computeValue
+  [27] java.lang.ClassValue.getFromHashMap
+  [28] java.lang.ClassValue.getFromBackup
+  [29] java.lang.ClassValue.get
+  [30] java.io.ClassCache.get
+  [31] java.io.ObjectStreamClass.lookup
+  [32] java.io.ObjectOutputStream.writeObject0
+  [33] java.io.ObjectOutputStream.writeObject
+  [34] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [35] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [36] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [37] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [38] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [39] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [40] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [41] org.openjdk.jmh.runner.ForkedRunner.run
+  [42] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 400 bytes (0.00%), 5 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] TruncatedSeq::TruncatedSeq
+  [ 3] SurvRateGroup::stop_adding_regions
+  [ 4] G1Policy::record_collection_pause_start
+  [ 5] G1CollectedHeap::do_collection_pause_at_safepoint
+  [ 6] VM_G1CollectForAllocation::doit
+  [ 7] VM_Operation::evaluate
+  [ 8] VMThread::evaluate_operation
+  [ 9] VMThread::loop
+  [10] VMThread::run
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 384 bytes (0.00%), 6 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] OtherRegionsTable::add_reference
+  [ 3] void OopOopIterateDispatch<G1RebuildRemSetClosure>::Table::oop_oop_iterate<InstanceKlass, unsigned int>
+  [ 4] G1RebuildRemSetTask::G1RebuildRemSetHeapRegionClosure::do_heap_region
+  [ 5] HeapRegionManager::par_iterate
+  [ 6] G1RebuildRemSetTask::work
+  [ 7] GangWorker::loop
+  [ 8] Thread::call_run
+  [ 9] thread_native_entry
+  [10] start_thread
+  [11] clone3
+
+--- 360 bytes (0.00%), 5 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] SurvRateGroup::stop_adding_regions
+  [ 3] G1Policy::record_collection_pause_start
+  [ 4] G1CollectedHeap::do_collection_pause_at_safepoint
+  [ 5] VM_G1CollectForAllocation::doit
+  [ 6] VM_Operation::evaluate
+  [ 7] VMThread::evaluate_operation
+  [ 8] VMThread::loop
+  [ 9] VMThread::run
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 320 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] LoaderConstraintTable::extend_loader_constraint
+  [ 3] LoaderConstraintTable::add_entry
+  [ 4] SystemDictionary::check_signature_loaders
+  [ 5] klassVtable::update_inherited_vtable
+  [ 6] klassVtable::initialize_vtable
+  [ 7] InstanceKlass::link_class_impl
+  [ 8] get_class_declared_methods_helper
+  [ 9] JVM_GetClassDeclaredConstructors
+  [10] java.lang.Class.getDeclaredConstructors0
+  [11] java.lang.Class.privateGetDeclaredConstructors
+  [12] java.lang.Class.getConstructor0
+  [13] java.lang.Class.newInstance
+  [14] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [15] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [16] java.security.AccessController.doPrivileged
+  [17] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [18] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [19] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [20] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [21] java.io.ObjectStreamClass.getSerializableConstructor
+  [22] java.io.ObjectStreamClass$2.run
+  [23] java.io.ObjectStreamClass$2.run
+  [24] java.security.AccessController.doPrivileged
+  [25] java.io.ObjectStreamClass.<init>
+  [26] java.io.ObjectStreamClass$Caches$1.computeValue
+  [27] java.io.ObjectStreamClass$Caches$1.computeValue
+  [28] java.io.ClassCache$1.computeValue
+  [29] java.io.ClassCache$1.computeValue
+  [30] java.lang.ClassValue.getFromHashMap
+  [31] java.lang.ClassValue.getFromBackup
+  [32] java.lang.ClassValue.get
+  [33] java.io.ClassCache.get
+  [34] java.io.ObjectStreamClass.lookup
+  [35] java.io.ObjectOutputStream.writeObject0
+  [36] java.io.ObjectOutputStream.writeObject
+  [37] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [38] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [39] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [40] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [41] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [42] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [43] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [44] org.openjdk.jmh.runner.ForkedRunner.run
+  [45] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 256 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] Java_one_profiler_AsyncProfiler_execute0
+  [ 2] org.openjdk.jmh.profile.AsyncProfiler$JavaApi.execute0
+  [ 3] org.openjdk.jmh.profile.AsyncProfiler$JavaApi.execute
+  [ 4] org.openjdk.jmh.profile.AsyncProfiler.execute
+  [ 5] org.openjdk.jmh.profile.AsyncProfiler.stopAndDump
+  [ 6] org.openjdk.jmh.profile.AsyncProfiler.afterIteration
+  [ 7] org.openjdk.jmh.runner.BenchmarkHandler.stopProfilers
+  [ 8] org.openjdk.jmh.runner.BenchmarkHandler.runIteration
+  [ 9] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [10] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [11] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [12] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [13] org.openjdk.jmh.runner.ForkedRunner.run
+  [14] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 230 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] stringStream::write
+  [ 3] CgroupV2Subsystem::mem_limit_val
+  [ 4] CgroupV2Subsystem::read_memory_limit_in_bytes
+  [ 5] CgroupSubsystem::memory_limit_in_bytes
+  [ 6] os::available_memory
+  [ 7] CompileBroker::possibly_add_compiler_threads
+  [ 8] CompileBroker::compiler_thread_loop
+  [ 9] JavaThread::run
+  [10] Thread::call_run
+  [11] thread_native_entry
+  [12] start_thread
+  [13] clone3
+
+--- 192 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] ClassLoaderMetaspace::ClassLoaderMetaspace
+  [ 3] ClassLoaderData::metaspace_non_null
+  [ 4] Metaspace::allocate
+  [ 5] ConstantPool::allocate
+  [ 6] ClassFileParser::parse_stream
+  [ 7] ClassFileParser::ClassFileParser
+  [ 8] KlassFactory::create_from_stream
+  [ 9] SystemDictionary::resolve_from_stream
+  [10] jvm_define_class_common
+  [11] JVM_DefineClass
+  [12] Unsafe_DefineClass0
+  [13] jdk.internal.misc.Unsafe.defineClass0
+  [14] jdk.internal.misc.Unsafe.defineClass
+  [15] jdk.internal.reflect.ClassDefiner.defineClass
+  [16] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [17] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [18] java.security.AccessController.doPrivileged
+  [19] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [20] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [21] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [22] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [23] java.io.ObjectStreamClass.getSerializableConstructor
+  [24] java.io.ObjectStreamClass$2.run
+  [25] java.io.ObjectStreamClass$2.run
+  [26] java.security.AccessController.doPrivileged
+  [27] java.io.ObjectStreamClass.<init>
+  [28] java.io.ObjectStreamClass$Caches$1.computeValue
+  [29] java.io.ObjectStreamClass$Caches$1.computeValue
+  [30] java.io.ClassCache$1.computeValue
+  [31] java.io.ClassCache$1.computeValue
+  [32] java.lang.ClassValue.getFromHashMap
+  [33] java.lang.ClassValue.getFromBackup
+  [34] java.lang.ClassValue.get
+  [35] java.io.ClassCache.get
+  [36] java.io.ObjectStreamClass.lookup
+  [37] java.io.ObjectOutputStream.writeObject0
+  [38] java.io.ObjectOutputStream.writeObject
+  [39] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [40] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [41] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [42] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [43] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [44] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [45] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [46] org.openjdk.jmh.runner.ForkedRunner.run
+  [47] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 152 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] ClassLoaderDataGraph::add
+  [ 3] SystemDictionary::resolve_from_stream
+  [ 4] jvm_define_class_common
+  [ 5] JVM_DefineClass
+  [ 6] Unsafe_DefineClass0
+  [ 7] jdk.internal.misc.Unsafe.defineClass0
+  [ 8] jdk.internal.misc.Unsafe.defineClass
+  [ 9] jdk.internal.reflect.ClassDefiner.defineClass
+  [10] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [11] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [12] java.security.AccessController.doPrivileged
+  [13] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [14] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [15] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [16] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [17] java.io.ObjectStreamClass.getSerializableConstructor
+  [18] java.io.ObjectStreamClass$2.run
+  [19] java.io.ObjectStreamClass$2.run
+  [20] java.security.AccessController.doPrivileged
+  [21] java.io.ObjectStreamClass.<init>
+  [22] java.io.ObjectStreamClass$Caches$1.computeValue
+  [23] java.io.ObjectStreamClass$Caches$1.computeValue
+  [24] java.io.ClassCache$1.computeValue
+  [25] java.io.ClassCache$1.computeValue
+  [26] java.lang.ClassValue.getFromHashMap
+  [27] java.lang.ClassValue.getFromBackup
+  [28] java.lang.ClassValue.get
+  [29] java.io.ClassCache.get
+  [30] java.io.ObjectStreamClass.lookup
+  [31] java.io.ObjectOutputStream.writeObject0
+  [32] java.io.ObjectOutputStream.writeObject
+  [33] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [34] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [35] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [36] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [37] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [38] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [39] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [40] org.openjdk.jmh.runner.ForkedRunner.run
+  [41] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 144 bytes (0.00%), 4 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] SymbolTable::basic_add
+  [ 3] SymbolTable::add
+  [ 4] ClassFileParser::parse_constant_pool_entries
+  [ 5] ClassFileParser::parse_constant_pool
+  [ 6] ClassFileParser::parse_stream
+  [ 7] ClassFileParser::ClassFileParser
+  [ 8] KlassFactory::create_from_stream
+  [ 9] SystemDictionary::resolve_from_stream
+  [10] jvm_define_class_common
+  [11] JVM_DefineClassWithSource
+  [12] Java_java_lang_ClassLoader_defineClass1
+  [13] java.lang.ClassLoader.defineClass1
+  [14] java.lang.ClassLoader.defineClass
+  [15] java.security.SecureClassLoader.defineClass
+  [16] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [17] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [18] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [19] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [20] jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass
+  [21] java.lang.ClassLoader.loadClass
+
+--- 113 bytes (0.00%), 9 samples
+  [ 0] malloc_hook
+  [ 1] os::strdup
+  [ 2] Symbol::print_symbol_on
+  [ 3] Method::print_short_name
+  [ 4] CompileTask::print
+  [ 5] CompileBroker::invoke_compiler_on_method
+  [ 6] CompileBroker::compiler_thread_loop
+  [ 7] JavaThread::run
+  [ 8] Thread::call_run
+  [ 9] thread_native_entry
+  [10] start_thread
+  [11] clone3
+
+--- 104 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] Method::ensure_jmethod_ids
+  [ 3] JvmtiEnv::GetClassMethods
+  [ 4] jvmti_GetClassMethods
+  [ 5] VM::ClassPrepare
+  [ 6] JvmtiExport::post_class_prepare
+  [ 7] InstanceKlass::link_class_impl
+  [ 8] get_class_declared_methods_helper
+  [ 9] JVM_GetClassDeclaredConstructors
+  [10] java.lang.Class.getDeclaredConstructors0
+  [11] java.lang.Class.privateGetDeclaredConstructors
+  [12] java.lang.Class.getConstructor0
+  [13] java.lang.Class.newInstance
+  [14] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [15] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [16] java.security.AccessController.doPrivileged
+  [17] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [18] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [19] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [20] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [21] java.io.ObjectStreamClass.getSerializableConstructor
+  [22] java.io.ObjectStreamClass$2.run
+  [23] java.io.ObjectStreamClass$2.run
+  [24] java.security.AccessController.doPrivileged
+  [25] java.io.ObjectStreamClass.<init>
+  [26] java.io.ObjectStreamClass$Caches$1.computeValue
+  [27] java.io.ObjectStreamClass$Caches$1.computeValue
+  [28] java.io.ClassCache$1.computeValue
+  [29] java.io.ClassCache$1.computeValue
+  [30] java.lang.ClassValue.getFromHashMap
+  [31] java.lang.ClassValue.getFromBackup
+  [32] java.lang.ClassValue.get
+  [33] java.io.ClassCache.get
+  [34] java.io.ObjectStreamClass.lookup
+  [35] java.io.ObjectOutputStream.writeObject0
+  [36] java.io.ObjectOutputStream.writeObject
+  [37] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [38] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [39] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [40] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [41] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [42] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [43] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [44] org.openjdk.jmh.runner.ForkedRunner.run
+  [45] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 88 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] ModuleEntry::create_unnamed_module
+  [ 3] ClassLoaderData::ClassLoaderData
+  [ 4] ClassLoaderDataGraph::add
+  [ 5] SystemDictionary::resolve_from_stream
+  [ 6] jvm_define_class_common
+  [ 7] JVM_DefineClass
+  [ 8] Unsafe_DefineClass0
+  [ 9] jdk.internal.misc.Unsafe.defineClass0
+  [10] jdk.internal.misc.Unsafe.defineClass
+  [11] jdk.internal.reflect.ClassDefiner.defineClass
+  [12] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [13] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [14] java.security.AccessController.doPrivileged
+  [15] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [16] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [17] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [18] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [19] java.io.ObjectStreamClass.getSerializableConstructor
+  [20] java.io.ObjectStreamClass$2.run
+  [21] java.io.ObjectStreamClass$2.run
+  [22] java.security.AccessController.doPrivileged
+  [23] java.io.ObjectStreamClass.<init>
+  [24] java.io.ObjectStreamClass$Caches$1.computeValue
+  [25] java.io.ObjectStreamClass$Caches$1.computeValue
+  [26] java.io.ClassCache$1.computeValue
+  [27] java.io.ClassCache$1.computeValue
+  [28] java.lang.ClassValue.getFromHashMap
+  [29] java.lang.ClassValue.getFromBackup
+  [30] java.lang.ClassValue.get
+  [31] java.io.ClassCache.get
+  [32] java.io.ObjectStreamClass.lookup
+  [33] java.io.ObjectOutputStream.writeObject0
+  [34] java.io.ObjectOutputStream.writeObject
+  [35] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [36] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [37] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [38] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [39] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [40] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [41] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [42] org.openjdk.jmh.runner.ForkedRunner.run
+  [43] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 72 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] SymbolTable::basic_add
+  [ 3] SymbolTable::lookup
+  [ 4] jvm_define_class_common
+  [ 5] JVM_DefineClass
+  [ 6] Unsafe_DefineClass0
+  [ 7] jdk.internal.misc.Unsafe.defineClass0
+  [ 8] jdk.internal.misc.Unsafe.defineClass
+  [ 9] jdk.internal.reflect.ClassDefiner.defineClass
+  [10] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [11] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [12] java.security.AccessController.doPrivileged
+  [13] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [14] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [15] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [16] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [17] java.io.ObjectStreamClass.getSerializableConstructor
+  [18] java.io.ObjectStreamClass$2.run
+  [19] java.io.ObjectStreamClass$2.run
+  [20] java.security.AccessController.doPrivileged
+  [21] java.io.ObjectStreamClass.<init>
+  [22] java.io.ObjectStreamClass$Caches$1.computeValue
+  [23] java.io.ObjectStreamClass$Caches$1.computeValue
+  [24] java.io.ClassCache$1.computeValue
+  [25] java.io.ClassCache$1.computeValue
+  [26] java.lang.ClassValue.getFromHashMap
+  [27] java.lang.ClassValue.getFromBackup
+  [28] java.lang.ClassValue.get
+  [29] java.io.ClassCache.get
+  [30] java.io.ObjectStreamClass.lookup
+  [31] java.io.ObjectOutputStream.writeObject0
+  [32] java.io.ObjectOutputStream.writeObject
+  [33] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [34] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [35] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [36] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [37] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [38] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [39] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [40] org.openjdk.jmh.runner.ForkedRunner.run
+  [41] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 64 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] SymbolTable::basic_add
+  [ 3] SymbolTable::lookup
+  [ 4] ClassLoaderData::initialize_name
+  [ 5] ClassLoaderDataGraph::add
+  [ 6] SystemDictionary::resolve_from_stream
+  [ 7] jvm_define_class_common
+  [ 8] JVM_DefineClass
+  [ 9] Unsafe_DefineClass0
+  [10] jdk.internal.misc.Unsafe.defineClass0
+  [11] jdk.internal.misc.Unsafe.defineClass
+  [12] jdk.internal.reflect.ClassDefiner.defineClass
+  [13] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [14] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [15] java.security.AccessController.doPrivileged
+  [16] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [17] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [18] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [19] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [20] java.io.ObjectStreamClass.getSerializableConstructor
+  [21] java.io.ObjectStreamClass$2.run
+  [22] java.io.ObjectStreamClass$2.run
+  [23] java.security.AccessController.doPrivileged
+  [24] java.io.ObjectStreamClass.<init>
+  [25] java.io.ObjectStreamClass$Caches$1.computeValue
+  [26] java.io.ObjectStreamClass$Caches$1.computeValue
+  [27] java.io.ClassCache$1.computeValue
+  [28] java.io.ClassCache$1.computeValue
+  [29] java.lang.ClassValue.getFromHashMap
+  [30] java.lang.ClassValue.getFromBackup
+  [31] java.lang.ClassValue.get
+  [32] java.io.ClassCache.get
+  [33] java.io.ObjectStreamClass.lookup
+  [34] java.io.ObjectOutputStream.writeObject0
+  [35] java.io.ObjectOutputStream.writeObject
+  [36] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [37] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [38] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [39] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [40] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [41] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [42] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [43] org.openjdk.jmh.runner.ForkedRunner.run
+  [44] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 64 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] OopMapCache::lookup
+  [ 3] Method::mask_for
+  [ 4] frame::oops_interpreted_do
+  [ 5] JavaThread::oops_do
+  [ 6] Threads::possibly_parallel_oops_do
+  [ 7] G1RootProcessor::process_java_roots
+  [ 8] G1RootProcessor::evacuate_roots
+  [ 9] G1ParTask::work
+  [10] GangWorker::loop
+  [11] Thread::call_run
+  [12] thread_native_entry
+  [13] start_thread
+  [14] clone3
+
+--- 64 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] ClassLoaderData::create_dictionary
+  [ 3] ClassLoaderData::ClassLoaderData
+  [ 4] ClassLoaderDataGraph::add
+  [ 5] SystemDictionary::resolve_from_stream
+  [ 6] jvm_define_class_common
+  [ 7] JVM_DefineClass
+  [ 8] Unsafe_DefineClass0
+  [ 9] jdk.internal.misc.Unsafe.defineClass0
+  [10] jdk.internal.misc.Unsafe.defineClass
+  [11] jdk.internal.reflect.ClassDefiner.defineClass
+  [12] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [13] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [14] java.security.AccessController.doPrivileged
+  [15] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [16] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [17] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [18] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [19] java.io.ObjectStreamClass.getSerializableConstructor
+  [20] java.io.ObjectStreamClass$2.run
+  [21] java.io.ObjectStreamClass$2.run
+  [22] java.security.AccessController.doPrivileged
+  [23] java.io.ObjectStreamClass.<init>
+  [24] java.io.ObjectStreamClass$Caches$1.computeValue
+  [25] java.io.ObjectStreamClass$Caches$1.computeValue
+  [26] java.io.ClassCache$1.computeValue
+  [27] java.io.ClassCache$1.computeValue
+  [28] java.lang.ClassValue.getFromHashMap
+  [29] java.lang.ClassValue.getFromBackup
+  [30] java.lang.ClassValue.get
+  [31] java.io.ClassCache.get
+  [32] java.io.ObjectStreamClass.lookup
+  [33] java.io.ObjectOutputStream.writeObject0
+  [34] java.io.ObjectOutputStream.writeObject
+  [35] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [36] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [37] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [38] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [39] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [40] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [41] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [42] org.openjdk.jmh.runner.ForkedRunner.run
+  [43] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 48 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] DependencyContext::add_dependent_nmethod
+  [ 3] InstanceKlass::add_dependent_nmethod
+  [ 4] nmethod::new_nmethod
+  [ 5] ciEnv::register_method
+  [ 6] Compilation::compile_method
+  [ 7] Compilation::Compilation
+  [ 8] Compiler::compile_method
+  [ 9] CompileBroker::invoke_compiler_on_method
+  [10] CompileBroker::compiler_thread_loop
+  [11] JavaThread::run
+  [12] Thread::call_run
+  [13] thread_native_entry
+  [14] start_thread
+  [15] clone3
+
+--- 48 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] G1CodeRootSet::add
+  [ 3] nmethod::oops_do
+  [ 4] G1CollectedHeap::register_nmethod
+  [ 5] nmethod::nmethod
+  [ 6] nmethod::new_nmethod
+  [ 7] ciEnv::register_method
+  [ 8] Compilation::compile_method
+  [ 9] Compilation::Compilation
+  [10] Compiler::compile_method
+  [11] CompileBroker::invoke_compiler_on_method
+  [12] CompileBroker::compiler_thread_loop
+  [13] JavaThread::run
+  [14] Thread::call_run
+  [15] thread_native_entry
+  [16] start_thread
+  [17] clone3
+
+--- 32 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] Hashtable<InstanceKlass*, (MemoryType)1>::allocate_new_entry
+  [ 3] Dictionary::add_klass
+  [ 4] SystemDictionary::update_dictionary
+  [ 5] SystemDictionary::define_instance_class
+  [ 6] SystemDictionary::find_or_define_instance_class
+  [ 7] SystemDictionary::resolve_from_stream
+  [ 8] jvm_define_class_common
+  [ 9] JVM_DefineClassWithSource
+  [10] Java_java_lang_ClassLoader_defineClass1
+  [11] java.lang.ClassLoader.defineClass1
+  [12] java.lang.ClassLoader.defineClass
+  [13] java.security.SecureClassLoader.defineClass
+  [14] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [15] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [16] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [17] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [18] jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass
+  [19] java.lang.ClassLoader.loadClass
+
+--- 32 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] ClassLoaderData::metaspace_non_null
+  [ 3] Metaspace::allocate
+  [ 4] ConstantPool::allocate
+  [ 5] ClassFileParser::parse_stream
+  [ 6] ClassFileParser::ClassFileParser
+  [ 7] KlassFactory::create_from_stream
+  [ 8] SystemDictionary::resolve_from_stream
+  [ 9] jvm_define_class_common
+  [10] JVM_DefineClass
+  [11] Unsafe_DefineClass0
+  [12] jdk.internal.misc.Unsafe.defineClass0
+  [13] jdk.internal.misc.Unsafe.defineClass
+  [14] jdk.internal.reflect.ClassDefiner.defineClass
+  [15] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [16] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [17] java.security.AccessController.doPrivileged
+  [18] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [19] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [20] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [21] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [22] java.io.ObjectStreamClass.getSerializableConstructor
+  [23] java.io.ObjectStreamClass$2.run
+  [24] java.io.ObjectStreamClass$2.run
+  [25] java.security.AccessController.doPrivileged
+  [26] java.io.ObjectStreamClass.<init>
+  [27] java.io.ObjectStreamClass$Caches$1.computeValue
+  [28] java.io.ObjectStreamClass$Caches$1.computeValue
+  [29] java.io.ClassCache$1.computeValue
+  [30] java.io.ClassCache$1.computeValue
+  [31] java.lang.ClassValue.getFromHashMap
+  [32] java.lang.ClassValue.getFromBackup
+  [33] java.lang.ClassValue.get
+  [34] java.io.ClassCache.get
+  [35] java.io.ObjectStreamClass.lookup
+  [36] java.io.ObjectOutputStream.writeObject0
+  [37] java.io.ObjectOutputStream.writeObject
+  [38] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [39] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [40] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [41] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [42] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [43] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [44] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [45] org.openjdk.jmh.runner.ForkedRunner.run
+  [46] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 32 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] Hashtable<InstanceKlass*, (MemoryType)1>::allocate_new_entry
+  [ 3] Dictionary::add_klass
+  [ 4] SystemDictionary::update_dictionary
+  [ 5] SystemDictionary::define_instance_class
+  [ 6] SystemDictionary::resolve_from_stream
+  [ 7] jvm_define_class_common
+  [ 8] JVM_DefineClass
+  [ 9] Unsafe_DefineClass0
+  [10] jdk.internal.misc.Unsafe.defineClass0
+  [11] jdk.internal.misc.Unsafe.defineClass
+  [12] jdk.internal.reflect.ClassDefiner.defineClass
+  [13] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [14] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [15] java.security.AccessController.doPrivileged
+  [16] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [17] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [18] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [19] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [20] java.io.ObjectStreamClass.getSerializableConstructor
+  [21] java.io.ObjectStreamClass$2.run
+  [22] java.io.ObjectStreamClass$2.run
+  [23] java.security.AccessController.doPrivileged
+  [24] java.io.ObjectStreamClass.<init>
+  [25] java.io.ObjectStreamClass$Caches$1.computeValue
+  [26] java.io.ObjectStreamClass$Caches$1.computeValue
+  [27] java.io.ClassCache$1.computeValue
+  [28] java.io.ClassCache$1.computeValue
+  [29] java.lang.ClassValue.getFromHashMap
+  [30] java.lang.ClassValue.getFromBackup
+  [31] java.lang.ClassValue.get
+  [32] java.io.ClassCache.get
+  [33] java.io.ObjectStreamClass.lookup
+  [34] java.io.ObjectOutputStream.writeObject0
+  [35] java.io.ObjectOutputStream.writeObject
+  [36] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [37] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [38] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [39] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [40] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [41] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [42] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [43] org.openjdk.jmh.runner.ForkedRunner.run
+  [44] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 32 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] ImmutableOopMapSet::build_from
+  [ 3] CodeBlob::CodeBlob
+  [ 4] CompiledMethod::CompiledMethod
+  [ 5] nmethod::nmethod
+  [ 6] nmethod::new_native_nmethod
+  [ 7] SharedRuntime::generate_native_wrapper
+  [ 8] AdapterHandlerLibrary::create_native_wrapper
+  [ 9] CompileBroker::compile_method
+  [10] TieredThresholdPolicy::submit_compile
+  [11] TieredThresholdPolicy::method_invocation_event
+  [12] TieredThresholdPolicy::event
+  [13] InterpreterRuntime::frequency_counter_overflow_inner
+  [14] InterpreterRuntime::frequency_counter_overflow
+  [15] jdk.internal.misc.Unsafe.putObject
+  [16] java.util.concurrent.locks.LockSupport.setBlocker
+  [17] java.util.concurrent.locks.LockSupport.parkNanos
+  [18] java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos
+  [19] java.util.concurrent.LinkedBlockingQueue.poll
+  [20] java.util.concurrent.ExecutorCompletionService.poll
+  [21] org.openjdk.jmh.runner.BenchmarkHandler.runIteration
+  [22] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [23] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [24] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [25] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [26] org.openjdk.jmh.runner.ForkedRunner.run
+  [27] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] PlaceholderTable::find_and_add
+  [ 3] SystemDictionary::resolve_super_or_fail
+  [ 4] ClassFileParser::post_process_parsed_stream
+  [ 5] KlassFactory::create_from_stream
+  [ 6] SystemDictionary::resolve_from_stream
+  [ 7] jvm_define_class_common
+  [ 8] JVM_DefineClass
+  [ 9] Unsafe_DefineClass0
+  [10] jdk.internal.misc.Unsafe.defineClass0
+  [11] jdk.internal.misc.Unsafe.defineClass
+  [12] jdk.internal.reflect.ClassDefiner.defineClass
+  [13] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [14] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [15] java.security.AccessController.doPrivileged
+  [16] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [17] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [18] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [19] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [20] java.io.ObjectStreamClass.getSerializableConstructor
+  [21] java.io.ObjectStreamClass$2.run
+  [22] java.io.ObjectStreamClass$2.run
+  [23] java.security.AccessController.doPrivileged
+  [24] java.io.ObjectStreamClass.<init>
+  [25] java.io.ObjectStreamClass$Caches$1.computeValue
+  [26] java.io.ObjectStreamClass$Caches$1.computeValue
+  [27] java.io.ClassCache$1.computeValue
+  [28] java.io.ClassCache$1.computeValue
+  [29] java.lang.ClassValue.getFromHashMap
+  [30] java.lang.ClassValue.getFromBackup
+  [31] java.lang.ClassValue.get
+  [32] java.io.ClassCache.get
+  [33] java.io.ObjectStreamClass.lookup
+  [34] java.io.ObjectOutputStream.writeObject0
+  [35] java.io.ObjectOutputStream.writeObject
+  [36] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [37] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [38] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [39] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [40] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [41] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [42] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [43] org.openjdk.jmh.runner.ForkedRunner.run
+  [44] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] PlaceholderTable::find_and_add
+  [ 3] SystemDictionary::find_or_define_instance_class
+  [ 4] SystemDictionary::resolve_from_stream
+  [ 5] jvm_define_class_common
+  [ 6] JVM_DefineClassWithSource
+  [ 7] Java_java_lang_ClassLoader_defineClass1
+  [ 8] java.lang.ClassLoader.defineClass1
+  [ 9] java.lang.ClassLoader.defineClass
+  [10] java.security.SecureClassLoader.defineClass
+  [11] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [12] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [13] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [14] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [15] jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass
+  [16] java.lang.ClassLoader.loadClass
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] InstanceKlass::get_jmethod_id
+  [ 3] JvmtiEnv::GetClassMethods
+  [ 4] jvmti_GetClassMethods
+  [ 5] VM::ClassPrepare
+  [ 6] JvmtiExport::post_class_prepare
+  [ 7] InstanceKlass::link_class_impl
+  [ 8] get_class_declared_methods_helper
+  [ 9] JVM_GetClassDeclaredConstructors
+  [10] java.lang.Class.getDeclaredConstructors0
+  [11] java.lang.Class.privateGetDeclaredConstructors
+  [12] java.lang.Class.getConstructor0
+  [13] java.lang.Class.newInstance
+  [14] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [15] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [16] java.security.AccessController.doPrivileged
+  [17] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [18] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [19] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [20] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [21] java.io.ObjectStreamClass.getSerializableConstructor
+  [22] java.io.ObjectStreamClass$2.run
+  [23] java.io.ObjectStreamClass$2.run
+  [24] java.security.AccessController.doPrivileged
+  [25] java.io.ObjectStreamClass.<init>
+  [26] java.io.ObjectStreamClass$Caches$1.computeValue
+  [27] java.io.ObjectStreamClass$Caches$1.computeValue
+  [28] java.io.ClassCache$1.computeValue
+  [29] java.io.ClassCache$1.computeValue
+  [30] java.lang.ClassValue.getFromHashMap
+  [31] java.lang.ClassValue.getFromBackup
+  [32] java.lang.ClassValue.get
+  [33] java.io.ClassCache.get
+  [34] java.io.ObjectStreamClass.lookup
+  [35] java.io.ObjectOutputStream.writeObject0
+  [36] java.io.ObjectOutputStream.writeObject
+  [37] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [38] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [39] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [40] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [41] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [42] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [43] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [44] org.openjdk.jmh.runner.ForkedRunner.run
+  [45] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] InstanceKlass::get_jmethod_id
+  [ 3] JvmtiEnv::GetClassMethods
+  [ 4] jvmti_GetClassMethods
+  [ 5] VM::ClassPrepare
+  [ 6] JvmtiExport::post_class_prepare
+  [ 7] InstanceKlass::link_class_impl
+  [ 8] InstanceKlass::initialize_impl
+  [ 9] InterpreterRuntime::_new
+  [10] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [11] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [12] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [13] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [14] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [15] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [16] org.openjdk.jmh.runner.ForkedRunner.run
+  [17] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] metaspace::BlockFreelist::BlockFreelist
+  [ 3] metaspace::SpaceManager::add_chunk
+  [ 4] metaspace::SpaceManager::grow_and_allocate
+  [ 5] metaspace::SpaceManager::allocate
+  [ 6] Metaspace::allocate
+  [ 7] ConstantPool::allocate
+  [ 8] ClassFileParser::parse_stream
+  [ 9] ClassFileParser::ClassFileParser
+  [10] KlassFactory::create_from_stream
+  [11] SystemDictionary::resolve_from_stream
+  [12] jvm_define_class_common
+  [13] JVM_DefineClass
+  [14] Unsafe_DefineClass0
+  [15] jdk.internal.misc.Unsafe.defineClass0
+  [16] jdk.internal.misc.Unsafe.defineClass
+  [17] jdk.internal.reflect.ClassDefiner.defineClass
+  [18] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [19] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [20] java.security.AccessController.doPrivileged
+  [21] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [22] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [23] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [24] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [25] java.io.ObjectStreamClass.getSerializableConstructor
+  [26] java.io.ObjectStreamClass$2.run
+  [27] java.io.ObjectStreamClass$2.run
+  [28] java.security.AccessController.doPrivileged
+  [29] java.io.ObjectStreamClass.<init>
+  [30] java.io.ObjectStreamClass$Caches$1.computeValue
+  [31] java.io.ObjectStreamClass$Caches$1.computeValue
+  [32] java.io.ClassCache$1.computeValue
+  [33] java.io.ClassCache$1.computeValue
+  [34] java.lang.ClassValue.getFromHashMap
+  [35] java.lang.ClassValue.getFromBackup
+  [36] java.lang.ClassValue.get
+  [37] java.io.ClassCache.get
+  [38] java.io.ObjectStreamClass.lookup
+  [39] java.io.ObjectOutputStream.writeObject0
+  [40] java.io.ObjectOutputStream.writeObject
+  [41] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [42] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [43] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [44] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [45] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [46] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [47] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [48] org.openjdk.jmh.runner.ForkedRunner.run
+  [49] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] PlaceholderTable::find_and_add
+  [ 3] SystemDictionary::resolve_super_or_fail
+  [ 4] ClassFileParser::post_process_parsed_stream
+  [ 5] KlassFactory::create_from_stream
+  [ 6] SystemDictionary::resolve_from_stream
+  [ 7] jvm_define_class_common
+  [ 8] JVM_DefineClassWithSource
+  [ 9] Java_java_lang_ClassLoader_defineClass1
+  [10] java.lang.ClassLoader.defineClass1
+  [11] java.lang.ClassLoader.defineClass
+  [12] java.security.SecureClassLoader.defineClass
+  [13] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [14] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [15] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [16] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [17] jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass
+  [18] java.lang.ClassLoader.loadClass
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] PlaceholderTable::find_and_add
+  [ 3] SystemDictionary::resolve_instance_class_or_null
+  [ 4] JVM_FindClassFromBootLoader
+  [ 5] Java_java_lang_ClassLoader_findBootstrapClass
+  [ 6] java.lang.ClassLoader.findBootstrapClass
+  [ 7] java.lang.ClassLoader.findBootstrapClassOrNull
+  [ 8] java.lang.System$2.findBootstrapClassOrNull
+  [ 9] jdk.internal.loader.ClassLoaders$BootClassLoader.loadClassOrNull
+  [10] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [11] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [12] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [13] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [14] jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass
+  [15] java.lang.ClassLoader.loadClass
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] PlaceholderTable::find_and_add
+  [ 3] SystemDictionary::resolve_instance_class_or_null
+  [ 4] SystemDictionary::resolve_or_fail
+  [ 5] ConstantPool::klass_at_impl
+  [ 6] InterpreterRuntime::_new
+  [ 7] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [ 8] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [ 9] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [10] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [11] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [12] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [13] org.openjdk.jmh.runner.ForkedRunner.run
+  [14] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] PlaceholderTable::find_and_add
+  [ 3] SystemDictionary::resolve_super_or_fail
+  [ 4] ClassFileParser::parse_interfaces
+  [ 5] ClassFileParser::parse_stream
+  [ 6] ClassFileParser::ClassFileParser
+  [ 7] KlassFactory::create_from_stream
+  [ 8] SystemDictionary::resolve_from_stream
+  [ 9] jvm_define_class_common
+  [10] JVM_DefineClassWithSource
+  [11] Java_java_lang_ClassLoader_defineClass1
+  [12] java.lang.ClassLoader.defineClass1
+  [13] java.lang.ClassLoader.defineClass
+  [14] java.security.SecureClassLoader.defineClass
+  [15] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [16] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [17] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [18] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [19] jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass
+  [20] java.lang.ClassLoader.loadClass
+
+--- 24 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] ImmutableOopMapSet::build_from
+  [ 3] CodeBlob::CodeBlob
+  [ 4] CompiledMethod::CompiledMethod
+  [ 5] nmethod::nmethod
+  [ 6] nmethod::new_native_nmethod
+  [ 7] SharedRuntime::generate_native_wrapper
+  [ 8] AdapterHandlerLibrary::create_native_wrapper
+  [ 9] CompileBroker::compile_method
+  [10] TieredThresholdPolicy::submit_compile
+  [11] TieredThresholdPolicy::method_invocation_event
+  [12] TieredThresholdPolicy::event
+  [13] InterpreterRuntime::frequency_counter_overflow_inner
+  [14] InterpreterRuntime::frequency_counter_overflow
+  [15] java.lang.Thread.isInterrupted
+  [16] java.lang.Thread.interrupted
+  [17] java.util.concurrent.CyclicBarrier.dowait
+  [18] java.util.concurrent.CyclicBarrier.await
+  [19] org.openjdk.jmh.runner.BenchmarkHandler.getWorkerData
+  [20] org.openjdk.jmh.runner.BenchmarkHandler.access$300
+  [21] org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call
+  [22] org.openjdk.jmh.runner.BenchmarkHandler$BenchmarkTask.call
+  [23] java.util.concurrent.FutureTask.run
+  [24] java.util.concurrent.Executors$RunnableAdapter.call
+  [25] java.util.concurrent.FutureTask.run
+  [26] java.util.concurrent.ThreadPoolExecutor.runWorker
+  [27] java.util.concurrent.ThreadPoolExecutor$Worker.run
+  [28] java.lang.Thread.run
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] metaspace::SpaceManager::add_chunk
+  [ 3] metaspace::SpaceManager::grow_and_allocate
+  [ 4] metaspace::SpaceManager::allocate
+  [ 5] Metaspace::allocate
+  [ 6] ConstantPool::allocate
+  [ 7] ClassFileParser::parse_stream
+  [ 8] ClassFileParser::ClassFileParser
+  [ 9] KlassFactory::create_from_stream
+  [10] SystemDictionary::resolve_from_stream
+  [11] jvm_define_class_common
+  [12] JVM_DefineClass
+  [13] Unsafe_DefineClass0
+  [14] jdk.internal.misc.Unsafe.defineClass0
+  [15] jdk.internal.misc.Unsafe.defineClass
+  [16] jdk.internal.reflect.ClassDefiner.defineClass
+  [17] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [18] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [19] java.security.AccessController.doPrivileged
+  [20] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [21] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [22] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [23] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [24] java.io.ObjectStreamClass.getSerializableConstructor
+  [25] java.io.ObjectStreamClass$2.run
+  [26] java.io.ObjectStreamClass$2.run
+  [27] java.security.AccessController.doPrivileged
+  [28] java.io.ObjectStreamClass.<init>
+  [29] java.io.ObjectStreamClass$Caches$1.computeValue
+  [30] java.io.ObjectStreamClass$Caches$1.computeValue
+  [31] java.io.ClassCache$1.computeValue
+  [32] java.io.ClassCache$1.computeValue
+  [33] java.lang.ClassValue.getFromHashMap
+  [34] java.lang.ClassValue.getFromBackup
+  [35] java.lang.ClassValue.get
+  [36] java.io.ClassCache.get
+  [37] java.io.ObjectStreamClass.lookup
+  [38] java.io.ObjectOutputStream.writeObject0
+  [39] java.io.ObjectOutputStream.writeObject
+  [40] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [41] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [42] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [43] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [44] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [45] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [46] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [47] org.openjdk.jmh.runner.ForkedRunner.run
+  [48] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] StringTable::do_intern
+  [ 3] StringTable::intern
+  [ 4] Reflection::new_method
+  [ 5] get_class_declared_methods_helper
+  [ 6] JVM_GetClassDeclaredMethods
+  [ 7] java.lang.Class.getDeclaredMethods0
+  [ 8] java.lang.Class.privateGetDeclaredMethods
+  [ 9] java.lang.Class.getDeclaredMethod
+  [10] java.io.ObjectStreamClass.getPrivateMethod
+  [11] java.io.ObjectStreamClass$2.run
+  [12] java.io.ObjectStreamClass$2.run
+  [13] java.security.AccessController.doPrivileged
+  [14] java.io.ObjectStreamClass.<init>
+  [15] java.io.ObjectStreamClass$Caches$1.computeValue
+  [16] java.io.ObjectStreamClass$Caches$1.computeValue
+  [17] java.io.ClassCache$1.computeValue
+  [18] java.io.ClassCache$1.computeValue
+  [19] java.lang.ClassValue.getFromHashMap
+  [20] java.lang.ClassValue.getFromBackup
+  [21] java.lang.ClassValue.get
+  [22] java.io.ClassCache.get
+  [23] java.io.ObjectStreamClass.lookup
+  [24] java.io.ObjectOutputStream.writeObject0
+  [25] java.io.ObjectOutputStream.writeObject
+  [26] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [27] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [28] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [29] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [30] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [31] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [32] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [33] org.openjdk.jmh.runner.ForkedRunner.run
+  [34] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] StringTable::do_intern
+  [ 3] StringTable::intern
+  [ 4] java_lang_Class::name
+  [ 5] JVM_InitClassName
+  [ 6] java.lang.Class.initClassName
+  [ 7] java.lang.Class.getName
+  [ 8] java.lang.Class.getPackageName
+  [ 9] jdk.internal.reflect.Reflection.verifyModuleAccess
+  [10] jdk.internal.reflect.Reflection.verifyMemberAccess
+  [11] jdk.internal.reflect.Reflection.ensureMemberAccess
+  [12] java.lang.Class.newInstance
+  [13] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [14] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [15] java.security.AccessController.doPrivileged
+  [16] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [17] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [18] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [19] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [20] java.io.ObjectStreamClass.getSerializableConstructor
+  [21] java.io.ObjectStreamClass$2.run
+  [22] java.io.ObjectStreamClass$2.run
+  [23] java.security.AccessController.doPrivileged
+  [24] java.io.ObjectStreamClass.<init>
+  [25] java.io.ObjectStreamClass$Caches$1.computeValue
+  [26] java.io.ObjectStreamClass$Caches$1.computeValue
+  [27] java.io.ClassCache$1.computeValue
+  [28] java.io.ClassCache$1.computeValue
+  [29] java.lang.ClassValue.getFromHashMap
+  [30] java.lang.ClassValue.getFromBackup
+  [31] java.lang.ClassValue.get
+  [32] java.io.ClassCache.get
+  [33] java.io.ObjectStreamClass.lookup
+  [34] java.io.ObjectOutputStream.writeObject0
+  [35] java.io.ObjectOutputStream.writeObject
+  [36] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [37] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [38] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [39] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [40] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [41] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [42] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [43] org.openjdk.jmh.runner.ForkedRunner.run
+  [44] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] JvmtiEnv::GetClassMethods
+  [ 2] jvmti_GetClassMethods
+  [ 3] VM::ClassPrepare
+  [ 4] JvmtiExport::post_class_prepare
+  [ 5] InstanceKlass::link_class_impl
+  [ 6] InstanceKlass::initialize_impl
+  [ 7] InterpreterRuntime::_new
+  [ 8] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [ 9] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [10] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [11] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [12] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [13] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [14] org.openjdk.jmh.runner.ForkedRunner.run
+  [15] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] StringTable::do_intern
+  [ 3] StringTable::intern
+  [ 4] JVM_InternString
+  [ 5] java.lang.String.intern
+  [ 6] java.io.ObjectStreamField.<init>
+  [ 7] java.io.ObjectStreamClass.getDefaultSerialFields
+  [ 8] java.io.ObjectStreamClass.getSerialFields
+  [ 9] java.io.ObjectStreamClass$2.run
+  [10] java.io.ObjectStreamClass$2.run
+  [11] java.security.AccessController.doPrivileged
+  [12] java.io.ObjectStreamClass.<init>
+  [13] java.io.ObjectStreamClass$Caches$1.computeValue
+  [14] java.io.ObjectStreamClass$Caches$1.computeValue
+  [15] java.io.ClassCache$1.computeValue
+  [16] java.io.ClassCache$1.computeValue
+  [17] java.lang.ClassValue.getFromHashMap
+  [18] java.lang.ClassValue.getFromBackup
+  [19] java.lang.ClassValue.get
+  [20] java.io.ClassCache.get
+  [21] java.io.ObjectStreamClass.lookup
+  [22] java.io.ObjectOutputStream.writeObject0
+  [23] java.io.ObjectOutputStream.writeObject
+  [24] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [25] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [26] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [27] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [28] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [29] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [30] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [31] org.openjdk.jmh.runner.ForkedRunner.run
+  [32] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] JvmtiEnv::GetClassMethods
+  [ 2] jvmti_GetClassMethods
+  [ 3] VM::ClassPrepare
+  [ 4] JvmtiExport::post_class_prepare
+  [ 5] InstanceKlass::link_class_impl
+  [ 6] get_class_declared_methods_helper
+  [ 7] JVM_GetClassDeclaredConstructors
+  [ 8] java.lang.Class.getDeclaredConstructors0
+  [ 9] java.lang.Class.privateGetDeclaredConstructors
+  [10] java.lang.Class.getConstructor0
+  [11] java.lang.Class.newInstance
+  [12] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [13] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [14] java.security.AccessController.doPrivileged
+  [15] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [16] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [17] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [18] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [19] java.io.ObjectStreamClass.getSerializableConstructor
+  [20] java.io.ObjectStreamClass$2.run
+  [21] java.io.ObjectStreamClass$2.run
+  [22] java.security.AccessController.doPrivileged
+  [23] java.io.ObjectStreamClass.<init>
+  [24] java.io.ObjectStreamClass$Caches$1.computeValue
+  [25] java.io.ObjectStreamClass$Caches$1.computeValue
+  [26] java.io.ClassCache$1.computeValue
+  [27] java.io.ClassCache$1.computeValue
+  [28] java.lang.ClassValue.getFromHashMap
+  [29] java.lang.ClassValue.getFromBackup
+  [30] java.lang.ClassValue.get
+  [31] java.io.ClassCache.get
+  [32] java.io.ObjectStreamClass.lookup
+  [33] java.io.ObjectOutputStream.writeObject0
+  [34] java.io.ObjectOutputStream.writeObject
+  [35] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [36] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [37] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [38] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [39] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [40] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [41] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [42] org.openjdk.jmh.runner.ForkedRunner.run
+  [43] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] StringTable::do_intern
+  [ 3] StringTable::intern
+  [ 4] Reflection::new_field
+  [ 5] JVM_GetClassDeclaredFields
+  [ 6] java.lang.Class.getDeclaredFields0
+  [ 7] java.lang.Class.privateGetDeclaredFields
+  [ 8] java.lang.Class.getDeclaredField
+  [ 9] java.io.ObjectStreamClass.getDeclaredSUID
+  [10] java.io.ObjectStreamClass$2.run
+  [11] java.io.ObjectStreamClass$2.run
+  [12] java.security.AccessController.doPrivileged
+  [13] java.io.ObjectStreamClass.<init>
+  [14] java.io.ObjectStreamClass$Caches$1.computeValue
+  [15] java.io.ObjectStreamClass$Caches$1.computeValue
+  [16] java.io.ClassCache$1.computeValue
+  [17] java.io.ClassCache$1.computeValue
+  [18] java.lang.ClassValue.getFromHashMap
+  [19] java.lang.ClassValue.getFromBackup
+  [20] java.lang.ClassValue.get
+  [21] java.io.ClassCache.get
+  [22] java.io.ObjectStreamClass.lookup
+  [23] java.io.ObjectOutputStream.writeObject0
+  [24] java.io.ObjectOutputStream.writeObject
+  [25] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [26] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [27] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [28] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [29] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [30] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [31] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [32] org.openjdk.jmh.runner.ForkedRunner.run
+  [33] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 16 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] StringTable::do_intern
+  [ 3] StringTable::intern
+  [ 4] java_lang_Class::name
+  [ 5] JVM_InitClassName
+  [ 6] java.lang.Class.initClassName
+  [ 7] java.lang.Class.getName
+  [ 8] java.lang.Class.getPackageName
+  [ 9] java.lang.ClassLoader.postDefineClass
+  [10] java.lang.ClassLoader.defineClass
+  [11] java.security.SecureClassLoader.defineClass
+  [12] jdk.internal.loader.BuiltinClassLoader.defineClass
+  [13] jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull
+  [14] jdk.internal.loader.BuiltinClassLoader.loadClassOrNull
+  [15] jdk.internal.loader.BuiltinClassLoader.loadClass
+  [16] jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass
+  [17] java.lang.ClassLoader.loadClass
+
+--- 8 bytes (0.00%), 2 samples
+  [ 0] malloc_hook
+  [ 1] os::strdup
+  [ 2] CgroupV2Subsystem::mem_limit_val
+  [ 3] CgroupV2Subsystem::read_memory_limit_in_bytes
+  [ 4] CgroupSubsystem::memory_limit_in_bytes
+  [ 5] os::available_memory
+  [ 6] CompileBroker::possibly_add_compiler_threads
+  [ 7] CompileBroker::compiler_thread_loop
+  [ 8] JavaThread::run
+  [ 9] Thread::call_run
+  [10] thread_native_entry
+  [11] start_thread
+  [12] clone3
+
+--- 8 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] Dictionary::Dictionary
+  [ 3] ClassLoaderData::create_dictionary
+  [ 4] ClassLoaderData::ClassLoaderData
+  [ 5] ClassLoaderDataGraph::add
+  [ 6] SystemDictionary::resolve_from_stream
+  [ 7] jvm_define_class_common
+  [ 8] JVM_DefineClass
+  [ 9] Unsafe_DefineClass0
+  [10] jdk.internal.misc.Unsafe.defineClass0
+  [11] jdk.internal.misc.Unsafe.defineClass
+  [12] jdk.internal.reflect.ClassDefiner.defineClass
+  [13] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [14] jdk.internal.reflect.MethodAccessorGenerator$1.run
+  [15] java.security.AccessController.doPrivileged
+  [16] jdk.internal.reflect.MethodAccessorGenerator.generate
+  [17] jdk.internal.reflect.MethodAccessorGenerator.generateSerializationConstructor
+  [18] jdk.internal.reflect.ReflectionFactory.generateConstructor
+  [19] jdk.internal.reflect.ReflectionFactory.newConstructorForSerialization
+  [20] java.io.ObjectStreamClass.getSerializableConstructor
+  [21] java.io.ObjectStreamClass$2.run
+  [22] java.io.ObjectStreamClass$2.run
+  [23] java.security.AccessController.doPrivileged
+  [24] java.io.ObjectStreamClass.<init>
+  [25] java.io.ObjectStreamClass$Caches$1.computeValue
+  [26] java.io.ObjectStreamClass$Caches$1.computeValue
+  [27] java.io.ClassCache$1.computeValue
+  [28] java.io.ClassCache$1.computeValue
+  [29] java.lang.ClassValue.getFromHashMap
+  [30] java.lang.ClassValue.getFromBackup
+  [31] java.lang.ClassValue.get
+  [32] java.io.ClassCache.get
+  [33] java.io.ObjectStreamClass.lookup
+  [34] java.io.ObjectOutputStream.writeObject0
+  [35] java.io.ObjectOutputStream.writeObject
+  [36] org.openjdk.jmh.runner.link.BinaryLinkClient.pushFrame
+  [37] org.openjdk.jmh.runner.link.BinaryLinkClient.pushResults
+  [38] org.openjdk.jmh.runner.ForkedRunner$1.accept
+  [39] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [40] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [41] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [42] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [43] org.openjdk.jmh.runner.ForkedRunner.run
+  [44] org.openjdk.jmh.runner.ForkedMain.main
+
+--- 5 bytes (0.00%), 1 sample
+  [ 0] malloc_hook
+  [ 1] AllocateHeap
+  [ 2] jni_GetStringUTFChars
+  [ 3] Java_one_profiler_AsyncProfiler_execute0
+  [ 4] org.openjdk.jmh.profile.AsyncProfiler$JavaApi.execute0
+  [ 5] org.openjdk.jmh.profile.AsyncProfiler$JavaApi.execute
+  [ 6] org.openjdk.jmh.profile.AsyncProfiler.execute
+  [ 7] org.openjdk.jmh.profile.AsyncProfiler.stopAndDump
+  [ 8] org.openjdk.jmh.profile.AsyncProfiler.afterIteration
+  [ 9] org.openjdk.jmh.runner.BenchmarkHandler.stopProfilers
+  [10] org.openjdk.jmh.runner.BenchmarkHandler.runIteration
+  [11] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [12] org.openjdk.jmh.runner.BaseRunner.runBenchmark
+  [13] org.openjdk.jmh.runner.BaseRunner.doSingle
+  [14] org.openjdk.jmh.runner.BaseRunner.runBenchmarksForked
+  [15] org.openjdk.jmh.runner.ForkedRunner.run
+  [16] org.openjdk.jmh.runner.ForkedMain.main
+
+       bytes  percent  samples  top
+  ----------  -------  -------  ---
+ 20006449141   99.61%    15829  malloc_hook
+    77537944    0.39%    14663  calloc_hook
+       16720    0.00%       60  realloc_hook

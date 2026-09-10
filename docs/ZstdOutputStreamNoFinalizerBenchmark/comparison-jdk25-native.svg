@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="270" viewBox="0 0 1200 270">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:system-ui,-apple-system,sans-serif;fill:#1f2937}.title{font-size:22px;font-weight:700}.label{font-size:13px}.tick{font-size:12px;fill:#4b5563}.value{font-size:12px;font-weight:600}</style>
+<text x="300" y="32" class="title">Estimated native allocation</text>
+<rect x="300" y="50" width="15" height="15" rx="2" fill="#2563eb"/>
+<text x="322" y="63" class="label">JDK 25 · orig</text>
+<rect x="450" y="50" width="15" height="15" rx="2" fill="#ea580c"/>
+<text x="472" y="63" class="label">JDK 25 · ffm</text>
+<rect x="600" y="50" width="15" height="15" rx="2" fill="#16a34a"/>
+<text x="622" y="63" class="label">JDK 25 · ffm-arena</text>
+<line x1="300.0" y1="93" x2="300.0" y2="222" stroke="#e5e7eb"/>
+<text x="300.0" y="245" text-anchor="middle" class="tick">0.0%</text>
+<line x1="430.0" y1="93" x2="430.0" y2="222" stroke="#e5e7eb"/>
+<text x="430.0" y="245" text-anchor="middle" class="tick">21.6%</text>
+<line x1="560.0" y1="93" x2="560.0" y2="222" stroke="#e5e7eb"/>
+<text x="560.0" y="245" text-anchor="middle" class="tick">43.2%</text>
+<line x1="690.0" y1="93" x2="690.0" y2="222" stroke="#e5e7eb"/>
+<text x="690.0" y="245" text-anchor="middle" class="tick">64.8%</text>
+<line x1="820.0" y1="93" x2="820.0" y2="222" stroke="#e5e7eb"/>
+<text x="820.0" y="245" text-anchor="middle" class="tick">86.4%</text>
+<line x1="950.0" y1="93" x2="950.0" y2="222" stroke="#e5e7eb"/>
+<text x="950.0" y="245" text-anchor="middle" class="tick">108.0%</text>
+<line x1="300.0" y1="93" x2="300.0" y2="222" stroke="#6b7280" stroke-width="1.5"/>
+<text x="288" y="154.0" text-anchor="end" class="label">compressionThroughput · 64</text>
+<rect x="300.0" y="118.0" width="599.6" height="18" rx="2" fill="#2563eb"/>
+<text x="905.6" y="131.0" text-anchor="start" class="value">672,083.0 B/op (0.00%)</text>
+<rect x="300.0" y="141.0" width="601.9" height="18" rx="2" fill="#ea580c"/>
+<text x="907.9" y="154.0" text-anchor="start" class="value">674,636.4 B/op (+0.38%)</text>
+<rect x="300.0" y="164.0" width="587.8" height="18" rx="2" fill="#16a34a"/>
+<text x="893.8" y="177.0" text-anchor="start" class="value">★ 658,896.8 B/op (-1.96%)</text>
+</svg>
