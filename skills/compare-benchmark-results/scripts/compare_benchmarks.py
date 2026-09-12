@@ -52,6 +52,15 @@ class ImplementationMetadata:
     url: str | None = None
 
 
+@dataclass(frozen=True)
+class HostMetadata:
+    os: str
+    architecture: str
+    cpu: str
+    cores: str
+    ram: str
+
+
 def parse_jmh(path: Path) -> dict[RowKey, Measurement]:
     rows: dict[RowKey, Measurement] = {}
     for line in path.read_text(encoding="utf-8").splitlines():
@@ -185,6 +194,35 @@ def parse_input_file_size(directory: Path) -> int | None:
     if len(matches) > 1:
         raise ValueError(f"Expected at most one test-file-size mapping in {directory / 'readme.md'}")
     return int(matches[0].replace(",", "")) if matches else None
+
+
+def parse_host_metadata(directory: Path) -> HostMetadata:
+    readme_path = directory.parent / "readme.md"
+    text = readme_path.read_text(encoding="utf-8")
+    fields = {
+        "os": "OS",
+        "architecture": "architecture",
+        "cpu": "CPU",
+        "cores": "CPU cores",
+        "ram": "RAM",
+    }
+    values: dict[str, str] = {}
+    problems: list[str] = []
+    for field, label in fields.items():
+        matches = re.findall(
+            rf"^Benchmark host {re.escape(label)}:\s*`([^`]+)`\s*$",
+            text,
+            re.MULTILINE | re.IGNORECASE,
+        )
+        if len(matches) == 1:
+            values[field] = matches[0]
+        else:
+            problems.append(f"expected one `Benchmark host {label}` entry, found {len(matches)}")
+    if problems:
+        raise ValueError(
+            f"Invalid benchmark host metadata in {readme_path}:\n- " + "\n- ".join(problems)
+        )
+    return HostMetadata(**values)
 
 
 def baseline_variant(variants: list[Variant], preferred_jdk: str) -> Variant:
@@ -632,6 +670,7 @@ def generate_chart_report(
     variants: list[Variant],
     metadata: dict[str, ImplementationMetadata],
     input_file_size: int | None,
+    host: HostMetadata,
 ) -> str:
     implementation_items = []
     for variant in variants:
@@ -648,6 +687,9 @@ def generate_chart_report(
         "Implementations: " + "; ".join(implementation_items) + ".",
         "",
         *([f"Input file: **{input_file_size:,} bytes**.", ""] if input_file_size is not None else []),
+        f"Benchmark host: **{host.os}** ({host.architecture}); **{host.cpu}**, "
+        f"{host.cores} CPU cores; **{host.ram} RAM**.",
+        "",
         "Every JDK 25 implementation is shown. Bar lengths are proportional to the measured value within each workload row, with the worst result as the longest bar. Labels show the absolute value and change versus JDK 25 `orig`; negative percentages mean less execution time or allocation and are better.",
         "",
         f"![Relative execution cost bar chart]({chart_paths[0].name})",
@@ -681,10 +723,16 @@ def main() -> None:
     jdk25_baseline = baseline_variant(jdk25_variants, "jdk-25")
     implementation_metadata = parse_implementation_metadata(directory, jdk25_variants)
     input_file_size = parse_input_file_size(directory)
+    host_metadata = parse_host_metadata(directory)
     chart_paths = generate_jdk25_charts(directory, jdk25_variants, jdk25_baseline, args.native_seconds)
     jdk25_charts_output.write_text(
         generate_chart_report(
-            directory, chart_paths, jdk25_variants, implementation_metadata, input_file_size
+            directory,
+            chart_paths,
+            jdk25_variants,
+            implementation_metadata,
+            input_file_size,
+            host_metadata,
         ),
         encoding="utf-8",
     )

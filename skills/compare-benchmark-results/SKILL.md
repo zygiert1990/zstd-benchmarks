@@ -5,7 +5,7 @@ description: Compare the JMH, GC allocation, native-memory sampling, and flamegr
 
 # Compare benchmark results
 
-Analyze exactly one `docs/<BenchmarkName>/` directory per request. Read the root `readme.md` for the commands and the selected directory's `readme.md` for JVM and implementation metadata.
+Analyze exactly one `docs/<BenchmarkName>/` directory per request. Read the repository root `readme.md` for commands, `docs/readme.md` for shared JVM and benchmark-host metadata, and the selected directory's `readme.md` for implementation and workload metadata.
 
 Use `scripts/compare_benchmarks.py docs/<BenchmarkName>` to parse the result triples and create or update the minimal JDK 25 chart report. Review the generated charts against the source files before finishing; do not merely trust that parsing succeeded.
 
@@ -22,6 +22,8 @@ Expect one `orig` triple for JDK 11. Expect `orig` (JNI) and zero or more other 
 The selected benchmark's `readme.md` must map `orig` to the tested zstd-jni version and every non-`orig` prefix to a Markdown link for its GitHub branch. The chart report shows the `orig` version as plain text and links each other implementation to its branch. Fail generation when metadata for a compared prefix is missing or ambiguous.
 
 When the benchmark `readme.md` contains a `Test file to compress has … bytes` entry, include that input size in the chart report. Preserve JMH parameter names in workload labels. Render `chunkSize` values explicitly in bytes so, for example, `chunkSize=1 byte` cannot be mistaken for a variant or ordinal.
+
+Require `docs/readme.md` to record the shared benchmark host's OS, architecture, CPU model, physical/logical core counts, and installed RAM using the `Benchmark host …` fields consumed by the helper. Copy this recorded metadata into each chart report. Never detect the report-generation host because it may differ from the machine that produced the benchmark results.
 
 ## Comparison rules
 
@@ -47,7 +49,7 @@ Use flamegraphs as qualitative evidence for hot paths and explain meaningful dif
 
 Write only these files inside the selected benchmark directory:
 
-- `comparison-jdk25-charts.md`: a title, compact implementation and available input-file metadata, a one-sentence explanation of the percentage convention, and the three chart embeds;
+- `comparison-jdk25-charts.md`: a title, compact implementation, input-file, and benchmark-host metadata, a one-sentence explanation of the percentage convention, and the three chart embeds;
 - `comparison-jdk25-{performance,heap,native}.svg`: chart assets embedded by the chart-enhanced report.
 
 Do not add tables, artifact lists, findings, conclusions, calculation sections, or interpretation sections to the Markdown report. The absolute measurements and percentage deltas belong directly on the SVG bars. Do not imply causation from a flamegraph or claim resident-memory improvements from allocation profiling.
