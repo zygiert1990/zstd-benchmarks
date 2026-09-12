@@ -13,7 +13,7 @@ from pathlib import Path
 
 MODES = {"avgt", "thrpt", "sample", "ss"}
 LOWER_IS_FASTER = {"avgt", "sample", "ss"}
-NATIVE_PROFILE_BENCHMARK = "compressionThroughput"
+NATIVE_PROFILE_BENCHMARK_SUFFIX = "Throughput"
 NATIVE_PROFILE_PARAMETER = "64"
 
 
@@ -33,17 +33,38 @@ class Measurement:
 
 
 @dataclass
+class NativeProfile:
+    path: Path
+    allocated_bytes: int
+    samples: int
+
+
+@dataclass
 class Variant:
     label: str
     jdk: str
     prefix: str
     jmh_path: Path
-    native_path: Path
-    flame_path: Path
     rows: dict[RowKey, Measurement]
     parameter_names: tuple[str, ...]
-    native_bytes: int
-    native_samples: int
+    native_profiles: dict[str, NativeProfile]
+    flame_paths: dict[str, Path]
+
+    @property
+    def native_path(self) -> Path:
+        return self.native_profiles[NATIVE_PROFILE_PARAMETER].path
+
+    @property
+    def flame_path(self) -> Path:
+        return self.flame_paths[NATIVE_PROFILE_PARAMETER]
+
+    @property
+    def native_bytes(self) -> int:
+        return self.native_profiles[NATIVE_PROFILE_PARAMETER].allocated_bytes
+
+    @property
+    def native_samples(self) -> int:
+        return self.native_profiles[NATIVE_PROFILE_PARAMETER].samples
 
 
 @dataclass(frozen=True)
@@ -98,46 +119,67 @@ def parse_parameter_names(path: Path) -> tuple[str, ...]:
 
 
 def parse_native(path: Path) -> tuple[int, int]:
-    text = path.read_text(encoding="utf-8")
-    sample_match = re.search(r"^Total samples\s*:\s*(\d+)\s*$", text, re.MULTILINE)
-    byte_values = [int(value) for value in re.findall(r"^---\s+(\d+)\s+bytes\s+\(", text, re.MULTILINE)]
-    if not sample_match or not byte_values:
-        raise ValueError(f"No native-memory summary totals found in {path}")
-    return sum(byte_values), int(sample_match.group(1))
+    rows = re.findall(
+        r"^\s*(\d+)\s+[\d.]+%\s+(\d+)\s+\S+\s*$",
+        path.read_text(encoding="utf-8"),
+        re.MULTILINE,
+    )
+    if not rows:
+        raise ValueError(f"No native-memory allocation rows found in {path}")
+    return sum(int(row[0]) for row in rows), sum(int(row[1]) for row in rows)
 
 
 def discover(directory: Path) -> list[Variant]:
     variants: list[Variant] = []
     problems: list[str] = []
     for jdk_dir in sorted(path for path in directory.iterdir() if path.is_dir() and path.name.startswith("jdk-")):
-        jmh_files = sorted(
-            path for path in jdk_dir.glob("*.txt") if not path.name.endswith("-summary-nativemem.txt")
-        )
-        for jmh_path in jmh_files:
-            prefix = jmh_path.stem
-            native_path = jdk_dir / f"{prefix}-summary-nativemem.txt"
-            flames = sorted(jdk_dir.glob(f"{prefix}-flame-*.html"))
-            if not native_path.is_file():
-                problems.append(f"missing {native_path.relative_to(directory)}")
-            if len(flames) != 1:
-                problems.append(
-                    f"expected one flamegraph for {jdk_dir.name}/{prefix}, found {len(flames)}"
-                )
-            if not native_path.is_file() or len(flames) != 1:
+        for variant_dir in sorted(path for path in jdk_dir.iterdir() if path.is_dir()):
+            jmh_path = variant_dir / "results.txt"
+            if not jmh_path.is_file():
+                problems.append(f"missing {jmh_path.relative_to(directory)}")
                 continue
-            native_bytes, native_samples = parse_native(native_path)
+            rows = parse_jmh(jmh_path)
+            chunk_sizes = sorted(
+                {
+                    key.params[0]
+                    for key in rows
+                    if is_primary(key)
+                    and base_name(key.benchmark).endswith(NATIVE_PROFILE_BENCHMARK_SUFFIX)
+                    and len(key.params) == 1
+                    and key.params[0] != "N/A"
+                },
+                key=lambda value: int(value),
+            )
+            if not chunk_sizes:
+                problems.append(f"no chunked *{NATIVE_PROFILE_BENCHMARK_SUFFIX} rows in {jmh_path.relative_to(directory)}")
+                continue
+            native_profiles: dict[str, NativeProfile] = {}
+            flame_paths: dict[str, Path] = {}
+            for chunk_size in chunk_sizes:
+                chunk_dir = variant_dir / f"chunk-{chunk_size}"
+                native_path = chunk_dir / "summary-nativemem.txt"
+                flame_path = chunk_dir / "flame-cpu-forward.html"
+                if not native_path.is_file():
+                    problems.append(f"missing {native_path.relative_to(directory)}")
+                else:
+                    allocated_bytes, samples = parse_native(native_path)
+                    native_profiles[chunk_size] = NativeProfile(native_path, allocated_bytes, samples)
+                if not flame_path.is_file():
+                    problems.append(f"missing {flame_path.relative_to(directory)}")
+                else:
+                    flame_paths[chunk_size] = flame_path
+            if len(native_profiles) != len(chunk_sizes) or len(flame_paths) != len(chunk_sizes):
+                continue
             variants.append(
                 Variant(
-                    label=f"{jdk_dir.name} / {prefix}",
+                    label=f"{jdk_dir.name} / {variant_dir.name}",
                     jdk=jdk_dir.name,
-                    prefix=prefix,
+                    prefix=variant_dir.name,
                     jmh_path=jmh_path,
-                    native_path=native_path,
-                    flame_path=flames[0],
-                    rows=parse_jmh(jmh_path),
+                    rows=rows,
                     parameter_names=parse_parameter_names(jmh_path),
-                    native_bytes=native_bytes,
-                    native_samples=native_samples,
+                    native_profiles=native_profiles,
+                    flame_paths=flame_paths,
                 )
             )
     if problems:
@@ -160,9 +202,8 @@ def parse_implementation_metadata(
     for prefix in prefixes:
         if prefix == "orig":
             matches = re.findall(
-                r"^`orig`\s+results\s+are\s+related\s+to\s+`([^`]+)`\s*$",
-                text,
-                re.MULTILINE | re.IGNORECASE,
+                r"^`orig`\s+results\s+(?:are\s+related\s+to|use\s+(?:local\s+)?artifact)\s+`([^`]+)`\.?\s*$",
+                text, re.MULTILINE | re.IGNORECASE,
             )
             if len(matches) == 1:
                 metadata[prefix] = ImplementationMetadata(matches[0])
@@ -170,8 +211,8 @@ def parse_implementation_metadata(
                 problems.append(f"expected one zstd-jni version mapping for `orig`, found {len(matches)}")
             continue
         pattern = (
-            rf"^`{re.escape(prefix)}`\s+results\s+are\s+based\s+on\s+branch:\s*"
-            r"\[([^\]]+)\]\((https://github\.com/[^)]+)\)\s*$"
+            rf"^`{re.escape(prefix)}`\s+results\s+(?:use\s+artifact\s+`[^`]+`\s+built\s+from\s+|are\s+based\s+on\s+)branch:\s*"
+            r"\[([^\]]+)\]\((https://github\.com/[^)]+)\)\.?\s*$"
         )
         matches = re.findall(pattern, text, re.MULTILINE | re.IGNORECASE)
         if len(matches) == 1:
@@ -187,7 +228,7 @@ def parse_implementation_metadata(
 def parse_input_file_size(directory: Path) -> int | None:
     text = (directory / "readme.md").read_text(encoding="utf-8")
     matches = re.findall(
-        r"^Test file to compress has\s+`([\d,]+)\s+bytes`\s*$",
+        r"^(?:Test file to compress|Test dataset) has\s+`([\d,]+)\s+bytes`\.?\s*$",
         text,
         re.MULTILINE | re.IGNORECASE,
     )
@@ -291,18 +332,18 @@ def relative(path: Path, directory: Path) -> str:
     return path.relative_to(directory).as_posix()
 
 
-def matching_native_time(variant: Variant) -> Measurement:
+def matching_native_time(variant: Variant, chunk_size: str) -> Measurement:
     matches = [
         measurement
         for key, measurement in variant.rows.items()
         if is_primary(key)
-        and base_name(key.benchmark) == NATIVE_PROFILE_BENCHMARK
-        and NATIVE_PROFILE_PARAMETER in key.params
+        and base_name(key.benchmark).endswith(NATIVE_PROFILE_BENCHMARK_SUFFIX)
+        and key.params == (chunk_size,)
     ]
     if len(matches) != 1:
         raise ValueError(
-            f"Expected one {NATIVE_PROFILE_BENCHMARK} row with parameter "
-            f"{NATIVE_PROFILE_PARAMETER} in {variant.jmh_path}, found {len(matches)}"
+            f"Expected one *{NATIVE_PROFILE_BENCHMARK_SUFFIX} row with parameter "
+            f"{chunk_size} in {variant.jmh_path}, found {len(matches)}"
         )
     measurement = matches[0]
     if measurement.mode not in LOWER_IS_FASTER or measurement.unit != "us/op":
@@ -310,9 +351,17 @@ def matching_native_time(variant: Variant) -> Measurement:
     return measurement
 
 
-def native_bytes_per_op(variant: Variant, native_seconds: float) -> float:
-    time = matching_native_time(variant)
-    return variant.native_bytes * time.score / (native_seconds * 1_000_000.0)
+def native_bytes_per_op(
+    variant: Variant,
+    native_seconds: float,
+    chunk_size: str = NATIVE_PROFILE_PARAMETER,
+) -> float:
+    time = matching_native_time(variant, chunk_size)
+    return (
+        variant.native_profiles[chunk_size].allocated_bytes
+        * time.score
+        / (native_seconds * 1_000_000.0)
+    )
 
 
 def variant_name(variant: Variant) -> str:
@@ -477,7 +526,7 @@ def generate(
         "",
         "## Native-allocation calculation",
         "",
-        f"Estimated native `B/op` = sampled allocation bytes × JMH `{NATIVE_PROFILE_BENCHMARK}` "
+        f"Estimated native `B/op` = sampled allocation bytes × matching JMH `*{NATIVE_PROFILE_BENCHMARK_SUFFIX}` "
         f"time at parameter `{NATIVE_PROFILE_PARAMETER}` ÷ **{native_seconds:g} seconds**. "
         "This is allocation volume per operation, not peak native memory.",
         "",
@@ -530,10 +579,7 @@ def render_bar_chart(
     if not plotted or not all_values:
         raise ValueError(f"No values available for chart {title}")
     low = 0.0
-    high = max(all_values)
-    span = high - low or 1.0
-    padding = span * 0.08
-    high += padding
+    high = 100.0
     span = high - low
 
     width = 1200
@@ -561,12 +607,12 @@ def render_bar_chart(
         ])
         legend_x += 150
 
-    for tick_index in range(6):
-        tick_value = low + span * tick_index / 5
-        x = left + plot_width * tick_index / 5
+    for tick_index in range(5):
+        tick_value = low + span * tick_index / 4
+        x = left + plot_width * tick_index / 4
         parts.extend([
             f'<line x1="{x:.1f}" y1="{top - 12}" x2="{x:.1f}" y2="{height - 48}" stroke="#e5e7eb"/>',
-            f'<text x="{x:.1f}" y="{height - 25}" text-anchor="middle" class="tick">{tick_value:.1f}%</text>',
+            f'<text x="{x:.1f}" y="{height - 25}" text-anchor="middle" class="tick">{tick_value:.0f}%</text>',
         ])
     parts.append(f'<line x1="{origin_x:.1f}" y1="{top - 12}" x2="{origin_x:.1f}" y2="{height - 48}" stroke="#6b7280" stroke-width="1.5"/>')
 
@@ -636,31 +682,41 @@ def generate_jdk25_charts(
                 f"{fmt_measurement(heap_row)} ({fmt_consumption_delta(heap_delta)})"
             )
 
-    native_raw = {variant.label: native_bytes_per_op(variant, native_seconds) for variant in variants}
-    worst_native = max(native_raw.values())
-    baseline_native = native_raw[baseline.label]
-    native_bars = {variant.label: [native_raw[variant.label] / worst_native * 100.0] for variant in variants}
-    native_labels = {
-        variant.label: [
-            f"{'★ ' if math.isclose(native_raw[variant.label], min(native_raw.values())) else ''}"
-            f"{fmt_number(native_raw[variant.label])} B/op "
-            f"({fmt_consumption_delta((native_raw[variant.label] / baseline_native - 1.0) * 100.0)})"
-        ]
-        for variant in variants
-    }
+    native_chunks = sorted(
+        set.intersection(*(set(variant.native_profiles) for variant in variants)),
+        key=int,
+    )
+    if not native_chunks:
+        raise ValueError("No native-memory chunk profiles are common to all variants")
+    native_bars: dict[str, list[float]] = {variant.label: [] for variant in variants}
+    native_labels: dict[str, list[str]] = {variant.label: [] for variant in variants}
+    for chunk_size in native_chunks:
+        native_values = {
+            variant.label: native_bytes_per_op(variant, native_seconds, chunk_size)
+            for variant in variants
+        }
+        worst_native = max(native_values.values())
+        best_native = min(native_values.values())
+        baseline_native = native_values[baseline.label]
+        for variant in variants:
+            value = native_values[variant.label]
+            native_bars[variant.label].append(value / worst_native * 100.0)
+            native_labels[variant.label].append(
+                f"{'★ ' if math.isclose(value, best_native) else ''}"
+                f"{fmt_number(value)} B/op "
+                f"({fmt_consumption_delta((value / baseline_native - 1.0) * 100.0)})"
+            )
     performance_path = directory / "comparison-jdk25-performance.svg"
     heap_path = directory / "comparison-jdk25-heap.svg"
     native_path = directory / "comparison-jdk25-native.svg"
     labels = [label for _, label in categories]
-    native_category = next(
-        label
-        for (key, label) in categories
-        if base_name(key.benchmark) == NATIVE_PROFILE_BENCHMARK
-        and NATIVE_PROFILE_PARAMETER in key.params
-    )
+    native_categories = [
+        f"chunkSize={chunk_size} {'byte' if chunk_size == '1' else 'bytes'}"
+        for chunk_size in native_chunks
+    ]
     render_bar_chart(performance_path, "Execution time (bar length relative to row worst)", variants, labels, performance_bars, performance_labels)
     render_bar_chart(heap_path, "On-heap allocation (bar length relative to row worst)", variants, labels, heap_bars, heap_labels)
-    render_bar_chart(native_path, "Estimated native allocation", variants, [native_category], native_bars, native_labels)
+    render_bar_chart(native_path, "Estimated native allocation", variants, native_categories, native_bars, native_labels)
     return [performance_path, heap_path, native_path]
 
 
@@ -704,7 +760,7 @@ def generate_chart_report(
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("benchmark_directory", type=Path)
-    parser.add_argument("--native-seconds", type=float, default=30.0)
+    parser.add_argument("--native-seconds", type=float, default=15.0)
     parser.add_argument("--jdk25-charts-output", type=Path)
     args = parser.parse_args()
     directory = args.benchmark_directory.resolve()

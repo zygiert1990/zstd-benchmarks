@@ -1,7 +1,7 @@
-`orig` results are related to `1.5.7-16`
+`orig` results use local artifact `1.5.7-16-LOCAL`.
 
-`ffm` results are based on branch: [support-ffm-api-v1](https://github.com/zygiert1990/zstd-jni/tree/support-ffm-api-v1)
+`ffm` results use artifact `1.5.7-16-FFM` built from branch: [support-ffm-api-v1](https://github.com/zygiert1990/zstd-jni/tree/support-ffm-api-v1)
 
-`ffm-arena` results are based on branch: [support-ffm-api-v1-arena](https://github.com/zygiert1990/zstd-jni/tree/support-ffm-api-v1-arena)
+`ffm-arena` results use artifact `1.5.7-16-FFM-ARENA` built from branch: [support-ffm-api-v1-arena](https://github.com/zygiert1990/zstd-jni/tree/support-ffm-api-v1-arena)
 
-Test file to compress has `223634 bytes`
+Test dataset has `223634 bytes`.

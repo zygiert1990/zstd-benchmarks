@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+<style>
+	:root      {--bg: #ffffff; --fg: #000000; --hl-bg: #ffffe0; --hl-border: #ffc000; --link: #0366d6; --legend-bg: #ffffe0; --legend-border: #666666}
+	:root.dark {--bg: #1e1e1e; --fg: #cccccc; --hl-bg: #3a3a00; --hl-border: #8a7000; --link: #58a6ff; --legend-bg: #333333; --legend-border: #888888}
+	body {margin: 0; padding: 10px 10px 22px 10px; background-color: var(--bg); color: var(--fg)}
+	h1 {margin: 5px 0 0 0; font-size: 18px; font-weight: normal; text-align: center}
+	header {margin: -22px 0 6px 0}
+	button {border: none; background: none; width: 24px; height: 24px; cursor: pointer; margin: 0; padding: 2px 0 0 0; text-align: center}
+	button:hover {background-color: var(--hl-bg); outline: 1px solid var(--hl-border); border-radius: 4px}
+	dl {margin: 0 4px 8px 4px}
+	dt {margin: 1px; padding: 2px 0; font-weight: bold}
+	dd {margin: 1px; padding: 2px 4px}
+	dl.frames {float: left; width: 160px}
+	dl.frames > dd {color: #000000}
+	dl.hotkeys {clear: left; border-top: 1px solid var(--legend-border)}
+	dl.hotkeys > dt {float: left; clear: left; width: 158px; margin-right: 4px; text-align: right}
+	dl.hotkeys > dd {float: left}
+	p {position: fixed; bottom: 0; margin: 0; padding: 2px 3px 2px 3px; outline: 1px solid var(--hl-border); display: none; overflow: hidden; white-space: nowrap; background-color: var(--hl-bg); color: var(--fg)}
+	a {color: var(--link)}
+	#legend {padding: 4px; border-radius: 4px; background: var(--legend-bg); border: 1px solid var(--legend-border); display: none}
+	#hl {position: absolute; display: none; overflow: hidden; white-space: nowrap; pointer-events: none; background-color: var(--hl-bg); outline: 1px solid var(--hl-border); height: 15px}
+	#hl span {padding: 0 3px 0 3px}
+	#status {left: 0}
+	#match {right: 0}
+	#reset {cursor: pointer}
+	#canvas {width: 100%; height: 688px}
+</style>
+<script>
+{
+	let theme;
+	try { theme = localStorage.getItem('flame-theme'); } catch (ignored) {}
+	if (theme ? theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches) {
+		document.documentElement.classList.add('dark');
+	}
+}
+</script>
+</head>
+<body style='font: 12px Verdana, sans-serif'>
+<h1>CPU profile</h1>
+<header style='float: left'>
+<button id='inverted' title='Invert (I)'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 392 392'><path d='M196,36 L316,156 L76,156 Z' fill='#004d80'/><path d='M196,356 L76,236 L316,236 Z' fill='#004d80'/><path d='M196,54 L298,156 L94,156 Z' fill='#ff8d40'/><path d='M196,338 L94,236 L298,236 Z' fill='#40b2ff'/><rect x='94' y='188' width='204' height='16' fill='#004d80'/></svg></button>
+<button id='search' title='Search (Ctrl+F)'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='-39.3 -39.3 471.1 471.1'><circle cx='147.7' cy='147.8' r='125.9' fill='#fff'/><path fill='#40b2ff' d='M370.7 348.7c0 1.4-1.6 6.3-7.2 12.3-6.2 6.7-12.5 9.8-14.7 9.8h-.1c-19.5-1.6-62-43.2-109.6-106.8 9.2-7.2 17.5-15.5 24.6-24.6 63.6 47.6 105.2 90.2 106.8 109.6z'/><path fill='#ff8d40' d='M208.7 86.9l-14.5 14.5c-17.1 17.1-46.5 5-46.5-19.3V61.6c-49 0-88.4 40.8-86.1 90.2 2 43.9 38.1 80 82 82 49.5 2.3 90.2-37.2 90.2-86.1 0-23.7-9.6-45.2-25.1-60.8z'/><path fill='#004d80' d='M276.1 221c12.3-21.5 19.5-46.5 19.5-73.2C295.6 66.3 229.2.1 147.7.1S0 66.3 0 147.9s66.3 147.7 147.7 147.7c26.6 0 51.5-7.1 73.2-19.5 39.8 53.3 91.9 113.5 126.1 116.4 12.3.5 22.9-6.7 32.8-16.7 5.2-5.6 13.8-16.9 12.8-28.8-2.9-34.1-63.1-86.2-116.4-126.1zM147.7 273.8c-69.5 0-125.9-56.5-125.9-125.9S78.3 21.9 147.7 21.9 273.6 78.4 273.6 147.8s-56.4 126-125.9 126zm215.9 87.2c-6.2 6.7-12.4 9.8-14.7 9.8h-.1c-19.5-1.6-62-43.2-109.6-106.8 9.2-7.2 17.5-15.5 24.6-24.6 63.6 47.6 105.2 90.2 106.8 109.6 0 1.4-1.6 6.3-7.2 12.4z'/></svg></button>
+<button id='darkmode' title='Toggle dark mode (D)'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path d='M10 4a6 6 0 0 1 0 12z' fill='#ff8d40'/><path d='M10 4a6 6 0 0 0 0 12z' fill='#ffffff'/><circle cx='10' cy='10' r='8' fill='none' stroke='#004d80'/></svg></button>
+<button id='info'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><circle cx='10' cy='10' r='8' stroke='#004d80' fill='none'/><path d='M10 5.5c-1.25 0-2.25 1-2.25 2.25H9a1.25 1.25 0 0 1 2.5 0c0 .65-.55 1-1 1.2-.7.35-1.25.85-1.25 1.8V11h1.5v-.25c0-.37.29-.65.68-.83.73-.34 1.32-.87 1.32-2.17 0-1.25-1.5-2.25-2.75-2.25' fill='#ff8d40' stroke='#ff8d40' stroke-width='.6' stroke-linecap='round' stroke-linejoin='round'/><circle cx='10' cy='13.5' r='1.2' fill='#ff8d40'/></svg></button>
+</header>
+<header style='float: right'>Produced by <a href='https://github.com/async-profiler/async-profiler'>async-profiler</a></header>
+<div id='legend' style='position: absolute'>
+<dl class='frames'>
+	<dt>Frame types</dt>
+	<dd style='background-color: #e17d00'>Kernel</dd>
+	<dd style='background-color: #e15a5a'>Native</dd>
+	<dd style='background-color: #c8c83c'>C++ (VM)</dd>
+	<dd style='background-color: #50e150'>Java compiled</dd>
+	<dd style='background-color: #cce880'>Java compiled by C1</dd>
+	<dd style='background-color: #50cccc'>Inlined</dd>
+	<dd style='background-color: #b2e1b2'>Interpreted</dd>
+</dl>
+<dl class='frames'>
+	<dt>Allocation profile</dt>
+	<dd style='background-color: #50cccc'>Allocated class</dd>
+	<dd style='background-color: #e17d00'>Allocation outside TLAB</dd>
+	<dt>Lock profile</dt>
+	<dd style='background-color: #50cccc'>Lock class</dd>
+	<dt>&nbsp;</dt>
+	<dt>Search</dt>
+	<dd style='background-color: #ee00ee'>Matches regexp</dd>
+</dl>
+<dl class='hotkeys'>
+	<dt>Click frame</dt><dd>Zoom into frame</dd>
+	<dt>Ctrl/Alt+Click</dt><dd>Remove stack</dd>
+	<dt>0</dt><dd>Reset zoom</dd>
+	<dt>I</dt><dd>Invert graph</dd>
+	<dt>Ctrl+F</dt><dd>Search</dd>
+	<dt>N</dt><dd>Next match</dd>
+	<dt>Shift+N</dt><dd>Previous match</dd>
+	<dt>Esc</dt><dd>Cancel search</dd>
+</dl>
+</div>
+<canvas id='canvas'></canvas>
+<div id='hl'><span></span></div>
+<p id='status'></p>
+<p id='match'>Matched: <span id='matchval'></span> <span id='reset' title='Clear'>&#x274c;</span></p>
+<script>
+	// Copyright The async-profiler authors
+	// SPDX-License-Identifier: Apache-2.0
+	'use strict';
+	let root, px, pattern;
+	let level0 = 0, left0 = 0, width0 = 0, d = 0;
+	let nav = [], navIndex, matchval;
+	let inverted = false;
+	const U = undefined;
+	const maxdiff = /*maxdiff:*/-1;
+	const levels = Array(43);
+	for (let h = 0; h < levels.length; h++) {
+		levels[h] = [];
+	}
+
+	const canvas = document.getElementById('canvas');
+	const c = canvas.getContext('2d');
+	const hl = document.getElementById('hl');
+	const status = document.getElementById('status');
+
+	const canvasWidth = canvas.offsetWidth;
+	const canvasHeight = canvas.offsetHeight;
+	canvas.style.width = canvasWidth + 'px';
+	canvas.width = canvasWidth * (devicePixelRatio || 1);
+	canvas.height = canvasHeight * (devicePixelRatio || 1);
+	if (devicePixelRatio) c.scale(devicePixelRatio, devicePixelRatio);
+	c.font = document.body.style.font;
+
+	const palette = [
+		[0xb2e1b2, 20, 20, 20],
+		[0x50e150, 30, 30, 30],
+		[0x50cccc, 30, 30, 30],
+		[0xe15a5a, 30, 40, 40],
+		[0xc8c83c, 30, 30, 10],
+		[0xe17d00, 30, 30,  0],
+		[0xcce880, 20, 20, 20],
+	];
+
+	function getColor(p) {
+		const v = Math.random();
+		return '#' + (p[0] + ((p[1] * v) << 16 | (p[2] * v) << 8 | (p[3] * v))).toString(16);
+	}
+
+	function getDiffColor(diff) {
+		if (diff === U) return '#ffdd33';
+		if (diff === 0) return '#e0e0e0';
+		const v = Math.round(128 * (maxdiff - Math.abs(diff)) / maxdiff) + 96;
+		return diff > 0 ? 'rgb(255,' + v + ',' + v + ')' : 'rgb(' + v + ',' + v + ',255)';
+	}
+
+	function f(key, level, left, width, inln, c1, int) {
+		levels[level0 = level].push({level, left: left0 += left, width: width0 = width || width0,
+			color: maxdiff >= 0 ? getDiffColor(d) : getColor(palette[key & 7]),
+			title: cpool[key >>> 3],
+			details: (d ? (d > 0 ? ', +' : ', ') + d : '') + (int ? ', int=' + int : '') + (c1 ? ', c1=' + c1 : '') + (inln ? ', inln=' + inln : '')
+		});
+	}
+
+	function u(key, width, inln, c1, int) {
+		f(key, level0 + 1, 0, width, inln, c1, int)
+	}
+
+	function n(key, width, inln, c1, int) {
+		f(key, level0, width0, width, inln, c1, int)
+	}
+
+	function samples(n) {
+		return n === 1 ? '1 sample' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' samples';
+	}
+
+	function pct(a, b) {
+		return a >= b ? '100' : (100 * a / b).toFixed(2);
+	}
+
+	function findFrame(frames, x) {
+		let left = 0;
+		let right = frames.length - 1;
+
+		while (left <= right) {
+			const mid = (left + right) >>> 1;
+			const f = frames[mid];
+
+			if (f.left > x) {
+				right = mid - 1;
+			} else if (f.left + f.width <= x) {
+				left = mid + 1;
+			} else {
+				return f;
+			}
+		}
+
+		if (frames[left] && (frames[left].left - x) * px < 0.5) return frames[left];
+		if (frames[right] && (x - (frames[right].left + frames[right].width)) * px < 0.5) return frames[right];
+
+		return null;
+	}
+
+	function removeStack(left, width) {
+		for (let h = 0; h < levels.length; h++) {
+			const frames = levels[h], newFrames = [];
+			for (let i = 0; i < frames.length; i++) {
+				const f = frames[i];
+				if (f.left >= left + width) {
+					f.left -= width;
+				} else if (f.left + f.width > left) {
+					if ((f.width -= width) <= 0 && h) continue;
+				}
+				newFrames.push(f);
+			}
+			levels[h] = newFrames;
+		}
+	}
+
+	function search(r) {
+		if (r === true && (r = prompt('Enter regexp to search:', '')) === null) {
+			return;
+		}
+
+		pattern = r ? RegExp(r) : undefined;
+		const matched = render(root, nav = []);
+		navIndex = -1;
+		document.getElementById('matchval').textContent = matchval = pct(matched, root.width) + '%';
+		document.getElementById('match').style.display = r ? 'inline-block' : 'none';
+	}
+
+	function render(newRoot, nav) {
+		const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg');
+
+		if (root) {
+			c.fillStyle = bg;
+			c.fillRect(0, 0, canvasWidth, canvasHeight);
+		}
+
+		root = newRoot || levels[0][0];
+		px = canvasWidth / root.width;
+
+		const x0 = root.left;
+		const x1 = x0 + root.width;
+		const marked = [];
+
+		function mark(f) {
+			return marked[f.left] || (marked[f.left] = f);
+		}
+
+		function totalMarked() {
+			let total = 0;
+			let left = 0;
+			Object.keys(marked).sort(function(a, b) { return a - b; }).forEach(function(x) {
+				if (+x >= left) {
+					const m = marked[x];
+					if (nav) nav.push(m);
+					total += m.width;
+					left = +x + m.width;
+				}
+			});
+			return total;
+		}
+
+		function drawFrame(f, y) {
+			if (f.left < x1 && f.left + f.width > x0) {
+				c.fillStyle = pattern && f.title.match(pattern) && mark(f) ? '#ee00ee' : f.color;
+				c.fillRect((f.left - x0) * px, y, f.width * px, 15);
+
+				if (f.width * px >= 21) {
+					const chars = Math.floor(f.width * px / 7);
+					const title = f.title.length <= chars ? f.title : f.title.substring(0, chars - 2) + '..';
+					c.fillStyle = '#000000';
+					c.fillText(title, Math.max(f.left - x0, 0) * px + 3, y + 12, f.width * px - 6);
+				}
+
+				if (f.level < root.level) {
+					c.fillStyle = bg + '80';
+					c.fillRect((f.left - x0) * px, y, f.width * px, 15);
+				}
+			}
+		}
+
+		for (let h = 0; h < levels.length; h++) {
+			const y = inverted ? h * 16 : canvasHeight - (h + 1) * 16;
+			const frames = levels[h];
+			for (let i = 0; i < frames.length; i++) {
+				drawFrame(frames[i], y);
+			}
+		}
+
+		return totalMarked();
+	}
+
+	function unpack(cpool) {
+		for (let i = 1; i < cpool.length; i++) {
+			cpool[i] = cpool[i - 1].substring(0, cpool[i].charCodeAt(0) - 32) + cpool[i].substring(1);
+		}
+	}
+
+	canvas.onmousemove = function() {
+		const h = Math.floor((inverted ? event.offsetY : (canvasHeight - event.offsetY)) / 16);
+		if (h >= 0 && h < levels.length) {
+			const f = findFrame(levels[h], event.offsetX / px + root.left);
+			if (f) {
+				if (f !== root) getSelection().removeAllRanges();
+				hl.style.left = (Math.max(f.left - root.left, 0) * px + canvas.offsetLeft) + 'px';
+				hl.style.width = (Math.min(f.width, root.width) * px) + 'px';
+				hl.style.top = ((inverted ? h * 16 : canvasHeight - (h + 1) * 16) + canvas.offsetTop) + 'px';
+				hl.firstChild.textContent = f.title;
+				hl.style.display = 'block';
+				canvas.title = f.title + '\n(' + samples(f.width) + f.details + ', ' + pct(f.width, levels[0][0].width) + '%)';
+				canvas.style.cursor = 'pointer';
+				canvas.onclick = function() {
+					if ((event.altKey || event.ctrlKey) && h >= root.level && h > 0) {
+						removeStack(f.left, f.width);
+						root.width > f.width ? render(root) : render();
+					} else if (f !== root) {
+						render(f);
+					}
+					canvas.onmousemove();
+				};
+				status.textContent = 'Function: ' + canvas.title;
+				status.style.display = 'inline-block';
+				return;
+			}
+		}
+		canvas.onmouseout();
+	}
+
+	canvas.onmouseout = function() {
+		hl.style.display = 'none';
+		status.style.display = 'none';
+		canvas.title = '';
+		canvas.style.cursor = '';
+		canvas.onclick = null;
+	}
+
+	canvas.ondblclick = function() {
+		getSelection().selectAllChildren(hl);
+	}
+
+	document.getElementById('inverted').onclick = function() {
+		inverted = !inverted;
+		render();
+	}
+
+	document.getElementById('search').onclick = function() {
+		search(true);
+	}
+
+	document.getElementById('reset').onclick = function() {
+		search(false);
+	}
+
+	document.getElementById('darkmode').onclick = function() {
+		const theme = document.documentElement.classList.toggle('dark') ? 'dark' : 'light';
+		try { localStorage.setItem('flame-theme', theme); } catch (ignored) {}
+		render(root);
+	}
+
+	const btnInfo = document.getElementById('info');
+	const legend = document.getElementById('legend');
+
+	btnInfo.onmouseover = function() {
+		legend.style.left = (btnInfo.offsetLeft + 24) + 'px';
+		legend.style.top = (btnInfo.offsetTop + 24) + 'px';
+		legend.style.display = 'block';
+	}
+
+	btnInfo.onmouseout = function() {
+		legend.style.display = 'none';
+	}
+
+	window.onkeydown = function(event) {
+		if ((event.ctrlKey || event.metaKey) && event.key === 'f') {
+			event.preventDefault();
+			search(true);
+			return false;
+		} else if (event.key === 'Escape') {
+			search(false);
+		} else if ((event.key === 'n' || event.key === 'N') && nav.length > 0) {
+			navIndex = (navIndex + (event.shiftKey ? nav.length - 1 : 1)) % nav.length;
+			render(nav[navIndex]);
+			document.getElementById('matchval').textContent = matchval + ' (' + (navIndex + 1) + ' of ' + nav.length + ')';
+			window.scroll(0, inverted ? root.level * 16 : canvasHeight - (root.level + 1) * 16);
+			canvas.onmousemove();
+			return false;
+		} else if (event.key === 'i') {
+			canvas.onmouseout();
+			document.getElementById('inverted').onclick();
+			return false;
+		} else if (event.key === 'd') {
+			document.getElementById('darkmode').onclick();
+			return false;
+		} else if (event.key === '0') {
+			canvas.onmouseout();
+			root = levels[0][0];
+			search(false);
+			return false;
+		}
+	}
+
+const cpool = [
+'all',
+' AccessBarrierSupport::resolve_unknown_oop_ref_strength',
+'&Internal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<397414ul, G1BarrierSet>, (AccessInternal::BarrierType)3, 397414ul>::oop_access_barrier',
+'!ssembler::locate_operand',
+' BitMap::clear_range',
+' C2 Runtime complete_monitor_locking',
+'+new_array',
+'+register_finalizer',
+'!lassLoaderData::oops_do',
+'/Graph::roots_cld_do',
+'!odeCacheUnloadingTask::claim_nmethods',
+'8work',
+'$Heap::next_used',
+'"mpilationPolicy::compile_if_required',
+'"ncurrentGCThread::run',
+' FSE_buildCTable_wksp',
+'$compress_usingCTable_generic.lto_priv.0',
+'$normalizeCount',
+'$writeNCount',
+'!inalizerService::on_register',
+' G1AllocRegion::new_alloc_region_and_allocate',
+'\'ator::old_attempt_allocation',
+'-survivor_attempt_allocation',
+'"BatchedTask::work',
+'"CLDScanClosure::do_cld',
+'#MConcurrentMarkingTask::work',
+'$ObjArrayProcessor::process_slice',
+'$Task::attempt_stealing',
+'2termination',
+'*do_marking_step',
+'+rain_local_queue',
+'*get_entries_from_global_stack',
+'*process_current_region',
+'*regular_clock_call',
+'#learBitMapTask::G1ClearBitmapHRClosure::do_heap_region',
+'3work',
+'#ollectedHeap::attempt_allocation_slow',
+'1do_collection_pause_at_safepoint_helper',
+'1expand',
+'7_heap_after_young_collection',
+'1mem_allocate',
+'1new_gc_alloc_region',
+'5region',
+'1rebuild_free_region_list',
+'"EvacStats::desired_plab_size',
+'&uateRegionsBaseTask::work',
+'1Task::evacuate_live_objects',
+'7scan_roots',
+'"GCPhaseTimes::phase_name',
+'1rint',
+'5_post_evacuate_collection_set',
+'"HeapRegionManager::allocate_free_region',
+'5commit_regions',
+'5expand',
+';_by',
+'5par_iterate',
+'5rebuild_free_list',
+'5uncommit_inactive_regions',
+'>regions',
+'"NUMA::is_enabled',
+'"PLABAllocator::G1PLABAllocator',
+'1allocate_direct_or_new_plab',
+'#ageBasedVirtualSpace::commit',
+'9uncommit',
+'$rCopyClosure<(G1Barrier)0, true>::do_oop',
+'<1, true>::do_oop',
+'%EvacuateFollowersClosure::do_void',
+'%ScanThreadState::G1ParScanThreadState',
+'6allocate_copy_slow',
+'6copy_to_survivor_space',
+'6steal_and_trim_queue',
+'6trim_queue_to_threshold',
+'4Set::state_for_worker',
+'%allelCleaningTask::work',
+'#olicy::phase_times',
+'#repareEvacuationTask::work',
+'"RebuildRSAndScrubTask::G1RebuildRSAndScrubRegionClosure::do_heap_region',
+'9work',
+'$gionsLargerThanCommitSizeMapper::commit_regions',
+'Euncommit_regions',
+'$mSet::scan_heap_roots',
+'#ootProcessor::evacuate_roots',
+'1process_java_roots',
+'"STWRefProcProxyTask::work',
+'#canHRForRegionClosure::scan_heap_roots',
+'#erviceThread::run_service',
+'5task',
+'"UncommitRegionTask::execute',
+'"YoungCollector::collect',
+'2post_evacuate_collection_set',
+'3rocess_discovered_references',
+' HIST_count_parallel_wksp.lto_priv.0',
+'!UF_buildCTable_wksp',
+'$compress1X_usingCTable_internal_bmi2.lto_priv.0',
+',4X_repeat',
+',CTable_internal.lto_priv.0',
+',_internal',
+'$simpleQuickSort',
+'$writeCTable_wksp',
+' ImmutableOopMap::oops_do',
+'!nstanceKlass::method_with_idnum',
+'/register_finalizer',
+'!sUnloadingBehaviour::is_unloading',
+' JavaCalls::call_helper',
+'$Thread::oops_do_frames',
+'$_com_github_luben_zstd_Zstd_isError',
+'!vmtiExport::post_garbage_collection_finish',
+' LightweightSynchronizer::enter',
+'9inflate_and_enter',
+' MarkBitMap::do_clear',
+'!emAllocator::allocate',
+'.mem_allocate',
+'!onitor::wait',
+' NonJavaThread::Iterator::Iterator',
+' ObjArrayAllocator::initialize',
+'#ectMonitor::enter',
+'4_internal',
+'5with_contention_mark',
+'!ptoRuntime::new_array_C',
+'-register_finalizer_C',
+' PLAB::max_size',
+'!latformEvent::park',
+'(Monitor::wait',
+'!osixSemaphore::signal',
+'0wait',
+' RefProcKeepAliveFinalPhaseTask::rp_work',
+'\'SoftWeakFinalPhaseTask::rp_work',
+'#erenceProcessor::discover_reference',
+'4process_discovered_references',
+'<soft_weak_final_refs',
+'4run_task',
+'2PhaseTimes::add_ref_dropped',
+'>print_all_references',
+'Dphase',
+' SharedRuntime::complete_monitor_locking_C',
+'!pinPause',
+' Thread::call_run',
+'(oops_do',
+'&s::non_java_threads_do',
+')possibly_parallel_oops_do',
+'!ypeArrayKlass::allocate_common',
+' VMThread::evaluate_operation',
+'+xecute',
+'*inner_execute',
+'*run',
+'*wait_for_operation',
+'/until_executed',
+'"_G1CollectForAllocation::doit',
+'#Operation::evaluate',
+' WorkerThread::run',
+',s::run_task',
+' ZSTD_CCtx_init_compressStream2',
+'%buildCTable',
+'*SeqStore',
+'-uencesStatistics.lto_priv.0',
+'%compressBegin_internal.lto_priv.0',
+'.lock_fast',
+'3internal',
+'-Continue_public',
+'-End_public',
+'-Literals',
+'-Stream2',
+'4_simpleArgs',
+'-_frameChunk',
+'%encodeSequences_bmi2',
+'%freeCCtx',
+'%isError',
+'%resetCCtx_internal',
+'*SeqStore',
+'%seqToCodes',
+' [break_compiled]',
+'!unknown]',
+' __GI___libc_free',
+'\'mmap',
+'\'printf_fp_l',
+'(thread_cond_broadcast',
+'"_pthread_cond_wait',
+'"futex_abstimed_wait_cancelable64',
+'"memmove_avx_unaligned_erms',
+'%set_avx2_unaligned_erms',
+'"new_sem_post',
+'*wait_slow64.constprop.0',
+'"vfprintf_internal',
+'#snprintf_internal',
+'!int_free',
+' clone3',
+'!om/github/luben/zstd/NoPool.get',
+'6Zstd.getArrayBackedBuffer',
+';isError',
+':Binding$SizeTRef$Wide.get',
+'Pset',
+'A.compressStream2',
+'BfreeCStream',
+':OutputStream.<init>',
+'Gclose',
+'Gwrite',
+'FNoFinalizer.<init>',
+'Rclose',
+'SompressStream2',
+'RdrainStream',
+'RsegmentOf',
+'Rwrite',
+' frame::oops_do_internal',
+',interpreted_do',
+' getrusage',
+' java/io/FilterOutputStream.<init>',
+'(OutputStream.<init>',
+'%lang/Object.<init>',
+'*Thread.run',
+'4With',
+'*foreign/MemorySegment.ofArray',
+'*invoke/DirectMethodHandle$Holder.invokeSpecial',
+'1LambdaForm$DMH.0x000000001e0c7400.invokeStatic',
+'Nc400.invokeStatic',
+'<MH.0x000000001e061c00.invoke',
+'M2000.invokeExact_MT',
+'Ld0400.invokeExact_MT',
+'Nc00.invokeExact_MT',
+'M1000.invoke',
+'N400.invoke',
+'Nc00.invokeExact_MT',
+'M2400.invokeExact_MT',
+'M3800.invoke',
+'Nc00.invoke',
+'1MethodHandle.invokeBasic',
+'*ref/Finalizer$FinalizerThread.run',
+'.Reference$ReferenceHandler.run',
+'7.enqueueFromPending',
+'8processPendingReferences',
+'7Queue.enqueue',
+'D0',
+'=remove',
+'-lect/Method.invoke',
+'%nio/ByteBuffer.allocate',
+')HeapByteBuffer.<init>',
+'%util/concurrent/Executors$RunnableAdapter.call',
+'5FutureTask.run',
+'5ThreadPoolExecutor$Worker.run',
+'G.runWorker',
+'!dk/internal/foreign/AbstractMemorySegmentImpl.sessionImpl',
+'5HeapMemorySegmentImpl$OfByte.<init>',
+'RunsafeGetBase',
+'MLong.unsafeGetBase',
+'J.<init>',
+'5NativeMemorySegmentImpl.unsafeGetOffset',
+'5SegmentFactories.fromArray',
+'5abi/DowncallStub.0x000000001e0c7000.invoke',
+'Tc000.invoke',
+'-misc/VM.addFinalRefCount',
+'-reflect/DirectMethodHandleAccessor.invoke',
+'VImpl',
+' nep_invoker_blob',
+'!method::cleanup_inline_caches_impl',
+')do_unloading',
+')oops_do',
+' oopDesc::klass',
+')size_given_klass',
+'#_Relocation::oop_value',
+'!rg/openjdk/jmh/runner/BenchmarkHandler$BenchmarkTask.call',
+'$zygiert/ZstdOutputStreamNoFinalizerBenchmark.compressionThroughput',
+',jmh_generated/ZstdOutputStreamNoFinalizerBenchmark_compressionThroughput_jmhTest.compressionThroughput_AverageTime',
+'mpressionThroughput_avgt_jmhStub',
+'!s::commit_memory_or_exit',
+'$elapsedVTime',
+'$pd_commit_memory_or_exit',
+'\'uncommit_memory',
+'$uncommit_memory',
+'$vsnprintf',
+'!utputStream::do_vsnprintf_and_write_with_automatic_buffer',
+'.print_cr',
+' start_thread',
+' thread_native_entry',
+' unsigned long BitMap::find_first_bit_impl<0ul, false>',
+' void G1CMTask::process_grey_task_entry<true>',
+'%OopMapDo<OopClosure, DerivedOopClosure, SkipNullValue>::iterate_oops_do<RegisterMap>',
+'(OopIterateBackwardsDispatch<G1ScanEvacuatedObjClosure>::Table::oop_oop_iterate_backwards<InstanceKlass, narrowOop>',
+'s<InstanceRefKlass, narrowOop>',
+'3oundedDispatch<G1CMOopClosure>::Table::oop_oop_iterate_bounded<ObjArrayKlass, narrowOop>',
+'2Dispatch<G1CMOopClosure>::Table::oop_oop_iterate<InstanceKlass, narrowOop>',
+'kMirrorKlass, narrowOop>',
+'kRefKlass, narrowOop>',
+'cObjArrayKlass, narrowOop>',
+'=RebuildRemSetClosure>::Table::oop_oop_iterate<InstanceKlass, narrowOop>'
+];
+unpack(cpool);
+
+n(3,2700)
+u(1363,1)
+u(1505)
+f(1371,1,1,2)
+u(1505)
+f(1483,1,2,288)
+u(2163)
+u(2172)
+u(1092)
+u(116,13)
+u(684)
+u(692)
+u(700)
+u(460)
+u(468)
+u(636)
+u(508)
+u(2132)
+u(2124)
+u(1387)
+f(1156,5,13,8)
+u(1148,7)
+u(1132)
+u(1188)
+u(1180)
+u(300)
+u(708,6)
+u(396,1)
+u(404)
+u(1060)
+u(1068)
+u(2156)
+u(2148)
+u(2140)
+u(1467)
+u(1459)
+u(1395)
+f(716,12,1,5)
+u(316,2)
+u(308)
+u(436)
+u(428)
+u(420,1)
+u(628)
+u(500)
+u(2100)
+u(2116)
+u(1387)
+f(1435,17,1)
+f(348,13,1,2)
+u(452)
+u(1204)
+u(996)
+u(1451)
+u(1419)
+f(724,13,2,1)
+u(1028)
+u(1036)
+u(1044)
+u(668)
+u(1012)
+u(1052)
+f(852,11,1)
+f(1164,6,1)
+u(1403)
+f(1196,5,1,267)
+u(188,1)
+u(1108)
+u(908)
+f(204,6,1,24)
+u(236)
+u(220,2)
+u(244,1)
+u(2188)
+f(252,9,1)
+f(228,8,1)
+u(1083)
+f(260,8,1,21)
+u(244,8)
+u(2188)
+f(212,11,1,2)
+u(2220)
+f(268,11,2,1)
+u(2108)
+u(1635)
+f(2228,11,1)
+n(2244)
+u(1020)
+u(20)
+u(12)
+f(2252,11,1,2)
+f(2180,9,2,1)
+n(2188,12)
+f(2044,10,6,1)
+n(2052)
+n(2228,2)
+n(2236)
+f(284,6,2,1)
+u(444)
+u(276)
+u(876)
+u(36)
+u(1435)
+f(364,6,1,9)
+u(372,3)
+u(532)
+u(564,2)
+f(2212,10,1,1)
+f(572,9,1)
+f(380,7,1,5)
+u(644,2)
+u(676)
+f(652,8,2,3)
+u(660)
+u(76,1)
+u(196)
+u(68)
+u(524)
+f(1116,10,1,2)
+u(1100)
+u(836)
+u(1620,1)
+u(796)
+u(2196)
+u(516)
+u(556)
+u(2204)
+f(1628,13,1)
+f(580,7,1)
+u(540)
+u(484)
+u(356)
+u(964)
+f(588,6,1,4)
+u(92)
+u(84,1)
+u(100)
+f(2028,8,1,3)
+u(820,1)
+u(2036)
+u(2060)
+u(28)
+f(2020,9,1,2)
+f(604,6,2)
+u(444)
+f(620,6,2,6)
+u(444)
+u(612)
+f(2260,9,2,4)
+f(668,6,4,213)
+u(1004)
+u(532)
+u(388,1)
+u(596)
+f(564,9,1,7)
+u(572,6)
+u(1427)
+f(1427,10,6,1)
+f(572,9,1,205)
+f(548,10,8,3)
+f(492,11,1,2)
+u(172,1)
+u(164)
+u(332)
+u(340)
+u(412)
+u(476)
+f(180,12,1)
+f(1427,10,1,193)
+n(2204,1)
+f(988,6,1)
+u(1443)
+f(996,6,1,6)
+u(1451)
+u(1419)
+f(1664,1,6,2407)
+u(1672)
+u(1896)
+u(1904)
+u(1888)
+u(1880)
+u(1888)
+u(2064)
+u(2064)
+u(1856)
+u(1992)
+u(2000)
+u(1720)
+u(1712)
+u(1688)
+u(2080)
+u(2088,2407,0,449,1958)
+u(2073)
+f(1546,19,3,102)
+u(1546)
+u(1570,98)
+u(1497)
+u(1490)
+u(1866)
+u(1874)
+f(51,26,4,94)
+u(948)
+u(1124)
+u(884)
+f(892,30,1,1)
+u(324)
+u(292)
+u(1140)
+u(1172)
+u(900)
+u(980)
+u(1411)
+u(1419)
+f(916,30,1,92)
+f(1435,31,2,90)
+f(1642,21,90,4)
+u(1650)
+u(1658)
+u(59)
+u(956)
+u(812)
+u(156,1)
+n(804)
+n(828,2)
+u(108)
+f(1554,19,2,827)
+u(1578)
+u(1577)
+u(1538,1)
+u(1762)
+u(1778)
+u(1698)
+u(1970)
+u(1770)
+u(1786)
+u(2011)
+u(1323)
+u(1379)
+u(1475)
+f(1594,22,1,826)
+u(1585)
+u(1530)
+u(1730)
+u(1746)
+u(1706)
+u(1978)
+u(1738)
+u(1754)
+u(2011)
+u(1299)
+u(1291)
+f(1275,34,1,825)
+u(1307)
+f(1259,36,1,824)
+u(1227,580)
+u(1251)
+f(1235,37,580,71)
+f(731,38,1,16)
+n(1219,33)
+u(123,21)
+n(139,8)
+n(147,4)
+f(1355,38,4,21)
+f(1283,37,21,75)
+u(755)
+u(771)
+f(731,40,2,30)
+f(1427,41,29,1)
+f(739,40,1,12)
+f(779,41,10,2)
+f(779,42,1,1)
+f(763,40,1,28)
+u(747)
+f(787,40,28,3)
+f(123,41,2,1)
+f(1315,37,1,98)
+f(1562,19,98,1475)
+f(1610,20,1,1474)
+f(1505,21,43,36)
+f(843,22,31,5)
+f(1331,23,4,1)
+f(1514,21,1,3)
+n(1585,1388)
+f(1522,22,6,6)
+n(1530,1376)
+u(1730)
+u(1746)
+u(1706)
+u(1978)
+f(1738,27,12,1352)
+u(1754)
+f(1793,29,1,1)
+n(2011,1350)
+f(1299,30,17,1333)
+f(1291,31,6,1327)
+f(1211,32,23,3)
+f(1243,33,1,2)
+u(1339)
+u(1435)
+f(1267,32,2,1284)
+f(1307,33,1,1283)
+u(1259)
+u(1227,992)
+u(1251,991)
+n(1347,1)
+f(1235,35,1,68)
+u(731,25)
+f(1427,37,24,1)
+f(1219,36,1,21)
+u(123,16)
+n(139,2)
+n(147,3)
+f(1355,36,3,22)
+f(1283,35,22,112)
+f(755,36,1,111)
+u(771)
+u(731,36)
+n(739,16)
+f(779,39,12,4)
+f(779,40,2,2)
+f(763,38,2,53)
+u(747)
+f(787,38,53,6)
+f(131,39,3,2)
+n(147,1)
+f(1315,35,1,111)
+f(1427,32,111,17)
+f(1914,27,17,1)
+n(1930)
+u(1930)
+f(1938,27,1,6)
+u(1938)
+f(1954,27,6,4)
+f(1602,21,4)
+f(1682,22,3,1)
+u(1961)
+u(1922)
+u(1946)
+f(1800,1,1)
+u(1849)
+u(43)
+u(1076)
+u(860)
+u(868)
+u(924)
+u(940)
+u(932)
+u(972)
+u(1411)
+u(1419)
+f(1808,1,1)
+u(1825)
+u(1818)
+u(1834)
+u(1842)
+u(1986)
+
+search();
+</script></body></html>

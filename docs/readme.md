@@ -21,3 +21,7 @@ Benchmark host CPU: `Intel Core i5-8500 @ 3.00 GHz`
 Benchmark host CPU cores: `6 physical / 6 logical`
 
 Benchmark host RAM: `16 GB`
+
+The benchmark runner defaults were written for this specific machine and its documented Java and
+async-profiler installations. They can be adjusted for another local setup with the `DEFAULT_JAVA`,
+`JAVA_11`, and `ASYNC_PROFILER_LIB` environment variables.

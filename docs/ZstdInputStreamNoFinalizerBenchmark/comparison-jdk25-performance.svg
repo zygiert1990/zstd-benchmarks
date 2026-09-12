@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="708" viewBox="0 0 1200 708">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:system-ui,-apple-system,sans-serif;fill:#1f2937}.title{font-size:22px;font-weight:700}.label{font-size:13px}.tick{font-size:12px;fill:#4b5563}.value{font-size:12px;font-weight:600}</style>
+<text x="300" y="32" class="title">Execution time (bar length relative to row worst)</text>
+<rect x="300" y="50" width="15" height="15" rx="2" fill="#2563eb"/>
+<text x="322" y="63" class="label">JDK 25 · orig</text>
+<rect x="450" y="50" width="15" height="15" rx="2" fill="#ea580c"/>
+<text x="472" y="63" class="label">JDK 25 · ffm</text>
+<line x1="300.0" y1="93" x2="300.0" y2="660" stroke="#e5e7eb"/>
+<text x="300.0" y="683" text-anchor="middle" class="tick">0%</text>
+<line x1="462.5" y1="93" x2="462.5" y2="660" stroke="#e5e7eb"/>
+<text x="462.5" y="683" text-anchor="middle" class="tick">25%</text>
+<line x1="625.0" y1="93" x2="625.0" y2="660" stroke="#e5e7eb"/>
+<text x="625.0" y="683" text-anchor="middle" class="tick">50%</text>
+<line x1="787.5" y1="93" x2="787.5" y2="660" stroke="#e5e7eb"/>
+<text x="787.5" y="683" text-anchor="middle" class="tick">75%</text>
+<line x1="950.0" y1="93" x2="950.0" y2="660" stroke="#e5e7eb"/>
+<text x="950.0" y="683" text-anchor="middle" class="tick">100%</text>
+<line x1="300.0" y1="93" x2="300.0" y2="660" stroke="#6b7280" stroke-width="1.5"/>
+<text x="288" y="142.0" text-anchor="end" class="label">createAndClose</text>
+<rect x="300.0" y="117.5" width="650.0" height="18" rx="2" fill="#2563eb"/>
+<text x="956.0" y="130.5" text-anchor="start" class="value">18.953 ± 0.722 us/op (0.00%)</text>
+<rect x="300.0" y="140.5" width="631.3" height="18" rx="2" fill="#ea580c"/>
+<text x="937.3" y="153.5" text-anchor="start" class="value">★ 18.409 ± 0.224 us/op (-2.87%)</text>
+<text x="288" y="208.0" text-anchor="end" class="label">decompressionThroughput · chunkSize=1 byte</text>
+<rect x="300.0" y="183.5" width="650.0" height="18" rx="2" fill="#2563eb"/>
+<text x="956.0" y="196.5" text-anchor="start" class="value">29,812.2 ± 60.898 us/op (0.00%)</text>
+<rect x="300.0" y="206.5" width="259.9" height="18" rx="2" fill="#ea580c"/>
+<text x="565.9" y="219.5" text-anchor="start" class="value">★ 11,921.8 ± 49.543 us/op (-60.01%)</text>
+<text x="288" y="274.0" text-anchor="end" class="label">decompressionThroughput · chunkSize=8 bytes</text>
+<rect x="300.0" y="249.5" width="650.0" height="18" rx="2" fill="#2563eb"/>
+<text x="956.0" y="262.5" text-anchor="start" class="value">3,804.8 ± 62.185 us/op (0.00%)</text>
+<rect x="300.0" y="272.5" width="279.1" height="18" rx="2" fill="#ea580c"/>
+<text x="585.1" y="285.5" text-anchor="start" class="value">★ 1,633.8 ± 6.181 us/op (-57.06%)</text>
+<text x="288" y="340.0" text-anchor="end" class="label">decompressionThroughput · chunkSize=64 bytes</text>
+<rect x="300.0" y="315.5" width="650.0" height="18" rx="2" fill="#2563eb"/>
+<text x="956.0" y="328.5" text-anchor="start" class="value">630.953 ± 1.422 us/op (0.00%)</text>
+<rect x="300.0" y="338.5" width="347.7" height="18" rx="2" fill="#ea580c"/>
+<text x="653.7" y="351.5" text-anchor="start" class="value">★ 337.516 ± 2.426 us/op (-46.51%)</text>
+<text x="288" y="406.0" text-anchor="end" class="label">decompressionThroughput · chunkSize=512 bytes</text>
+<rect x="300.0" y="381.5" width="650.0" height="18" rx="2" fill="#2563eb"/>
+<text x="956.0" y="394.5" text-anchor="start" class="value">206.589 ± 0.952 us/op (0.00%)</text>
+<rect x="300.0" y="404.5" width="546.0" height="18" rx="2" fill="#ea580c"/>
+<text x="852.0" y="417.5" text-anchor="start" class="value">★ 173.541 ± 0.366 us/op (-16.00%)</text>
+<text x="288" y="472.0" text-anchor="end" class="label">decompressionThroughput · chunkSize=4096 bytes</text>
+<rect x="300.0" y="447.5" width="650.0" height="18" rx="2" fill="#2563eb"/>
+<text x="956.0" y="460.5" text-anchor="start" class="value">155.799 ± 3.161 us/op (0.00%)</text>
+<rect x="300.0" y="470.5" width="620.2" height="18" rx="2" fill="#ea580c"/>
+<text x="926.2" y="483.5" text-anchor="start" class="value">★ 148.668 ± 0.335 us/op (-4.58%)</text>
+<text x="288" y="538.0" text-anchor="end" class="label">decompressionThroughput · chunkSize=16384 bytes</text>
+<rect x="300.0" y="513.5" width="650.0" height="18" rx="2" fill="#2563eb"/>
+<text x="956.0" y="526.5" text-anchor="start" class="value">152.474 ± 0.699 us/op (0.00%)</text>
+<rect x="300.0" y="536.5" width="643.7" height="18" rx="2" fill="#ea580c"/>
+<text x="949.7" y="549.5" text-anchor="start" class="value">★ 151.000 ± 0.918 us/op (-0.97%)</text>
+<text x="288" y="604.0" text-anchor="end" class="label">decompressionThroughput · chunkSize=65536 bytes</text>
+<rect x="300.0" y="579.5" width="635.6" height="18" rx="2" fill="#2563eb"/>
+<text x="941.6" y="592.5" text-anchor="start" class="value">★ 152.222 ± 1.688 us/op (0.00%)</text>
+<rect x="300.0" y="602.5" width="650.0" height="18" rx="2" fill="#ea580c"/>
+<text x="956.0" y="615.5" text-anchor="start" class="value">155.672 ± 0.472 us/op (+2.27%)</text>
+</svg>

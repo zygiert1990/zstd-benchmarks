@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+<style>
+	:root      {--bg: #ffffff; --fg: #000000; --hl-bg: #ffffe0; --hl-border: #ffc000; --link: #0366d6; --legend-bg: #ffffe0; --legend-border: #666666}
+	:root.dark {--bg: #1e1e1e; --fg: #cccccc; --hl-bg: #3a3a00; --hl-border: #8a7000; --link: #58a6ff; --legend-bg: #333333; --legend-border: #888888}
+	body {margin: 0; padding: 10px 10px 22px 10px; background-color: var(--bg); color: var(--fg)}
+	h1 {margin: 5px 0 0 0; font-size: 18px; font-weight: normal; text-align: center}
+	header {margin: -22px 0 6px 0}
+	button {border: none; background: none; width: 24px; height: 24px; cursor: pointer; margin: 0; padding: 2px 0 0 0; text-align: center}
+	button:hover {background-color: var(--hl-bg); outline: 1px solid var(--hl-border); border-radius: 4px}
+	dl {margin: 0 4px 8px 4px}
+	dt {margin: 1px; padding: 2px 0; font-weight: bold}
+	dd {margin: 1px; padding: 2px 4px}
+	dl.frames {float: left; width: 160px}
+	dl.frames > dd {color: #000000}
+	dl.hotkeys {clear: left; border-top: 1px solid var(--legend-border)}
+	dl.hotkeys > dt {float: left; clear: left; width: 158px; margin-right: 4px; text-align: right}
+	dl.hotkeys > dd {float: left}
+	p {position: fixed; bottom: 0; margin: 0; padding: 2px 3px 2px 3px; outline: 1px solid var(--hl-border); display: none; overflow: hidden; white-space: nowrap; background-color: var(--hl-bg); color: var(--fg)}
+	a {color: var(--link)}
+	#legend {padding: 4px; border-radius: 4px; background: var(--legend-bg); border: 1px solid var(--legend-border); display: none}
+	#hl {position: absolute; display: none; overflow: hidden; white-space: nowrap; pointer-events: none; background-color: var(--hl-bg); outline: 1px solid var(--hl-border); height: 15px}
+	#hl span {padding: 0 3px 0 3px}
+	#status {left: 0}
+	#match {right: 0}
+	#reset {cursor: pointer}
+	#canvas {width: 100%; height: 672px}
+</style>
+<script>
+{
+	let theme;
+	try { theme = localStorage.getItem('flame-theme'); } catch (ignored) {}
+	if (theme ? theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches) {
+		document.documentElement.classList.add('dark');
+	}
+}
+</script>
+</head>
+<body style='font: 12px Verdana, sans-serif'>
+<h1>CPU profile</h1>
+<header style='float: left'>
+<button id='inverted' title='Invert (I)'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 392 392'><path d='M196,36 L316,156 L76,156 Z' fill='#004d80'/><path d='M196,356 L76,236 L316,236 Z' fill='#004d80'/><path d='M196,54 L298,156 L94,156 Z' fill='#ff8d40'/><path d='M196,338 L94,236 L298,236 Z' fill='#40b2ff'/><rect x='94' y='188' width='204' height='16' fill='#004d80'/></svg></button>
+<button id='search' title='Search (Ctrl+F)'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='-39.3 -39.3 471.1 471.1'><circle cx='147.7' cy='147.8' r='125.9' fill='#fff'/><path fill='#40b2ff' d='M370.7 348.7c0 1.4-1.6 6.3-7.2 12.3-6.2 6.7-12.5 9.8-14.7 9.8h-.1c-19.5-1.6-62-43.2-109.6-106.8 9.2-7.2 17.5-15.5 24.6-24.6 63.6 47.6 105.2 90.2 106.8 109.6z'/><path fill='#ff8d40' d='M208.7 86.9l-14.5 14.5c-17.1 17.1-46.5 5-46.5-19.3V61.6c-49 0-88.4 40.8-86.1 90.2 2 43.9 38.1 80 82 82 49.5 2.3 90.2-37.2 90.2-86.1 0-23.7-9.6-45.2-25.1-60.8z'/><path fill='#004d80' d='M276.1 221c12.3-21.5 19.5-46.5 19.5-73.2C295.6 66.3 229.2.1 147.7.1S0 66.3 0 147.9s66.3 147.7 147.7 147.7c26.6 0 51.5-7.1 73.2-19.5 39.8 53.3 91.9 113.5 126.1 116.4 12.3.5 22.9-6.7 32.8-16.7 5.2-5.6 13.8-16.9 12.8-28.8-2.9-34.1-63.1-86.2-116.4-126.1zM147.7 273.8c-69.5 0-125.9-56.5-125.9-125.9S78.3 21.9 147.7 21.9 273.6 78.4 273.6 147.8s-56.4 126-125.9 126zm215.9 87.2c-6.2 6.7-12.4 9.8-14.7 9.8h-.1c-19.5-1.6-62-43.2-109.6-106.8 9.2-7.2 17.5-15.5 24.6-24.6 63.6 47.6 105.2 90.2 106.8 109.6 0 1.4-1.6 6.3-7.2 12.4z'/></svg></button>
+<button id='darkmode' title='Toggle dark mode (D)'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path d='M10 4a6 6 0 0 1 0 12z' fill='#ff8d40'/><path d='M10 4a6 6 0 0 0 0 12z' fill='#ffffff'/><circle cx='10' cy='10' r='8' fill='none' stroke='#004d80'/></svg></button>
+<button id='info'><svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><circle cx='10' cy='10' r='8' stroke='#004d80' fill='none'/><path d='M10 5.5c-1.25 0-2.25 1-2.25 2.25H9a1.25 1.25 0 0 1 2.5 0c0 .65-.55 1-1 1.2-.7.35-1.25.85-1.25 1.8V11h1.5v-.25c0-.37.29-.65.68-.83.73-.34 1.32-.87 1.32-2.17 0-1.25-1.5-2.25-2.75-2.25' fill='#ff8d40' stroke='#ff8d40' stroke-width='.6' stroke-linecap='round' stroke-linejoin='round'/><circle cx='10' cy='13.5' r='1.2' fill='#ff8d40'/></svg></button>
+</header>
+<header style='float: right'>Produced by <a href='https://github.com/async-profiler/async-profiler'>async-profiler</a></header>
+<div id='legend' style='position: absolute'>
+<dl class='frames'>
+	<dt>Frame types</dt>
+	<dd style='background-color: #e17d00'>Kernel</dd>
+	<dd style='background-color: #e15a5a'>Native</dd>
+	<dd style='background-color: #c8c83c'>C++ (VM)</dd>
+	<dd style='background-color: #50e150'>Java compiled</dd>
+	<dd style='background-color: #cce880'>Java compiled by C1</dd>
+	<dd style='background-color: #50cccc'>Inlined</dd>
+	<dd style='background-color: #b2e1b2'>Interpreted</dd>
+</dl>
+<dl class='frames'>
+	<dt>Allocation profile</dt>
+	<dd style='background-color: #50cccc'>Allocated class</dd>
+	<dd style='background-color: #e17d00'>Allocation outside TLAB</dd>
+	<dt>Lock profile</dt>
+	<dd style='background-color: #50cccc'>Lock class</dd>
+	<dt>&nbsp;</dt>
+	<dt>Search</dt>
+	<dd style='background-color: #ee00ee'>Matches regexp</dd>
+</dl>
+<dl class='hotkeys'>
+	<dt>Click frame</dt><dd>Zoom into frame</dd>
+	<dt>Ctrl/Alt+Click</dt><dd>Remove stack</dd>
+	<dt>0</dt><dd>Reset zoom</dd>
+	<dt>I</dt><dd>Invert graph</dd>
+	<dt>Ctrl+F</dt><dd>Search</dd>
+	<dt>N</dt><dd>Next match</dd>
+	<dt>Shift+N</dt><dd>Previous match</dd>
+	<dt>Esc</dt><dd>Cancel search</dd>
+</dl>
+</div>
+<canvas id='canvas'></canvas>
+<div id='hl'><span></span></div>
+<p id='status'></p>
+<p id='match'>Matched: <span id='matchval'></span> <span id='reset' title='Clear'>&#x274c;</span></p>
+<script>
+	// Copyright The async-profiler authors
+	// SPDX-License-Identifier: Apache-2.0
+	'use strict';
+	let root, px, pattern;
+	let level0 = 0, left0 = 0, width0 = 0, d = 0;
+	let nav = [], navIndex, matchval;
+	let inverted = false;
+	const U = undefined;
+	const maxdiff = /*maxdiff:*/-1;
+	const levels = Array(42);
+	for (let h = 0; h < levels.length; h++) {
+		levels[h] = [];
+	}
+
+	const canvas = document.getElementById('canvas');
+	const c = canvas.getContext('2d');
+	const hl = document.getElementById('hl');
+	const status = document.getElementById('status');
+
+	const canvasWidth = canvas.offsetWidth;
+	const canvasHeight = canvas.offsetHeight;
+	canvas.style.width = canvasWidth + 'px';
+	canvas.width = canvasWidth * (devicePixelRatio || 1);
+	canvas.height = canvasHeight * (devicePixelRatio || 1);
+	if (devicePixelRatio) c.scale(devicePixelRatio, devicePixelRatio);
+	c.font = document.body.style.font;
+
+	const palette = [
+		[0xb2e1b2, 20, 20, 20],
+		[0x50e150, 30, 30, 30],
+		[0x50cccc, 30, 30, 30],
+		[0xe15a5a, 30, 40, 40],
+		[0xc8c83c, 30, 30, 10],
+		[0xe17d00, 30, 30,  0],
+		[0xcce880, 20, 20, 20],
+	];
+
+	function getColor(p) {
+		const v = Math.random();
+		return '#' + (p[0] + ((p[1] * v) << 16 | (p[2] * v) << 8 | (p[3] * v))).toString(16);
+	}
+
+	function getDiffColor(diff) {
+		if (diff === U) return '#ffdd33';
+		if (diff === 0) return '#e0e0e0';
+		const v = Math.round(128 * (maxdiff - Math.abs(diff)) / maxdiff) + 96;
+		return diff > 0 ? 'rgb(255,' + v + ',' + v + ')' : 'rgb(' + v + ',' + v + ',255)';
+	}
+
+	function f(key, level, left, width, inln, c1, int) {
+		levels[level0 = level].push({level, left: left0 += left, width: width0 = width || width0,
+			color: maxdiff >= 0 ? getDiffColor(d) : getColor(palette[key & 7]),
+			title: cpool[key >>> 3],
+			details: (d ? (d > 0 ? ', +' : ', ') + d : '') + (int ? ', int=' + int : '') + (c1 ? ', c1=' + c1 : '') + (inln ? ', inln=' + inln : '')
+		});
+	}
+
+	function u(key, width, inln, c1, int) {
+		f(key, level0 + 1, 0, width, inln, c1, int)
+	}
+
+	function n(key, width, inln, c1, int) {
+		f(key, level0, width0, width, inln, c1, int)
+	}
+
+	function samples(n) {
+		return n === 1 ? '1 sample' : n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' samples';
+	}
+
+	function pct(a, b) {
+		return a >= b ? '100' : (100 * a / b).toFixed(2);
+	}
+
+	function findFrame(frames, x) {
+		let left = 0;
+		let right = frames.length - 1;
+
+		while (left <= right) {
+			const mid = (left + right) >>> 1;
+			const f = frames[mid];
+
+			if (f.left > x) {
+				right = mid - 1;
+			} else if (f.left + f.width <= x) {
+				left = mid + 1;
+			} else {
+				return f;
+			}
+		}
+
+		if (frames[left] && (frames[left].left - x) * px < 0.5) return frames[left];
+		if (frames[right] && (x - (frames[right].left + frames[right].width)) * px < 0.5) return frames[right];
+
+		return null;
+	}
+
+	function removeStack(left, width) {
+		for (let h = 0; h < levels.length; h++) {
+			const frames = levels[h], newFrames = [];
+			for (let i = 0; i < frames.length; i++) {
+				const f = frames[i];
+				if (f.left >= left + width) {
+					f.left -= width;
+				} else if (f.left + f.width > left) {
+					if ((f.width -= width) <= 0 && h) continue;
+				}
+				newFrames.push(f);
+			}
+			levels[h] = newFrames;
+		}
+	}
+
+	function search(r) {
+		if (r === true && (r = prompt('Enter regexp to search:', '')) === null) {
+			return;
+		}
+
+		pattern = r ? RegExp(r) : undefined;
+		const matched = render(root, nav = []);
+		navIndex = -1;
+		document.getElementById('matchval').textContent = matchval = pct(matched, root.width) + '%';
+		document.getElementById('match').style.display = r ? 'inline-block' : 'none';
+	}
+
+	function render(newRoot, nav) {
+		const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg');
+
+		if (root) {
+			c.fillStyle = bg;
+			c.fillRect(0, 0, canvasWidth, canvasHeight);
+		}
+
+		root = newRoot || levels[0][0];
+		px = canvasWidth / root.width;
+
+		const x0 = root.left;
+		const x1 = x0 + root.width;
+		const marked = [];
+
+		function mark(f) {
+			return marked[f.left] || (marked[f.left] = f);
+		}
+
+		function totalMarked() {
+			let total = 0;
+			let left = 0;
+			Object.keys(marked).sort(function(a, b) { return a - b; }).forEach(function(x) {
+				if (+x >= left) {
+					const m = marked[x];
+					if (nav) nav.push(m);
+					total += m.width;
+					left = +x + m.width;
+				}
+			});
+			return total;
+		}
+
+		function drawFrame(f, y) {
+			if (f.left < x1 && f.left + f.width > x0) {
+				c.fillStyle = pattern && f.title.match(pattern) && mark(f) ? '#ee00ee' : f.color;
+				c.fillRect((f.left - x0) * px, y, f.width * px, 15);
+
+				if (f.width * px >= 21) {
+					const chars = Math.floor(f.width * px / 7);
+					const title = f.title.length <= chars ? f.title : f.title.substring(0, chars - 2) + '..';
+					c.fillStyle = '#000000';
+					c.fillText(title, Math.max(f.left - x0, 0) * px + 3, y + 12, f.width * px - 6);
+				}
+
+				if (f.level < root.level) {
+					c.fillStyle = bg + '80';
+					c.fillRect((f.left - x0) * px, y, f.width * px, 15);
+				}
+			}
+		}
+
+		for (let h = 0; h < levels.length; h++) {
+			const y = inverted ? h * 16 : canvasHeight - (h + 1) * 16;
+			const frames = levels[h];
+			for (let i = 0; i < frames.length; i++) {
+				drawFrame(frames[i], y);
+			}
+		}
+
+		return totalMarked();
+	}
+
+	function unpack(cpool) {
+		for (let i = 1; i < cpool.length; i++) {
+			cpool[i] = cpool[i - 1].substring(0, cpool[i].charCodeAt(0) - 32) + cpool[i].substring(1);
+		}
+	}
+
+	canvas.onmousemove = function() {
+		const h = Math.floor((inverted ? event.offsetY : (canvasHeight - event.offsetY)) / 16);
+		if (h >= 0 && h < levels.length) {
+			const f = findFrame(levels[h], event.offsetX / px + root.left);
+			if (f) {
+				if (f !== root) getSelection().removeAllRanges();
+				hl.style.left = (Math.max(f.left - root.left, 0) * px + canvas.offsetLeft) + 'px';
+				hl.style.width = (Math.min(f.width, root.width) * px) + 'px';
+				hl.style.top = ((inverted ? h * 16 : canvasHeight - (h + 1) * 16) + canvas.offsetTop) + 'px';
+				hl.firstChild.textContent = f.title;
+				hl.style.display = 'block';
+				canvas.title = f.title + '\n(' + samples(f.width) + f.details + ', ' + pct(f.width, levels[0][0].width) + '%)';
+				canvas.style.cursor = 'pointer';
+				canvas.onclick = function() {
+					if ((event.altKey || event.ctrlKey) && h >= root.level && h > 0) {
+						removeStack(f.left, f.width);
+						root.width > f.width ? render(root) : render();
+					} else if (f !== root) {
+						render(f);
+					}
+					canvas.onmousemove();
+				};
+				status.textContent = 'Function: ' + canvas.title;
+				status.style.display = 'inline-block';
+				return;
+			}
+		}
+		canvas.onmouseout();
+	}
+
+	canvas.onmouseout = function() {
+		hl.style.display = 'none';
+		status.style.display = 'none';
+		canvas.title = '';
+		canvas.style.cursor = '';
+		canvas.onclick = null;
+	}
+
+	canvas.ondblclick = function() {
+		getSelection().selectAllChildren(hl);
+	}
+
+	document.getElementById('inverted').onclick = function() {
+		inverted = !inverted;
+		render();
+	}
+
+	document.getElementById('search').onclick = function() {
+		search(true);
+	}
+
+	document.getElementById('reset').onclick = function() {
+		search(false);
+	}
+
+	document.getElementById('darkmode').onclick = function() {
+		const theme = document.documentElement.classList.toggle('dark') ? 'dark' : 'light';
+		try { localStorage.setItem('flame-theme', theme); } catch (ignored) {}
+		render(root);
+	}
+
+	const btnInfo = document.getElementById('info');
+	const legend = document.getElementById('legend');
+
+	btnInfo.onmouseover = function() {
+		legend.style.left = (btnInfo.offsetLeft + 24) + 'px';
+		legend.style.top = (btnInfo.offsetTop + 24) + 'px';
+		legend.style.display = 'block';
+	}
+
+	btnInfo.onmouseout = function() {
+		legend.style.display = 'none';
+	}
+
+	window.onkeydown = function(event) {
+		if ((event.ctrlKey || event.metaKey) && event.key === 'f') {
+			event.preventDefault();
+			search(true);
+			return false;
+		} else if (event.key === 'Escape') {
+			search(false);
+		} else if ((event.key === 'n' || event.key === 'N') && nav.length > 0) {
+			navIndex = (navIndex + (event.shiftKey ? nav.length - 1 : 1)) % nav.length;
+			render(nav[navIndex]);
+			document.getElementById('matchval').textContent = matchval + ' (' + (navIndex + 1) + ' of ' + nav.length + ')';
+			window.scroll(0, inverted ? root.level * 16 : canvasHeight - (root.level + 1) * 16);
+			canvas.onmousemove();
+			return false;
+		} else if (event.key === 'i') {
+			canvas.onmouseout();
+			document.getElementById('inverted').onclick();
+			return false;
+		} else if (event.key === 'd') {
+			document.getElementById('darkmode').onclick();
+			return false;
+		} else if (event.key === '0') {
+			canvas.onmouseout();
+			root = levels[0][0];
+			search(false);
+			return false;
+		}
+	}
+
+const cpool = [
+'all',
+' Assembler::locate_operand',
+' C1 Runtime new_type_array_blob',
+'!2 Runtime complete_monitor_locking',
+'+new_array',
+'"Compiler::compile_method',
+'!lassLoaderData::oops_do',
+'/Graph::roots_cld_do',
+'!odeCacheUnloadingTask::work',
+'"mpile::Code_Gen',
+'+mpile',
+'\'Broker::compiler_thread_loop',
+'/invoke_compiler_on_method',
+'"ncurrentGCThread::run',
+' FSE_buildCTable_wksp',
+'$compress_usingCTable_generic.lto_priv.0',
+'$normalizeCount',
+'$writeNCount',
+' G1Allocator::survivor_attempt_allocation',
+'"BatchedTask::~G1BatchedTask',
+'"CLDScanClosure::do_cld',
+'#MConcurrentMarkingTask::work',
+'$Task::attempt_stealing',
+'2termination',
+'*do_marking_step',
+'+rain_global_stack',
+'0local_queue',
+'*process_current_region',
+'*regular_clock_call',
+'#ollectedHeap::do_collection_pause_at_safepoint_helper',
+'1expand',
+'7_heap_after_young_collection',
+'1mem_allocate',
+'1prepare_for_mutator_after_young_collection',
+'1update_parallel_gc_threads_cpu_time',
+'$ncurrentMark::remark',
+'"EvacuateRegionsBaseTask::work',
+'1Task::evacuate_live_objects',
+'7scan_roots',
+'"HeapRegionManager::commit_regions',
+'5expand',
+';_by',
+'5par_iterate',
+'5uncommit_inactive_regions',
+'>regions',
+'"PLABAllocator::allocate_direct_or_new_plab',
+'#ageBasedVirtualSpace::commit',
+'9uncommit',
+'$rCopyClosure<(G1Barrier)0, false>::do_oop',
+'<1, true>::do_oop',
+'%EvacuateFollowersClosure::do_void',
+'%ScanThreadState::allocate_copy_slow',
+'6steal_and_trim_queue',
+'6trim_queue_to_threshold',
+'%allelCleaningTask::work',
+'#reEvacuateCollectionSetBatchTask::JavaThreadRetireTLABAndFlushLogs::~JavaThreadRetireTLABAndFlushLogs',
+'%pareEvacuationTask::work',
+'"RebuildRSAndScrubTask::G1RebuildRSAndScrubRegionClosure::do_heap_region',
+'9work',
+'$gionsLargerThanCommitSizeMapper::commit_regions',
+'Euncommit_regions',
+'$mSet::merge_heap_roots',
+'#ootProcessor::evacuate_roots',
+'1process_java_roots',
+'"STWRefProcProxyTask::work',
+'#erviceThread::run_service',
+'5task',
+'"UncommitRegionTask::execute',
+'"YoungCollector::collect',
+'2evacuate_initial_collection_set',
+'2post_evacuate_collection_set',
+'3re_evacuate_collection_set',
+' HIST_count_parallel_wksp.lto_priv.0',
+'!UF_buildCTable_wksp',
+'$compress1X_usingCTable_internal_bmi2.lto_priv.0',
+',4X_repeat',
+',CTable_internal.lto_priv.0',
+',_internal',
+'$simpleQuickSort',
+'$writeCTable_wksp',
+'!andleArea::oops_do',
+' IsUnloadingBehaviour::is_unloading',
+' JavaThread::oops_do_no_frames',
+',thread_main_inner',
+'$_com_github_luben_zstd_Zstd_setCompressionLevel',
+' Matcher::find_shared',
+')match',
+')pd_clone_node',
+'!emAllocator::allocate',
+'.mem_allocate',
+'"thod::is_method_handle_intrinsic',
+'!onitor::wait_without_safepoint_check',
+' ObjArrayAllocator::initialize',
+'#ectMonitor::try_spin',
+'!opStorage::BasicParState::claim_next_segment',
+'!ptoRuntime::new_array_C',
+' PhaseChaitin::Register_Allocate',
+'.add_input_to_liveout',
+'.build_ifg_physical',
+'!latformMonitor::wait',
+'!osixSemaphore::signal',
+'0wait',
+' RefProcKeepAliveFinalPhaseTask::rp_work',
+'!untime1::new_type_array',
+' SafepointSynchronize::disarm_safepoint',
+'6end',
+'!haredRuntime::complete_monitor_locking_C',
+'!pinPause',
+' TaskTerminator::offer_termination',
+'!hread::call_run',
+'(oops_do',
+'&TotalCPUTimeClosure::do_thread',
+'&s::possibly_parallel_oops_do',
+'!ypeArrayKlass::allocate_common',
+' VMThread::evaluate_operation',
+'*inner_execute',
+'*run',
+'"_G1CollectForAllocation::doit',
+'%PauseConcurrent::doit',
+'#Operation::evaluate',
+' WorkerThread::run',
+',s::threads_do',
+' ZSTD_CCtxParams_setParameter',
+')_init_compressStream2',
+'%buildCTable',
+'*SeqStore',
+'-uencesStatistics.lto_priv.0',
+'%compressBegin_internal.lto_priv.0',
+'.lock_fast',
+'3internal',
+'-Continue_public',
+'-End_public',
+'-Literals',
+'-Stream2',
+'4_simpleArgs',
+'-_frameChunk',
+'&reateCCtx_advanced',
+',Stream',
+'%encodeSequences_bmi2',
+'%freeCCtx',
+'%resetCCtx_internal',
+'%seqToCodes',
+' [vdso]',
+' __GI___libc_free',
+'\'mmap',
+'"_pthread_cond_timedwait64',
+'"futex_abstimed_wait_cancelable64',
+'"malloc',
+'#emmove_avx_unaligned_erms',
+'%set_avx2_unaligned_erms',
+'"new_sem_post',
+'*wait_slow64.constprop.0',
+'!int_free',
+' bool G1CMTask::deal_with_reference<narrowOop>',
+' clock_gettime@@GLIBC_2.17',
+'#ne3',
+'!om/github/luben/zstd/NoPool.get',
+'6Zstd.getArrayBackedBuffer',
+';isError',
+';setCompressionLevel',
+':Binding.compressStream2',
+'CreateCStream',
+'BfreeCStream',
+'BresetCCtx',
+':OutputStream.<init>',
+'Gclose',
+'Gwrite',
+'FNoFinalizer.<init>',
+'Rclose',
+'SompressStream2',
+'RdrainStream',
+'RresetCStream',
+'RsetLevel',
+'Rwrite',
+' getrusage',
+' java/lang/Thread.run',
+'4With',
+'*invoke/DirectMethodHandle$Holder.invokeSpecial',
+'Rtatic',
+'1Invokers$Holder.invokeExact_MT',
+'1LambdaForm$DMH.0x00000000770c7400.invokeStatic',
+'N9c00.invokeStatic',
+'Nc400.invokeStatic',
+'<MH.0x0000000077061c00.invoke',
+'M2000.invokeExact_MT',
+'Lcec00.invokeExact_MT',
+'Mf400.invokeExact_MT',
+'Nc00.invokeExact_MT',
+'Ld0400.invokeExact_MT',
+'Nc00.invokeExact_MT',
+'M1400.invokeExact_MT',
+'Nc00.invokeExact_MT',
+'M2000.invoke',
+'N400.invoke',
+'N800.invoke',
+'Nc00.invoke',
+'M3000.invoke',
+'N400.invoke',
+'N800.invoke',
+'Nc00.invoke',
+'*ref/Finalizer$FinalizerThread.run',
+'7.runFinalizer',
+'.Reference$ReferenceHandler.run',
+'7.enqueueFromPending',
+'8processPendingReferences',
+'7Queue.enqueue',
+'-lect/Method.invoke',
+'%nio/ByteBuffer.allocate',
+')HeapByteBuffer.<init>',
+'%util/concurrent/Executors$RunnableAdapter.call',
+'5FutureTask.run',
+'5ThreadPoolExecutor$Worker.run',
+'G.runWorker',
+'!dk/internal/foreign/abi/DowncallStub.0x00000000770c5800.invoke',
+'T7000.invoke',
+'T9800.invoke',
+'Tc000.invoke',
+'-reflect/DirectMethodHandleAccessor.invoke',
+'VImpl',
+' nep_invoker_blob',
+'!method::cleanup_inline_caches_impl',
+')do_unloading',
+')oops_do',
+' oop_Relocation::oop_value',
+'!rg/openjdk/jmh/runner/BenchmarkHandler$BenchmarkTask.call',
+'$zygiert/ZstdOutputStreamNoFinalizerBenchmark.compressionThroughput',
+',jmh_generated/ZstdOutputStreamNoFinalizerBenchmark_compressionThroughput_jmhTest.compressionThroughput_AverageTime',
+'mpressionThroughput_avgt_jmhStub',
+'!s::commit_memory_or_exit',
+'$elapsedVTime',
+'$pd_commit_memory_or_exit',
+'\'uncommit_memory',
+'$thread_cpu_time',
+'$uncommit_memory',
+' start_thread',
+' thread_native_entry',
+' unsigned long BitMap::find_first_bit_impl<0ul, false>',
+' void G1CMTask::process_grey_task_entry<true>',
+'%OopOopIterateBackwardsDispatch<G1ScanEvacuatedObjClosure>::Table::oop_oop_iterate_backwards<InstanceKlass, narrowOop>',
+'2Dispatch<G1CMOopClosure>::Table::oop_oop_iterate<InstanceKlass, narrowOop>',
+'kMirrorKlass, narrowOop>',
+'kRefKlass, narrowOop>',
+'cObjArrayKlass, narrowOop>',
+'=RebuildRemSetClosure>::Table::oop_oop_iterate<InstanceKlass, narrowOop>',
+'%WeakProcessor::Task::work<G1CMIsAliveClosure, DoNothingClosure>',
+'ASTWIsAliveClosure, G1KeepAliveClosure>'
+];
+unpack(cpool);
+
+n(3,2722)
+u(1243,313)
+u(1875)
+u(1884)
+u(876)
+u(108,14)
+u(524)
+u(532)
+u(540)
+u(348)
+u(356)
+u(484)
+u(380)
+u(1868)
+u(1852)
+u(1155)
+f(668,5,14,3)
+u(92)
+u(100)
+u(44)
+u(84)
+u(76)
+u(692,2)
+u(684)
+f(700,13,1,1)
+f(772,11,1)
+u(788)
+u(780)
+f(932,5,1,8)
+u(924)
+u(844,1)
+u(836)
+f(916,7,1,7)
+u(956)
+u(940,6)
+u(236)
+u(548)
+u(556,1)
+u(492)
+f(564,12,1,4)
+u(156,1)
+u(1147)
+u(1219)
+f(252,13,1,2)
+u(244)
+u(332)
+u(324)
+u(316,1)
+u(476)
+u(372)
+u(1828)
+u(1844)
+u(1155)
+f(1195,17,1)
+f(268,13,1)
+f(572,12,1)
+u(156)
+u(444)
+u(1147)
+f(948,9,1)
+u(284)
+u(276)
+u(972)
+u(892)
+u(1860)
+u(1235)
+u(1139)
+f(964,5,1,288)
+u(172,25)
+u(196)
+u(180,3)
+u(212)
+u(1900)
+u(1916,2)
+n(1940,1)
+f(188,8,1)
+u(859)
+f(220,8,1,20)
+f(204,9,2,1)
+n(212,3)
+n(1892,1)
+n(1900,13)
+u(228,2)
+u(1836)
+u(1395)
+f(1916,10,2,3)
+n(1924)
+f(52,11,2,1)
+f(1932,10,1)
+u(1228)
+f(1940,10,1,4)
+f(1836,8,4,1)
+u(1395)
+f(292,6,1,15)
+u(300,11)
+u(404)
+u(420,6)
+f(428,10,1,3)
+u(1187)
+f(1187,10,3,2)
+f(428,9,2)
+u(1187)
+f(859,9,2)
+n(868,1)
+u(732)
+u(796)
+u(1163)
+u(1171)
+f(308,7,1,4)
+u(500)
+u(508)
+u(60,3)
+u(164)
+u(52)
+f(396,13,1,2)
+f(900,10,2,1)
+u(884)
+u(660)
+u(644)
+u(388)
+f(436,6,1,3)
+u(68)
+u(1772)
+u(652,1)
+u(724)
+f(1764,9,1,2)
+f(652,10,1,1)
+u(1780)
+u(1788)
+u(12)
+f(452,6,1)
+u(340)
+f(468,6,1,7)
+u(340)
+f(460,8,1,6)
+f(1948,9,4,2)
+f(516,6,2,232)
+u(820)
+u(404)
+u(420,8)
+u(428,7)
+u(1187)
+f(1187,10,7,1)
+f(428,9,1,224)
+f(412,10,6,1)
+u(364)
+u(148)
+f(1187,10,1,215)
+n(1908,2)
+f(804,6,2,1)
+u(1203)
+f(812,6,1,2)
+u(1211)
+u(1171)
+f(1956,6,2,1)
+u(756)
+f(1964,6,1)
+f(1400,1,1,2407)
+u(1408)
+u(1688)
+u(1696)
+u(1680)
+u(1672)
+u(1680)
+u(1792)
+u(1792)
+u(1648)
+u(1736)
+u(1744)
+u(1472)
+u(1464)
+u(1416)
+u(1808)
+u(1816,2407,0,515,1892)
+u(1801,2407,496,0,0)
+u(1314,103)
+u(1314,102,80,4,0)
+u(1338,102,98,4,0)
+u(1258,99,96,3,0)
+u(1250)
+u(1658,99,96,3,0)
+u(1666,99,96,3,0)
+f(19,26,9,3)
+u(828)
+u(908)
+u(708)
+u(740)
+u(1195)
+f(35,26,3,87)
+u(764)
+u(908)
+u(708)
+u(716,1)
+u(260)
+f(740,30,1,86)
+u(1195)
+f(1290,22,86,3,2,1,0)
+u(1434)
+u(1554)
+u(1426)
+u(1706)
+u(1482)
+u(1562)
+u(1755)
+u(1099)
+u(1091)
+f(1179,32,2,1)
+f(1378,20,1)
+u(1273)
+u(675)
+u(979)
+f(1322,19,1,918)
+u(1346)
+u(1346,918,729,0,0)
+u(1298,2)
+u(1522)
+u(1586)
+u(1442)
+u(1714)
+u(1530)
+u(1594)
+u(1755)
+f(1115,30,1,1)
+f(1362,22,1,916)
+u(1353)
+u(1282)
+u(1506)
+u(1538)
+u(1458)
+u(1730)
+u(1514)
+u(1546)
+u(1755)
+u(1075)
+u(1067)
+u(1051)
+u(1083)
+u(1035)
+f(1003,37,1,687)
+f(1027,38,1,686)
+f(1011,37,686,55)
+f(579,38,1,23)
+n(995,21)
+u(115,15)
+n(131,1)
+n(139,5)
+f(1131,38,5,10)
+f(1059,37,10,66)
+f(603,38,3,63)
+u(619)
+f(579,40,4,19)
+n(587,7)
+n(611,28)
+u(595)
+f(635,40,28,5)
+u(115,2)
+n(123,3)
+f(1107,37,3,107)
+f(1330,19,107,1386)
+u(1385)
+u(1265,2)
+n(1353,1383)
+u(1282)
+u(1506)
+u(1538)
+u(1458)
+u(1730)
+u(1514)
+u(1546)
+u(1755)
+u(1075)
+u(1067)
+f(987,32,1,5)
+u(1019)
+u(1123)
+f(1195,35,1,4)
+f(1043,32,4,1348)
+u(1083)
+f(1035,34,1,1347)
+u(1003,1050)
+u(1027)
+f(1011,35,1050,70)
+u(579,22)
+n(995,28)
+u(115,19)
+n(131,5)
+n(139,4)
+f(1131,36,4,20)
+f(1059,35,20,102)
+u(603)
+u(619)
+f(579,38,1,32)
+n(587,20)
+f(627,39,17,3)
+f(627,40,2,1)
+f(611,38,1,44)
+f(595,39,1,43)
+f(635,38,43,5)
+f(115,39,1,1)
+n(131,2)
+n(139,1)
+f(1107,35,1,125)
+f(1187,32,125,29)
+f(1370,21,29,1)
+u(1306)
+u(1490)
+u(1570)
+u(1450)
+u(1722)
+u(1498)
+u(1578)
+u(1755)
+f(1600,1,1)
+u(1609)
+f(1616,1,1)
+u(1633)
+u(1626)
+u(1642)
+u(27)
+u(852)
+u(748)
+
+search();
+</script></body></html>

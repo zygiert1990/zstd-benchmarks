@@ -1,0 +1,41 @@
+Benchmark                                                                       (chunkSize)  Mode  Cnt       Score     Error   Units
+ZstdInputStreamNoFinalizerBenchmark.createAndClose                                      N/A  avgt   15      18.953 ±   0.722   us/op
+ZstdInputStreamNoFinalizerBenchmark.createAndClose:gc.alloc.rate                        N/A  avgt   15    6614.237 ± 243.795  MB/sec
+ZstdInputStreamNoFinalizerBenchmark.createAndClose:gc.alloc.rate.norm                   N/A  avgt   15  131304.026 ±   0.001    B/op
+ZstdInputStreamNoFinalizerBenchmark.createAndClose:gc.count                             N/A  avgt   15    2545.000            counts
+ZstdInputStreamNoFinalizerBenchmark.createAndClose:gc.time                              N/A  avgt   15   47849.000                ms
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput                               1  avgt   15   29812.165 ±  60.898   us/op
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.alloc.rate                 1  avgt   15       4.203 ±   0.009  MB/sec
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.alloc.rate.norm            1  avgt   15  131385.530 ±   0.630    B/op
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.count                      1  avgt   15       3.000            counts
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.time                       1  avgt   15      32.000                ms
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput                               8  avgt   15    3804.810 ±  62.185   us/op
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.alloc.rate                 8  avgt   15      32.928 ±   0.543  MB/sec
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.alloc.rate.norm            8  avgt   15  131349.461 ±   0.315    B/op
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.count                      8  avgt   15     315.000            counts
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.time                       8  avgt   15     404.000                ms
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput                              64  avgt   15     630.953 ±   1.422   us/op
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.alloc.rate                64  avgt   15     198.602 ±   0.447  MB/sec
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.alloc.rate.norm           64  avgt   15  131400.884 ±   0.003    B/op
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.count                     64  avgt   15    1149.000            counts
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.time                      64  avgt   15    2074.000                ms
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput                             512  avgt   15     206.589 ±   0.952   us/op
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.alloc.rate               512  avgt   15     608.632 ±   2.800  MB/sec
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.alloc.rate.norm          512  avgt   15  131848.290 ±   0.002    B/op
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.count                    512  avgt   15    4365.000            counts
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.time                     512  avgt   15    8357.000                ms
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput                            4096  avgt   15     155.799 ±   3.161   us/op
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.alloc.rate              4096  avgt   15     829.249 ±  17.024  MB/sec
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.alloc.rate.norm         4096  avgt   15  135432.219 ±   0.005    B/op
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.count                   4096  avgt   15    5233.000            counts
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.time                    4096  avgt   15   10380.000                ms
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput                           16384  avgt   15     152.474 ±   0.699   us/op
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.alloc.rate             16384  avgt   15     923.916 ±   4.221  MB/sec
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.alloc.rate.norm        16384  avgt   15  147720.214 ±   0.001    B/op
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.count                  16384  avgt   15    5262.000            counts
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.time                   16384  avgt   15   10016.000                ms
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput                           65536  avgt   15     152.222 ±   1.688   us/op
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.alloc.rate             65536  avgt   15    1233.473 ±  13.485  MB/sec
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.alloc.rate.norm        65536  avgt   15  196872.214 ±   0.003    B/op
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.count                  65536  avgt   15    5080.000            counts
+ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput:gc.time                   65536  avgt   15   10069.000                ms

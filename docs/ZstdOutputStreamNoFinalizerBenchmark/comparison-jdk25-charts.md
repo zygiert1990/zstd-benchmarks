@@ -1,6 +1,6 @@
 # ZstdOutputStreamNoFinalizerBenchmark benchmark comparison — JDK 25
 
-Implementations: `orig` — zstd-jni `1.5.7-16`; `ffm` — branch [support-ffm-api-v1](https://github.com/zygiert1990/zstd-jni/tree/support-ffm-api-v1); `ffm-arena` — branch [support-ffm-api-v1-arena](https://github.com/zygiert1990/zstd-jni/tree/support-ffm-api-v1-arena).
+Implementations: `orig` — zstd-jni `1.5.7-16-LOCAL`; `ffm` — branch [support-ffm-api-v1](https://github.com/zygiert1990/zstd-jni/tree/support-ffm-api-v1); `ffm-arena` — branch [support-ffm-api-v1-arena](https://github.com/zygiert1990/zstd-jni/tree/support-ffm-api-v1-arena).
 
 Input file: **223,634 bytes**.
 
