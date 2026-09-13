@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 496px}
+	#canvas {width: 100%; height: 544px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(31);
+	const levels = Array(34);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -382,49 +382,40 @@
 
 const cpool = [
 'all',
-' AccessInternal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<1097844ul, G1BarrierSet>, (AccessInternal::BarrierType)2, 1097844ul>::oop_access_barrier',
-'`573558ul, G1BarrierSet>, (AccessInternal::BarrierType)3, 573558ul>::oop_access_barrier',
-'!llocTracer::send_allocation_outside_tlab',
-' BitMap::get_next_one_offset',
-' ClassLoaderData::oops_do',
-'!ollectedHeap::array_allocate',
-'/fill_with_object',
-'/supports_object_pinning',
+' AbstractWorkGang::active_workers',
+'!ccessInternal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<1097844ul, G1BarrierSet>, (AccessInternal::BarrierType)2, 1097844ul>::oop_access_barrier',
+' BitMap::at_put_range',
+'(get_next_one_offset',
+' CollectedHeap::array_allocate',
 ' FSE_buildCTable_wksp',
 '$compress_usingCTable_generic.lto_priv.0',
 '$normalizeCount',
 '$writeNCount',
-' G1AllocRegion::fill_up_remaining_space',
+' G1AllocRegion::new_alloc_region_and_allocate',
 '\'ator::old_attempt_allocation',
 '-survivor_attempt_allocation',
-'"CMBitMapClosure::do_addr',
+'"CMBitMap::clear_range',
 '$ConcurrentMarkingTask::work',
 '$DrainMarkingStackClosure::do_void',
 '$RefProcTaskProxy::work',
-'&markTask::work',
-'%ootRegionScanTask::work',
 '$Task::do_marking_step',
-'*regular_clock_call',
-'#ollectedHeap::do_collection_pause_at_safepoint',
-'1free_collection_set',
-'1post_evacuate_collection_set',
-'2rocess_discovered_references',
-')ionSet::iterate_from',
-'"GCAllocRegion::retire',
+'#learBitMapTask::G1ClearBitmapHRClosure::do_heap_region',
+'3work',
+'#ollectedHeap::attempt_allocation_slow',
+'1do_collection_pause_at_safepoint',
+'1evacuate_collection_set',
+'1mem_allocate',
+'1new_gc_alloc_region',
+'5mutator_alloc_region',
+'5region',
 '"PLABAllocator::allocate_direct_or_new_plab',
 '#arEvacuateFollowersClosure::do_void',
 '%ScanThreadState::copy_to_survivor_space',
 '6trim_queue',
 '%Task::work',
-'%allelCleaningTask::work',
 '"RebuildRemSetTask::G1RebuildRemSetHeapRegionClosure::do_heap_region',
 '5work',
-'$mSet::scan_rem_set',
-'#ootRegionScanClosure::do_oop',
 '"STWRefProcTaskProxy::work',
-'#canRSForRegionClosure::do_heap_region',
-':scan_rem_set_roots',
-'!CIdMark::GCIdMark',
 '!angWorker::loop',
 ' HIST_count_parallel_wksp.lto_priv.0',
 '!UF_buildCTable_wksp',
@@ -435,27 +426,29 @@ const cpool = [
 '$simpleQuickSort',
 '$writeCTable_wksp',
 '!andleMark::pop_and_restore',
-'!eapRegionManager::par_iterate',
+'!eapRegion::report_region_type_change',
+',set_eden',
+'*Manager::par_iterate',
+' InstanceKlass::find_field',
+'4local_field',
+'/method_with_idnum',
+'/register_finalizer',
 ' Java_com_github_luben_zstd_ZstdOutputStreamNoFinalizer_compressStream',
 'XreateCStream',
 'WendStream',
 'WresetCStream',
-'!frAllocationTracer::JfrAllocationTracer',
-' LeakProfiler::is_running',
 ' MemAllocator::allocate',
-'!onitor::unlock',
+'!onitor::lock',
 ' ObjArrayAllocator::initialize',
 '!ptoRuntime::new_array_C',
-' PosixSemaphore::signal',
+'-register_finalizer',
+' PosixSemaphore::wait',
 ' RefProcPhase3Task::work',
-'#erenceProcessor::balance_queues',
-'4process_discovered_references',
-'<final_keep_alive_work',
-'<soft_weak_final_refs',
+'#erenceProcessor::process_final_keep_alive_work',
 ' SemaphoreGangTaskDispatcher::coordinator_execute_on_workers',
+'=worker_wait_for_task',
 '!pinPause',
 '!ymbolTable::lookup_only',
-'-possibly_parallel_unlink',
 ' Thread::call_run',
 '&StateTransition::transition_and_fence',
 'Bfrom_native',
@@ -481,35 +474,38 @@ const cpool = [
 '%resetCCtx_internal.lto_priv.0',
 '*_matchState',
 '%seqToCodes',
-' __memcpy_sse2_unaligned_erms',
+' __futex_abstimed_wait_cancelable64',
+'"malloc',
+'#emcpy_sse2_unaligned_erms',
 '%move_avx_unaligned_erms',
 '%set_avx2_unaligned_erms',
-'"new_sem_post',
+'"new_sem_wait_slow64.constprop.0',
 '!new_array_Java',
-' calloc',
-'!lone3',
+'!register_finalizer_Java',
+' clone3',
 '!om/github/luben/zstd/NoPool.get',
 '6Zstd.getArrayBackedBuffer',
-';isError',
+';setCompressionLevel',
 ':OutputStream.<init>',
 'Gclose',
+'Gfinalize',
 'Gwrite',
 'FNoFinalizer.<init>',
 'Rclose',
 'SompressStream',
 'SreateCStream',
 'RendStream',
-'RfreeCStream',
 'RresetCStream',
+'RsetLevel',
 'Rwrite',
-' getrusage',
+'"nstantPoolHandle::~constantPoolHandle',
 ' java/io/FilterOutputStream.<init>',
-'%lang/Thread.run',
+'(OutputStream.<init>',
+'%lang/Object.<init>',
+'*System$2.invokeFinalize',
+'*Thread.run',
 '*ref/Finalizer$FinalizerThread.run',
 '7.runFinalizer',
-'.Reference$ReferenceHandler.run',
-'7.processPendingReferences',
-'7Queue.enqueue',
 '-lect/Method.invoke',
 '%nio/ByteBuffer.allocate',
 ')HeapByteBuffer.<init>',
@@ -521,6 +517,7 @@ const cpool = [
 '5NativeMethodAccessorImpl.invoke',
 'T0',
 '!ni_GetFieldID',
+'\'ObjectClass',
 '\'PrimitiveArrayCritical',
 '$ReleasePrimitiveArrayCritical',
 '$SetLongField',
@@ -528,223 +525,219 @@ const cpool = [
 '$zygiert/ZstdOutputStreamNoFinalizerBenchmark.compressionThroughput',
 ',jmh_generated/ZstdOutputStreamNoFinalizerBenchmark_compressionThroughput_jmhTest.compressionThroughput_AverageTime',
 'mpressionThroughput_avgt_jmhStub',
-'!s::elapsedVTime',
 ' start_thread',
 ' thread_native_entry',
-' void G1CMTask::process_grey_task_entry<true>',
-'\'RebuildRemSetClosure::do_oop_work<unsigned int>',
-'%OopOopIterateDispatch<G1RebuildRemSetClosure>::Table::oop_oop_iterate<InstanceKlass, unsigned int>',
-'>ootRegionScanClosure>::Table::oop_oop_iterate<InstanceKlass, unsigned int>'
+' void G1RebuildRemSetClosure::do_oop_work<unsigned int>',
+'%OopOopIterateBackwardsDispatch<G1ScanEvacuatedObjClosure>::Table::oop_oop_iterate_backwards<InstanceKlass, unsigned int>',
+'2Dispatch<G1RebuildRemSetClosure>::Table::oop_oop_iterate<InstanceKlass, unsigned int>'
 ];
 unpack(cpool);
 
-n(3,2862)
-u(851,450)
-u(1187)
-u(1196)
-u(604)
-u(356,448)
-u(140,6)
-u(180)
-f(36,8,1,2)
-n(132,1)
-u(1204)
-f(188,8,1,2)
-f(1180,9,1,1)
-u(971)
-f(156,6,1,6)
-u(532)
-u(556)
-u(148)
-u(180)
-u(579)
-f(164,6,6,5)
-u(180)
-u(579)
-f(172,6,5,1)
-u(1228)
-u(44)
-u(316)
-f(276,6,1,8)
-u(252,7)
-u(579)
-f(308,7,7,1)
-u(228)
-u(332)
-u(340)
-f(284,6,1,2)
-u(596)
-f(300,6,2)
-u(436)
-u(292)
-u(1220)
-u(1212)
-f(324,6,2,417)
-u(532)
-u(556)
-u(252)
-u(268,406)
-f(260,11,2,404)
-f(244,12,1,5)
-u(116,3)
-u(236,1)
-u(108)
-u(60)
-u(508)
-f(500,14,1,2)
-f(124,13,2)
-f(236,14,1,1)
-u(108)
-u(60)
-u(508)
-f(803,12,1,398)
-f(579,10,398,11)
-f(348,6,11,1)
-f(652,5,1,2)
-u(644)
-u(636)
-u(668)
-u(660)
-u(196)
-u(204,1)
-u(676)
-u(572)
-u(524)
-u(827)
-f(212,11,1)
-u(220)
+n(3,2844)
+u(811,428)
+u(1155)
+u(1164)
 u(548)
-u(564)
-u(540)
-u(20)
-f(984,1,1,2410)
-u(1072)
-u(1080)
-u(1064)
+u(284,427)
+u(116,2)
+u(140)
+u(36)
+f(132,6,2,1)
+u(500)
+u(508)
+u(124)
+u(140)
+u(531)
+f(156,6,1,2)
+u(380)
+f(148,8,1,1)
+u(108)
+u(28)
+u(779)
+f(252,6,1,8)
+u(228)
+f(531,8,1,7)
+f(268,6,7,3)
+u(380)
+u(260)
+f(1188,9,2,1)
+u(1172)
+f(276,6,1,410)
+u(500)
+u(508)
+u(228)
+f(244,10,1,406)
+f(236,11,5,401)
+f(220,12,4,3)
+u(12,1)
+n(92)
+u(460)
+f(100,13,1)
+u(84)
+u(196)
+u(212)
+f(763,12,1,393)
+n(1180,1)
+f(531,10,1,3)
+f(524,6,3,1)
+u(492)
+u(787)
+u(747)
+f(596,5,1)
+u(588)
+u(580)
+u(612)
+u(604)
+u(172)
+u(180)
+u(620)
+u(516)
+u(492)
+u(787)
+u(747)
+f(976,1,1,2415)
+u(1040)
+u(1048)
+u(1032)
+u(1024)
+u(1032)
+u(1120)
+u(1120)
+u(1000)
 u(1056)
 u(1064)
-u(1144)
-u(1144)
-u(1032)
-u(1088)
-u(1096)
-u(1104)
-u(1160)
-u(1168,2410,0,600,1810)
-u(1153)
-u(882,31)
-u(882)
-u(906,29)
-u(865,28)
-u(858)
-u(1042)
-u(1050)
-u(835)
-u(516)
-u(628)
-u(52)
-u(492)
-u(28,1)
+u(1072)
+u(1136)
+u(1144,2415,0,660,1755)
+f(1129,15,1,2414)
+u(842,34)
+u(842,33)
+u(874,30)
+u(825,28)
+u(818)
+u(1010)
+f(1018,22,1,27)
+u(795)
 u(476)
-u(484)
-f(508,28,1,27)
-u(819)
-f(929,19,27,1)
-u(451)
-u(843)
-f(978,18,1,2)
-f(890,16,2,860)
-u(914)
-u(914)
-u(937,859)
-u(459)
-f(747,21,1,858)
-f(739,22,2,856)
-f(755,23,1,855)
-u(723)
-u(691,616)
-u(715)
-f(771,25,616,239)
-u(387,66)
-u(403)
-f(363,28,4,22)
-f(811,29,21,1)
-f(371,28,1,14)
-f(411,29,12,2)
-f(411,30,1,1)
-f(395,28,1,21)
-u(379)
-f(419,28,21,5)
-u(75,2)
-n(83)
-n(99,1)
-f(699,26,1,59)
-u(363,15)
-f(811,28,14,1)
-f(683,27,1,27)
-f(75,28,2,17)
-n(91,3)
-n(99,5)
-f(795,27,5,17)
-f(763,26,17,114)
-f(945,19,114,1)
-f(898,16,1,1519)
+u(572)
+u(44)
+u(452)
+u(188,1)
+u(164)
+u(84)
+u(204)
+u(372)
+u(364)
+f(468,28,1,26)
+f(779,29,1,25)
+f(897,19,25,2)
+u(427)
+f(779,21,1,1)
+f(946,18,1,3)
+f(954,19,1,2)
 u(962)
-f(873,18,3,5)
-n(921,1510)
-f(443,19,2,1508)
-f(747,20,1,1459)
-f(707,21,2,5)
-u(779)
-f(787,23,1,4)
-u(819)
-f(731,21,4,1411)
-u(755)
+u(803)
+u(484)
+u(412)
+u(404)
+f(921,17,2,1)
+u(833)
+f(850,16,1,910)
+u(882)
+u(882)
+u(905)
+u(435)
+f(691,21,1,907)
+u(683)
+f(699,23,1,906)
+u(667)
+u(635,668)
+u(659)
+f(715,25,668,238)
+u(315,74)
+u(331)
+f(291,28,4,23)
+n(299,10)
+f(339,29,9,1)
+f(323,28,1,33)
+u(307)
+f(347,28,33,4)
+f(51,29,1,1)
+n(59)
+n(67)
+f(643,26,1,55)
+u(291,25)
+n(627,19)
+u(51,18)
+n(67,1)
+f(739,27,1,11)
+f(707,26,11,109)
+f(1107,21,109,1)
+n(1115)
+u(556)
+f(866,16,1,1470)
+u(930)
+u(889,1466)
+f(419,19,3,1463)
+f(691,20,2,1436)
+f(651,21,3,7)
 u(723)
-f(691,24,1,1073)
-u(715)
-f(771,24,1073,337)
-u(387,118)
-u(403)
-u(363,49)
-f(811,28,48,1)
-f(371,27,1,13)
-f(411,28,11,2)
-f(395,27,2,55)
-f(379,28,1,54)
-f(419,27,54,1)
-u(75)
-f(699,25,1,73)
-f(363,26,2,32)
-f(811,27,29,3)
-f(683,26,3,24)
-u(75,15)
-n(91,3)
-n(99,6)
-f(795,26,6,15)
-f(763,25,15,146)
-f(811,21,146,41)
-f(1123,20,41,14)
-f(12,21,2,1)
-n(68)
-n(428)
-n(612,5)
-n(620,4)
-f(1131,20,4,22)
-f(612,21,6,3)
-n(620,13)
-f(1139,20,13,12)
-f(612,21,2,5)
-n(620)
-f(953,18,5,1)
-u(467)
-u(1115)
-u(588)
-f(992,1,1)
-u(1001)
-f(1008,1,1)
-u(1022,1,0,1,0)
-u(1025)
+u(731,6)
+u(779)
+f(755,23,6,1)
+f(675,21,1,1389)
+u(699)
+u(667)
+u(635,1064)
+u(659)
+f(715,24,1064,325)
+u(315,103)
+u(331)
+u(291,39)
+n(299,11)
+f(339,28,10,1)
+f(323,27,1,48)
+u(307)
+f(347,27,48,5)
+f(51,28,1,1)
+n(59,2)
+n(75,1)
+f(643,25,1,75)
+u(291,30)
+f(771,27,28,2)
+f(627,26,2,29)
+u(51,25)
+n(67,1)
+n(75,3)
+f(739,26,3,16)
+f(707,25,16,147)
+f(771,21,147,37)
+f(1099,20,37,8)
+u(356,1)
+n(556,3)
+n(564,4)
+f(1107,20,4,8)
+f(556,21,2,1)
+n(564,5)
+f(1115,20,5,9)
+f(556,21,1,5)
+n(564,3)
+f(913,18,3,4)
+u(443)
+u(1083,3)
+u(388,1)
+u(396)
+u(940)
+f(540,21,1)
+n(556)
+f(1091,20,1)
+u(20)
+f(984,1,1)
+u(993)
+u(970)
+u(858)
+u(850)
+u(882)
 
 search();
 </script></body></html>

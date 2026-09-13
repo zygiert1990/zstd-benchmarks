@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 480px}
+	#canvas {width: 100%; height: 608px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(30);
+	const levels = Array(38);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -382,69 +382,60 @@
 
 const cpool = [
 'all',
-' /tmp/libzstd-jni-1.5.7-16-LOCAL10446179170438013465.so',
+' /tmp/libzstd-jni-1.5.7-16-LOCAL1508646371935450267.so',
 ' AccessInternal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<1097844ul, G1BarrierSet>, (AccessInternal::BarrierType)2, 1097844ul>::oop_access_barrier',
+' BarrierSetC2::load_at',
 ' C2Compiler::compile_method',
 '!ollectedHeap::array_allocate',
 '/supports_object_pinning',
 '"mpile::Code_Gen',
 '+mpile',
+')Output',
+')init_buffer',
+')shorten_branches',
 '\'Broker::compiler_thread_loop',
 '/invoke_compiler_on_method',
-'\'dMethod::do_unloading_parallel',
-' G1AllocRegion::new_alloc_region_and_allocate',
-'\'ator::old_attempt_allocation',
-'"CMBitMapClosure::do_addr',
-'$ConcurrentMarkingTask::work',
-'$Task::do_marking_step',
-'#ollectedHeap::new_gc_alloc_region',
-'"PLABAllocator::allocate_direct_or_new_plab',
-'#arEvacuateFollowersClosure::do_void',
+' FSE_buildDTable_internal.lto_priv.0',
+'$decompress_wksp_body_bmi2.constprop.0',
+' G1ParEvacuateFollowersClosure::do_void',
 '%ScanThreadState::copy_to_survivor_space',
 '6trim_queue',
-'%allelCleaningTask::work',
-'"RebuildRemSetTask::G1RebuildRemSetHeapRegionClosure::do_heap_region',
-'5work',
 '"STWRefProcTaskProxy::work',
 '!angWorker::loop',
-'!raphKit::round_double_arguments',
-' HUF_readDTableX2_wksp',
+'!raphKit::access_load_at',
+' HUF_decompress4X2_usingDTable_internal_fast',
+'$readDTableX2_wksp',
+'(Stats_body_bmi2.constprop.0',
 '!andleMark::pop_and_restore',
-'!eapRegion::report_region_type_change',
-',set_old',
-'*Manager::par_iterate',
 ' JavaThread::run',
 '$_com_github_luben_zstd_ZstdInputStreamNoFinalizer_decompressStream',
+'VinitDStream',
 '?_isError',
 ' MemAllocator::allocate',
+' Node::replace_by',
 ' ObjArrayAllocator::initialize',
 '!ptoRuntime::new_array_C',
 ' Parse::Parse',
 '\'do_all_blocks',
 '*call',
 '*field_access',
+'*get_xxx',
 '*one_block',
 '/ytecode',
 '%Generator::generate',
-'!haseCFG::do_global_code_motion',
-'*global_code_motion',
-'*schedule_local',
-'!osixSemaphore::wait',
+'!haseChaitin::Register_Allocate',
+'.Select',
+'.bias_color',
+'!redictedCallGenerator::generate',
 ' RefProcPhase3Task::work',
 '#erenceProcessor::process_final_keep_alive_work',
-'"locIterator::initialize',
+'"gMask::find_first_set',
 '!untime1::new_type_array',
-' SemaphoreGangTaskDispatcher::worker_wait_for_task',
-'!pinPause',
+' SpinPause',
 ' Thread::call_run',
 '&StateTransition::transition_and_fence',
 'Bfrom_native',
 '!ypeArrayKlass::allocate_common',
-'$Func::make',
-'$InstPtr::make',
-'$OopPtr::TypeOopPtr',
-',make_from_klass_common',
-'$Tuple::make_domain',
 ' ZSTD_buildFSETable_body_bmi2.constprop.0',
 '*SeqTable.constprop.0',
 '%decodeLiteralsBlock.lto_priv.0',
@@ -455,17 +446,11 @@ const cpool = [
 ' [break_compiled]',
 '!unknown]',
 ' _HUF_decompress4X2_usingDTable_internal_fast_asm_loop',
-'!_futex_abstimed_wait_cancelable64',
-'"memcpy_sse2_unaligned_erms',
+'!_memcpy_sse2_unaligned_erms',
 '%move_avx_unaligned_erms',
 '%set_avx2_unaligned_erms',
-'"new_sem_wait_slow64.constprop.0',
 '!new_array_Java',
-' ciInstanceKlass::java_mirror',
-'"Klass::java_mirror',
-'"ObjectFactory::get',
-'4_metadata',
-'!lone3',
+' clone3',
 '!om/github/luben/zstd/NoPool.get',
 '6Zstd.getArrayBackedBuffer',
 ';isError',
@@ -473,6 +458,7 @@ const cpool = [
 'Fread',
 'ENoFinalizer.<init>',
 'QdecompressStream',
+'QinitDStream',
 'Qread',
 'UInternal',
 ' java/io/ByteArrayInputStream.<init>',
@@ -488,171 +474,158 @@ const cpool = [
 '!dk/internal/reflect/DelegatingMethodAccessorImpl.invoke',
 '5NativeMethodAccessorImpl.invoke',
 'T0',
-'!ni_GetPrimitiveArrayCritical',
+'!ni_GetFieldID',
+'\'PrimitiveArrayCritical',
 '$ReleasePrimitiveArrayCritical',
 '$SetLongField',
 ' new_type_array Runtime1 stub',
-'!method::do_unloading_oops',
 ' org/openjdk/jmh/runner/BenchmarkHandler$BenchmarkTask.call',
 '$zygiert/ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput',
 ',jmh_generated/ZstdInputStreamNoFinalizerBenchmark_decompressionThroughput_jmhTest.decompressionThroughput_AverageTime',
 'ecompressionThroughput_avgt_jmhStub',
 ' start_thread',
-' thread_native_entry',
-' void G1CMTask::process_grey_task_entry<true>',
-'\'RebuildRemSetClosure::do_oop_work<unsigned int>',
-'%OopOopIterateDispatch<G1CMOopClosure>::Table::oop_oop_iterate<InstanceKlass, unsigned int>',
-'=RebuildRemSetClosure>::Table::oop_oop_iterate<ObjArrayKlass, unsigned int>'
+' thread_native_entry'
 ];
 unpack(cpool);
 
-n(3,2539)
-u(571,7)
-u(697,4)
-n(729,3)
-f(579,1,3,9)
-u(579)
-u(697,5)
-n(729,4)
-f(675,1,4,49)
-u(931)
-u(940)
-u(444)
-u(204,46)
-u(116,1)
-u(124)
-u(108)
-u(948)
-u(964)
-f(172,6,1)
-u(84)
-u(892)
+n(3,2533)
+u(499,14)
+u(577,4)
+n(609,10)
+f(507,1,10,4)
+u(577)
+f(555,1,4,41)
+u(819)
+u(828)
 u(412)
-f(188,6,1)
-u(252)
-u(180)
-u(972)
-u(956)
-f(196,6,1,41)
-u(396)
-u(404)
-u(148)
 u(164,38)
-f(156,11,1,37)
-u(140,1)
-u(100)
-u(92)
-u(132)
-u(244)
-u(236)
-f(603,12,1,36)
-f(435,10,36,3)
-f(428,6,3,2)
-u(388)
-u(627)
-u(595)
-f(260,5,2,3)
-u(68)
-u(76)
-u(28)
-u(60)
-u(52,1)
-u(364)
+u(156)
 u(372)
 u(380)
-f(356,10,1,2)
-u(308)
-u(316)
-u(340)
+u(132)
+u(148,37)
+u(140)
+u(523)
+f(403,10,37,1)
+f(212,5,1,3)
+u(100)
+u(108)
+u(36)
+u(68)
+u(60,2)
+u(76,1)
+u(84)
+u(92)
+u(252)
+f(340,11,1)
 u(348)
-u(324,1)
 u(356)
-u(308)
+u(388)
+f(332,10,1)
+u(276)
+u(284)
 u(316)
-u(340)
-u(348)
 u(324)
-u(212)
-u(476)
-u(508)
-u(500)
-u(484)
-u(492)
-f(332,15,1)
-u(644)
-u(652)
-u(660)
-u(668)
-f(768,1,1,2474)
-u(816)
-u(824)
-u(808)
+u(292)
+u(364)
+u(332)
+u(276)
+u(284)
+u(316)
+u(324)
+u(292)
+u(332)
+u(276)
+u(284)
+u(316)
+u(324)
+u(292)
+u(332)
+u(276)
+u(284)
+u(316)
+u(324)
+u(300)
+u(308)
+u(172)
+u(28)
+f(656,1,1,2474)
+u(704)
+u(712)
+u(696)
+u(688)
+u(696)
+u(784)
+u(784)
+u(664)
+u(720)
+u(728)
+u(736)
 u(800)
 u(808)
-u(896)
-u(896)
-u(776)
-u(832)
-u(840)
-u(848)
-u(912)
-u(920)
-u(905)
-f(706,16,4,3)
-u(722)
-u(722)
-u(694,3,0,2,0)
+u(793)
+f(586,16,6,7)
+u(602)
+u(602)
+u(569,6,0,2,0)
+u(562)
+u(674)
 u(682)
-u(786)
-u(794)
-f(635,23,1,1)
-u(300)
-u(468)
-u(36)
-u(284)
-u(292)
-u(619)
-f(883,23,1)
-u(420)
-u(468)
-u(36)
-u(284)
-u(292)
-u(619)
-f(754,16,1,122)
-n(762,2345)
-u(714)
-f(738,18,103,2242)
-f(745,19,21,2221)
-f(697,20,56,119)
-f(275,21,109,10)
-f(729,20,10,2046)
-f(267,21,156,1887)
-f(563,22,103,192)
-f(11,23,123,6)
-n(547,54)
+u(547,4)
+u(268)
+u(436)
+u(44)
+u(244)
+u(260)
 u(539)
-u(523,4)
-u(515)
-f(531,25,4,2)
-u(219)
-f(555,25,2,48)
-f(611,23,48,9)
-f(859,22,9,604)
-f(20,23,139,15)
-n(44,16)
-n(228,29)
-n(452,202)
-n(460,203)
-f(867,22,203,494)
-f(44,23,96,20)
-n(452,180)
-n(460,198)
-f(875,22,198,494)
-f(20,23,92,20)
-n(452,177)
-n(460,205)
-f(587,21,205,3)
+f(779,23,4,2)
+u(396)
+u(436)
+u(44)
+u(244)
+u(260)
+u(539)
+f(617,19,2,1)
+u(227)
+u(747)
+f(642,16,1,86)
+n(650,2375)
+u(594)
+f(626,18,143,2232)
+f(633,19,21,2211)
+f(577,20,63,144)
+f(235,21,136,8)
+f(609,20,8,2004)
+f(219,21,166,1832)
+f(491,22,78,160)
+f(11,23,87,5)
+n(475,56)
+u(467)
+u(451,2)
+u(443)
+f(459,25,2,7)
+u(179,2)
+n(187,5)
+f(195,27,4,1)
+u(123)
+u(115)
+f(483,25,1,47)
+f(531,23,47,12)
+f(755,22,12,564)
+f(20,23,108,14)
+n(52,13)
+n(204,39)
+n(420,163)
+n(428,227)
+f(763,22,227,518)
+f(52,23,106,21)
+n(420,186)
+n(428,205)
+f(771,22,205,512)
+f(20,23,107,14)
+n(420,160)
+n(428,231)
+f(515,21,231,6)
 
 search();
 </script></body></html>

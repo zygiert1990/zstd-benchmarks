@@ -1,6 +1,6 @@
 # ZstdInputStreamNoFinalizerBenchmark benchmark comparison — JDK 25
 
-Implementations: `orig` — zstd-jni `1.5.7-16-LOCAL`; `ffm` — branch [support-ffm-api-v2](https://github.com/zygiert1990/zstd-jni/tree/support-ffm-api-v2).
+Implementations: `orig` — zstd-jni `1.5.7-16-LOCAL`; `ffm` — branch [<FILL IN REMOTE BRANCH>](<FILL IN REMOTE BRANCH URL>).
 
 Input file: **223,634 bytes**.
 

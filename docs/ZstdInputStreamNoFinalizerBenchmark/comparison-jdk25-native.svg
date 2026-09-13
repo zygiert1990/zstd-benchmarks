@@ -19,37 +19,37 @@
 <line x1="300.0" y1="93" x2="300.0" y2="594" stroke="#6b7280" stroke-width="1.5"/>
 <text x="288" y="142.0" text-anchor="end" class="label">chunkSize=1 byte</text>
 <rect x="300.0" y="117.5" width="650.0" height="18" rx="2" fill="#2563eb"/>
-<text x="956.0" y="130.5" text-anchor="start" class="value">473,206.2 B/op (0.00%)</text>
-<rect x="300.0" y="140.5" width="621.8" height="18" rx="2" fill="#ea580c"/>
-<text x="927.8" y="153.5" text-anchor="start" class="value">★ 452,695.3 B/op (-4.33%)</text>
+<text x="956.0" y="130.5" text-anchor="start" class="value">456,111.7 B/op (0.00%)</text>
+<rect x="300.0" y="140.5" width="641.5" height="18" rx="2" fill="#ea580c"/>
+<text x="947.5" y="153.5" text-anchor="start" class="value">★ 450,163.9 B/op (-1.30%)</text>
 <text x="288" y="208.0" text-anchor="end" class="label">chunkSize=8 bytes</text>
 <rect x="300.0" y="183.5" width="650.0" height="18" rx="2" fill="#2563eb"/>
-<text x="956.0" y="196.5" text-anchor="start" class="value">464,970.5 B/op (0.00%)</text>
-<rect x="300.0" y="206.5" width="630.7" height="18" rx="2" fill="#ea580c"/>
-<text x="936.7" y="219.5" text-anchor="start" class="value">★ 451,137.0 B/op (-2.98%)</text>
+<text x="956.0" y="196.5" text-anchor="start" class="value">452,121.9 B/op (0.00%)</text>
+<rect x="300.0" y="206.5" width="645.6" height="18" rx="2" fill="#ea580c"/>
+<text x="951.6" y="219.5" text-anchor="start" class="value">★ 449,032.9 B/op (-0.68%)</text>
 <text x="288" y="274.0" text-anchor="end" class="label">chunkSize=64 bytes</text>
 <rect x="300.0" y="249.5" width="650.0" height="18" rx="2" fill="#2563eb"/>
-<text x="956.0" y="262.5" text-anchor="start" class="value">468,427.8 B/op (0.00%)</text>
-<rect x="300.0" y="272.5" width="610.9" height="18" rx="2" fill="#ea580c"/>
-<text x="916.9" y="285.5" text-anchor="start" class="value">★ 440,241.8 B/op (-6.02%)</text>
+<text x="956.0" y="262.5" text-anchor="start" class="value">449,191.5 B/op (0.00%)</text>
+<rect x="300.0" y="272.5" width="643.4" height="18" rx="2" fill="#ea580c"/>
+<text x="949.4" y="285.5" text-anchor="start" class="value">★ 444,646.5 B/op (-1.01%)</text>
 <text x="288" y="340.0" text-anchor="end" class="label">chunkSize=512 bytes</text>
 <rect x="300.0" y="315.5" width="650.0" height="18" rx="2" fill="#2563eb"/>
-<text x="956.0" y="328.5" text-anchor="start" class="value">439,699.9 B/op (0.00%)</text>
-<rect x="300.0" y="338.5" width="637.1" height="18" rx="2" fill="#ea580c"/>
-<text x="943.1" y="351.5" text-anchor="start" class="value">★ 430,990.8 B/op (-1.98%)</text>
+<text x="956.0" y="328.5" text-anchor="start" class="value">442,074.0 B/op (0.00%)</text>
+<rect x="300.0" y="338.5" width="638.4" height="18" rx="2" fill="#ea580c"/>
+<text x="944.4" y="351.5" text-anchor="start" class="value">★ 434,188.9 B/op (-1.78%)</text>
 <text x="288" y="406.0" text-anchor="end" class="label">chunkSize=4096 bytes</text>
 <rect x="300.0" y="381.5" width="650.0" height="18" rx="2" fill="#2563eb"/>
-<text x="956.0" y="394.5" text-anchor="start" class="value">431,403.6 B/op (0.00%)</text>
-<rect x="300.0" y="404.5" width="621.1" height="18" rx="2" fill="#ea580c"/>
-<text x="927.1" y="417.5" text-anchor="start" class="value">★ 412,248.1 B/op (-4.44%)</text>
+<text x="956.0" y="394.5" text-anchor="start" class="value">435,172.9 B/op (0.00%)</text>
+<rect x="300.0" y="404.5" width="646.5" height="18" rx="2" fill="#ea580c"/>
+<text x="952.5" y="417.5" text-anchor="start" class="value">★ 432,821.4 B/op (-0.54%)</text>
 <text x="288" y="472.0" text-anchor="end" class="label">chunkSize=16384 bytes</text>
 <rect x="300.0" y="447.5" width="650.0" height="18" rx="2" fill="#2563eb"/>
-<text x="956.0" y="460.5" text-anchor="start" class="value">430,838.2 B/op (0.00%)</text>
-<rect x="300.0" y="470.5" width="626.3" height="18" rx="2" fill="#ea580c"/>
-<text x="932.3" y="483.5" text-anchor="start" class="value">★ 415,116.5 B/op (-3.65%)</text>
+<text x="956.0" y="460.5" text-anchor="start" class="value">437,532.5 B/op (0.00%)</text>
+<rect x="300.0" y="470.5" width="640.1" height="18" rx="2" fill="#ea580c"/>
+<text x="946.1" y="483.5" text-anchor="start" class="value">★ 430,861.9 B/op (-1.52%)</text>
 <text x="288" y="538.0" text-anchor="end" class="label">chunkSize=65536 bytes</text>
 <rect x="300.0" y="513.5" width="650.0" height="18" rx="2" fill="#2563eb"/>
-<text x="956.0" y="526.5" text-anchor="start" class="value">425,471.1 B/op (0.00%)</text>
-<rect x="300.0" y="536.5" width="648.7" height="18" rx="2" fill="#ea580c"/>
-<text x="954.7" y="549.5" text-anchor="start" class="value">★ 424,603.2 B/op (-0.20%)</text>
+<text x="956.0" y="526.5" text-anchor="start" class="value">438,045.0 B/op (0.00%)</text>
+<rect x="300.0" y="536.5" width="644.6" height="18" rx="2" fill="#ea580c"/>
+<text x="950.6" y="549.5" text-anchor="start" class="value">★ 434,397.1 B/op (-0.83%)</text>
 </svg>

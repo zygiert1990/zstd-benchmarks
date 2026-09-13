@@ -5,10 +5,10 @@ set -Eeuo pipefail
 usage() {
     cat <<'EOF'
 Usage:
-  ./run-benchmarks.sh BENCHMARK [ZSTD_VERSION RESULT_NAME]...
+  scripts/run-benchmarks.sh BENCHMARK [ZSTD_VERSION RESULT_NAME]...
 
 Example:
-  ./run-benchmarks.sh ZstdInputStreamNoFinalizerBenchmark \
+  scripts/run-benchmarks.sh ZstdInputStreamNoFinalizerBenchmark \
     1.5.7-16-V1 ffm \
     1.5.7-16-V2-GCC ffm-gcc
 
@@ -35,7 +35,7 @@ if [[ ! $BENCHMARK =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]]; then
     exit 2
 fi
 
-readonly PROJECT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+readonly PROJECT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 readonly POM="$PROJECT_DIR/pom.xml"
 readonly BENCHMARK_JAR="$PROJECT_DIR/target/benchmarks.jar"
 readonly RESULT_DIR="$PROJECT_DIR/docs/$BENCHMARK"

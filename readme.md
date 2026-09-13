@@ -23,7 +23,7 @@ Run the complete benchmark and profiler matrix with a benchmark class followed b
 `zstd-jni` version/result-name pairs:
 
 ```bash
-./run-benchmarks.sh ZstdInputStreamNoFinalizerBenchmark \
+./scripts/run-benchmarks.sh ZstdInputStreamNoFinalizerBenchmark \
   1.5.7-16-V1 ffm \
   1.5.7-16-V2-GCC ffm-gcc
 ```
@@ -43,3 +43,24 @@ The defaults target the benchmark environment recorded in [`docs/readme.md`](doc
 
 Set `DEFAULT_JAVA`, `JAVA_11`, or `ASYNC_PROFILER_LIB` to adjust the executable and profiler paths
 for another local setup.
+
+### Running every benchmark in one go
+
+`scripts/run-all-benchmarks.sh` runs the whole suite sequentially:
+
+```bash
+./scripts/run-all-benchmarks.sh
+```
+
+The invocations live in the `BENCHMARK_RUNS` array at the top of that script — add one line per
+benchmark as new ones appear. By default a failing invocation is reported but does not stop the
+rest; pass `--fail-fast` to abort on the first failure, or `--dry-run` to print the invocations
+without running them. A summary of succeeded/failed runs and the total wall time is printed at the
+end.
+
+### JVM heap settings
+
+Both benchmarks fix the heap via `@Fork(jvmArgsAppend = {"-Xms2g", "-Xmx2g", "-XX:+AlwaysPreTouch"})`
+so the JVM cannot resize the heap during a run and all pages are committed before the first
+iteration. This replaces the JVM defaults (`InitialHeapSize=248M`, `MaxHeapSize=3963M`), where the
+heap would grow while the benchmark was being measured.
