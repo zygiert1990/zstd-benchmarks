@@ -5,7 +5,7 @@ set -Eeuo pipefail
 usage() {
     cat <<'EOF'
 Usage:
-  scripts/run-benchmarks.sh BENCHMARK [ZSTD_VERSION RESULT_NAME]...
+  scripts/run-benchmarks.sh [--mode MODE] BENCHMARK [ZSTD_VERSION RESULT_NAME]...
 
 Example:
   scripts/run-benchmarks.sh ZstdInputStreamNoFinalizerBenchmark \
@@ -13,12 +13,53 @@ Example:
     1.5.7-16-V2-GCC ffm-gcc
 
 The 1.5.7-16-LOCAL artifact is always run under the name "orig".
+
+Modes:
+  ALL         Replace and regenerate all benchmark artifacts (default).
+  GC          Replace only results.txt files.
+  NATIVEMEM   Replace only native-memory summaries and their JMH result files.
+  FLAMEGRAPH  Replace only CPU flamegraphs.
 EOF
 }
 
-if (( $# == 0 )) || [[ ${1:-} == "-h" || ${1:-} == "--help" ]]; then
+MODE=ALL
+while (( $# > 0 )); do
+    case $1 in
+        --mode)
+            if (( $# < 2 )); then
+                echo "Error: --mode requires a value." >&2
+                usage >&2
+                exit 2
+            fi
+            MODE=${2^^}
+            shift 2
+            ;;
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        --)
+            shift
+            break
+            ;;
+        -*)
+            echo "Error: unknown option: $1" >&2
+            usage >&2
+            exit 2
+            ;;
+        *) break ;;
+    esac
+done
+
+if [[ ! $MODE =~ ^(ALL|GC|NATIVEMEM|FLAMEGRAPH)$ ]]; then
+    echo "Error: mode must be ALL, GC, NATIVEMEM, or FLAMEGRAPH: $MODE" >&2
+    exit 2
+fi
+readonly MODE
+
+if (( $# == 0 )); then
     usage
-    exit $(( $# == 0 ? 2 : 0 ))
+    exit 2
 fi
 
 if (( $# % 2 == 0 )); then
@@ -73,7 +114,12 @@ while (( $# > 0 )); do
     SEEN_NAMES["$result_name"]=1
 done
 
-readonly TOTAL_STEPS=$(( ${#VERSIONS[@]} + 15 * (${#VERSIONS[@]} + 1) ))
+TASKS_PER_TARGET=0
+[[ $MODE == ALL || $MODE == GC ]] && TASKS_PER_TARGET=$((TASKS_PER_TARGET + 1))
+[[ $MODE == ALL || $MODE == NATIVEMEM ]] && TASKS_PER_TARGET=$((TASKS_PER_TARGET + ${#CHUNK_SIZES[@]}))
+[[ $MODE == ALL || $MODE == FLAMEGRAPH ]] && TASKS_PER_TARGET=$((TASKS_PER_TARGET + ${#CHUNK_SIZES[@]}))
+readonly TASKS_PER_TARGET
+readonly TOTAL_STEPS=$(( ${#VERSIONS[@]} + TASKS_PER_TARGET * (${#VERSIONS[@]} + 1) ))
 CURRENT_STEP=0
 
 announce() {
@@ -101,7 +147,7 @@ if [[ ! -x $JAVA_11 ]]; then
     echo "Error: Java 11 executable is unavailable: $JAVA_11" >&2
     exit 1
 fi
-if [[ ! -f $ASYNC_PROFILER_LIB ]]; then
+if [[ $MODE != GC && ! -f $ASYNC_PROFILER_LIB ]]; then
     echo "Error: async-profiler library is unavailable: $ASYNC_PROFILER_LIB" >&2
     exit 1
 fi
@@ -173,26 +219,33 @@ run_profiled_benchmarks() {
 
     mkdir -p -- "$destination"
 
-    announce "$result_name on $java_dir: GC benchmark"
-    run_inhibited "$DEFAULT_JAVA" -jar "$BENCHMARK_JAR" "$BENCHMARK" -prof gc \
-        -rf text -rff "$destination/results.txt" "${jvm_option[@]}"
-    completed "$result_name on $java_dir: GC benchmark"
+    if [[ $MODE == ALL || $MODE == GC ]]; then
+        rm -f -- "$destination/results.txt"
+        announce "$result_name on $java_dir: GC benchmark"
+        run_inhibited "$DEFAULT_JAVA" -jar "$BENCHMARK_JAR" "$BENCHMARK" -prof gc \
+            -rf text -rff "$destination/results.txt" "${jvm_option[@]}"
+        completed "$result_name on $java_dir: GC benchmark"
+    fi
 
-    for chunk_size in "${CHUNK_SIZES[@]}"; do
-        local native_profiler_dir="$PROJECT_DIR/target/async-profiler-native-$result_name-$java_dir-$chunk_size"
-        local chunk_destination="$destination/chunk-$chunk_size"
-        local native_raw_output
-        native_raw_output=$(mktemp)
-        rm -rf -- "$native_profiler_dir"
-        mkdir -p -- "$chunk_destination"
+    if [[ $MODE == ALL || $MODE == NATIVEMEM ]]; then
+        for chunk_size in "${CHUNK_SIZES[@]}"; do
+            local native_profiler_dir="$PROJECT_DIR/target/async-profiler-native-$result_name-$java_dir-$chunk_size"
+            local chunk_destination="$destination/chunk-$chunk_size"
+            local native_raw_output
+            native_raw_output=$(mktemp)
+            rm -rf -- "$native_profiler_dir"
+            mkdir -p -- "$chunk_destination"
+            rm -f -- "$chunk_destination/summary-nativemem.txt" \
+                "$chunk_destination/results-nativemem.json"
 
-        announce "$result_name on $java_dir: native-memory profile (chunk $chunk_size)"
-        "$DEFAULT_JAVA" -jar "$BENCHMARK_JAR" "$THROUGHPUT_BENCHMARK" \
-            -p "chunkSize=$chunk_size" \
-            -prof "async:libPath=$ASYNC_PROFILER_LIB;event=nativemem;output=text;dir=$native_profiler_dir" \
-            -f 1 -wi 3 -i 3 "${jvm_option[@]}" \
-            > "$native_raw_output" 2>&1
-        awk '
+            announce "$result_name on $java_dir: native-memory profile (chunk $chunk_size)"
+            run_inhibited "$DEFAULT_JAVA" -jar "$BENCHMARK_JAR" "$THROUGHPUT_BENCHMARK" \
+                -p "chunkSize=$chunk_size" \
+                -prof "async:libPath=$ASYNC_PROFILER_LIB;event=nativemem;output=text;dir=$native_profiler_dir" \
+                -f 1 -wi 3 -i 3 -rf json -rff "$chunk_destination/results-nativemem.json" \
+                "${jvm_option[@]}" \
+                > "$native_raw_output" 2>&1
+            awk '
             /^[[:space:]]+bytes[[:space:]]+percent[[:space:]]+samples[[:space:]]+top[[:space:]]*$/ {
                 capture = 1
                 print
@@ -207,61 +260,77 @@ run_profiled_benchmarks() {
                 next
             }
             capture { exit }
-        ' "$native_raw_output" > "$chunk_destination/summary-nativemem.txt"
-        if [[ ! -s "$chunk_destination/summary-nativemem.txt" ]]; then
-            echo "Error: native-memory summary footer was not found for chunk $chunk_size." >&2
-            exit 1
-        fi
-        rm -f -- "$native_raw_output"
-        rm -rf -- "$native_profiler_dir"
-        completed "$result_name on $java_dir: native-memory profile (chunk $chunk_size); details saved to chunk-$chunk_size/summary-nativemem.txt"
-    done
+            ' "$native_raw_output" > "$chunk_destination/summary-nativemem.txt"
+            if [[ ! -s "$chunk_destination/summary-nativemem.txt" ]]; then
+                echo "Error: native-memory summary footer was not found for chunk $chunk_size." >&2
+                exit 1
+            fi
+            if [[ ! -s "$chunk_destination/results-nativemem.json" ]]; then
+                echo "Error: native-memory JMH result was not written for chunk $chunk_size." >&2
+                exit 1
+            fi
+            rm -f -- "$native_raw_output"
+            rm -rf -- "$native_profiler_dir"
+            completed "$result_name on $java_dir: native-memory profile (chunk $chunk_size); details saved to chunk-$chunk_size"
+        done
+    fi
 
-    for chunk_size in "${CHUNK_SIZES[@]}"; do
-        local profiler_dir="$PROJECT_DIR/target/async-profiler-$result_name-$java_dir-$chunk_size"
-        local flamegraph_destination="$destination/chunk-$chunk_size"
-        local flamegraph
-        rm -rf -- "$profiler_dir"
-        mkdir -p -- "$flamegraph_destination"
+    if [[ $MODE == ALL || $MODE == FLAMEGRAPH ]]; then
+        for chunk_size in "${CHUNK_SIZES[@]}"; do
+            local profiler_dir="$PROJECT_DIR/target/async-profiler-$result_name-$java_dir-$chunk_size"
+            local flamegraph_destination="$destination/chunk-$chunk_size"
+            local flamegraph
+            rm -rf -- "$profiler_dir"
+            mkdir -p -- "$flamegraph_destination"
+            rm -f -- "$flamegraph_destination/flame-cpu-forward.html"
 
-        announce "$result_name on $java_dir: CPU flamegraph (chunk $chunk_size)"
-        run_inhibited "$DEFAULT_JAVA" -jar "$BENCHMARK_JAR" "$THROUGHPUT_BENCHMARK" \
-            -p "chunkSize=$chunk_size" \
-            -prof "async:libPath=$ASYNC_PROFILER_LIB;event=cpu;output=flamegraph;direction=forward;dir=$profiler_dir" \
-            "${jvm_option[@]}"
+            announce "$result_name on $java_dir: CPU flamegraph (chunk $chunk_size)"
+            run_inhibited "$DEFAULT_JAVA" -jar "$BENCHMARK_JAR" "$THROUGHPUT_BENCHMARK" \
+                -p "chunkSize=$chunk_size" \
+                -prof "async:libPath=$ASYNC_PROFILER_LIB;event=cpu;output=flamegraph;direction=forward;dir=$profiler_dir" \
+                "${jvm_option[@]}"
 
-        mapfile -t flamegraphs < <(find "$profiler_dir" -type f -name '*.html' -print)
-        if (( ${#flamegraphs[@]} != 1 )); then
-            echo "Error: expected one flamegraph for chunk $chunk_size; found ${#flamegraphs[@]}." >&2
-            exit 1
-        fi
-        flamegraph=${flamegraphs[0]}
-        cp -- "$flamegraph" "$flamegraph_destination/flame-cpu-forward.html"
-        rm -rf -- "$profiler_dir"
-        completed "$result_name on $java_dir: CPU flamegraph (chunk $chunk_size)"
-    done
+            mapfile -t flamegraphs < <(find "$profiler_dir" -type f -name '*.html' -print)
+            if (( ${#flamegraphs[@]} != 1 )); then
+                echo "Error: expected one flamegraph for chunk $chunk_size; found ${#flamegraphs[@]}." >&2
+                exit 1
+            fi
+            flamegraph=${flamegraphs[0]}
+            cp -- "$flamegraph" "$flamegraph_destination/flame-cpu-forward.html"
+            rm -rf -- "$profiler_dir"
+            completed "$result_name on $java_dir: CPU flamegraph (chunk $chunk_size)"
+        done
+    fi
 }
 
-rm -rf -- "$RESULT_DIR"
-mkdir -p -- "$RESULT_DIR"
+if [[ $MODE == ALL ]]; then
+    rm -rf -- "$RESULT_DIR"
+    mkdir -p -- "$RESULT_DIR"
+elif [[ ! -f $RESULT_DIR/readme.md ]]; then
+    echo "Error: partial mode requires an existing benchmark directory with readme.md: $RESULT_DIR" >&2
+    exit 1
+fi
 
 echo "JDK 11: $JAVA_11"
 echo "Default JDK: $DEFAULT_JAVA"
 echo "async-profiler: $ASYNC_PROFILER_LIB"
 echo "Result directory: $RESULT_DIR"
+echo "Mode: $MODE"
 
-dataset_size=$(wc -c < "$PROJECT_DIR/src/main/resources/dataset-formatted.xml")
-{
-    printf '`orig` results use local artifact `1.5.7-16-LOCAL`.\n\n'
-    for index in "${!VERSIONS[@]}"; do
-        if (( index == 0 )); then
-            continue
-        fi
-        printf '`%s` results use artifact `%s` built from branch: [<FILL IN REMOTE BRANCH>](<FILL IN REMOTE BRANCH URL>)\n\n' \
-            "${RESULT_NAMES[$index]}" "${VERSIONS[$index]}"
-    done
-    printf 'Test dataset has `%s bytes`.\n' "$dataset_size"
-} > "$RESULT_DIR/readme.md"
+if [[ $MODE == ALL ]]; then
+    dataset_size=$(wc -c < "$PROJECT_DIR/src/main/resources/dataset-formatted.xml")
+    {
+        printf '`orig` results use local artifact `1.5.7-16-LOCAL`.\n\n'
+        for index in "${!VERSIONS[@]}"; do
+            if (( index == 0 )); then
+                continue
+            fi
+            printf '`%s` results use artifact `%s` built from branch: [<FILL IN REMOTE BRANCH>](<FILL IN REMOTE BRANCH URL>)\n\n' \
+                "${RESULT_NAMES[$index]}" "${VERSIONS[$index]}"
+        done
+        printf 'Test dataset has `%s bytes`.\n' "$dataset_size"
+    } > "$RESULT_DIR/readme.md"
+fi
 
 for index in "${!VERSIONS[@]}"; do
     version=${VERSIONS[$index]}
@@ -271,7 +340,9 @@ for index in "${!VERSIONS[@]}"; do
     set_zstd_version "$version"
     (cd "$PROJECT_DIR" && mvn clean package)
     completed "benchmark jar with zstd-jni $version ($result_name)"
-    THROUGHPUT_BENCHMARK=$(find_throughput_benchmark)
+    if [[ $MODE != GC ]]; then
+        THROUGHPUT_BENCHMARK=$(find_throughput_benchmark)
+    fi
 
     run_profiled_benchmarks "$result_name" "$JAVA_DEFAULT_DIR" ""
     if [[ $result_name == orig ]]; then
@@ -281,6 +352,6 @@ done
 
 echo
 echo "Benchmark results written to: $RESULT_DIR"
-if (( ${#VERSIONS[@]} > 1 )); then
+if [[ $MODE == ALL ]] && (( ${#VERSIONS[@]} > 1 )); then
     echo "Please replace every remote-branch placeholder in $RESULT_DIR/readme.md."
 fi

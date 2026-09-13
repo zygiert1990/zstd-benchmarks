@@ -15,6 +15,7 @@ Each `jdk-*` child contains one directory per implementation prefix in the runne
 
 - `<prefix>/results.txt`: the full JMH result with `-prof gc`
 - `<prefix>/chunk-<size>/summary-nativemem.txt`: one async-profiler native-allocation summary per profiled chunk size
+- `<prefix>/chunk-<size>/results-nativemem.json`: the JMH score and measurement duration from that native-allocation run
 - `<prefix>/chunk-<size>/flame-cpu-forward.html`: one CPU flamegraph per profiled chunk size
 
 Expect one `orig` triple for JDK 11. Expect `orig` (JNI) and zero or more other prefixes for JDK 25. Discover prefixes from files instead of assuming names such as `ffm` or `ffm-arena`. Report missing or ambiguous members of a triple and do not silently compare partial data.
@@ -39,9 +40,9 @@ Require `docs/readme.md` to record the shared benchmark host's OS, architecture,
 
 Native-memory summaries contain allocation samples, not live or peak native memory. Raw bytes and sample counts vary with the number of operations completed and must not be ranked directly. The helper estimates native allocated bytes per operation as:
 
-`summed sampled allocation bytes * matching JMH time per operation / profiled measurement time`
+`summed sampled allocation bytes / operations inferred from the profiled JMH score and measurement duration`
 
-The repository command profiles the benchmark method ending in `Throughput` at every `chunkSize`, with three 5-second measurement iterations, so the helper defaults to 15 seconds. Normalize each native profile with the matching JMH time for the same chunk size. If the command or run duration changed, pass `--native-seconds` with the actual total measured seconds. Only compare estimates produced with equivalent profiler settings. Call this metric “estimated native allocation per operation,” never “native memory usage” or “peak memory.”
+The repository command profiles the benchmark method ending in `Throughput` at every `chunkSize`. Normalize each native profile with the score and total measurement duration recorded by that same profiled JMH run. Only compare estimates produced with equivalent profiler settings. Call this metric “estimated native allocation per operation,” never “native memory usage” or “peak memory.”
 
 Use flamegraphs as qualitative evidence for hot paths and explain meaningful differences when visually inspected. Do not derive timing percentages or memory quantities from flamegraph widths. Link each flamegraph from the report so a reader can inspect it.
 

@@ -33,6 +33,20 @@ runs additional versions on Java 25, recreates `docs/<BenchmarkName>/`, and rest
 `pom.xml` when it exits. Native-memory summaries and CPU flamegraphs are produced separately for
 every configured `chunkSize`.
 
+By default, every artifact is regenerated. Pass `--mode GC`, `--mode NATIVEMEM`, or
+`--mode FLAMEGRAPH` before the benchmark class to rerun only that part. Partial modes preserve the
+benchmark directory, its metadata, and artifacts belonging to the other modes. For example:
+
+```bash
+./scripts/run-benchmarks.sh --mode NATIVEMEM ZstdOutputStreamNoFinalizerBenchmark \
+  1.5.7-16-FFM ffm \
+  1.5.7-16-FFM-ARENA ffm-arena
+```
+
+Each native-memory run saves both `summary-nativemem.txt` and `results-nativemem.json` in its
+`chunk-<size>/` directory. The comparison helper uses the score and measurement duration from that
+same profiled run to estimate native allocation per operation.
+
 The defaults target the benchmark environment recorded in [`docs/readme.md`](docs/readme.md):
 
 - Ubuntu 22.04.5 LTS on AMD64
