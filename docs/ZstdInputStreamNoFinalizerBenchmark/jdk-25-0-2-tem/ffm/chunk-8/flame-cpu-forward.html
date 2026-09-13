@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 656px}
+	#canvas {width: 100%; height: 672px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(41);
+	const levels = Array(42);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -382,56 +382,52 @@
 
 const cpool = [
 'all',
-' /tmp/libzstd-jni-1.5.7-16-V2494690750842287084.so',
+' /tmp/libzstd-jni-1.5.7-16-V28767047253296862493.so',
 ' C2 Runtime new_array',
-'+register_finalizer',
 '"Compiler::compile_method',
+'!ardTableBarrierSet::on_slowpath_allocation_exit',
 '!lassLoaderData::oops_do',
 '/Graph::roots_cld_do',
 '!ompile::Code_Gen',
 '+mpile',
 '\'Broker::compiler_thread_loop',
 '/invoke_compiler_on_method',
-' FSE_decompress_wksp_body_bmi2.constprop.0',
+' FSE_buildDTable_internal.lto_priv.0',
+'$decompress_wksp_body_bmi2.constprop.0',
 '$readNCount_body_default.lto_priv.0',
-'!inalizerService::on_register',
-' G1Allocator::old_attempt_allocation',
-'"BatchedTask::work',
+' G1AllocRegion::fill_up_remaining_space',
+'\'ator::old_attempt_allocation',
 '"CLDScanClosure::do_cld',
 '#MConcurrentMarkingTask::work',
-'$Task::attempt_termination',
+'$Task::attempt_stealing',
 '*do_marking_step',
+'+rain_local_queue',
 '*process_current_region',
 '"EvacuateRegionsBaseTask::work',
 '1Task::scan_roots',
+'"GCAllocRegion::retire',
 '"PLABAllocator::allocate_direct_or_new_plab',
-'#arCopyClosure<(G1Barrier)0, false>::do_oop',
-'<1, true>::do_oop',
+'#arCopyClosure<(G1Barrier)1, false>::do_oop',
 '%EvacuateFollowersClosure::do_void',
 '%ScanThreadState::allocate_copy_slow',
 '6steal_and_trim_queue',
 '6trim_queue_to_threshold',
-'"RemSetScanState::G1ClearCardTableTask::do_work',
-'#ootProcessor::evacuate_roots',
+'"RootProcessor::evacuate_roots',
 '1process_java_roots',
-'9vm_roots',
 '"STWRefProcProxyTask::work',
-'!CIdMark::~GCIdMark',
 ' HUF_decompress4X2_usingDTable_internal_fast.lto_priv.0',
 '$readDTableX2_wksp',
 '(Stats_body_bmi2.constprop.0',
-' InstanceKlass::register_finalizer',
 ' JavaThread::thread_main_inner',
 '$_com_github_luben_zstd_Zstd_isError',
-' MachNode::ideal_reg',
-'!emAllocator::allocate',
+' MemAllocator::allocate',
+'!utex::lock_without_safepoint_check',
 ' ObjArrayAllocator::initialize',
 '!ptoRuntime::new_array_C',
-'-register_finalizer_C',
-' PhaseChaitin::Register_Allocate',
-'.Split',
+' PhaseCFG::do_global_code_motion',
+'*global_code_motion',
+'*schedule_local',
 ' RefProcKeepAliveFinalPhaseTask::rp_work',
-' SpinPause',
 ' Thread::call_run',
 '!ypeArrayKlass::allocate_common',
 ' WorkerThread::run',
@@ -445,16 +441,18 @@ const cpool = [
 '/Sequences_bmi2.constprop.0',
 '0tream',
 '5_simpleArgs',
-'%freeDCtx',
 '%isError',
 '%nextInputType',
 ')SrcSizeToDecompress',
 ' [unknown]',
 ' _HUF_decompress4X2_usingDTable_internal_fast_asm_loop',
-'!_malloc',
+'!__pthread_mutex_lock',
+'"lll_lock_wait',
+'"malloc',
 '#emmove_avx_unaligned_erms',
 '%set_avx2_unaligned_erms',
-'"tls_get_addr',
+'!int_malloc',
+' bool InstanceRefKlass::try_discover<narrowOop, G1CMOopClosure>',
 ' clone3',
 '!om/github/luben/zstd/NoPool.get',
 '6Zstd.getArrayBackedBuffer',
@@ -462,40 +460,28 @@ const cpool = [
 ':Binding$SizeTRef$Wide.get',
 'Pset',
 'A.decompressStream',
-'BfreeDCtx',
 ':InputStream.<init>',
-'Fclose',
 'Fread',
 'ENoFinalizer.<init>',
-'Qclose',
 'QdecompressStream',
 'Qread',
 'UInternal',
 'QsegmentOf',
 ' java/io/ByteArrayInputStream.read',
-'(FilterInputStream.<init>',
-':read',
-'(InputStream.<init>',
-'%lang/Object.<init>',
-'*Thread.run',
+'(FilterInputStream.read',
+'%lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'1LambdaForm$DMH.0x00000000280c7400.invokeStatic',
-'Nec00.invokeStatic',
-'<MH.0x0000000028061c00.invoke',
+'1LambdaForm$DMH.0x00000000020cec00.invokeStatic',
+'<MH.0x0000000002061c00.invoke',
 'M2000.invokeExact_MT',
 'Ld1c00.invokeExact_MT',
 'M2400.invokeExact_MT',
 'N800.invoke',
 'Nc00.invoke',
-'M3400.invokeExact_MT',
-'Nc00.invokeExact_MT',
-'M4800.invoke',
-'Nc00.invoke',
 '1MethodHandle.invokeBasic',
 '*reflect/Method.invoke',
-'%nio/ByteBuffer.<init>',
-'4allocate',
+'%nio/ByteBuffer.allocate',
 ')HeapByteBuffer.<init>',
 '%util/concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
@@ -509,8 +495,7 @@ const cpool = [
 '[Offset',
 'J.unsafeGetOffset',
 '5NativeMemorySegmentImpl.unsafeGetOffset',
-'5abi/DowncallStub.0x00000000280c7000.invoke',
-'Te800.invoke',
+'5abi/DowncallStub.0x00000000020ce800.invoke',
 '-reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
 ' nep_invoker_blob',
@@ -522,168 +507,152 @@ const cpool = [
 ' thread_native_entry',
 ' void G1CMTask::process_grey_task_entry<true>',
 '%OopOopIterateBackwardsDispatch<G1ScanEvacuatedObjClosure>::Table::oop_oop_iterate_backwards<InstanceKlass, narrowOop>',
-'2Dispatch<G1CMOopClosure>::Table::oop_oop_iterate<ObjArrayKlass, narrowOop>'
+'2Dispatch<G1CMOopClosure>::Table::oop_oop_iterate<InstanceRefKlass, narrowOop>'
 ];
 unpack(cpool);
 
 n(3,2600)
-u(547,34)
-u(617)
-f(555,1,34,15)
-n(595,124)
-u(1099)
-u(1108)
-u(412)
-u(324,1)
+u(507,16)
+u(601)
+f(515,1,16,7)
+n(579,124)
+u(979)
+u(988)
+u(380)
+u(300,1)
 u(76)
 u(84)
-u(36)
+u(28)
 u(68)
 u(60)
-u(380)
-u(388)
-u(340)
-f(428,5,1,123)
-u(124,1)
-u(244)
-u(579)
-f(140,6,1,2)
+u(348)
+u(356)
+u(364)
+f(396,5,1,123)
+u(140,2)
 u(156)
 u(148,1)
-u(403)
-f(164,8,1)
-u(1116)
-u(1132)
-f(172,6,1,2)
-u(180)
+u(164)
+u(996)
+f(172,8,1)
+u(164)
+u(996)
+u(1012)
+u(572)
+f(180,6,1)
+u(188)
 u(252)
-u(260,1)
+u(260)
 u(52)
 u(132)
 u(44)
-u(204)
-f(268,9,1)
-u(196)
-u(236)
-u(1124)
-f(276,6,1,117)
-u(396)
 u(212)
-u(228,9)
-u(236)
-u(571)
-f(236,9,9,108)
-f(220,10,4,1)
-u(188)
-u(116)
-f(571,10,1,102)
-n(1124,1)
-f(284,6,1)
-u(587)
-f(768,1,1,2427)
-u(776)
-u(944)
-u(952)
-u(936)
-u(928)
-u(936)
-u(1064)
-u(1064)
-u(896)
-u(1040)
-u(1048)
-u(816)
-u(808)
-u(784)
-u(1080)
-u(1088)
-u(1073)
-f(658,19,1,12)
-u(682,11)
-u(682)
-f(609,22,2,9)
-u(602)
-u(914)
-u(922)
-u(19,8)
-u(364)
-u(420)
-u(348)
-u(356)
-u(579)
-f(906,26,8,1)
-f(738,20,1)
-u(754)
-u(762)
-u(27)
+u(244)
+f(268,6,1,120)
 u(372)
-u(316)
-u(108)
-f(666,19,1)
-u(689)
+u(220)
+u(236,7)
+u(244)
+f(547,11,1,6)
+f(244,9,6,113)
+f(228,10,3,3)
+u(204)
+u(124)
+f(196,13,1,1)
+u(116)
+f(324,13,1)
+u(523)
+u(531)
+f(547,10,1,105)
+n(1004,2)
+f(704,1,2,2453)
+u(712)
+u(832)
+u(840)
+u(824)
+u(816)
+u(824)
+u(944)
+u(944)
+u(792)
+u(920)
+u(928)
+u(744)
+u(736)
+u(720)
+u(960)
+u(968)
+f(953,18,1,2452)
+f(634,19,25,6)
 u(650)
-u(858)
-u(874)
-u(794)
-u(1026)
-u(866)
-u(882)
-u(1059)
-u(515)
-u(11)
-f(746,19,1,2413)
-u(674)
-f(706,21,17,2396)
-f(713,22,645,1751)
-f(617,23,192,380)
-f(331,24,333,47)
-f(523,25,22,25)
-f(626,23,25,12)
-n(634,16)
-n(697,1132)
-f(642,24,72,1060)
-u(826)
-u(842)
+u(650)
+u(593)
+u(586)
 u(802)
-u(1034)
-f(834,29,132,770)
-u(850)
-f(889,31,54,12)
-n(1059,704)
-f(507,32,75,629)
-f(499,33,93,536)
-f(11,34,285,13)
-n(483,170)
-u(475)
-u(467)
-u(451,6)
-u(291,2)
-n(299,4)
-f(307,39,1,3)
-f(91,40,2,1)
-f(459,37,1,9)
-f(435,38,2,2)
-n(443,5)
-u(99,1)
-n(435,4)
-f(491,37,4,155)
-f(531,34,155,25)
-n(539,10)
-n(563,1)
-n(571,32)
-f(970,29,32,2)
-n(978,69)
-u(978)
-f(986,29,69,7)
-u(1010)
-f(994,29,7,29)
-u(994)
-f(1002,29,29,31)
-u(1010)
-f(1018,29,31,20)
-f(722,23,20,15)
-n(729,4)
-u(963)
+u(810)
+u(19)
+u(340)
+u(36,1)
+n(388,5)
+u(316)
+u(332)
+u(555)
+f(698,19,5,2421)
+f(642,20,9,2412)
+u(666)
+f(673,22,587,1825)
+f(601,23,173,359)
+f(307,24,330,29)
+f(483,25,20,9)
+f(610,23,9,14)
+n(618,19)
+n(658,1245)
+f(626,24,27,1218)
+u(754)
+u(770)
+u(730)
+u(914)
+f(762,29,155,814)
+u(778)
+f(785,31,71,18)
+n(939,725)
+f(475,32,93,632)
+f(467,33,102,530)
+f(11,34,280,7)
+n(451,162)
+u(443)
+u(435)
+u(419,11)
+f(275,38,1,2)
+n(283,8)
+f(291,39,7,1)
+u(99)
+u(91)
+f(427,37,1,14)
+u(107,1)
+n(403,4)
+n(411,9)
+u(107,2)
+n(403,7)
+f(459,37,7,137)
+f(491,34,137,20)
+n(499,12)
+n(539,1)
+u(563)
+f(547,34,1,48)
+f(858,29,48,32)
+n(866,119)
+u(866)
+f(874,29,119,19)
+u(898)
+f(882,29,19,55)
+u(882)
+f(890,29,55,1)
+u(898)
+f(906,29,1,23)
+f(682,23,23,14)
+n(689,1)
+u(851)
 
 search();
 </script></body></html>

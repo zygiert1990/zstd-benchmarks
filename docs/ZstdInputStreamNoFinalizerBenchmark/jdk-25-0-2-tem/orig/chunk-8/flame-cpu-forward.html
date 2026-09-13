@@ -382,52 +382,57 @@
 
 const cpool = [
 'all',
-' BarrierSetC2::compute_liveness_at_stubs',
 ' C1 Runtime new_type_array_blob',
 '!2 Runtime new_array',
 '"Compiler::compile_method',
+'!lassLoaderData::oops_do',
+'/Graph::roots_cld_do',
 '!ompile::Code_Gen',
 '+mpile',
-')Optimize',
-')copy_node_notes_to',
 '\'Broker::compiler_thread_loop',
 '/invoke_compiler_on_method',
-' FSE_readNCount_body_default.lto_priv.0',
-' G1BarrierSetC2::late_barrier_analysis',
-'"CollectedHeap::mem_allocate',
-'1pin_object',
+' FSE_decompress_wksp_body_bmi2.constprop.0',
+' G1CLDScanClosure::do_cld',
+'#odeRootSet::nmethods_do',
+'$llectedHeap::par_iterate_regions_array',
+'2in_object',
 '1unpin_object',
+'"EvacuateRegionsBaseTask::work',
+'1Task::scan_roots',
+'"NMethodClosure::do_nmethod',
 '"ParEvacuateFollowersClosure::do_void',
 '%ScanThreadState::steal_and_trim_queue',
 '6trim_queue_to_threshold',
+'"RemSet::scan_collection_set_code_roots',
+'#ootProcessor::evacuate_roots',
+'1process_java_roots',
 '"STWRefProcProxyTask::work',
-' HUF_decompress4X2_usingDTable_internal_fast',
-'$readDTableX2_wksp',
+'#canAndCountNMethodClosure::do_nmethod',
+'&CodeRootsClosure::do_heap_region',
+' HUF_readDTableX2_wksp',
+'(Stats_body_bmi2.constprop.0',
+' IndexSet::initialize',
 ' JavaFrameAnchor::make_walkable',
 '$Thread::thread_main_inner',
 '$_com_github_luben_zstd_ZstdInputStreamNoFinalizer_decompressStream',
 'VinitDStream',
 '?_isError',
 ' MemAllocator::allocate',
-'.mem_allocate',
 ' ObjArrayAllocator::initialize',
 '!ptoRuntime::new_array_C',
-' PhaseIterGVN::subsume_node',
-'%MacroExpand::expand_lock_node',
-'9macro_nodes',
-'%Output::Output',
+' PhaseChaitin::Register_Allocate',
+'.Split',
+'%IFG::init',
 ' RefProcKeepAliveFinalPhaseTask::rp_work',
 '!untime1::new_type_array',
-' SymbolTable::lookup_only',
-'4shared',
+' Symbol::decrement_refcount',
 ' Thread::call_run',
 '!ypeArrayKlass::allocate_common',
 ' WorkerThread::run',
 ' ZSTD_buildFSETable_body_bmi2.constprop.0',
 '*SeqTable.constprop.0',
 '%decodeLiteralsBlock.lto_priv.0',
-')mpressBegin_usingDDict',
-'/Continue.part.0',
+')mpressContinue.part.0',
 '7Stream',
 '/Sequences_bmi2.constprop.0',
 '0tream',
@@ -437,6 +442,7 @@ const cpool = [
 '!_memmove_avx_unaligned_erms',
 '%set_avx2_unaligned_erms',
 '"tls_get_addr',
+'!dl_update_slotinfo',
 ' clone3',
 '!om/github/luben/zstd/NoPool.get',
 '6Zstd.getArrayBackedBuffer',
@@ -448,148 +454,158 @@ const cpool = [
 'QinitDStream',
 'Qread',
 'UInternal',
-' java/io/FilterInputStream.read',
+' java/io/ByteArrayInputStream.read',
+'(FilterInputStream.read',
 '%lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'1LambdaForm$MH.0x000000002d061000.invoke',
+'1LambdaForm$MH.0x000000001e061000.invoke',
 'N400.invokeExact_MT',
-'*ref/Finalizer.<init>',
-'8register',
-'-lect/Method.invoke',
+'*reflect/Method.invoke',
 '%nio/ByteBuffer.allocate',
 ')HeapByteBuffer.<init>',
 '%util/concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
 '5ThreadPoolExecutor$Worker.run',
 'G.runWorker',
+'!byte_disjoint_arraycopy',
 '!dk/internal/reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
 '!ni_GetFieldID',
 '\'PrimitiveArrayCritical',
 '$ReleasePrimitiveArrayCritical',
 '$SetLongField',
+' nmethod::oops_do_process_weak',
 ' oopDesc* JNIHandles::resolve_impl<0ul, false>',
 '!rg/openjdk/jmh/runner/BenchmarkHandler$BenchmarkTask.call',
 '$zygiert/ZstdInputStreamNoFinalizerBenchmark.decompressionThroughput',
 ',jmh_generated/ZstdInputStreamNoFinalizerBenchmark_decompressionThroughput_jmhTest.decompressionThroughput_AverageTime',
 'ecompressionThroughput_avgt_jmhStub',
 ' start_thread',
-' thread_native_entry'
+' thread_native_entry',
+' update_get_addr'
 ];
 unpack(cpool);
 
-n(3,2542)
-u(403,10)
-u(473,5)
-n(505)
-f(411,1,5,17)
-u(473,12)
-n(505,5)
-f(451,1,5,51)
-u(747)
-u(756)
-u(316)
-u(188,2)
-u(76)
-u(84)
-u(36)
-u(52)
-u(44,1)
-u(276)
-u(100)
-u(12)
-f(60,10,1)
-u(268)
-u(260)
-u(252)
+n(3,2544)
+u(443,9)
+u(521,4)
+n(553,5)
+f(451,1,5,23)
+u(521,9)
+n(553,14)
+f(499,1,14,53)
+u(803)
+u(812)
+u(364)
+u(260,2)
 u(68)
-f(332,5,1,49)
-u(156)
-u(284)
-u(132)
+u(76)
+u(28)
+u(60)
+u(52)
+u(316)
+u(324,1)
+n(332)
+u(244)
+u(483)
+u(819)
+u(491)
+f(380,5,1,51)
+u(132,3)
 u(140,1)
+u(188)
+u(196)
+u(44)
+u(92)
+u(36)
+f(180,7,1,2)
+u(108)
+u(220)
+u(100)
+f(212,11,1,1)
 u(148)
-u(427)
-f(148,9,1,48)
-u(427)
-f(544,1,48,2463)
-u(552)
+u(756)
+f(204,6,1,48)
+u(340)
+u(156)
+u(164,4)
+u(172)
+u(467)
+f(172,9,4,44)
+f(467,10,2,42)
+f(600,1,42,2459)
+u(608)
+u(680)
+u(688)
+u(672)
+u(664)
+u(672)
+u(768)
+u(768)
 u(640)
-u(648)
+u(704)
+u(712)
 u(632)
 u(624)
-u(632)
-u(712)
-u(712)
-u(600)
-u(656)
-u(664)
-u(576)
-u(568)
-u(560)
-u(728)
-u(736)
-u(721)
-u(482,7)
-u(498)
-u(498)
-u(465,5,0,2,0)
-u(458)
-u(610,5,3,2,0)
-u(618,5,3,2,0)
-u(19,2)
+u(616)
+u(784)
+u(792)
+u(777)
+f(530,19,8,5)
+u(546)
+u(546)
+u(518,4,0,3,0)
+u(506)
+u(654,4,1,3,0)
+u(662,4,1,3,0)
+u(11,3)
+u(348)
+u(372)
 u(292)
-u(324)
-u(220)
-u(228,1)
-u(108)
-f(236,30,1)
-u(435)
-f(27,26,1,3)
-u(244)
-u(324)
-u(220)
-u(236)
-u(435)
-f(513,22,3,2)
-u(203)
-u(675)
 u(300)
-u(308,1)
-n(443)
-f(538,19,1,2456)
-u(490)
-f(522,21,5,2451)
-f(529,22,273,2178)
-f(473,23,106,148)
-f(211,24,134,14)
-f(505,23,14,1924)
-f(195,24,178,1741)
-f(395,25,116,243)
-f(363,26,142,1)
-n(379,78)
-u(371)
-u(347,9)
-u(91,3)
-n(339,6)
-f(355,28,6,2)
-u(163,1)
-n(171)
-f(387,28,1,67)
-f(427,26,67,22)
-f(683,25,22,561)
-f(116,26,465,63)
-n(180,15)
-n(708,18)
-f(691,25,18,420)
-f(124,26,342,65)
-n(180,13)
-f(699,25,13,401)
-f(180,26,382,19)
-f(419,24,19,5)
-f(593,1,5,1)
-u(586)
+u(475)
+f(19,26,3,1)
+u(308)
+u(372)
+u(292)
+u(300)
+u(475)
+f(561,22,1)
+u(275)
+u(723)
+u(356)
+f(594,19,1,2446)
+f(538,20,8,2438)
+f(570,21,4,2434)
+f(577,22,289,2145)
+f(521,23,103,148)
+f(283,24,135,13)
+f(553,23,13,1892)
+f(267,24,178,1706)
+f(435,25,108,236)
+f(419,26,140,74)
+u(411)
+u(395,2)
+u(387)
+f(403,28,2)
+u(227)
+f(235,30,1,1)
+u(83)
+f(427,28,1,70)
+f(467,26,70,22)
+f(731,25,22,532)
+f(116,26,447,54)
+n(252,15)
+n(764,16)
+f(739,25,16,423)
+f(124,26,347,52)
+n(252,24)
+f(747,25,24,407)
+f(252,26,386,21)
+f(459,24,21,8)
+f(585,23,8,2)
+u(699)
 
 search();
 </script></body></html>

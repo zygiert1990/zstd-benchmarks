@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 640px}
+	#canvas {width: 100%; height: 608px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(40);
+	const levels = Array(38);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -382,12 +382,13 @@
 
 const cpool = [
 'all',
-' /tmp/libzstd-jni-1.5.7-16-V218435670758729188999.so',
+' C1 Runtime new_type_array_blob',
 ' Java_com_github_luben_zstd_Zstd_isError',
-' ZSTD_buildFSETable_body_bmi2.constprop.0',
-'*SeqTable.constprop.0',
-'%decodeSeqHeaders',
-')mpressBlock_internal',
+' MemAllocator::allocate',
+' ObjArrayAllocator::initialize',
+' Runtime1::new_type_array',
+' TypeArrayKlass::allocate_common',
+' ZSTD_decompressBlock_internal',
 '/Continue',
 '7Stream',
 '/Sequences_bmi2.constprop.0',
@@ -396,15 +397,21 @@ const cpool = [
 '%isError',
 '%nextInputType',
 ')SrcSizeToDecompress',
-' [unknown]',
+' [break_compiled]',
+'!unknown]',
 ' _HUF_decompress4X2_usingDTable_internal_fast_asm_loop',
 '!_memmove_avx_unaligned_erms',
-' com/github/luben/zstd/Zstd.isError',
+'%set_avx2_unaligned_erms',
+' com/github/luben/zstd/NoPool.get',
+'6Zstd.getArrayBackedBuffer',
+';isError',
 ':Binding$SizeTRef$Wide.get',
 'Pset',
 'A.decompressStream',
-':InputStream.read',
-'ENoFinalizer.decompressStream',
+':InputStream.<init>',
+'Fread',
+'ENoFinalizer.<init>',
+'QdecompressStream',
 'Qread',
 'UInternal',
 'QsegmentOf',
@@ -413,8 +420,8 @@ const cpool = [
 '%lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'1LambdaForm$DMH.0x00000000190cec00.invokeStatic',
-'<MH.0x0000000019061c00.invoke',
+'1LambdaForm$DMH.0x00000000130cec00.invokeStatic',
+'<MH.0x0000000013061c00.invoke',
 'M2000.invokeExact_MT',
 'Ld1c00.invokeExact_MT',
 'M2400.invokeExact_MT',
@@ -422,19 +429,20 @@ const cpool = [
 'Nc00.invoke',
 '1MethodHandle.invokeBasic',
 '*reflect/Method.invoke',
+'%nio/ByteBuffer.allocate',
+')HeapByteBuffer.<init>',
 '%util/concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
 '5ThreadPoolExecutor$Worker.run',
 'G.runWorker',
 '!byte_disjoint_arraycopy',
-'!dk/internal/foreign/AbstractMemorySegmentImpl.sessionImpl',
-'5HeapMemorySegmentImpl$OfByte.unsafeGetBase',
+'!dk/internal/foreign/HeapMemorySegmentImpl$OfByte.unsafeGetBase',
 '[Offset',
 'MLong.unsafeGetBase',
 '[Offset',
 'J.unsafeGetOffset',
 '5NativeMemorySegmentImpl.unsafeGetOffset',
-'5abi/DowncallStub.0x00000000190ce800.invoke',
+'5abi/DowncallStub.0x00000000130ce800.invoke',
 '-reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
 ' nep_invoker_blob',
@@ -446,72 +454,82 @@ const cpool = [
 unpack(cpool);
 
 n(3,2503)
-u(123,24)
-u(145)
-f(131,1,24,2)
-n(232,2477)
-u(240)
-u(344)
-u(352)
-u(336)
+u(131,1)
+u(185)
+f(139,1,1,32)
+u(185)
+f(147,1,32,3)
+n(288,2467)
+u(296)
+u(416)
+u(424)
+u(408)
+u(400)
+u(408)
+u(520)
+u(520)
+u(376)
+u(496)
+u(504)
 u(328)
-u(336)
-u(456)
-u(456)
 u(320)
-u(432)
-u(440)
-u(272)
-u(264)
-u(248)
-u(472)
-u(480)
-f(465,18,1,2476)
-f(226,19,1,2475)
-u(178)
-f(194,21,14,2461)
-f(201,22,643,1818)
-f(145,23,213,415)
-f(19,24,376,39)
-f(99,25,19,20)
-f(154,23,20,17)
-n(162,18)
-n(185,1140)
-f(170,24,86,1054)
-u(282)
-u(298)
-u(258)
-u(426)
-f(290,29,128,743)
-u(306)
-f(313,31,57,11)
-n(451,675)
-f(91,32,96,579)
-f(83,33,101,478)
-f(11,34,380,11)
-n(67,24)
+u(304)
+u(536)
+u(544)
+f(529,18,1,2466)
+f(218,19,32,1)
+u(234)
+u(234)
+u(182,1,0,1,0)
+u(170)
+u(390,1,0,1,0)
+u(398,1,0,1,0)
+u(11)
+u(44)
+u(52)
+u(28)
+u(36)
+u(163)
+f(282,19,1,2433)
+f(226,20,12,2421)
+u(250)
+f(257,22,666,1755)
+f(185,23,251,391)
+f(19,24,344,47)
+f(107,25,27,20)
+f(194,23,20,14)
+n(202,24)
+n(241,1057)
+f(210,24,56,1001)
+u(338)
+u(354)
+u(314)
+u(490)
+f(346,29,147,656)
+u(362)
+f(369,31,58,14)
+n(515,584)
+f(99,32,97,487)
+f(91,33,74,413)
+f(75,34,311,26)
+u(67)
 u(59)
-u(51)
-u(43,1)
-u(35)
-u(27)
-f(75,37,1,23)
-f(107,34,23,22)
-n(115,10)
-n(139,31)
-f(370,29,31,1)
-n(378,82)
-u(378)
-f(386,29,82,13)
-u(410)
-f(394,29,13,33)
-u(394)
-f(402,29,33,38)
-u(410)
-f(418,29,38,16)
-f(210,23,16,14)
-n(222,1,0,1,0)
-u(363)
+u(83)
+f(115,34,26,25)
+n(123,12)
+n(155,39)
+f(442,29,39,65)
+u(442)
+f(450,29,65,11)
+u(474)
+f(458,29,11,75)
+u(458)
+f(466,29,75,26)
+u(474)
+f(482,29,26,21)
+f(266,23,21,17)
+n(278,1,0,1,0)
+u(435)
 
 search();
 </script></body></html>
