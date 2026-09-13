@@ -19,3 +19,22 @@ of the script location, so an absolute directory path also works when invoking t
 outside the repository.
 
 Use `python3 scripts/compare_benchmarks.py --help` to list command-line options.
+
+## Run several configured benchmarks
+
+`run-all-benchmarks.sh` runs every entry in its `BENCHMARK_RUNS` array when called without
+benchmark names:
+
+```bash
+./scripts/run-all-benchmarks.sh
+```
+
+Pass one or more configured benchmark class names to run only that selection:
+
+```bash
+./scripts/run-all-benchmarks.sh \
+  ZstdInputStreamNoFinalizerBenchmark \
+  ZstdOutputStreamNoFinalizerBenchmark
+```
+
+Use `--dry-run` to inspect the resulting `run-benchmarks.sh` commands without executing them.
