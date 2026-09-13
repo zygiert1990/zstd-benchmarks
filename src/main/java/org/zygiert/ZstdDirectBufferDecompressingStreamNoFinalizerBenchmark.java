@@ -1,12 +1,22 @@
 package org.zygiert;
 
 import com.github.luben.zstd.Zstd;
-import com.github.luben.zstd.ZstdInputStream;
-import org.openjdk.jmh.annotations.*;
+import com.github.luben.zstd.ZstdDirectBufferDecompressingStream;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Fork;
+import org.openjdk.jmh.annotations.Measurement;
+import org.openjdk.jmh.annotations.Mode;
+import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Param;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.Warmup;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
@@ -16,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 @Fork(value = 3, jvmArgsAppend = {"-Xms2g", "-Xmx2g", "-XX:+AlwaysPreTouch", "-XX:+UseG1GC"})
 @Warmup(iterations = 3, time = 3, timeUnit = TimeUnit.SECONDS)
 @Measurement(iterations = 5, time = 5, timeUnit = TimeUnit.SECONDS)
-public class ZstdInputStreamNoFinalizerBenchmark {
+public class ZstdDirectBufferDecompressingStreamNoFinalizerBenchmark {
 
     private static final int LEVEL = 1;
 
@@ -27,25 +37,27 @@ public class ZstdInputStreamNoFinalizerBenchmark {
         @Param({"1", "8", "64", "512", "4096", "16384", "65536"})
         private int chunkSize;
 
-        private byte[] compressedData;
-        private byte[] target;
+        private ByteBuffer compressedData;
+        private ByteBuffer target;
 
-        @Setup()
+        @Setup
         public void setup() throws IOException {
             try (InputStream is = getClass().getResourceAsStream("/dataset-formatted.xml")) {
-                this.compressedData = Zstd.compress(is.readAllBytes(), LEVEL);
+                byte[] compressed = Zstd.compress(is.readAllBytes(), LEVEL);
+                this.compressedData = ByteBuffer.allocateDirect(compressed.length);
+                this.compressedData.put(compressed).flip();
             }
-            this.target = new byte[chunkSize];
+            this.target = ByteBuffer.allocateDirect(chunkSize);
         }
     }
 
     @Benchmark
     public int decompressionThroughput(ThroughputState state) throws IOException {
         int totalBytesRead = 0;
-        try (ZstdInputStream in = new ZstdInputStream(new ByteArrayInputStream(state.compressedData))) {
-            int bytesRead;
-            while ((bytesRead = in.read(state.target)) != -1) {
-                totalBytesRead += bytesRead;
+        try (ZstdDirectBufferDecompressingStream in = new ZstdDirectBufferDecompressingStream(state.compressedData.duplicate())) {
+            while (in.hasRemaining()) {
+                state.target.clear();
+                totalBytesRead += in.read(state.target);
             }
         }
         return totalBytesRead;
@@ -53,7 +65,8 @@ public class ZstdInputStreamNoFinalizerBenchmark {
 
     @Benchmark
     public void createAndClose() throws IOException {
-        try (ZstdInputStream in = new ZstdInputStream(InputStream.nullInputStream())) {
+        try (ZstdDirectBufferDecompressingStream in =
+                     new ZstdDirectBufferDecompressingStream(ByteBuffer.allocateDirect(0))) {
             // no reads — isolates construction/teardown cost only
         }
     }

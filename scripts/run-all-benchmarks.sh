@@ -7,6 +7,8 @@ set -Eeuo pipefail
 readonly -a BENCHMARK_RUNS=(
     "ZstdInputStreamNoFinalizerBenchmark 1.5.7-16-V2 ffm"
     "ZstdOutputStreamNoFinalizerBenchmark 1.5.7-16-FFM ffm 1.5.7-16-FFM-ARENA ffm-arena"
+    "ZstdBufferDecompressingStreamNoFinalizerBenchmark 1.5.7-16-V3 ffm"
+    "ZstdDirectBufferDecompressingStreamNoFinalizerBenchmark 1.5.7-16-V3 ffm"
 )
 
 usage() {
