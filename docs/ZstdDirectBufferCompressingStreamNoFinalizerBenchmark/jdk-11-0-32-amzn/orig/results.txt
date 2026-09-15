@@ -1,0 +1,34 @@
+Benchmark                                                                                       (chunkSize)  Mode  Cnt      Score    Error   Units
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput                               1  avgt   15  36905.436 ± 58.918   us/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.alloc.rate                 1  avgt   15      0.006 ±  0.001  MB/sec
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.alloc.rate.norm            1  avgt   15    227.224 ±  0.104    B/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.count                      1  avgt   15        ≈ 0           counts
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput                               8  avgt   15   4994.486 ± 14.177   us/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.alloc.rate                 8  avgt   15      0.036 ±  0.001  MB/sec
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.alloc.rate.norm            8  avgt   15    189.944 ±  0.158    B/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.count                      8  avgt   15        ≈ 0           counts
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput                              64  avgt   15    978.899 ±  0.967   us/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.alloc.rate                64  avgt   15      0.180 ±  0.001  MB/sec
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.alloc.rate.norm           64  avgt   15    185.151 ±  0.004    B/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.count                     64  avgt   15        ≈ 0           counts
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput                             512  avgt   15    484.443 ±  2.911   us/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.alloc.rate               512  avgt   15      0.363 ±  0.002  MB/sec
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.alloc.rate.norm          512  avgt   15    184.570 ±  0.003    B/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.count                    512  avgt   15        ≈ 0           counts
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput                            4096  avgt   15    420.639 ±  1.104   us/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.alloc.rate              4096  avgt   15      0.418 ±  0.001  MB/sec
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.alloc.rate.norm         4096  avgt   15    184.495 ±  0.002    B/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.count                   4096  avgt   15        ≈ 0           counts
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput                           16384  avgt   15    414.029 ±  1.796   us/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.alloc.rate             16384  avgt   15      0.425 ±  0.002  MB/sec
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.alloc.rate.norm        16384  avgt   15    184.487 ±  0.002    B/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.count                  16384  avgt   15        ≈ 0           counts
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput                           65536  avgt   15    411.629 ±  2.481   us/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.alloc.rate             65536  avgt   15      0.427 ±  0.003  MB/sec
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.alloc.rate.norm        65536  avgt   15    184.490 ±  0.014    B/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.compressionThroughput:gc.count                  65536  avgt   15        ≈ 0           counts
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.createAndClose                                    N/A  avgt   15      1.026 ±  0.115   us/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.createAndClose:gc.alloc.rate                      N/A  avgt   15    240.286 ± 25.848  MB/sec
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.createAndClose:gc.alloc.rate.norm                 N/A  avgt   15    256.001 ±  0.001    B/op
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.createAndClose:gc.count                           N/A  avgt   15    129.000           counts
+ZstdDirectBufferCompressingStreamNoFinalizerBenchmark.createAndClose:gc.time                            N/A  avgt   15  17484.000               ms
