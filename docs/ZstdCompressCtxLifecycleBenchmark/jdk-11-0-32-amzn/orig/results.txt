@@ -1,0 +1,6 @@
+Benchmark                                                                              Mode  Cnt    Score    Error   Units
+ZstdCompressCtxLifecycleBenchmark.createSetLevelAndCloseThroughput                     avgt   15    0.302 ±  0.014   us/op
+ZstdCompressCtxLifecycleBenchmark.createSetLevelAndCloseThroughput:gc.alloc.rate       avgt   15  126.392 ±  5.844  MB/sec
+ZstdCompressCtxLifecycleBenchmark.createSetLevelAndCloseThroughput:gc.alloc.rate.norm  avgt   15   40.000 ±  0.001    B/op
+ZstdCompressCtxLifecycleBenchmark.createSetLevelAndCloseThroughput:gc.count            avgt   15    9.000           counts
+ZstdCompressCtxLifecycleBenchmark.createSetLevelAndCloseThroughput:gc.time             avgt   15   24.000               ms

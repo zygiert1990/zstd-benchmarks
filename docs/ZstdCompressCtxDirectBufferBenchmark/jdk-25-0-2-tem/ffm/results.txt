@@ -1,0 +1,5 @@
+Benchmark                                                                      Mode  Cnt    Score   Error   Units
+ZstdCompressCtxDirectBufferBenchmark.compressionThroughput                     avgt   15  333.151 ± 1.021   us/op
+ZstdCompressCtxDirectBufferBenchmark.compressionThroughput:gc.alloc.rate       avgt   15    0.010 ± 0.020  MB/sec
+ZstdCompressCtxDirectBufferBenchmark.compressionThroughput:gc.alloc.rate.norm  avgt   15    3.614 ± 6.901    B/op
+ZstdCompressCtxDirectBufferBenchmark.compressionThroughput:gc.count            avgt   15      ≈ 0          counts

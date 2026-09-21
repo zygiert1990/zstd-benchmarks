@@ -1,0 +1,29 @@
+Benchmark                                                                      (chunkSize)  Mode  Cnt      Score    Error   Units
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput                               1  avgt   15  29191.043 ± 46.608   us/op
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.alloc.rate                 1  avgt   15      0.001 ±  0.001  MB/sec
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.alloc.rate.norm            1  avgt   15     34.382 ±  0.446    B/op
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.count                      1  avgt   15        ≈ 0           counts
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput                               8  avgt   15   4014.128 ±  5.886   us/op
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.alloc.rate                 8  avgt   15      0.001 ±  0.001  MB/sec
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.alloc.rate.norm            8  avgt   15      4.765 ±  0.071    B/op
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.count                      8  avgt   15        ≈ 0           counts
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput                              64  avgt   15    855.744 ±  3.071   us/op
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.alloc.rate                64  avgt   15      0.001 ±  0.001  MB/sec
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.alloc.rate.norm           64  avgt   15      1.011 ±  0.013    B/op
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.count                     64  avgt   15        ≈ 0           counts
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput                             512  avgt   15    465.600 ±  1.840   us/op
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.alloc.rate               512  avgt   15      0.001 ±  0.001  MB/sec
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.alloc.rate.norm          512  avgt   15      0.550 ±  0.008    B/op
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.count                    512  avgt   15        ≈ 0           counts
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput                            4096  avgt   15    421.761 ±  2.170   us/op
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.alloc.rate              4096  avgt   15      0.001 ±  0.001  MB/sec
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.alloc.rate.norm         4096  avgt   15      0.499 ±  0.007    B/op
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.count                   4096  avgt   15        ≈ 0           counts
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput                           16384  avgt   15    417.462 ±  4.879   us/op
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.alloc.rate             16384  avgt   15      0.001 ±  0.001  MB/sec
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.alloc.rate.norm        16384  avgt   15      0.494 ±  0.008    B/op
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.count                  16384  avgt   15        ≈ 0           counts
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput                           65536  avgt   15    415.556 ±  2.058   us/op
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.alloc.rate             65536  avgt   15      0.001 ±  0.001  MB/sec
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.alloc.rate.norm        65536  avgt   15      0.491 ±  0.007    B/op
+ZstdCompressCtxStreamDirectBenchmark.compressionThroughput:gc.count                  65536  avgt   15        ≈ 0           counts

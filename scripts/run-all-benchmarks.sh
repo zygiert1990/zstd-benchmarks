@@ -10,6 +10,15 @@ readonly -a BENCHMARK_RUNS=(
     "ZstdDirectBufferCompressingStreamNoFinalizerBenchmark 1.5.7-16-V4 ffm"
     "ZstdBufferDecompressingStreamNoFinalizerBenchmark 1.5.7-16-V3 ffm"
     "ZstdDirectBufferDecompressingStreamNoFinalizerBenchmark 1.5.7-16-V3 ffm"
+    "ZstdCompressCtxByteArrayBenchmark 1.5.7-17-V5 ffm"
+    "ZstdCompressCtxDirectBufferBenchmark 1.5.7-17-V5 ffm"
+    "ZstdCompressCtxStreamHeapBenchmark 1.5.7-17-V5 ffm"
+    "ZstdCompressCtxStreamDirectBenchmark 1.5.7-17-V5 ffm"
+    "ZstdCompressCtxStreamHeapToDirectBenchmark 1.5.7-17-V5 ffm"
+    "ZstdCompressCtxStreamDirectToHeapBenchmark 1.5.7-17-V5 ffm"
+    "ZstdCompressCtxStreamHeapBufferSizeBenchmark 1.5.7-17-V5 ffm"
+    "ZstdCompressCtxLifecycleBenchmark 1.5.7-17-V5 ffm"
+    "ZstdCompressCtxFrameProgressionBenchmark 1.5.7-17-V5 ffm"
 )
 
 usage() {

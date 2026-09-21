@@ -85,7 +85,24 @@ readonly JAVA_11=${JAVA_11:-$HOME/.sdkman/candidates/java/11.0.32-amzn/bin/java}
 readonly ASYNC_PROFILER_LIB=${ASYNC_PROFILER_LIB:-$HOME/tools/async-profiler-4.5-linux-x64/lib/libasyncProfiler.so}
 readonly JAVA_DEFAULT_DIR=${JAVA_DEFAULT_DIR:-jdk-25-0-2-tem}
 readonly JAVA_11_DIR=${JAVA_11_DIR:-jdk-11-0-32-amzn}
-readonly -a CHUNK_SIZES=(1 8 64 512 4096 16384 65536)
+# Existing chunk sweeps retain their directory layout and profiler settings.
+PROFILE_PARAMETER=chunkSize
+PROFILE_PREFIX=chunk-
+PROFILE_VALUES=(1 8 64 512 4096 16384 65536)
+case $BENCHMARK in
+    ZstdCompressCtxStreamHeapBufferSizeBenchmark)
+        PROFILE_PARAMETER=bufferSize
+        PROFILE_PREFIX=buffer-
+        PROFILE_VALUES=(262144 524288 1048576 2097152)
+        ;;
+    ZstdCompressCtxByteArrayBenchmark|ZstdCompressCtxDirectBufferBenchmark|ZstdCompressCtxFrameProgressionBenchmark|ZstdCompressCtxLifecycleBenchmark)
+        PROFILE_PARAMETER=
+        PROFILE_PREFIX=
+        PROFILE_VALUES=(default)
+        ;;
+esac
+readonly PROFILE_PARAMETER PROFILE_PREFIX
+readonly -a PROFILE_VALUES
 
 declare -a VERSIONS=("1.5.7-16-LOCAL")
 declare -a RESULT_NAMES=("orig")
@@ -116,8 +133,8 @@ done
 
 TASKS_PER_TARGET=0
 [[ $MODE == ALL || $MODE == GC ]] && TASKS_PER_TARGET=$((TASKS_PER_TARGET + 1))
-[[ $MODE == ALL || $MODE == NATIVEMEM ]] && TASKS_PER_TARGET=$((TASKS_PER_TARGET + ${#CHUNK_SIZES[@]}))
-[[ $MODE == ALL || $MODE == FLAMEGRAPH ]] && TASKS_PER_TARGET=$((TASKS_PER_TARGET + ${#CHUNK_SIZES[@]}))
+[[ $MODE == ALL || $MODE == NATIVEMEM ]] && TASKS_PER_TARGET=$((TASKS_PER_TARGET + ${#PROFILE_VALUES[@]}))
+[[ $MODE == ALL || $MODE == FLAMEGRAPH ]] && TASKS_PER_TARGET=$((TASKS_PER_TARGET + ${#PROFILE_VALUES[@]}))
 readonly TASKS_PER_TARGET
 readonly TOTAL_STEPS=$(( ${#VERSIONS[@]} + TASKS_PER_TARGET * (${#VERSIONS[@]} + 1) ))
 CURRENT_STEP=0
@@ -209,9 +226,10 @@ run_profiled_benchmarks() {
     local java_dir=$2
     local jvm=$3
     local destination="$RESULT_DIR/$java_dir/$result_name"
-    local chunk_size
+    local profile_value
     local -a jvm_option=()
     local -a flamegraphs=()
+    local -a profile_option=()
 
     if [[ -n $jvm ]]; then
         jvm_option=(-jvm "$jvm")
@@ -228,9 +246,13 @@ run_profiled_benchmarks() {
     fi
 
     if [[ $MODE == ALL || $MODE == NATIVEMEM ]]; then
-        for chunk_size in "${CHUNK_SIZES[@]}"; do
-            local native_profiler_dir="$PROJECT_DIR/target/async-profiler-native-$result_name-$java_dir-$chunk_size"
-            local chunk_destination="$destination/chunk-$chunk_size"
+        for profile_value in "${PROFILE_VALUES[@]}"; do
+            profile_option=()
+            if [[ -n $PROFILE_PARAMETER ]]; then
+                profile_option=(-p "$PROFILE_PARAMETER=$profile_value")
+            fi
+            local native_profiler_dir="$PROJECT_DIR/target/async-profiler-native-$result_name-$java_dir-$profile_value"
+            local chunk_destination="$destination/$PROFILE_PREFIX$profile_value"
             local native_raw_output
             native_raw_output=$(mktemp)
             rm -rf -- "$native_profiler_dir"
@@ -238,9 +260,9 @@ run_profiled_benchmarks() {
             rm -f -- "$chunk_destination/summary-nativemem.txt" \
                 "$chunk_destination/results-nativemem.json"
 
-            announce "$result_name on $java_dir: native-memory profile (chunk $chunk_size)"
+            announce "$result_name on $java_dir: native-memory profile (${PROFILE_PARAMETER:-case} $profile_value)"
             run_inhibited "$DEFAULT_JAVA" -jar "$BENCHMARK_JAR" "$THROUGHPUT_BENCHMARK" \
-                -p "chunkSize=$chunk_size" \
+                "${profile_option[@]}" \
                 -prof "async:libPath=$ASYNC_PROFILER_LIB;event=nativemem;output=text;dir=$native_profiler_dir" \
                 -f 1 -wi 3 -i 3 -rf json -rff "$chunk_destination/results-nativemem.json" \
                 "${jvm_option[@]}" \
@@ -262,43 +284,47 @@ run_profiled_benchmarks() {
             capture { exit }
             ' "$native_raw_output" > "$chunk_destination/summary-nativemem.txt"
             if [[ ! -s "$chunk_destination/summary-nativemem.txt" ]]; then
-                echo "Error: native-memory summary footer was not found for chunk $chunk_size." >&2
+                echo "Error: native-memory summary footer was not found for ${PROFILE_PARAMETER:-case} $profile_value." >&2
                 exit 1
             fi
             if [[ ! -s "$chunk_destination/results-nativemem.json" ]]; then
-                echo "Error: native-memory JMH result was not written for chunk $chunk_size." >&2
+                echo "Error: native-memory JMH result was not written for ${PROFILE_PARAMETER:-case} $profile_value." >&2
                 exit 1
             fi
             rm -f -- "$native_raw_output"
             rm -rf -- "$native_profiler_dir"
-            completed "$result_name on $java_dir: native-memory profile (chunk $chunk_size); details saved to chunk-$chunk_size"
+            completed "$result_name on $java_dir: native-memory profile (${PROFILE_PARAMETER:-case} $profile_value); details saved to $PROFILE_PREFIX$profile_value"
         done
     fi
 
     if [[ $MODE == ALL || $MODE == FLAMEGRAPH ]]; then
-        for chunk_size in "${CHUNK_SIZES[@]}"; do
-            local profiler_dir="$PROJECT_DIR/target/async-profiler-$result_name-$java_dir-$chunk_size"
-            local flamegraph_destination="$destination/chunk-$chunk_size"
+        for profile_value in "${PROFILE_VALUES[@]}"; do
+            profile_option=()
+            if [[ -n $PROFILE_PARAMETER ]]; then
+                profile_option=(-p "$PROFILE_PARAMETER=$profile_value")
+            fi
+            local profiler_dir="$PROJECT_DIR/target/async-profiler-$result_name-$java_dir-$profile_value"
+            local flamegraph_destination="$destination/$PROFILE_PREFIX$profile_value"
             local flamegraph
             rm -rf -- "$profiler_dir"
             mkdir -p -- "$flamegraph_destination"
             rm -f -- "$flamegraph_destination/flame-cpu-forward.html"
 
-            announce "$result_name on $java_dir: CPU flamegraph (chunk $chunk_size)"
+            announce "$result_name on $java_dir: CPU flamegraph (${PROFILE_PARAMETER:-case} $profile_value)"
             run_inhibited "$DEFAULT_JAVA" -jar "$BENCHMARK_JAR" "$THROUGHPUT_BENCHMARK" \
-                -p "chunkSize=$chunk_size" \
+                "${profile_option[@]}" \
                 -prof "async:libPath=$ASYNC_PROFILER_LIB;event=cpu;output=flamegraph;direction=forward;dir=$profiler_dir" \
                 "${jvm_option[@]}"
 
             mapfile -t flamegraphs < <(find "$profiler_dir" -type f -name '*.html' -print)
             if (( ${#flamegraphs[@]} != 1 )); then
-                echo "Error: expected one flamegraph for chunk $chunk_size; found ${#flamegraphs[@]}." >&2
+                echo "Error: expected one flamegraph for ${PROFILE_PARAMETER:-case} $profile_value; found ${#flamegraphs[@]}." >&2
                 exit 1
             fi
             flamegraph=${flamegraphs[0]}
             cp -- "$flamegraph" "$flamegraph_destination/flame-cpu-forward.html"
             rm -rf -- "$profiler_dir"
-            completed "$result_name on $java_dir: CPU flamegraph (chunk $chunk_size)"
+            completed "$result_name on $java_dir: CPU flamegraph (${PROFILE_PARAMETER:-case} $profile_value)"
         done
     fi
 }

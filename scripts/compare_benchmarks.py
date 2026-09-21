@@ -55,20 +55,24 @@ class Variant:
     flame_paths: dict[str, Path]
 
     @property
+    def representative_profile(self) -> str:
+        return NATIVE_PROFILE_PARAMETER if NATIVE_PROFILE_PARAMETER in self.native_profiles else next(iter(self.native_profiles))
+
+    @property
     def native_path(self) -> Path:
-        return self.native_profiles[NATIVE_PROFILE_PARAMETER].path
+        return self.native_profiles[self.representative_profile].path
 
     @property
     def flame_path(self) -> Path:
-        return self.flame_paths[NATIVE_PROFILE_PARAMETER]
+        return self.flame_paths[self.representative_profile]
 
     @property
     def native_bytes(self) -> int:
-        return self.native_profiles[NATIVE_PROFILE_PARAMETER].allocated_bytes
+        return self.native_profiles[self.representative_profile].allocated_bytes
 
     @property
     def native_samples(self) -> int:
-        return self.native_profiles[NATIVE_PROFILE_PARAMETER].samples
+        return self.native_profiles[self.representative_profile].samples
 
 
 @dataclass(frozen=True)
@@ -97,6 +101,13 @@ def parse_jmh(path: Path) -> dict[RowKey, Measurement]:
             benchmark = parts[0]
             params = tuple(parts[1:mode_index])
             mode = parts[mode_index]
+            # JMH prints very small allocation rates as e.g. "≈ 10⁻⁴".
+            if parts[mode_index + 2] == "≈":
+                del parts[mode_index + 2]
+                value = parts[mode_index + 2]
+                if value.startswith("10") and len(value) > 2:
+                    exponent = value[2:].translate(str.maketrans("⁻⁺⁰¹²³⁴⁵⁶⁷⁸⁹", "-+0123456789"))
+                    parts[mode_index + 2] = str(10.0 ** int(exponent))
             count = int(parts[mode_index + 1])
             score = float(parts[mode_index + 2])
             if parts[mode_index + 3] == "±":
@@ -142,7 +153,7 @@ def parse_duration_seconds(value: str, path: Path) -> float:
     return amount * factors[match.group(2)]
 
 
-def parse_native_result(path: Path, chunk_size: str) -> tuple[Measurement, float]:
+def parse_native_result(path: Path, chunk_size: str, parameter: str | None = "chunkSize") -> tuple[Measurement, float]:
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except (json.JSONDecodeError, OSError) as error:
@@ -151,8 +162,9 @@ def parse_native_result(path: Path, chunk_size: str) -> tuple[Measurement, float
         raise ValueError(f"Expected one benchmark result in {path}, found {len(data) if isinstance(data, list) else 'non-list data'}")
     result = data[0]
     params = result.get("params", {})
-    if params.get("chunkSize") != chunk_size:
-        raise ValueError(f"Expected chunkSize={chunk_size} in {path}, found {params.get('chunkSize')!r}")
+    expected = {parameter: chunk_size} if parameter else {}
+    if params != expected:
+        raise ValueError(f"Expected parameters {expected} in {path}, found {params!r}")
     metric = result.get("primaryMetric", {})
     try:
         iterations = int(result["measurementIterations"])
@@ -181,24 +193,29 @@ def discover(directory: Path) -> list[Variant]:
                 problems.append(f"missing {jmh_path.relative_to(directory)}")
                 continue
             rows = parse_jmh(jmh_path)
+            parameter_names = parse_parameter_names(jmh_path)
+            if parameter_names not in [(), ("chunkSize",), ("bufferSize",)]:
+                raise ValueError(f"Unsupported parameters in {jmh_path}: {parameter_names}")
+            parameter = parameter_names[0] if parameter_names else None
             chunk_sizes = sorted(
                 {
-                    key.params[0]
+                    (key.params[0] if parameter else "default")
                     for key in rows
                     if is_primary(key)
                     and base_name(key.benchmark).endswith(NATIVE_PROFILE_BENCHMARK_SUFFIX)
-                    and len(key.params) == 1
-                    and key.params[0] != "N/A"
+                    and len(key.params) == len(parameter_names)
+                    and (not parameter or key.params[0] != "N/A")
                 },
-                key=lambda value: int(value),
+                key=lambda value: int(value) if value != "default" else 0,
             )
             if not chunk_sizes:
-                problems.append(f"no chunked *{NATIVE_PROFILE_BENCHMARK_SUFFIX} rows in {jmh_path.relative_to(directory)}")
+                problems.append(f"no *{NATIVE_PROFILE_BENCHMARK_SUFFIX} rows in {jmh_path.relative_to(directory)}")
                 continue
             native_profiles: dict[str, NativeProfile] = {}
             flame_paths: dict[str, Path] = {}
             for chunk_size in chunk_sizes:
-                chunk_dir = variant_dir / f"chunk-{chunk_size}"
+                prefix = "chunk-" if parameter == "chunkSize" else "buffer-" if parameter else ""
+                chunk_dir = variant_dir / f"{prefix}{chunk_size}"
                 native_path = chunk_dir / "summary-nativemem.txt"
                 native_result_path = chunk_dir / "results-nativemem.json"
                 flame_path = chunk_dir / "flame-cpu-forward.html"
@@ -208,7 +225,7 @@ def discover(directory: Path) -> list[Variant]:
                     problems.append(f"missing {native_result_path.relative_to(directory)}")
                 else:
                     allocated_bytes, samples = parse_native(native_path)
-                    measurement, measurement_seconds = parse_native_result(native_result_path, chunk_size)
+                    measurement, measurement_seconds = parse_native_result(native_result_path, chunk_size, parameter)
                     native_profiles[chunk_size] = NativeProfile(
                         native_path,
                         native_result_path,
@@ -230,7 +247,7 @@ def discover(directory: Path) -> list[Variant]:
                     prefix=variant_dir.name,
                     jmh_path=jmh_path,
                     rows=rows,
-                    parameter_names=parse_parameter_names(jmh_path),
+                    parameter_names=parameter_names,
                     native_profiles=native_profiles,
                     flame_paths=flame_paths,
                 )
@@ -368,7 +385,13 @@ def fmt_delta(value: float) -> str:
 
 
 def fmt_consumption_delta(value: float) -> str:
+    if math.isinf(value):
+        return "n/a (zero baseline)"
     return "0.00%" if math.isclose(value, 0.0, abs_tol=0.00001) else f"{value:+.2f}%"
+
+
+def allocation_delta(value: float, baseline: float) -> float:
+    return (value / baseline - 1.0) * 100.0 if baseline else (0.0 if value == 0 else math.inf)
 
 
 def parameter_sort_key(params: tuple[str, ...]) -> tuple[tuple[int, float | str], ...]:
@@ -387,9 +410,9 @@ def relative(path: Path, directory: Path) -> str:
 
 def native_bytes_per_op(
     variant: Variant,
-    chunk_size: str = NATIVE_PROFILE_PARAMETER,
+    chunk_size: str | None = None,
 ) -> float:
-    profile = variant.native_profiles[chunk_size]
+    profile = variant.native_profiles[chunk_size or variant.representative_profile]
     measurement = profile.measurement
     if measurement.mode in LOWER_IS_FASTER and measurement.unit == "us/op":
         operations = profile.measurement_seconds * 1_000_000.0 / measurement.score
@@ -592,7 +615,7 @@ def chart_categories(variants: list[Variant]) -> list[tuple[RowKey, str]]:
             named_params = []
             for index, value in enumerate(key.params):
                 name = parameter_names[index] if index < len(parameter_names) else f"parameter{index + 1}"
-                unit = " byte" if name == "chunkSize" and value == "1" else " bytes" if name == "chunkSize" else ""
+                unit = (" byte" if value == "1" else " bytes") if name in {"chunkSize", "bufferSize"} else ""
                 named_params.append(f"{name}={value}{unit}")
             params = ", ".join(named_params)
         else:
@@ -618,8 +641,9 @@ def render_bar_chart(
     high = 100.0
     span = high - low
 
-    width = 1200
-    left = 300
+    # Keep existing charts identical; give the longer capacity labels room.
+    left = 380 if any("bufferSize=" in category for category in categories) else 300
+    width = left + 900
     right = 250
     top = 105
     row_height = max(58, 24 * len(plotted) + 18)
@@ -705,13 +729,13 @@ def generate_jdk25_charts(
         for variant, cost, heap_value, heap_row in zip(variants, costs, heap_measurements, heap_rows):
             measurement = variant.rows[key]
             performance_delta = (cost / baseline_cost - 1.0) * 100.0
-            heap_delta = (heap_value / baseline_heap - 1.0) * 100.0
+            heap_delta = allocation_delta(heap_value, baseline_heap)
             performance_bars[variant.label].append(cost / worst_cost * 100.0)
             performance_labels[variant.label].append(
                 f"{'★ ' if math.isclose(cost, best_cost) else ''}"
                 f"{fmt_measurement(measurement)} ({fmt_consumption_delta(performance_delta)})"
             )
-            heap_bars[variant.label].append(heap_value / worst_heap * 100.0)
+            heap_bars[variant.label].append(heap_value / worst_heap * 100.0 if worst_heap else 0.0)
             heap_labels[variant.label].append(
                 f"{'★ ' if math.isclose(heap_value, best_heap) else ''}"
                 f"{fmt_measurement(heap_row)} ({fmt_consumption_delta(heap_delta)})"
@@ -719,7 +743,7 @@ def generate_jdk25_charts(
 
     native_chunks = sorted(
         set.intersection(*(set(variant.native_profiles) for variant in variants)),
-        key=int,
+        key=lambda value: int(value) if value != "default" else 0,
     )
     if not native_chunks:
         raise ValueError("No native-memory chunk profiles are common to all variants")
@@ -735,18 +759,19 @@ def generate_jdk25_charts(
         baseline_native = native_values[baseline.label]
         for variant in variants:
             value = native_values[variant.label]
-            native_bars[variant.label].append(value / worst_native * 100.0)
+            native_bars[variant.label].append(value / worst_native * 100.0 if worst_native else 0.0)
             native_labels[variant.label].append(
                 f"{'★ ' if math.isclose(value, best_native) else ''}"
                 f"{fmt_number(value)} B/op "
-                f"({fmt_consumption_delta((value / baseline_native - 1.0) * 100.0)})"
+                f"({fmt_consumption_delta(allocation_delta(value, baseline_native))})"
             )
     performance_path = directory / "comparison-jdk25-performance.svg"
     heap_path = directory / "comparison-jdk25-heap.svg"
     native_path = directory / "comparison-jdk25-native.svg"
     labels = [label for _, label in categories]
     native_categories = [
-        f"chunkSize={chunk_size} {'byte' if chunk_size == '1' else 'bytes'}"
+        (f"{variants[0].parameter_names[0]}={chunk_size} {'byte' if chunk_size == '1' else 'bytes'}"
+         if variants[0].parameter_names else "Single operation")
         for chunk_size in native_chunks
     ]
     render_bar_chart(performance_path, "Execution time (bar length relative to row worst)", variants, labels, performance_bars, performance_labels)

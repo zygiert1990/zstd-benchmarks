@@ -1,0 +1,4 @@
+       bytes  percent  samples  top
+  ----------  -------  -------  ---
+      641697   98.14%     1193  malloc_hook
+       12176    1.86%        4  realloc_hook
