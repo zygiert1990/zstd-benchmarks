@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 704px}
+	#canvas {width: 100%; height: 528px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(44);
+	const levels = Array(33);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -382,103 +382,65 @@
 
 const cpool = [
 'all',
-' AccessInternal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<598116ul, G1BarrierSet>, (AccessInternal::BarrierType)2, 598116ul>::oop_access_barrier',
-'!llocTracer::send_allocation_in_new_tlab',
 ' C2 Runtime new_instance',
-'!lassLoaderData::holder',
-'/Graph::roots_cld_do',
-' DeoptimizationScope::DeoptimizationScope',
-' G1CodeRootSet::nmethods_do',
-'$llectedHeap::do_collection_pause_at_safepoint_helper',
+'!ardTableBarrierSet::on_slowpath_allocation_exit',
+' G1AllocRegion::new_alloc_region_and_allocate',
+'"BatchedTask::work',
+'"CardTable::is_in_young',
+'#odeRootSet::reset_table_scanner',
+'$llectedHeap::allocate_new_tlab',
+'2ttempt_allocation_slow',
+'1capacity',
+'1fill_with_dummy_object',
+'1new_mutator_alloc_region',
+'5region',
 '1par_iterate_regions_array',
-'"EvacuateRegionsBaseTask::work',
-'1Task::evacuate_live_objects',
-'7scan_roots',
-'"GCPhaseTimes::print',
-'5_post_evacuate_collection_set',
-'"HeapRegionManager::par_iterate',
-'"ParEvacuateFollowersClosure::do_void',
-'%ScanThreadState::trim_queue_to_threshold',
-'#repareEvacuationTask::work',
-'"RebuildFreeListTask::work',
-'$mSet::scan_collection_set_code_roots',
-'#ootProcessor::evacuate_roots',
-'1process_java_roots',
-'"ScanCodeRootsClosure::do_heap_region',
-'"YoungCollector::collect',
-' InstanceKlass::add_to_hierarchy',
-'0llocate_instance',
-' JVM_LookupDefineClass',
-'!ava_java_lang_ClassLoader_defineClass0',
-'!frObjectAllocationSample::send_event',
-' MemAllocator::Allocation::notify_allocation_jfr_sampler',
-'.allocate',
-'!utex::lock_without_safepoint_check',
+'"HeapRegionClaimer::claim_region',
+',Manager::allocate_free_region',
+'5par_iterate',
+',RemSet::reset_table_scanner',
+'"MonitoringSupport::update_eden_size',
+'"PostEvacuateCollectionSetCleanupTask2::FreeCollectionSetTask::do_work',
+'#repareEvacuationTask::G1PrepareRegionsClosure::do_heap_region',
+'9work',
+'"RemSet::prepare_region_for_scan',
+'(ScanState::G1ClearCardTableTask::do_work',
+' InstanceKlass::allocate_instance',
+' MemAllocator::allocate',
+'.mem_allocate',
+':_inside_tlab_slow',
+'!utatorAllocRegion::retire',
 ' ObjAllocator::initialize',
 '!ptoRuntime::new_instance_C',
-' ReferenceProcessorPhaseTimes::print_all_references',
-'Dphase',
-' SpinPause',
-'!ystemDictionary::resolve_from_stream',
 ' Thread::call_run',
-' Unsafe_AllocateMemory0',
-'\'FreeMemory0',
-' VMThread::evaluate_operation',
-'*inner_execute',
-'*run',
-'"_G1CollectForAllocation::doit',
-'#Operation::evaluate',
+'&LocalAllocBuffer::retire',
 ' WorkerThread::run',
 ' ZSTD_getFrameProgression',
-' [break_compiled]',
-'!unknown]',
-' _IO_default_xsputn',
-'!_GI___libc_free',
-'"_pthread_mutex_lock',
-'"malloc',
-'"vfprintf_internal',
-'#snprintf_internal',
-'!int_free',
+' __memset_avx2_unaligned_erms',
 ' clone3',
 '!om/github/luben/zstd/AutoCloseBase.acquireSharedLock',
-'Dclose',
 'DreleaseSharedLock',
-'6ZstdBinding.frameProgression',
-'DeeCCtx',
-':CompressCtx.close',
-'FdoClose',
+'6ZstdBinding$FrameProgressionBuffer.allocate',
+'A.frameProgression',
+':CompressCtx.ensureOpen',
 'FgetFrameProgression',
 ':FrameProgression.<init>',
-' free@plt',
-' java/lang/ClassLoader.defineClass0',
-'*System$1.defineClass',
-'*Thread.run',
+' java/lang/Thread.run',
 '4With',
-'*foreign/Arena.ofConfined',
-'2SegmentAllocator.allocate',
+'*foreign/SegmentAllocator.allocate',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
 'Rtatic',
-'1InvokerBytecodeGenerator.generateCustomizedCode',
-'JloadMethod',
-'8s$Holder.invokeExact_MT',
-'9.invokeHandleForm',
-':methodHandleInvokeLinkerMethod',
-'1LambdaForm$DMH.0x000000000e068400.invokeInterface',
-'Mc7800.invokeStaticInit',
-'<MH.0x000000000e061c00.invoke',
+'1Invokers$Holder.invokeExact_MT',
+'1LambdaForm$DMH.0x0000000014068400.invokeInterface',
+'<MH.0x0000000014061c00.invoke',
 'M2000.invokeExact_MT',
-'Lc9000.invoke',
 'Ldb400.invoke',
 'Mc000.invoke',
 'Le5400.invokeExact_MT',
 'N800.invoke',
 'Nc00.invoke',
-'M8400.invokeExact_MT',
-';.compileToBytecode',
 '1MethodHandle.invokeBasic',
-'=Natives.linkMethod',
-'OImpl',
-'=s$Lookup$ClassDefiner.defineClass',
+'1SegmentVarHandle.checkSegment',
 '1VarHandleGuards.guard_LJ_I',
 'JJ',
 ':SegmentAsInts.get',
@@ -489,226 +451,132 @@ const cpool = [
 '5ThreadPoolExecutor$Worker.run',
 'G.runWorker',
 '5atomic/AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl.compareAndSet',
-'!dk/internal/foreign/AbstractMemorySegmentImpl.get',
-'6renaImpl.allocate',
-'?close',
-'5ConfinedSession$ConfinedResourceList.add',
-'Zcleanup',
-'D.<init>',
-'Eacquire0',
-'EjustClose',
-'5MemorySessionImpl$ResourceList.cleanup',
-'[Single',
-'F.<init>',
-'GaddInternal',
-'JOrCleanupIfFail',
-'HsArena',
-'GcheckValidState',
-'VRaw',
-'Hlose',
-'HreateConfined',
-'5SegmentFactories$1.<init>',
-'Hcleanup',
-'E.allocateMemoryWrapper',
-'NNativeInternal',
-'TSegment',
-'5abi/DowncallStub.0x000000000e0c7000.invoke',
-'Sda400.invoke',
+'!dk/internal/foreign/AbstractMemorySegmentImpl.checkAccess',
+'TBounds',
+'TEnclosingLayout',
+'Oget',
+'OisAlignedForElement',
+'OsessionImpl',
+'5MemorySessionImpl.checkValidStateRaw',
+'5NativeMemorySegmentImpl.unsafeGetOffset',
+'5abi/DowncallStub.0x00000000140da400.invoke',
 '-misc/ScopedMemoryAccess.getLongUnaligned',
 'UInternal',
-'2Unsafe.allocateMemory',
-'G0',
-'9freeMemory',
-'C0',
-'9getLongUnaligned',
+'2Unsafe.getLongUnaligned',
 '-reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
-'!vm_lookup_define_class',
-' malloc@plt',
 ' nep_invoker_blob',
-' org/openjdk/jmh/infra/Blackhole.consume',
-'0runner/BenchmarkHandler$BenchmarkTask.call',
+' org/openjdk/jmh/runner/BenchmarkHandler$BenchmarkTask.call',
 '$zygiert/ZstdCompressCtxFrameProgressionBenchmark.progressionThroughput',
-'UtearDown',
 ',jmh_generated/ZstdCompressCtxFrameProgressionBenchmark_progressionThroughput_jmhTest.progressionThroughput_AverageTime',
 't.progressionThroughput_avgt_jmhStub',
-'!s::free',
-'$malloc',
-'$vsnprintf',
-'!utputStream::do_vsnprintf_and_write_with_automatic_buffer',
-'.print_cr',
 ' start_thread',
 ' thread_native_entry'
 ];
 unpack(cpool);
 
-n(3,2503)
-u(395,10)
-u(1105)
-f(403,1,10,37)
-u(1089,21)
-n(1105,16)
-f(467,1,16,9)
-u(1251)
-u(1260)
-u(316)
-u(356,1)
-u(348)
-u(340)
-u(372)
-u(364)
-u(68)
-u(196)
+n(3,2501)
+u(291,6)
+u(715)
+u(724)
+u(252)
+u(268)
+u(36,3)
+u(156,1)
 u(108)
 u(116)
-u(284)
-u(292)
-u(1244)
-u(1236)
-u(1228)
-u(451)
-u(443)
-u(411)
-f(380,5,1,8)
-u(84,4)
-u(92,2)
+f(188,7,1,2)
+u(283)
+f(172,6,2,3)
 u(132)
-u(140,1)
-n(299)
-f(100,7,1)
-u(172)
+f(164,8,2,1)
 u(180)
-u(44)
-f(164,7,1)
-u(76)
-u(188)
-u(60)
-f(148,6,1,2)
-u(124)
-f(156,6,2)
-f(568,1,2,2447)
-u(576)
-u(840)
-u(848)
-u(832)
-u(824)
-u(832)
-u(1168)
-u(1168)
-u(816)
-u(1120)
-u(1128)
-u(680)
-u(672)
-u(600)
-u(1192)
-u(1184,1)
-u(512)
-u(480)
-u(520)
-u(504)
-u(736)
-u(688)
-u(664)
-u(1048)
-u(760)
-u(768)
-u(648)
-u(640)
-u(744)
-u(616)
-u(624)
-u(776)
-u(560)
-u(553)
-u(227)
-u(219)
-u(1140)
-u(308)
-u(204)
+u(140)
 u(52)
-u(260)
-u(427)
-f(1201,17,1,2446)
-u(1161,21)
-n(1178,2425)
-u(530)
-u(474,192)
-f(858,21,22,170)
-f(489,20,170,236)
-f(858,21,26,210)
-f(498,20,210,1997)
-f(27,21,24,6)
-u(276)
-u(12,1)
-n(36)
-n(212,4)
-u(252)
+f(352,1,1,2495)
+u(360)
+u(536)
+u(544)
+u(528)
+u(520)
+u(528)
+u(680)
+u(680)
+u(512)
+u(656)
+u(664)
+u(416)
+u(408)
+u(376)
+u(696)
+u(705)
+f(690,18,274,2221)
+f(338,19,26,2195)
+u(298,370)
+f(554,21,14,356)
+f(306,20,356,470)
+f(554,21,21,449)
+f(322,20,449,1336)
+f(11,21,48,6)
+u(244)
 u(20,1)
-u(236)
-f(244,25,1,2)
-n(268,1)
-f(537,21,1,36)
-n(586,130)
-f(970,22,61,26)
-n(1002,43)
-f(906,23,20,23)
-u(946)
-f(634,21,23,878)
-u(722)
-u(698,353)
-u(610)
-u(1058)
-f(714,26,7,341)
-u(730)
-u(753,9)
-n(1155,332)
-f(387,29,262,70)
-f(914,26,70,5)
-f(706,23,5,525)
-u(658)
+u(44)
+f(196,23,1,5)
+u(204)
+u(212,4)
+u(220)
+f(60,27,1,2)
+u(68)
+u(28,1)
+u(92)
+u(100)
+u(124)
+f(228,29,1)
+u(148)
+u(76)
+f(260,27,1)
+u(84)
+f(236,25,1)
+f(346,21,1,52)
+n(394,1090)
+u(450)
+u(426,1070)
+u(386)
+u(626)
+f(442,26,75,931)
+u(458)
+f(465,28,22,12)
+n(675,897)
+f(275,29,669,228)
+f(602,26,228,19)
+n(618,45)
+f(434,23,45,20)
+u(402)
+u(370)
+u(314)
+f(586,21,20,140)
+u(482,21)
+u(498)
+u(498)
+u(474)
+u(578)
+u(562)
+u(570)
+f(490,22,21,119)
+u(506)
+u(506)
+u(474,47)
+u(578)
+u(562,26)
+u(570)
+f(594,27,26,21)
 u(594)
-u(874)
-u(874)
-u(1042)
-u(1034)
-f(962,30,19,11)
-u(954)
-u(890)
-f(1010,30,11,10)
-n(1026,485)
-u(1082)
-f(1089,32,20,465)
-f(323,33,273,35)
-n(1220,157)
-f(435,34,80,69)
-n(1147,8)
-f(866,21,8,312)
-u(786,311)
-u(802)
-u(802)
-f(794,22,311,1)
-u(810)
-u(810)
-u(1066)
-u(1074)
-u(1114)
-f(881,21,1,611)
-f(994,22,29,582)
-f(898,23,8,557)
-f(930,24,65,6)
-n(938,486)
-u(1018)
-f(1098,26,12,474)
-f(1105,27,16,458)
-f(331,28,219,41)
-n(419,168)
-f(459,29,65,103)
-f(547,28,103,5)
-n(1212,25)
-f(922,23,25,17)
-f(978,24,8,9)
-u(986)
+u(618)
+f(634,25,21,72)
+u(642)
+u(610,32)
+n(650,40)
+f(330,20,40,19)
 
 search();
 </script></body></html>

@@ -1,6 +1,6 @@
 Benchmark                                                                          Mode  Cnt    Score    Error   Units
-ZstdCompressCtxFrameProgressionBenchmark.progressionThroughput                     avgt   15    0.488 ±  0.004   us/op
-ZstdCompressCtxFrameProgressionBenchmark.progressionThroughput:gc.alloc.rate       avgt   15  109.414 ±  0.822  MB/sec
+ZstdCompressCtxFrameProgressionBenchmark.progressionThroughput                     avgt   15    0.486 ±  0.006   us/op
+ZstdCompressCtxFrameProgressionBenchmark.progressionThroughput:gc.alloc.rate       avgt   15  109.844 ±  1.389  MB/sec
 ZstdCompressCtxFrameProgressionBenchmark.progressionThroughput:gc.alloc.rate.norm  avgt   15   56.001 ±  0.001    B/op
 ZstdCompressCtxFrameProgressionBenchmark.progressionThroughput:gc.count            avgt   15    9.000           counts
-ZstdCompressCtxFrameProgressionBenchmark.progressionThroughput:gc.time             avgt   15   18.000               ms
+ZstdCompressCtxFrameProgressionBenchmark.progressionThroughput:gc.time             avgt   15   17.000               ms
