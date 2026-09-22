@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 656px}
+	#canvas {width: 100%; height: 784px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(41);
+	const levels = Array(49);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -382,6 +382,7 @@
 
 const cpool = [
 'all',
+' AnyObj::operator new',
 ' FSE_buildCTable_wksp',
 '$compress_usingCTable_generic.lto_priv.0',
 '$normalizeCount',
@@ -394,11 +395,18 @@ const cpool = [
 ',_internal',
 '$simpleQuickSort',
 '$writeCTable_wksp',
+' LinkResolver::lookup_polymorphic_method',
+'.resolve_method',
+'6static_call',
+' MHN_resolve_Mem',
+'!ethodHandles::resolve_MemberName',
+' SystemDictionary::find_method_handle_intrinsic',
 ' ZSTD_CCtx_init_compressStream2',
 '%buildCTable',
 '*SeqStore',
 '-uencesStatistics.lto_priv.0',
-'%compressBlock_fast',
+'%compressBegin_internal.lto_priv.0',
+'.lock_fast',
 '3internal',
 '-Continue_public',
 '-End_public',
@@ -407,29 +415,47 @@ const cpool = [
 '4_simpleArgs',
 '-_frameChunk',
 '%encodeSequences_bmi2',
-'%getCParamsFromCCtxParams',
-'/_internal.lto_priv.0',
+'%resetCCtx_internal',
 '%seqToCodes',
-' __memmove_avx_unaligned_erms',
-' com/github/luben/zstd/AutoCloseBase.releaseSharedLock',
-'6ZstdBinding.compressStream2',
-':CompressCtx.compressBufferStream',
+' __malloc',
+'#emmove_avx_unaligned_erms',
+'!int_malloc',
+' com/github/luben/zstd/AutoCloseBase.close',
+'DreleaseSharedLock',
+'6ZstdBinding$SizeTRef$Wide.get',
+'A.compressStream2',
+'BfreeCCtx',
+':CompressCtx.close',
+'GompressBufferStream',
 'OyteBufferStream',
 'NDirectByteBufferToByteArrayStream0',
+'FdoClose',
 'FupdateStreamPositions',
 ' java/lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'1LambdaForm$DMH.0x00000000080ddc00.invokeStatic',
-'<MH.0x0000000008061c00.invoke',
+'C.make',
+'HPreparedLambdaForm',
+'DpreparedLambdaForm',
+'1Invokers.basicInvoker',
+':invokeHandleForm',
+':methodHandleInvokeLinkerMethod',
+'1LambdaForm$DMH.0x00000000350ddc00.invokeStatic',
+'<MH.0x0000000035061c00.invoke',
 'M2000.invokeExact_MT',
 'Le4400.invokeExact_MT',
 'Nc00.invokeExact_MT',
 'M5000.invoke',
 'N400.invoke',
+'<Name.<init>',
+'@dFunction.<init>',
+'1MemberName$Factory.resolve',
+'KOrFail',
+'3thodHandleNatives.linkMethod',
+'OImpl',
+'Eresolve',
 '*reflect/Method.invoke',
-'%nio/Buffer.limit',
-'0position',
+'%nio/Buffer.position',
 '*yteBuffer.position',
 ')MappedByteBuffer.position',
 '%util/concurrent/Executors$RunnableAdapter.call',
@@ -438,115 +464,143 @@ const cpool = [
 'G.runWorker',
 '5atomic/AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl.compareAndSet',
 '!dk/internal/foreign/NativeMemorySegmentImpl.unsafeGetOffset',
-'5abi/DowncallStub.0x00000000080dd800.invoke',
+'5abi/DowncallStub.0x00000000350dd800.invoke',
 '-reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
 ' nep_invoker_blob',
 ' org/openjdk/jmh/runner/BenchmarkHandler$BenchmarkTask.call',
 '$zygiert/ZstdCompressCtxStreamDirectToHeapBenchmark.compressionThroughput',
+'WtearDown',
 ',jmh_generated/ZstdCompressCtxStreamDirectToHeapBenchmark_compressionThroughput_jmhTest.compressionThroughput_AverageTime',
-'est.compressionThroughput_avgt_jmhStub'
+'est.compressionThroughput_avgt_jmhStub',
+'!s::malloc'
 ];
 unpack(cpool);
 
 n(3,2500)
-u(288)
-u(296)
-u(424)
-u(432)
-u(416)
+u(400)
 u(408)
+u(632)
+u(640)
+u(624)
+u(616)
+u(624)
+u(696)
+u(696)
+u(584)
+u(672)
+u(680)
+u(488)
+u(480)
 u(416)
-u(488)
-u(488)
-u(368)
+u(720)
+u(712,1)
+u(352)
+u(312)
+u(384)
+u(344)
+u(560)
+u(568)
 u(464)
-u(472)
-u(328)
-u(320)
-u(304)
-u(504)
-u(512,2500,0,833,1667)
-u(497,2500,59,0,0)
-u(265,2499)
-u(242,2)
+u(456)
+u(528)
+u(536)
+u(448)
+u(424)
+u(424)
+u(424)
+u(440)
+u(446,1,0,1,0)
 u(442)
-f(274,20,2,2495)
-u(258)
-u(250)
-u(338)
-u(354)
-u(314)
-u(458)
-f(346,27,1,2492)
+u(432)
+u(558,1,0,1,0)
+u(550,1,0,1,0)
+u(577)
+u(139)
+u(148)
+u(132)
+u(124)
+u(116)
+u(156)
+u(12)
+u(740)
+u(291)
+u(307)
+f(728,17,1,2499,0,825,1674)
+u(705,2499,59,0,0)
+u(369,2498)
+u(322,1)
+u(650)
+f(378,20,1,2496)
 u(362)
-u(483)
-u(187)
-u(179)
-f(107,32,2,1)
+u(330,2)
+n(338,2494)
+u(498)
+u(514)
+u(474)
+u(666)
+u(506,2493)
+u(522)
+u(691)
+u(251)
+u(243)
+u(163,2)
+f(195,33,1,1)
+u(275)
+f(219,32,1,1470)
+u(259)
+f(211,34,1,1469)
+u(179,1119)
+u(203)
+f(187,35,1119,74)
+u(51,28)
+f(299,37,27,1)
+f(171,36,1,27)
+u(19,20)
+n(35,2)
+n(43,5)
+f(283,36,5,19)
+f(235,35,19,129)
+f(75,36,1,128)
+u(91)
+u(51,48)
+n(59,11)
+f(99,39,10,1)
+u(99)
+f(83,38,1,69)
+f(67,39,2,67)
+f(267,35,67,147)
+f(227,32,147,978)
+u(259)
 u(211)
-u(219)
-f(155,32,1,1507)
-u(195)
-f(147,34,1,1506)
-u(123,1142)
-u(139)
-f(131,35,1142,106)
-u(43,48)
-f(235,37,47,1)
-f(115,36,1,38)
-f(11,37,1,25)
-n(27,3)
-n(35,9)
-f(227,36,9,20)
-f(171,35,20,105)
-u(67)
-u(83)
-u(43,49)
-f(235,39,46,3)
-f(51,38,3,12)
-f(91,39,8,4)
-f(75,38,4,42)
-u(59)
-f(99,38,42,2)
-u(19,1)
-n(35)
-f(203,35,1,153)
-f(163,32,153,934)
-u(195)
-f(147,34,1,933)
-f(123,35,1,664)
-u(139)
-f(131,35,664,57)
-u(43,20)
-f(235,37,19,1)
-f(115,36,1,24)
-u(11,16)
-n(27,4)
-n(35)
-f(227,36,4,13)
-f(171,35,13,87)
-u(67)
-u(83)
-f(43,38,2,33)
-f(235,39,32,1)
-f(51,38,1,15)
-f(91,39,13,2)
-f(91,40,1,1)
-f(75,38,1,33)
-u(59)
-f(99,38,33,4)
-u(11,1)
-n(19,3)
-f(203,35,3,124)
-f(235,32,124,48)
-f(450,27,48,2)
-f(282,20,2)
-u(402)
-u(402)
-u(394)
-u(386)
-f(378,19,2,1)
+f(179,35,2,692)
+u(203)
+f(187,35,692,68)
+u(51,21)
+n(171,26)
+u(19,17)
+n(35,6)
+n(43,3)
+f(283,36,3,21)
+f(235,35,21,76)
+f(75,36,1,75)
+u(91)
+f(51,38,1,27)
+n(59,18)
+f(99,39,17,1)
+f(83,38,1,27)
+f(67,39,1,26)
+f(107,38,26,2)
+u(27)
+f(267,35,2,140)
+f(299,32,140,43)
+f(658,27,43,1)
+f(394,20,1)
+u(610)
+u(610)
+u(602)
+u(594)
+f(594,19,1)
 
 search();
 </script></body></html>

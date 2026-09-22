@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 512px}
+	#canvas {width: 100%; height: 496px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(32);
+	const levels = Array(31);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -393,6 +393,7 @@ const cpool = [
 ',4X_repeat',
 ',CTable_internal',
 ',_internal',
+'$optimalTableLog',
 '$simpleQuickSort',
 '$writeCTable_wksp',
 ' JavaFrameAnchor::make_walkable',
@@ -410,8 +411,9 @@ const cpool = [
 '%encodeSequences_bmi2.lto_priv.0',
 '\'tropyCompressSeqStore_wExtLitBuffer',
 '%resetCCtx_internal.lto_priv.0',
-'%seqToCodes',
-' [unknown]',
+'%selectEncodingType.part.0',
+'\'qToCodes',
+'%writeFrameHeader.lto_priv.0',
 ' __memmove_avx_unaligned_erms',
 ' com/github/luben/zstd/AutoCloseBase.acquireSharedLock',
 'DreleaseSharedLock',
@@ -420,7 +422,7 @@ const cpool = [
 ' java/lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'1LambdaForm$MH.0x0000000024061000.invoke',
+'1LambdaForm$MH.0x0000000037061000.invoke',
 'N400.invokeExact_MT',
 '*reflect/Method.invoke',
 '%nio/ByteBuffer.array',
@@ -437,7 +439,8 @@ const cpool = [
 '\'PrimitiveArrayCritical',
 '$IsInstanceOf',
 '$ReleasePrimitiveArrayCritical',
-' oopDesc* JNIHandles::resolve_impl<0ul, false>',
+' oopDesc::klass',
+')metadata_field',
 '!rg/openjdk/jmh/runner/BenchmarkHandler$BenchmarkTask.call',
 '$zygiert/ZstdCompressCtxStreamDirectToHeapBenchmark.compressionThroughput',
 ',jmh_generated/ZstdCompressCtxStreamDirectToHeapBenchmark_compressionThroughput_jmhTest.compressionThroughput_AverageTime',
@@ -446,101 +449,101 @@ const cpool = [
 unpack(cpool);
 
 n(3,2499)
-u(243,1)
-u(281)
-f(288,1,1,2498)
-u(296)
+u(304)
+u(312)
+u(376)
+u(384)
+u(368)
 u(360)
 u(368)
-u(352)
+u(480)
+u(480)
 u(344)
-u(352)
-u(456)
-u(456)
+u(400)
+u(408)
+u(336)
 u(328)
-u(384)
-u(392)
 u(320)
-u(312)
-u(304)
-u(472)
-u(480,2498,0,813,1685)
-f(465,18,1,2497)
-u(274)
-u(258,3)
-u(378)
-f(266,20,3)
-u(378)
-f(281,20,3,2490)
-f(123,21,3,2487)
-f(195,22,2,2456)
-f(155,23,3,1)
-u(227)
-f(179,23,1,1520)
-f(203,24,1,1519)
-f(171,25,1,1518)
-u(139,1194)
-u(163,1193)
-n(251,1)
-f(219,26,1,324)
-u(75,100)
-u(91)
-f(51,29,2,40)
-n(59,12)
-f(99,30,9,3)
-f(83,29,3,43)
-u(67)
-f(107,29,43,3)
-u(11,1)
-n(19)
-n(35)
-f(147,27,1,72)
-u(51,27)
-n(131,25)
-u(11,18)
-n(27,4)
-n(35,3)
-f(235,28,3,20)
-f(211,27,20,152)
-f(187,23,152,893)
-f(203,24,1,892)
+u(496)
+u(504,2499,0,839,1660)
+f(489,18,1,2498)
+f(290,19,1,2497)
+u(274,1)
+u(394)
+f(282,20,1,2)
+u(394)
+f(297,20,2,2492)
+f(131,21,4,2488)
+f(203,22,1,2455)
+f(163,23,4,2)
+f(235,24,1,1)
+f(187,23,1,1456)
+f(211,24,1,1454)
+f(179,25,2,1452)
+u(147,1094)
 u(171)
-u(139,638)
-f(163,27,1,637)
-f(219,26,637,254)
-f(75,27,1,78)
+f(227,26,1094,358)
+f(75,27,1,99)
 u(91)
-f(51,29,2,29)
+u(51,31)
 n(59,13)
-f(99,30,10,3)
-f(99,31,1,2)
-f(83,29,2,28)
+f(107,30,11,2)
+f(83,29,2,50)
 u(67)
-f(107,29,28,6)
-f(11,30,3,1)
-n(27,2)
-f(147,27,2,67)
-u(51,24)
-n(131,25)
-u(11,19)
+f(99,29,50,1)
+n(115,4)
+f(19,30,1,2)
 n(27,1)
-n(35,5)
-f(235,28,5,18)
-f(211,27,18,108)
-f(251,23,108,39)
-f(403,22,39,2)
-n(411,4)
-u(435)
-f(452,24,3,1)
-f(419,22,1,6)
-f(435,23,2,4)
-f(452,24,3,1)
-f(427,22,1,7)
-f(44,23,4,1)
-n(116,2)
-f(443,22,2,10)
-f(116,23,9,1)
-f(338,20,1)
+f(155,27,1,82)
+u(51,28)
+f(267,29,27,1)
+f(139,28,1,30)
+u(11,24)
+n(27,2)
+n(35,4)
+f(243,28,4,1)
+n(251,23)
+f(219,27,23,176)
+f(259,24,176,1)
+f(195,23,1,958)
+u(211)
+u(179)
+u(147,682)
+u(171)
+f(227,26,682,276)
+f(75,27,2,86)
+u(91)
+f(51,29,1,28)
+n(59,10)
+f(107,30,9,1)
+f(83,29,1,39)
+u(67)
+f(115,29,39,8)
+f(11,30,1,2)
+n(19,4)
+n(35,1)
+f(155,27,1,67)
+f(51,28,1,22)
+n(139,30)
+u(11,25)
+n(27,2)
+n(35,3)
+f(251,28,3,14)
+f(219,27,14,121)
+f(267,23,121,35)
+f(419,22,35,3)
+f(124,23,1,2)
+f(427,22,2,6)
+u(451)
+f(468,24,3,1)
+n(476,2)
+f(435,22,2)
+u(451)
+f(443,22,2)
+u(44,1)
+n(124)
+f(459,22,1,19)
+f(354,20,19,2)
 
 search();
 </script></body></html>

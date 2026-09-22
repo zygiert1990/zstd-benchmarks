@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 448px}
+	#canvas {width: 100%; height: 464px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(28);
+	const levels = Array(29);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -382,12 +382,14 @@
 
 const cpool = [
 'all',
+' /tmp/libzstd-jni-1.5.7-16-LOCAL5508735929784069512.so',
 ' AccessInternal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<1097844ul, G1BarrierSet>, (AccessInternal::BarrierType)2, 1097844ul>::oop_access_barrier',
 ' FSE_buildCTable_wksp',
 '$compress_usingCTable_generic.lto_priv.0',
 '$normalizeCount',
 '$writeNCount',
-' HIST_count_parallel_wksp.lto_priv.0',
+' HIST_countFast_wksp',
+'*_parallel_wksp.lto_priv.0',
 '!UF_buildCTable_wksp',
 '$compress1X_usingCTable_internal_bmi2.lto_priv.0',
 ',4X_repeat',
@@ -401,7 +403,8 @@ const cpool = [
 ' ZSTD_buildCTable',
 '*SeqStore',
 '-uencesStatistics.lto_priv.0',
-'%compressBlock_fast',
+'%compressBegin_internal.constprop.0',
+'.lock_fast',
 '3internal',
 '-Continue_internal.lto_priv.0',
 '-End_public',
@@ -409,12 +412,12 @@ const cpool = [
 '-_frameChunk.lto_priv.0',
 '%encodeSequences_bmi2.lto_priv.0',
 '\'tropyCompressSeqStore_wExtLitBuffer',
+'%resetCCtx_internal.lto_priv.0',
 '%seqToCodes',
 ' [unknown]',
 ' __memmove_avx_unaligned_erms',
 ' com/github/luben/zstd/AutoCloseBase.acquireSharedLock',
 'DreleaseSharedLock',
-'6EndDirective.value',
 '6ZstdCompressCtx.compressByteBufferStream',
 'NDirectByteBufferStream0',
 'FensureOpen',
@@ -423,7 +426,6 @@ const cpool = [
 '*reflect/Method.invoke',
 '%nio/Buffer.limit',
 '0position',
-'0remaining',
 '*yteBuffer.limit',
 '4position',
 ')MappedByteBuffer.limit',
@@ -431,9 +433,7 @@ const cpool = [
 '%util/concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
 '5ThreadPoolExecutor$Worker.run',
-'G.getTask',
-'HrunStateAtLeast',
-'KWorker',
+'G.runWorker',
 '5atomic/AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl.compareAndSet',
 '$_lang_Class::as_Klass',
 '!dk/internal/reflect/DelegatingMethodAccessorImpl.invoke',
@@ -445,117 +445,117 @@ const cpool = [
 ' oopDesc::metadata_field',
 '!rg/openjdk/jmh/runner/BenchmarkHandler$BenchmarkTask.call',
 '$zygiert/ZstdCompressCtxStreamDirectBenchmark.compressionThroughput',
-'QensureProgress',
 ',jmh_generated/ZstdCompressCtxStreamDirectBenchmark_compressionThroughput_jmhTest.compressionThroughput_AverageTime',
 'mpressionThroughput_avgt_jmhStub'
 ];
 unpack(cpool);
 
 n(3,2499)
-u(235,1)
-u(281)
-f(304,1,1,2498)
-u(392)
+u(267,2)
+u(305)
+f(328,1,2,2497)
+u(408)
 u(416)
-u(384,2497)
-u(376)
-u(384)
+u(400)
+u(392)
+u(400)
 u(496)
 u(496)
-u(312)
+u(336)
 u(440)
 u(448)
 u(456)
-u(520)
-u(528,2497,0,502,1995)
+u(512)
+u(520,2497,0,551,1946)
 u(505)
-f(274,16,1,2489,1673,0,0)
-f(250,17,1,14)
+f(298,16,4,2489,1645,0,0)
+f(282,17,3,16)
 u(426)
-f(258,17,14,7)
+f(290,17,16,13)
 u(426)
-f(266,17,7,1)
-n(281,2461)
-f(115,18,46,2415)
-f(195,19,13,2230)
-f(179,20,21,1382)
-u(203)
-u(171)
-u(147,1077)
-f(163,24,1,1076)
-f(219,23,1076,305)
-f(75,24,1,90)
-u(91)
-f(51,26,2,32)
-n(59,8)
-n(83,41)
-u(67)
-f(107,26,41,7)
-f(19,27,1,1)
-n(27,3)
-n(43,2)
-f(155,24,2,77)
-f(51,25,1,25)
-f(243,26,24,1)
-f(139,25,1,26)
-u(19,19)
-n(35,5)
-n(43,2)
-f(227,25,2,25)
-f(211,24,25,137)
-f(187,20,137,816)
-u(203)
-u(171)
-u(147,587)
-u(163)
-f(219,23,587,229)
-f(75,24,1,75)
-u(91)
-f(51,26,4,25)
-n(59,16)
-f(99,27,13,3)
-f(83,26,3,26)
-u(67)
-f(107,26,26,4)
-f(19,27,2,1)
-n(43)
-f(155,24,1,56)
-u(51,16)
-n(139,28)
-u(19,20)
-n(35,4)
-n(43)
-f(227,25,4,12)
-f(211,24,12,97)
-f(243,20,97,11)
-f(467,19,11,77)
-f(483,20,8,69)
-f(12,21,14,5)
-n(124,20)
-n(132,27)
-n(436,3)
-f(475,19,3,95)
-f(483,20,14,81)
-f(12,21,12,2)
-n(124,24)
-n(132,35)
-n(436,3)
-n(492,5)
-f(290,17,5,1)
-n(298,4)
-f(370,18,1,3)
+f(305,17,13,2453)
+f(131,18,40,2413)
+f(219,19,13,2206)
+f(11,20,14,2)
+n(179,3)
+u(251)
+f(203,20,3,1327)
+u(227)
+u(195)
+u(163,1012)
+u(187)
+f(243,23,1012,315)
+u(91,92)
+u(107)
+f(67,26,1,34)
+f(275,27,33,1)
+f(75,26,1,19)
+f(115,27,16,3)
+f(115,28,2,1)
+f(99,26,1,38)
+f(83,27,1,37)
+f(171,24,37,77)
+u(67,29)
+f(275,26,27,2)
+f(155,25,2,24)
+u(27,19)
+n(43,3)
+n(51,2)
+f(259,25,2,24)
+f(235,24,24,146)
+f(211,20,146,844)
+u(227)
+u(195)
+u(163,605)
+f(187,24,1,604)
+f(243,23,604,239)
+u(91,73)
+u(107)
+f(59,26,2,2)
+n(67,23)
+n(75,16)
+f(115,27,15,1)
+f(99,26,1,24)
+u(83)
+f(123,26,24,6)
+f(27,27,2,1)
+n(35,2)
+n(51,1)
+f(171,24,1,59)
+u(67,15)
+n(155,30)
+u(27,22)
+n(43,4)
+n(51)
+f(259,25,4,14)
+f(235,24,14,107)
+f(275,20,107,16)
+f(467,19,16,90)
+f(483,20,7,83)
+f(20,21,16,4)
+n(140,30)
+n(148,31)
+n(436,1)
+n(492)
+f(475,19,1,104)
+f(483,20,10,94)
+f(20,21,18,5)
+n(140,28)
+n(148,40)
+n(436,1)
+n(492,2)
+f(314,17,2,1)
+n(322)
+u(386)
+u(386)
 u(370)
 u(354)
-u(330)
-f(338,16,3,1)
-n(362,5)
+f(346,17,1)
+n(354)
+f(378,16,1,4)
+u(378)
 u(362)
 u(346)
-u(322)
-f(514,16,5,1)
-u(330)
-f(400,4,1)
-u(408)
 
 search();
 </script></body></html>

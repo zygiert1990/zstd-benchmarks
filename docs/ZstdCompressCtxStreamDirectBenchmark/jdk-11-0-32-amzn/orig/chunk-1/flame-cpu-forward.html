@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 448px}
+	#canvas {width: 100%; height: 432px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(28);
+	const levels = Array(27);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -382,18 +382,18 @@
 
 const cpool = [
 'all',
-' /tmp/libzstd-jni-1.5.7-16-LOCAL4945808394649129463.so',
+' /tmp/libzstd-jni-1.5.7-16-LOCAL5240540029105598985.so',
 ' AccessInternal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<1097844ul, G1BarrierSet>, (AccessInternal::BarrierType)2, 1097844ul>::oop_access_barrier',
+' FSE_normalizeCount',
 ' HIST_count_parallel_wksp.lto_priv.0',
-'!UF_buildCTable_wksp',
-'$compress1X_usingCTable_internal_bmi2.lto_priv.0',
-',4X_repeat',
-',CTable_internal',
+'!UF_compress4X_repeat',
 ',_internal',
 ' Java_com_github_luben_zstd_ZstdCompressCtx_compressDirectByteBufferStream0',
 ' ThreadStateTransition::transition_and_fence',
 'Bfrom_native',
-' ZSTD_buildSeqStore',
+' ZSTD_buildCTable',
+'*SeqStore',
+'-uencesStatistics.lto_priv.0',
 '%compressBlock_fast',
 '3internal',
 '-Continue_internal.lto_priv.0',
@@ -440,12 +440,12 @@ const cpool = [
 ];
 unpack(cpool);
 
-n(3,2509)
+n(3,2507)
+u(171,6)
 u(171,4)
-u(171,3)
 u(217)
-f(217,2,3,1)
-f(240,1,1,2505)
+f(217,2,4,2)
+f(240,1,2,2501)
 u(320)
 u(328)
 u(312)
@@ -460,69 +460,67 @@ u(368)
 u(432)
 u(440)
 u(417)
-f(210,16,39,2450,2432,0,0)
-f(186,17,16,89)
-f(338,18,2,87)
-f(194,17,87,94)
-f(338,18,4,90)
-f(202,17,90,6)
-n(217,2191)
-f(75,18,271,1920)
-f(139,19,110,196)
-f(11,20,141,5)
-n(123,18)
+f(210,16,47,2432,2413,0,0)
+f(186,17,18,98)
+f(338,18,8,90)
+f(194,17,90,85)
+f(338,18,6,79)
+f(202,17,79,2)
+n(217,2170)
+f(59,18,219,1951)
+f(139,19,105,214)
+f(11,20,152,6)
+n(123,19)
 u(147)
 u(115)
-u(99,11)
+u(91,14)
 u(107)
-f(163,23,11,7)
-u(51,4)
-u(67)
-u(27,2)
-n(35,1)
-n(59)
-u(43)
-f(155,24,1,3)
-f(131,20,3,18)
+f(163,23,14,5)
+u(43,1)
+u(51)
+u(35)
+f(99,24,1,4)
+u(35,3)
+n(83,1)
+u(27)
+f(131,20,1,19)
 u(147)
 u(115)
-u(99,13)
+u(91,15)
 u(107)
-f(163,23,13,5)
-u(51,3)
-u(67)
-u(27,2)
-n(59,1)
-u(43)
-f(155,24,1,2)
-f(179,20,2,14)
-f(379,19,14,764)
-f(395,20,71,693)
-f(20,21,147,44)
-n(84,223)
-n(92,260)
-n(348,11)
-n(404,8)
-f(387,19,8,850)
-f(395,20,75,775)
-f(20,21,144,40)
-n(84,238)
-n(92,319)
+f(163,23,15,4)
+u(43,2)
+u(51)
+u(35)
+f(155,24,2)
+f(179,20,2,18)
+f(379,19,18,823)
+f(395,20,98,725)
+f(20,21,139,34)
+n(68,229)
+n(76,286)
 n(348,18)
-n(404,16)
-f(226,17,16,9)
-n(234,34)
-f(298,18,14,20)
+n(404,19)
+f(387,19,19,809)
+f(395,20,93,716)
+f(20,21,119,40)
+n(68,219)
+n(76,294)
+n(348,26)
+n(404,18)
+f(226,17,18,5)
+n(234,42)
+f(298,18,18,24)
 u(298)
 u(282)
 u(266)
-f(258,17,20,6)
-n(266,5)
-f(290,16,5,12)
+f(258,17,24,8)
+n(266,4)
+f(290,16,4,20)
 u(290)
 u(274)
 u(258)
-f(426,16,12,4)
+f(426,16,20,2)
 u(266)
 
 search();

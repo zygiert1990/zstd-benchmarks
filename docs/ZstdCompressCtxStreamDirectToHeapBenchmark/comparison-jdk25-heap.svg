@@ -19,37 +19,37 @@
 <line x1="300.0" y1="93" x2="300.0" y2="594" stroke="#6b7280" stroke-width="1.5"/>
 <text x="288" y="142.0" text-anchor="end" class="label">compressionThroughput · chunkSize=1 byte</text>
 <rect x="300.0" y="117.5" width="1.0" height="18" rx="2" fill="#2563eb"/>
-<text x="306.0" y="130.5" text-anchor="start" class="value">★ 37.403 ± 0.551 B/op (0.00%)</text>
+<text x="306.0" y="130.5" text-anchor="start" class="value">★ 37.422 ± 0.738 B/op (0.00%)</text>
 <rect x="300.0" y="140.5" width="650.0" height="18" rx="2" fill="#ea580c"/>
-<text x="956.0" y="153.5" text-anchor="start" class="value">4,770,944.9 ± 7,466,168.9 B/op (+12755413.88%)</text>
+<text x="956.0" y="153.5" text-anchor="start" class="value">14,312,715.6 ± 123.770 B/op (+38246694.96%)</text>
 <text x="288" y="208.0" text-anchor="end" class="label">compressionThroughput · chunkSize=8 bytes</text>
-<rect x="300.0" y="183.5" width="354.7" height="18" rx="2" fill="#2563eb"/>
-<text x="660.7" y="196.5" text-anchor="start" class="value">★ 5.209 ± 0.076 B/op (0.00%)</text>
+<rect x="300.0" y="183.5" width="1.0" height="18" rx="2" fill="#2563eb"/>
+<text x="306.0" y="196.5" text-anchor="start" class="value">★ 5.205 ± 0.079 B/op (0.00%)</text>
 <rect x="300.0" y="206.5" width="650.0" height="18" rx="2" fill="#ea580c"/>
-<text x="956.0" y="219.5" text-anchor="start" class="value">9.546 ± 15.642 B/op (+83.26%)</text>
+<text x="956.0" y="219.5" text-anchor="start" class="value">596,404.7 ± 933,325.4 B/op (+11458204.00%)</text>
 <text x="288" y="274.0" text-anchor="end" class="label">compressionThroughput · chunkSize=64 bytes</text>
 <rect x="300.0" y="249.5" width="1.0" height="18" rx="2" fill="#2563eb"/>
-<text x="306.0" y="262.5" text-anchor="start" class="value">★ 1.142 ± 0.017 B/op (0.00%)</text>
+<text x="306.0" y="262.5" text-anchor="start" class="value">★ 1.139 ± 0.016 B/op (0.00%)</text>
 <rect x="300.0" y="272.5" width="650.0" height="18" rx="2" fill="#ea580c"/>
-<text x="956.0" y="285.5" text-anchor="start" class="value">74,584.5 ± 116,715.8 B/op (+6530941.51%)</text>
+<text x="956.0" y="285.5" text-anchor="start" class="value">74,584.5 ± 116,715.8 B/op (+6548140.74%)</text>
 <text x="288" y="340.0" text-anchor="end" class="label">compressionThroughput · chunkSize=512 bytes</text>
-<rect x="300.0" y="315.5" width="181.0" height="18" rx="2" fill="#2563eb"/>
-<text x="487.0" y="328.5" text-anchor="start" class="value">★ 0.645 ± 0.009 B/op (0.00%)</text>
+<rect x="300.0" y="315.5" width="182.3" height="18" rx="2" fill="#2563eb"/>
+<text x="488.3" y="328.5" text-anchor="start" class="value">★ 0.640 ± 0.009 B/op (0.00%)</text>
 <rect x="300.0" y="338.5" width="650.0" height="18" rx="2" fill="#ea580c"/>
-<text x="956.0" y="351.5" text-anchor="start" class="value">2.316 ± 3.797 B/op (+259.07%)</text>
+<text x="956.0" y="351.5" text-anchor="start" class="value">2.282 ± 3.740 B/op (+256.56%)</text>
 <text x="288" y="406.0" text-anchor="end" class="label">compressionThroughput · chunkSize=4096 bytes</text>
 <rect x="300.0" y="381.5" width="1.0" height="18" rx="2" fill="#2563eb"/>
-<text x="306.1" y="394.5" text-anchor="start" class="value">★ 0.580 ± 0.009 B/op (0.00%)</text>
+<text x="306.1" y="394.5" text-anchor="start" class="value">★ 0.575 ± 0.008 B/op (0.00%)</text>
 <rect x="300.0" y="404.5" width="650.0" height="18" rx="2" fill="#ea580c"/>
-<text x="956.0" y="417.5" text-anchor="start" class="value">5,975.6 ± 1,869.6 B/op (+1030168.45%)</text>
+<text x="956.0" y="417.5" text-anchor="start" class="value">7,170.2 ± 3.615 B/op (+1246892.00%)</text>
 <text x="288" y="472.0" text-anchor="end" class="label">compressionThroughput · chunkSize=16384 bytes</text>
 <rect x="300.0" y="447.5" width="1.0" height="18" rx="2" fill="#2563eb"/>
-<text x="306.6" y="460.5" text-anchor="start" class="value">★ 0.574 ± 0.011 B/op (0.00%)</text>
+<text x="306.4" y="460.5" text-anchor="start" class="value">★ 0.569 ± 0.008 B/op (0.00%)</text>
 <rect x="300.0" y="470.5" width="650.0" height="18" rx="2" fill="#ea580c"/>
-<text x="956.0" y="483.5" text-anchor="start" class="value">642.200 ± 500.795 B/op (+111781.53%)</text>
+<text x="956.0" y="483.5" text-anchor="start" class="value">962.183 ± 3.581 B/op (+169000.70%)</text>
 <text x="288" y="538.0" text-anchor="end" class="label">compressionThroughput · chunkSize=65536 bytes</text>
 <rect x="300.0" y="513.5" width="1.1" height="18" rx="2" fill="#2563eb"/>
-<text x="307.1" y="526.5" text-anchor="start" class="value">★ 0.569 ± 0.009 B/op (0.00%)</text>
+<text x="307.1" y="526.5" text-anchor="start" class="value">★ 0.567 ± 0.008 B/op (0.00%)</text>
 <rect x="300.0" y="536.5" width="650.0" height="18" rx="2" fill="#ea580c"/>
-<text x="956.0" y="549.5" text-anchor="start" class="value">322.205 ± 3.618 B/op (+56526.54%)</text>
+<text x="956.0" y="549.5" text-anchor="start" class="value">322.175 ± 3.566 B/op (+56720.99%)</text>
 </svg>

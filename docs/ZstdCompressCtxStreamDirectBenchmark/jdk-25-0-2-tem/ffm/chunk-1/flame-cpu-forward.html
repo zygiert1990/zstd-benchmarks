@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 624px}
+	#canvas {width: 100%; height: 640px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(39);
+	const levels = Array(40);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -382,12 +382,17 @@
 
 const cpool = [
 'all',
-' /tmp/libzstd-jni-1.5.7-17-V5759708758752539223.so',
+' /tmp/libzstd-jni-1.5.7-17-V515165407715398391840.so',
+' FSE_buildCTable_wksp',
+'$normalizeCount',
 ' HIST_count_parallel_wksp.lto_priv.0',
-'!UF_compress4X_repeat',
+'!UF_buildCTable_wksp',
+'$compress1X_usingCTable_internal_bmi2.lto_priv.0',
+',4X_repeat',
+',CTable_internal.lto_priv.0',
 ',_internal',
-' I2C/C2I adapters',
-' ZSTD_buildSeqStore',
+' ZSTD_buildCTable',
+'*SeqStore',
 '-uencesStatistics.lto_priv.0',
 '%compressBlock_fast',
 '3internal',
@@ -419,8 +424,8 @@ const cpool = [
 '4With',
 '*foreign/MemorySegment.ofBuffer',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'1LambdaForm$DMH.0x00000000060ddc00.invokeStatic',
-'<MH.0x0000000006061c00.invoke',
+'1LambdaForm$DMH.0x00000000380ddc00.invokeStatic',
+'<MH.0x0000000038061c00.invoke',
 'M2000.invokeExact_MT',
 'Le4400.invokeExact_MT',
 'Nc00.invokeExact_MT',
@@ -428,8 +433,7 @@ const cpool = [
 'N400.invoke',
 '1MethodHandle.invokeBasic',
 '*reflect/Method.invoke',
-'%nio/Buffer$2.unmapper',
-'/.<init>',
+'%nio/Buffer.<init>',
 '0capacity',
 '0hasRemaining',
 '0limit',
@@ -447,7 +451,6 @@ const cpool = [
 ':isSync',
 ':limit',
 ':position',
-':unmapper',
 '%util/concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
 '5ThreadPoolExecutor$Worker.run',
@@ -462,7 +465,7 @@ const cpool = [
 '[Offset',
 'J.unsafeGetOffset',
 '5NativeMemorySegmentImpl.unsafeGetOffset',
-'5abi/DowncallStub.0x00000000060dd800.invoke',
+'5abi/DowncallStub.0x00000000380dd800.invoke',
 '-reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
 ' nep_invoker_blob',
@@ -474,128 +477,131 @@ const cpool = [
 ];
 unpack(cpool);
 
-n(3,2501)
-u(272)
-u(280)
-u(552)
-u(560)
-u(544)
-u(536)
-u(544)
-u(680)
-u(680)
-u(368)
-u(656)
-u(664)
-u(320)
+n(3,2502)
 u(312)
-u(296)
+u(320)
+u(576)
+u(584)
+u(568)
+u(560)
+u(568)
 u(704)
-u(712)
-u(43,1)
-n(689,2500)
-f(217,19,128,2266)
-f(154,20,64,274)
-f(570,21,13,261)
-f(162,20,261,250)
-f(570,21,15,235)
-f(170,20,235,2)
-n(226,1564)
-u(210,1321)
-f(178,22,58,20)
-n(186,37)
-n(194,1206)
-u(330)
-u(346)
-u(306)
-u(650)
-f(338,27,70,980)
-u(354)
-f(361,29,94,25)
-n(675,861)
-f(115,30,262,599)
-f(107,31,82,517)
-f(11,32,395,10)
-n(83,48)
-u(123)
-u(75)
-u(51,41)
-u(67)
-f(59,35,41,2)
-u(19,1)
-n(139)
-f(99,35,1)
-u(27)
-u(35)
-u(19)
-f(131,35,1,4)
-f(91,32,4,30)
-u(123)
-u(75)
-u(51,24)
-u(67)
-f(59,35,24,3)
-u(19,1)
-n(139,2)
-f(99,35,2,1)
-u(27)
-u(35)
-f(131,35,1,2)
-f(147,32,2,34)
-f(610,27,34,13)
-n(618,83)
-u(618)
-f(626,27,83,17)
-u(634)
-f(642,27,17,43)
-f(234,21,43,10)
-u(394)
-f(242,21,10,205)
-u(290,73)
-u(602)
-u(586,13)
-n(602,60)
-u(594)
-u(378,1)
-u(530)
-f(578,26,1,59)
-f(482,22,59,132)
-u(482)
-f(418,24,2,24)
-n(466,82)
-f(474,25,14,20)
-n(490,48)
-u(442)
-u(442)
+u(704)
+u(408)
+u(680)
+u(688)
+u(360)
+u(352)
+u(336)
+u(728)
+u(736)
+u(713)
+f(257,19,124,2267)
+f(194,20,74,230)
+f(594,21,14,216)
+f(202,20,216,244)
+f(594,21,15,229)
+f(210,20,229,2)
+n(266,1589)
+u(250,1357)
+f(218,22,57,20)
+n(226,37)
+n(234,1243)
+u(370)
 u(386)
-f(514,29,24,12)
-u(514)
-u(450)
-u(410)
-f(522,29,12)
-u(522)
-u(458)
+u(346)
+u(674)
+f(378,27,61,1018)
+u(394)
+f(401,29,85,20)
+n(699,913)
+f(155,30,282,631)
+f(147,31,112,519)
+f(11,32,355,12)
+n(123,69)
+u(163)
+u(115)
+u(91,62)
+u(107)
+f(99,35,62,2)
+u(83)
+u(19,1)
+n(27)
+f(139,35,1,2)
+u(59)
+u(75)
+u(35,1)
+n(67)
+u(51)
+f(171,35,1,3)
+f(131,32,3,35)
+u(163)
+u(115)
+u(91,29)
+u(107)
+f(99,35,29,1)
+u(179)
+f(139,35,1,4)
+u(59)
+u(75)
+u(35,1)
+n(43,2)
+n(67,1)
+u(51)
+f(171,35,1)
+f(187,32,1,48)
+f(634,27,48,11)
+n(642,84)
+u(642)
+f(650,27,84,13)
+u(658)
+f(666,27,13,56)
+f(274,21,56,12)
 u(426)
-f(498,24,12,13)
-n(506,11)
-f(266,21,11,28)
-f(250,20,28,8)
-n(258,92)
-u(202,42)
-n(522,50)
-u(522)
-u(458)
-u(426)
-f(410,20,50,12)
-f(402,19,12,15)
-n(426,14)
-n(434)
-n(514,52)
+f(282,21,12,186)
+u(330,56)
+u(626)
+u(610,11)
+n(626,45)
+u(618)
+u(602)
+f(514,22,45,130)
 u(514)
-u(450)
-u(410)
-f(698,19,52,11)
-f(426,20,2,9)
+f(450,24,1,25)
+n(498,81)
+f(506,25,17,11)
+n(522,53)
+u(474)
+u(474)
+u(418)
+f(546,29,27,12)
+u(546)
+u(482)
+u(442)
+f(554,29,12,14)
+u(554)
+u(490)
+u(458)
+f(530,24,14,11)
+n(538,12)
+f(306,21,12,34)
+f(290,20,34,10)
+n(298,103)
+u(242,46)
+n(554,57)
+u(554)
+u(490)
+u(458)
+f(442,20,57,15)
+f(434,19,15)
+n(458,21)
+n(466,16)
+n(546,47)
+u(546)
+u(482)
+u(442)
+f(722,19,47,12)
+u(458)
 
 search();
 </script></body></html>

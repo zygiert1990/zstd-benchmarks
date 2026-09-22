@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 464px}
+	#canvas {width: 100%; height: 448px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(29);
+	const levels = Array(28);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -382,6 +382,7 @@
 
 const cpool = [
 'all',
+' AccessInternal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<1097844ul, G1BarrierSet>, (AccessInternal::BarrierType)2, 1097844ul>::oop_access_barrier',
 ' FSE_buildCTable_wksp',
 '$compress_usingCTable_generic.lto_priv.0',
 '$normalizeCount',
@@ -400,7 +401,8 @@ const cpool = [
 ' ZSTD_buildCTable',
 '*SeqStore',
 '-uencesStatistics.lto_priv.0',
-'%compressBlock_fast',
+'%compressBegin_internal.constprop.0',
+'.lock_fast',
 '3internal',
 '-Continue_internal.lto_priv.0',
 '-End_public',
@@ -408,21 +410,21 @@ const cpool = [
 '-_frameChunk.lto_priv.0',
 '%encodeSequences_bmi2.lto_priv.0',
 '\'tropyCompressSeqStore_wExtLitBuffer',
+'%resetCCtx_internal.lto_priv.0',
 '%seqToCodes',
-' [break_compiled]',
 ' __memmove_avx_unaligned_erms',
-' com/github/luben/zstd/AutoCloseBase.acquireSharedLock',
-'DreleaseSharedLock',
-'6ZstdCompressCtx.compressByteBufferStream',
+' com/github/luben/zstd/ZstdCompressCtx.compressByteBufferStream',
 'NDirectByteBufferStream0',
+'FupdateStreamPositions',
 ' java/lang/Thread.run',
 '*reflect/Method.invoke',
+'%nio/Buffer.position',
+'*yteBuffer.position',
+')MappedByteBuffer.position',
 '%util/concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
 '5ThreadPoolExecutor$Worker.run',
 'G.runWorker',
-'5atomic/AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl.compareAndSet',
-'$_lang_Class::as_Klass',
 '!dk/internal/reflect/DelegatingMethodAccessorImpl.invoke',
 '5NativeMethodAccessorImpl.invoke',
 'T0',
@@ -437,88 +439,92 @@ const cpool = [
 unpack(cpool);
 
 n(3,2499)
-u(227,1)
-u(265)
-f(272,1,1,2498)
-u(304)
-u(312)
-u(296)
-u(288)
-u(296)
-u(384)
-u(384)
 u(280)
 u(336)
 u(344)
-u(352)
+u(328)
+u(320)
+u(328)
 u(400)
-u(408,2498,0,790,1708)
-u(393)
-f(258,16,1,2497)
-f(242,17,1,4)
-u(322)
-f(250,17,4,2)
-u(322)
-f(265,17,2,2490)
-f(107,18,12,2478)
-u(187,2453)
-f(171,20,2,1487)
-u(195)
-u(163)
-u(139,1120)
-u(155)
-f(211,23,1120,367)
-u(67,110)
-u(83)
-u(43,47)
-n(51,11)
-f(91,27,9,2)
-f(91,28,1,1)
-f(75,26,1,45)
-f(59,27,1,44)
-f(99,26,44,7)
-f(11,27,3,3)
-n(19,1)
-f(147,24,1,87)
-u(43,26)
-n(131,33)
-u(11,24)
-n(27,2)
-n(35,7)
-f(219,25,7,28)
-f(203,24,28,170)
-f(179,20,170,930)
-u(195)
-u(163)
-f(139,23,2,696)
-u(155)
-f(211,23,696,232)
-f(67,24,1,58)
-u(83)
-f(43,26,2,12)
-n(51,9)
-f(91,27,6,3)
-f(75,26,3,34)
-u(59)
-f(99,26,34,1)
-f(147,24,1,57)
-f(43,25,1,19)
-n(131,28)
-u(11,17)
-n(27,4)
-n(35,7)
-f(219,25,7,9)
-f(203,24,9,116)
-f(235,20,116,34)
-f(363,19,34,15)
-f(379,20,2,13)
-u(116,4)
-n(124,8)
-n(332,1)
-f(371,19,1,10)
-f(379,20,2,8)
-f(116,21,4,2)
-n(124)
+u(400)
+u(288)
+u(352)
+u(360)
+u(368)
+u(416)
+u(424,2499,0,839,1660)
+u(409)
+f(258,16,2,2497)
+u(265,2496)
+f(115,18,9,2487)
+f(203,19,2,2461)
+f(163,20,4,1)
+u(235)
+f(187,20,1,1459)
+f(211,21,1,1458)
+u(179)
+u(147,1090)
+u(171)
+f(227,23,1090,368)
+u(75,126)
+u(91)
+u(51,50)
+f(251,27,49,1)
+f(59,26,1,10)
+f(99,27,6,4)
+f(83,26,4,59)
+u(67)
+f(107,26,59,7)
+f(27,27,2,2)
+n(43,3)
+f(155,24,3,81)
+u(51,29)
+f(251,26,28,1)
+f(139,25,1,28)
+u(19,21)
+n(35,2)
+n(43,5)
+f(243,25,5,24)
+f(219,24,24,161)
+f(195,20,161,948)
+u(211)
+u(179)
+u(147,691)
+u(171)
+f(227,23,691,257)
+u(75,94)
+u(91)
+f(51,26,3,30)
+n(59,14)
+n(83,42)
+u(67)
+f(107,26,42,5)
+f(27,27,2,2)
+n(43,1)
+f(155,24,1,72)
+f(51,25,1,26)
+f(251,26,25,1)
+f(139,25,1,24)
+u(19,17)
+n(35,4)
+n(43,3)
+f(243,25,3,21)
+f(219,24,21,91)
+f(251,20,91,49)
+f(379,19,49,12)
+u(395)
+f(124,21,3,6)
+n(132,3)
+f(387,19,3,12)
+f(395,20,1,11)
+f(12,21,1,1)
+n(124,5)
+n(132,4)
+f(274,17,4,1)
+u(314)
+u(314)
+u(306)
+u(298)
 
 search();
 </script></body></html>

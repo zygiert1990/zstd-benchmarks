@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 640px}
+	#canvas {width: 100%; height: 704px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(40);
+	const levels = Array(44);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -382,16 +382,11 @@
 
 const cpool = [
 'all',
-' C1 Runtime counter_overflow_blob',
-'!ompilationPolicy::event',
-'3method_back_branch_event',
-'&eBroker::compile_method',
-' DirectiveSet::compilecommand_compatibility_init',
 ' FSE_buildCTable_wksp',
-'$compress_usingCTable_generic.lto_priv.0',
 '$normalizeCount',
 '$writeNCount',
-' HIST_count_parallel_wksp.lto_priv.0',
+' HIST_countFast_wksp',
+'*_parallel_wksp.lto_priv.0',
 '!UF_buildCTable_wksp',
 '$compress1X_usingCTable_internal_bmi2.lto_priv.0',
 ',4X_repeat',
@@ -399,8 +394,8 @@ const cpool = [
 ',_internal',
 '$simpleQuickSort',
 '$writeCTable_wksp',
-' I2C/C2I adapters',
-' Runtime1::counter_overflow',
+' JVM_ArrayCopy',
+' ObjArrayKlass::copy_array',
 ' ZSTD_buildCTable',
 '*SeqStore',
 '-uencesStatistics.lto_priv.0',
@@ -415,148 +410,184 @@ const cpool = [
 '%encodeSequences_bmi2',
 '%seqToCodes',
 ' __memmove_avx_unaligned_erms',
-' bool CompilerOracle::has_option_value<bool>',
-' com/github/luben/zstd/AutoCloseBase.releaseSharedLock',
-'6ZstdBinding.compressStream2',
-':CompressCtx.compressBufferStream',
+' com/github/luben/zstd/AutoCloseBase.close',
+'DreleaseSharedLock',
+'6ZstdBinding$SizeTRef$Wide.get',
+'A.compressStream2',
+'BfreeCCtx',
+':CompressCtx.close',
+'GompressBufferStream',
 'OyteBufferStream',
 'NDirectByteBufferStream0',
-'FdirectSegment',
-' java/lang/Thread.run',
+'FdoClose',
+'FupdateStreamPositions',
+' java/lang/System.arraycopy',
+'*Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'1LambdaForm$DMH.0x00000000280ddc00.invokeStatic',
-'<MH.0x0000000028061c00.invoke',
+'C.make',
+'HPreparedLambdaForm',
+'DpreparedLambdaForm',
+'1Invokers.basicInvoker',
+':invokeHandleForm',
+':methodHandleInvokeLinkerMethod',
+'1LambdaForm$DMH.0x000000003c0c7800.invokeStaticInit',
+'Mddc00.invokeStatic',
+'<MH.0x000000003c061c00.invoke',
 'M2000.invokeExact_MT',
+'Lc9000.invoke',
 'Le4400.invokeExact_MT',
 'Nc00.invokeExact_MT',
 'M5000.invoke',
 'N400.invoke',
+'Nc00.invokeExact_MT',
+'<Name.<init>',
+'@dFunction.<init>',
+'1MethodHandleNatives.linkMethod',
+'OImpl',
 '*reflect/Method.invoke',
-'%nio/DirectByteBuffer.<init>',
-':duplicate',
-')MappedByteBuffer.fileDescriptor',
-'%util/concurrent/CountDownLatch.countDown',
-'5Executors$RunnableAdapter.call',
+'%nio/Buffer.position',
+'*yteBuffer.position',
+')MappedByteBuffer.position',
+'%util/Arrays.copyOfRange',
+'*concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
 '5ThreadPoolExecutor$Worker.run',
 'G.runWorker',
 '5atomic/AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl.compareAndSet',
-'5locks/AbstractQueuedSynchronizer.releaseShared',
-'!dk/internal/foreign/abi/DowncallStub.0x00000000280dd800.invoke',
+'!dk/internal/foreign/HeapMemorySegmentImpl$OfLong.unsafeGetBase',
+'5abi/DowncallStub.0x000000003c0c7000.invoke',
+'Sdd800.invoke',
 '-reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
 ' nep_invoker_blob',
 ' org/openjdk/jmh/runner/BenchmarkHandler$BenchmarkTask.call',
-'7InfraControl.announceWarmdownReady',
-'CL2.announceWarmdownReady',
 '$zygiert/ZstdCompressCtxStreamDirectBenchmark.compressionThroughput',
+'QtearDown',
 ',jmh_generated/ZstdCompressCtxStreamDirectBenchmark_compressionThroughput_jmhTest.compressionThroughput_AverageTime',
 'mpressionThroughput_avgt_jmhStub'
 ];
 unpack(cpool);
 
-n(3,2499)
+n(3,2500)
 u(328)
 u(336)
-u(464)
-u(472)
-u(456)
-u(448)
-u(456)
-u(528)
-u(528)
-u(408)
-u(504)
-u(512)
-u(368)
-u(360)
-u(344)
+u(568)
+u(576)
 u(560)
-u(536,1)
-u(544)
-u(440)
+u(552)
+u(560)
+u(640)
+u(640)
+u(512)
+u(616)
+u(624)
+u(424)
+u(416)
+u(344)
+u(664)
+u(656,1)
+u(272)
+u(232)
+u(304)
+u(264)
+u(472)
+u(432)
+u(400)
+u(600)
+u(496)
+u(504)
+u(392)
+u(384)
+u(480)
 u(488)
-f(568,17,1,2498,0,796,1702)
-u(147,1)
-n(553,2497,61,0,0)
-u(11,1)
-u(156)
-u(20)
-u(28)
-u(36)
-u(44)
-u(276)
-f(305,19,1,2496)
-u(282,2)
-u(482)
-f(314,20,2,2494)
-u(298,2492)
-u(290)
-u(378)
-u(394)
-u(354)
-u(498)
-u(386)
-u(402)
-u(523)
-u(235)
-u(227)
-f(203,32,4,1486)
-u(243)
+u(376)
+u(352)
+u(352)
+u(352)
+u(368)
+u(374,1,0,1,0)
+u(370)
+u(360)
+u(544)
+u(321)
+u(107)
+u(116)
+f(672,17,1,2499,0,824,1675)
+u(649,2499,59,0,1)
+f(289,19,2,2496)
+u(242,4)
+u(586)
+f(298,20,4,2491)
+u(282)
+u(250,1)
+n(258,2490)
+u(442)
+u(458)
+u(410)
+u(610)
+u(450,2489)
+u(466)
+u(635)
 u(195)
-u(171,1135)
-f(187,36,1,1134)
-f(179,35,1134,82)
-u(83,31)
-f(267,37,30,1)
-f(163,36,1,23)
-u(51,16)
-n(67,2)
-n(75,5)
-f(259,36,5,28)
-f(219,35,28,116)
-f(107,36,4,112)
-u(123)
-f(83,38,1,38)
-f(267,39,37,1)
-f(91,38,1,15)
-f(131,39,12,3)
-f(115,38,3,56)
-u(99)
-f(139,38,56,2)
-u(51,1)
-n(59)
-f(251,35,1,153)
-f(211,32,153,957)
-u(243)
-u(195)
-f(171,35,1,680)
 u(187)
-f(179,35,680,73)
-f(83,36,1,24)
-n(163,31)
-u(51,26)
-n(67,1)
-n(75,4)
-f(259,36,4,17)
-f(219,35,17,82)
-f(107,36,1,81)
-u(123)
-f(83,38,4,25)
-n(91,17)
-f(131,39,16,1)
-f(115,38,1,33)
-u(99)
-f(139,38,33,2)
+f(163,32,1,1488)
+u(203)
+f(155,34,1,1487)
+f(131,35,1,1116)
+u(147)
+f(139,35,1116,82)
+u(43,32)
+f(227,37,30,2)
+f(123,36,2,27)
+u(11,25)
+n(27,2)
+f(219,36,2,23)
+f(179,35,23,121)
+f(67,36,2,119)
+u(83)
+u(43,37)
+f(227,39,36,1)
+f(51,38,1,8)
+n(75,67)
 u(59)
-f(251,35,2,121)
-f(267,32,121,45)
-f(322,21,45,2)
-u(426)
-u(426)
-u(418,1)
-n(434)
+f(99,38,67,7)
+f(11,39,2,3)
+n(27,2)
+f(211,35,2,167)
+f(171,32,167,949)
+f(203,33,1,948)
+u(155)
+f(131,35,1,679)
+u(147)
+f(139,35,679,61)
+f(43,36,1,15)
+n(123,23)
+u(11,18)
+n(19,2)
+n(27,3)
+f(219,36,3,22)
+f(179,35,22,87)
+f(67,36,1,86)
+f(83,37,1,85)
+f(35,38,1,1)
+n(43,35)
+n(51,8)
+f(91,39,7,1)
+f(75,38,1,38)
+u(59)
+f(99,38,38,2)
+f(11,39,1,1)
+f(211,35,1,120)
+f(227,32,120,51)
+f(594,27,51,1)
+u(594)
+f(314,20,1)
+u(538)
+u(538)
+u(530)
+u(522)
+f(522,19,1)
 
 search();
 </script></body></html>

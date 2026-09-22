@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 496px}
+	#canvas {width: 100%; height: 512px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(31);
+	const levels = Array(32);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -399,13 +399,17 @@ const cpool = [
 ',_internal',
 '$simpleQuickSort',
 '$writeCTable_wksp',
-' IndexSet::alloc_block_containing',
+' IndexSetIterator::advance_and_next',
 ' JavaThread::thread_main_inner',
 '$_com_github_luben_zstd_ZstdCompressCtx_compressDirectByteBufferToByteArrayStream0',
-' PhaseChaitin::Register_Allocate',
-'.gather_lrg_masks',
-'%IFG::SquareUp',
-' RegMask::is_bound',
+' MachNode::ideal_reg',
+' Node::is_iteratively_computed',
+' PhaseCFG::do_global_code_motion',
+'*global_code_motion',
+'*schedule_local',
+'&haitin::Register_Allocate',
+'.build_ifg_physical',
+'.interfere_with_live',
 ' Thread::call_run',
 ' ZSTD_buildCTable',
 '*SeqStore',
@@ -420,21 +424,15 @@ const cpool = [
 '%encodeSequences_bmi2.lto_priv.0',
 '\'tropyCompressSeqStore_wExtLitBuffer',
 '%resetCCtx_internal.lto_priv.0',
-'*_matchState',
 '%seqToCodes',
 ' __memmove_avx_unaligned_erms',
-'"tls_get_addr',
-'!dl_update_slotinfo',
 ' clone3',
 '!om/github/luben/zstd/ZstdCompressCtx.compressByteBufferStream',
 'NDirectByteBufferToByteArrayStream0',
-' java/lang/ClassLoader.findNative',
-'*Module.ensureNativeAccess',
-'*System$1.ensureNativeAccess',
-'*Thread.run',
+' java/lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'1LambdaForm$MH.0x000000000a061000.invoke',
+'1LambdaForm$MH.0x000000003a061000.invoke',
 'N400.invokeExact_MT',
 '*reflect/Method.invoke',
 '%util/concurrent/Executors$RunnableAdapter.call',
@@ -443,126 +441,121 @@ const cpool = [
 'G.runWorker',
 '!dk/internal/reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
-'5Reflection.ensureNativeAccess',
 '!ni_GetArrayLength',
 '\'DirectBufferCapacity',
 '\'PrimitiveArrayCritical',
 '$IsInstanceOf',
-'$ReleasePrimitiveArrayCritical',
 ' org/openjdk/jmh/runner/BenchmarkHandler$BenchmarkTask.call',
 '$zygiert/ZstdCompressCtxStreamDirectToHeapBenchmark.compressionThroughput',
 ',jmh_generated/ZstdCompressCtxStreamDirectToHeapBenchmark_compressionThroughput_jmhTest.compressionThroughput_AverageTime',
 'est.compressionThroughput_avgt_jmhStub',
 ' start_thread',
-' thread_native_entry',
-' update_get_addr'
+' thread_native_entry'
 ];
 unpack(cpool);
 
 n(3,2502)
-u(355,2)
-u(579)
-u(588)
-u(204)
+u(363,2)
+u(547)
+u(556)
+u(236)
 u(156)
 u(36)
 u(44)
 u(12)
 u(28)
 u(20)
-u(172)
-u(180,1)
+u(188,1)
 u(196)
-f(188,12,1)
+u(204)
+u(180)
+u(172)
+f(212,11,1)
+u(220)
+u(228)
 u(148)
-u(339)
-u(595)
-u(347)
-f(376,1,1)
-u(496)
+f(384,1,1,2500)
 u(392)
-u(384)
-f(400,1,1,2499)
-u(408)
-u(464)
-u(472)
-u(456)
 u(448)
 u(456)
-u(544)
-u(544)
 u(440)
-u(480)
-u(488)
 u(432)
+u(440)
+u(512)
+u(512)
 u(424)
+u(464)
+u(472)
 u(416)
-u(560)
-u(568,2499,0,763,1736)
-u(553,2499,252,0,1)
-u(362,2499,2246,0,0)
-u(369)
-u(163)
-u(275,2494)
-f(235,23,4,1)
-u(307)
+u(408)
+u(400)
+u(528)
+u(536,2500,0,813,1687)
+f(521,18,1,2499,250,0,0)
+u(370,2499,2249,0,0)
+u(377)
+f(163,21,1,2498)
+u(307,2491)
+f(267,23,1,1)
+u(339)
+f(291,23,1,1489)
 u(315)
-f(259,23,1,1498)
-u(283)
-f(251,25,1,1497)
-u(219,1147)
-u(243)
-f(299,26,1147,350)
-f(107,27,1,121)
+f(283,25,1,1488)
+f(251,26,1,1132)
+u(275)
+f(331,26,1132,355)
+u(107,123)
 u(123)
-f(83,29,1,45)
-f(331,30,44,1)
-f(91,29,1,14)
-n(115,60)
+f(83,29,1,51)
+f(355,30,49,2)
+f(91,29,2,14)
+f(131,30,11,3)
+f(115,29,3,50)
 u(99)
-f(139,29,60,1)
-u(59)
-f(227,27,1,80)
-u(83,30)
-f(331,29,28,2)
-f(211,28,2,31)
-u(51,26)
-n(67,2)
-n(75,3)
-f(323,28,3,19)
-f(291,27,19,148)
-f(267,23,148,954)
+f(139,29,50,7)
+f(51,30,2,1)
+n(59,2)
+n(67)
+f(259,27,2,85)
+f(83,28,1,35)
+f(355,29,34,1)
+f(243,28,1,22)
+u(51,16)
+n(67,1)
+n(75,5)
+f(347,28,5,27)
+f(323,27,27,147)
+f(299,23,147,958)
+f(315,24,1,957)
 u(283)
-u(251)
-f(219,26,1,706)
-u(243)
-f(299,26,706,247)
-f(107,27,2,76)
+u(251,677)
+u(275)
+f(331,26,677,280)
+u(107,70)
 u(123)
-f(83,29,2,34)
-f(331,30,33,1)
-f(91,29,1,8)
-f(131,30,7,1)
-f(115,29,1,29)
+f(83,29,2,30)
+n(91,14)
+f(131,30,11,3)
+f(131,31,1,2)
+f(115,29,2,18)
 u(99)
-f(139,29,29,3)
-f(51,30,1,1)
+f(139,29,18,6)
+u(51,2)
 n(59)
-f(227,27,1,70)
-u(83,30)
-f(331,29,28,2)
-f(211,28,2,25)
-u(51,18)
-n(67,4)
-n(75,3)
-f(323,28,3,15)
-f(291,27,15,99)
-f(331,23,99,37)
-f(507,22,37,1)
-n(515,2)
-u(531)
-f(523,22,2,1)
-n(539)
+n(75)
+f(259,27,2,77)
+u(83,24)
+n(243,33)
+u(51,26)
+n(67,5)
+n(75,2)
+f(347,28,2,20)
+f(323,27,20,133)
+f(355,23,133,42)
+f(483,22,42,2)
+n(491,3)
+f(507,23,1,2)
+f(499,22,2)
 
 search();
 </script></body></html>

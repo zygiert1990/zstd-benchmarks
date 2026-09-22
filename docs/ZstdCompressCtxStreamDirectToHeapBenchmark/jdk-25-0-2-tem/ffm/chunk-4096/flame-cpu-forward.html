@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 656px}
+	#canvas {width: 100%; height: 640px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(41);
+	const levels = Array(40);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -382,13 +382,11 @@
 
 const cpool = [
 'all',
-' C2 Runtime new_instance',
-'!ardTableBarrierSet::on_slowpath_allocation_exit',
+' /tmp/libzstd-jni-1.5.7-17-V57623251393398638874.so',
 ' FSE_buildCTable_wksp',
 '$compress_usingCTable_generic.lto_priv.0',
 '$normalizeCount',
 '$writeNCount',
-' G1CardTable::is_in_young',
 ' HIST_count_parallel_wksp.lto_priv.0',
 '!UF_buildCTable_wksp',
 '$compress1X_usingCTable_internal_bmi2.lto_priv.0',
@@ -397,7 +395,6 @@ const cpool = [
 ',_internal',
 '$simpleQuickSort',
 '$writeCTable_wksp',
-' OptoRuntime::new_instance_C',
 ' ZSTD_CCtx_init_compressStream2',
 '%buildCTable',
 '*SeqStore',
@@ -411,8 +408,9 @@ const cpool = [
 '-Stream2',
 '4_simpleArgs',
 '-_frameChunk',
+'.insertDictionary',
 '%encodeSequences_bmi2',
-'%getCParamsFromCCtxParams',
+'%resetCCtx_internal',
 '%seqToCodes',
 ' __memmove_avx_unaligned_erms',
 ' com/github/luben/zstd/AutoCloseBase.acquireSharedLock',
@@ -423,41 +421,31 @@ const cpool = [
 'OyteBufferStream',
 'NDirectByteBufferToByteArrayStream0',
 'FdirectSegment',
-'FisValidArrayStreamBuffer',
 ' java/lang/Thread.run',
 '4With',
-'*foreign/MemorySegment.ofBuffer',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'1LambdaForm$DMH.0x00000000270ddc00.invokeStatic',
-'<MH.0x0000000027061c00.invoke',
+'1LambdaForm$DMH.0x00000000090ddc00.invokeStatic',
+'<MH.0x0000000009061c00.invoke',
 'M2000.invokeExact_MT',
 'Le4400.invokeExact_MT',
 'Nc00.invokeExact_MT',
 'M5000.invoke',
 'N400.invoke',
 '*reflect/Method.invoke',
-'%nio/Buffer$2.bufferSegment',
-'/.<init>',
-'0clear',
-'0position',
-'*yteBuffer.<init>',
-'4clear',
-'4position',
+'%nio/Buffer.limit',
+'*yteBuffer.array',
+'4limit',
 ')DirectByteBuffer.<init>',
+':attachment',
 ':duplicate',
-')MappedByteBuffer.<init>',
-':clear',
-':position',
+')MappedByteBuffer.limit',
 '%util/concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
 '5ThreadPoolExecutor$Worker.run',
 'G.runWorker',
 '5atomic/AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl.compareAndSet',
-'!dk/internal/foreign/AbstractMemorySegmentImpl.bufferScope',
-'OnativeSegment',
-'OofBuffer',
-'5HeapMemorySegmentImpl$OfLong.unsafeGetBase',
-'5abi/DowncallStub.0x00000000270dd800.invoke',
+'!dk/internal/foreign/NativeMemorySegmentImpl.unsafeGetOffset',
+'5abi/DowncallStub.0x00000000090dd800.invoke',
 '-reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
 ' nep_invoker_blob',
@@ -469,126 +457,107 @@ const cpool = [
 unpack(cpool);
 
 n(3,2499)
-u(344)
+u(320)
+u(328)
+u(480)
+u(488)
+u(472)
+u(464)
+u(472)
+u(544)
+u(544)
+u(400)
+u(520)
+u(528)
+u(360)
 u(352)
-u(552)
+u(336)
 u(560)
-u(544)
-u(536)
-u(544)
-u(640)
-u(640)
-u(432)
-u(616)
-u(624)
-u(392)
-u(384)
-u(368)
-u(656)
-u(664,2499,0,867,1632)
-u(649)
-f(313,19,2,2497)
-u(274,2)
-u(570)
-f(282,20,2,6)
-u(570)
-f(322,20,6,2489)
-u(306,2484)
-u(290,2)
-n(298,2482)
-u(402)
-u(418)
-u(378)
-u(610)
-u(410,2481)
-u(426)
-u(635)
-f(227,30,2,2479)
-f(219,31,1,2478)
-f(139,32,2,2)
-u(171,1)
-n(251)
-f(195,32,1,1498)
-u(235)
-u(187)
-u(155,1118)
-u(179)
-f(163,35,1118,84)
-u(67,34)
-n(147,31)
-u(27,24)
-n(43,5)
-n(51,2)
-f(259,36,2,19)
-f(211,35,19,123)
-f(91,36,1,122)
-u(107)
-u(67,44)
-n(75,14)
-f(115,39,12,2)
-f(99,38,2,63)
-u(83)
-f(123,38,63,1)
-u(27)
-f(243,35,1,173)
-f(203,32,173,935)
-u(235)
-u(187)
-u(155,651)
-u(179)
-f(163,35,651,80)
-u(67,27)
-f(267,37,25,2)
-f(147,36,2,37)
-u(27,27)
-n(43,3)
-n(51,7)
-f(259,36,7,16)
-f(211,35,16,78)
-u(91)
-u(107)
-f(67,38,5,28)
-n(75,7)
-f(115,39,6,1)
-u(115)
-f(99,38,1,31)
-u(83)
-f(123,38,31,7)
-f(27,39,2,1)
-n(35,2)
-n(43,1)
-n(51)
-f(243,35,1,126)
-f(267,32,126,41)
-f(602,27,41,1)
-u(602)
-f(330,21,1,4)
-u(362,1)
-u(594)
-u(594)
-u(586)
-u(578)
-u(442)
-f(506,22,1,2)
-u(506)
-u(11,1)
-u(132)
-u(20)
-u(60)
-f(498,24,1)
+u(568,2499,0,871,1628)
+f(553,18,1,2498)
+f(297,19,4,2493)
+f(258,20,1,2)
+u(498)
+f(266,20,2,7)
+u(498)
+f(306,20,7,2482)
+u(290,2480)
+u(274,1)
+n(282,2479)
+u(370)
+u(386)
+u(346)
 u(514)
-u(474)
-u(474)
+f(378,27,1,2477)
+u(394)
+u(539)
+f(203,30,1,2476)
+u(195)
+f(115,32,5,2)
+u(147)
+u(219,1)
+n(235)
+f(171,32,1,1510)
+u(211)
+f(163,34,2,1508)
+u(131,1130)
+f(155,36,1,1127)
+n(251,2)
+f(139,35,2,85)
+u(51,34)
+f(11,37,33,1)
+f(123,36,1,28)
+u(19,23)
+n(35,2)
+n(43,3)
+f(243,36,3,23)
+f(187,35,23,113)
+u(75)
+u(91)
+u(51,39)
+n(59,10)
+f(99,39,8,2)
+f(83,38,2,62)
+u(67)
+f(107,38,62,2)
+f(27,39,1,1)
+f(227,35,1,180)
+f(179,32,180,933)
+u(211)
+u(163)
+f(131,35,2,676)
+u(155,675)
+n(251,1)
+f(139,35,1,69)
+u(51,28)
+n(123,23)
+u(19,19)
+n(35,2)
+n(43)
+f(243,36,2,18)
+f(187,35,18,77)
+f(75,36,2,75)
+u(91)
+u(51,27)
+f(251,39,24,3)
+f(59,38,3,15)
+n(83,32)
+u(67)
+f(107,38,32,1)
+u(35)
+f(227,35,1,109)
+f(251,32,109,26)
+f(506,27,26,1)
+f(314,21,1,2)
 u(450)
-u(530)
-u(530)
-u(490)
-u(466)
-f(522,22,1)
-u(522)
-u(482)
+u(450)
+f(434,24,1,1)
+u(442)
+f(418,20,1)
+f(458,19,1)
 u(458)
-f(338,21,1)
+u(426)
+u(410)
 
 search();
 </script></body></html>

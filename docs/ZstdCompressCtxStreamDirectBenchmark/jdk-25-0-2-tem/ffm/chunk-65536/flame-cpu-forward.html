@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 656px}
+	#canvas {width: 100%; height: 640px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(41);
+	const levels = Array(40);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -394,12 +394,10 @@ const cpool = [
 ',_internal',
 '$simpleQuickSort',
 '$writeCTable_wksp',
-' ZSTD_CCtx_init_compressStream2',
-'%buildCTable',
+' ZSTD_buildCTable',
 '*SeqStore',
 '-uencesStatistics.lto_priv.0',
-'%compressBegin_internal.lto_priv.0',
-'.lock_fast',
+'%compressBlock_fast',
 '3internal',
 '-Continue_public',
 '-End_public',
@@ -407,132 +405,134 @@ const cpool = [
 '-Stream2',
 '4_simpleArgs',
 '-_frameChunk',
-'.insertDictionary',
 '%encodeSequences_bmi2',
 '%seqToCodes',
 ' __memmove_avx_unaligned_erms',
-' com/github/luben/zstd/ZstdBinding.compressStream2',
+' com/github/luben/zstd/ZstdBinding$SizeTRef$Wide.get',
+'A.compressStream2',
 ':CompressCtx.compressBufferStream',
 'OyteBufferStream',
 'NDirectByteBufferStream0',
+'FupdateStreamPositions',
 ' java/lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'1LambdaForm$DMH.0x00000000380ddc00.invokeStatic',
-'<MH.0x0000000038061c00.invoke',
+'1LambdaForm$DMH.0x000000001a0ddc00.invokeStatic',
+'<MH.0x000000001a061c00.invoke',
 'M2000.invokeExact_MT',
 'Le4400.invokeExact_MT',
 'Nc00.invokeExact_MT',
 'M5000.invoke',
 'N400.invoke',
 '*reflect/Method.invoke',
+'%nio/Buffer.position',
+'*yteBuffer.position',
+')MappedByteBuffer.position',
 '%util/concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
 '5ThreadPoolExecutor$Worker.run',
 'G.runWorker',
 '!dk/internal/foreign/NativeMemorySegmentImpl.unsafeGetOffset',
-'5abi/DowncallStub.0x00000000380dd800.invoke',
+'5abi/DowncallStub.0x000000001a0dd800.invoke',
 '-reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
 ' nep_invoker_blob',
 ' org/openjdk/jmh/runner/BenchmarkHandler$BenchmarkTask.call',
 '$zygiert/ZstdCompressCtxStreamDirectBenchmark.compressionThroughput',
-'QensureProgress',
 ',jmh_generated/ZstdCompressCtxStreamDirectBenchmark_compressionThroughput_jmhTest.compressionThroughput_AverageTime',
 'mpressionThroughput_avgt_jmhStub'
 ];
 unpack(cpool);
 
-n(3,2499)
+n(3,2500)
+u(264)
 u(272)
-u(280)
+u(392)
+u(400)
+u(384)
 u(376)
 u(384)
-u(368)
-u(360)
-u(368)
+u(448)
+u(448)
+u(344)
+u(424)
 u(432)
-u(432)
-u(352)
-u(408)
-u(416)
-u(312)
 u(304)
-u(288)
-u(456)
-u(464,2499,0,808,1691)
-u(441,2499,254,0,0)
-u(257,2498)
-f(266,20,1,2497)
-u(250)
-u(242)
-u(322)
+u(296)
+u(280)
+u(464)
+u(472,2500,0,831,1669)
+u(457,2500,250,0,0)
+u(241)
+u(250,2499)
+u(234)
+f(218,22,1,2)
+n(226,2496)
+u(314)
+u(330)
+u(290)
+u(418)
+u(322,2495)
 u(338)
-u(298)
-u(402)
-u(330,2496)
-u(346)
-u(427)
-f(195,30,2,2494)
+u(443)
+u(179)
+u(171)
+u(147,1483)
 u(187)
-f(107,32,2,4)
-f(139,33,2,2)
-f(211,34,1,1)
-f(163,32,1,1527)
-u(203)
-u(155)
-f(123,35,1,1195)
-u(147)
-f(131,35,1195,74)
-u(43,35)
-f(235,37,33,2)
-f(115,36,2,19)
-u(11,13)
-n(27,2)
+f(139,34,1,1482)
+f(115,35,1,1115)
+u(131)
+f(123,35,1115,65)
+f(43,36,1,19)
+n(107,28)
+u(11,21)
+n(27,3)
 n(35,4)
-f(227,36,4,20)
-f(179,35,20,120)
+f(203,36,4,17)
+f(163,35,17,135)
+f(67,36,2,133)
+u(83)
+u(43,58)
+n(51,15)
+f(91,39,14,1)
+f(75,38,1,53)
+u(59)
+f(99,38,53,7)
+f(19,39,5,1)
+n(27)
+f(195,35,1,166)
+f(155,32,166,969)
+u(187)
+u(139)
+u(115,694)
+u(131)
+f(123,35,694,67)
+f(43,36,2,29)
+n(107,24)
+u(11,19)
+n(27,1)
+n(35,4)
+f(203,36,4,12)
+f(163,35,12,75)
 u(67)
 u(83)
-u(43,54)
-f(235,39,52,2)
-f(51,38,2,12)
-f(91,39,11,1)
-u(91)
-f(75,38,1,47)
-f(59,39,2,45)
-f(99,38,45,7)
-f(11,39,3,3)
-n(19,1)
-f(219,35,1,137)
-f(171,32,137,907)
-u(203)
-u(155)
-u(123,657)
-u(147)
-f(131,35,657,63)
-u(43,20)
-n(115,19)
-u(11,16)
-n(27,1)
-n(35,2)
-f(227,36,2,24)
-f(179,35,24,87)
-f(67,36,1,86)
-u(83)
-f(43,38,1,37)
-n(51,11)
-f(91,39,9,2)
-f(91,40,1,1)
-f(75,38,1,32)
+f(43,38,1,15)
+n(51,13)
+f(91,39,9,4)
+f(75,38,4,37)
 u(59)
-f(99,38,32,5)
-f(19,39,3,1)
-n(35)
-f(219,35,1,100)
-f(235,32,100,54)
-f(394,27,54,1)
-f(449,19,1)
+f(99,38,37,9)
+f(11,39,3,1)
+n(19,3)
+n(35,2)
+f(195,35,2,133)
+f(211,32,133,43)
+f(410,27,43,1)
+f(258,20,1)
+u(370)
+u(370)
+u(362)
+u(354)
 
 search();
 </script></body></html>
