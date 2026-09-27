@@ -1,0 +1,6 @@
+Benchmark                                                                        Mode  Cnt    Score    Error   Units
+ZstdDecompressCtxLifecycleBenchmark.createAndCloseThroughput                     avgt   15    0.188 ±  0.001   us/op
+ZstdDecompressCtxLifecycleBenchmark.createAndCloseThroughput:gc.alloc.rate       avgt   15  161.988 ±  0.596  MB/sec
+ZstdDecompressCtxLifecycleBenchmark.createAndCloseThroughput:gc.alloc.rate.norm  avgt   15   32.000 ±  0.001    B/op
+ZstdDecompressCtxLifecycleBenchmark.createAndCloseThroughput:gc.count            avgt   15   12.000           counts
+ZstdDecompressCtxLifecycleBenchmark.createAndCloseThroughput:gc.time             avgt   15   30.000               ms

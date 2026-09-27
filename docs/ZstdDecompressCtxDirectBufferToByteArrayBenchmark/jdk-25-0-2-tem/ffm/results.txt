@@ -1,0 +1,5 @@
+Benchmark                                                                                     Mode  Cnt    Score    Error   Units
+ZstdDecompressCtxDirectBufferToByteArrayBenchmark.decompressionThroughput                     avgt   15  112.044 ±  0.193   us/op
+ZstdDecompressCtxDirectBufferToByteArrayBenchmark.decompressionThroughput:gc.alloc.rate       avgt   15    0.184 ±  0.282  MB/sec
+ZstdDecompressCtxDirectBufferToByteArrayBenchmark.decompressionThroughput:gc.alloc.rate.norm  avgt   15   21.685 ± 33.237    B/op
+ZstdDecompressCtxDirectBufferToByteArrayBenchmark.decompressionThroughput:gc.count            avgt   15      ≈ 0           counts

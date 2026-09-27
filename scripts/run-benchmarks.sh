@@ -95,7 +95,10 @@ case $BENCHMARK in
         PROFILE_PREFIX=buffer-
         PROFILE_VALUES=(262144 524288 1048576 2097152)
         ;;
-    ZstdCompressCtxByteArrayBenchmark|ZstdCompressCtxDirectBufferBenchmark|ZstdCompressCtxFrameProgressionBenchmark|ZstdCompressCtxLifecycleBenchmark)
+    ZstdCompressCtxByteArrayBenchmark|ZstdCompressCtxDirectBufferBenchmark|ZstdCompressCtxFrameProgressionBenchmark|ZstdCompressCtxLifecycleBenchmark|\
+    ZstdDecompressCtxByteArrayBenchmark|ZstdDecompressCtxDirectBufferBenchmark|\
+    ZstdDecompressCtxByteArrayToDirectBufferBenchmark|ZstdDecompressCtxDirectBufferToByteArrayBenchmark|\
+    ZstdDecompressCtxLifecycleBenchmark)
         PROFILE_PARAMETER=
         PROFILE_PREFIX=
         PROFILE_VALUES=(default)
