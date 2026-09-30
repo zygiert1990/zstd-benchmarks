@@ -25,6 +25,8 @@ readonly -a BENCHMARK_RUNS=(
     "ZstdDecompressCtxDirectBufferToByteArrayBenchmark 1.5.7-20-V6 ffm"
     "ZstdDecompressCtxStreamDirectBenchmark 1.5.7-20-V6 ffm"
     "ZstdDecompressCtxLifecycleBenchmark 1.5.7-20-V6 ffm"
+    "ZstdDictDecompressLifecycleBenchmark 1.5.7-20-V7 ffm"
+    "ZstdDictCompressLifecycleBenchmark 1.5.7-20-V7 ffm"
 )
 
 usage() {

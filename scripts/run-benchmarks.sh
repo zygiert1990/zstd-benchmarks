@@ -90,6 +90,11 @@ PROFILE_PARAMETER=chunkSize
 PROFILE_PREFIX=chunk-
 PROFILE_VALUES=(1 8 64 512 4096 16384 65536)
 case $BENCHMARK in
+    ZstdDictCompressLifecycleBenchmark|ZstdDictDecompressLifecycleBenchmark)
+        PROFILE_PARAMETER=method
+        PROFILE_PREFIX=method-
+        PROFILE_VALUES=(createHeapAndCloseThroughput createDirectCopyAndCloseThroughput createDirectReferenceAndCloseThroughput)
+        ;;
     ZstdCompressCtxStreamHeapBufferSizeBenchmark)
         PROFILE_PARAMETER=bufferSize
         PROFILE_PREFIX=buffer-
@@ -216,6 +221,17 @@ find_throughput_benchmark() {
         "$DEFAULT_JAVA" -jar "$BENCHMARK_JAR" -l 2>/dev/null |
             awk -v benchmark="$BENCHMARK" '$0 ~ ("\\." benchmark "\\.[^.]*Throughput$") { print }'
     )
+    if [[ $PROFILE_PARAMETER == method ]]; then
+        local method
+        for method in "${PROFILE_VALUES[@]}"; do
+            if [[ ! " ${matching_methods[*]} " == *" org.zygiert.$BENCHMARK.$method "* ]]; then
+                echo "Error: missing benchmark method $BENCHMARK.$method." >&2
+                exit 1
+            fi
+        done
+        printf '%s\n' "$BENCHMARK"
+        return
+    fi
     if (( ${#matching_methods[@]} != 1 )); then
         echo "Error: expected exactly one *Throughput method for $BENCHMARK; found ${#matching_methods[@]}." >&2
         exit 1
@@ -230,6 +246,7 @@ run_profiled_benchmarks() {
     local jvm=$3
     local destination="$RESULT_DIR/$java_dir/$result_name"
     local profile_value
+    local profile_benchmark
     local -a jvm_option=()
     local -a flamegraphs=()
     local -a profile_option=()
@@ -251,7 +268,10 @@ run_profiled_benchmarks() {
     if [[ $MODE == ALL || $MODE == NATIVEMEM ]]; then
         for profile_value in "${PROFILE_VALUES[@]}"; do
             profile_option=()
-            if [[ -n $PROFILE_PARAMETER ]]; then
+            profile_benchmark=$THROUGHPUT_BENCHMARK
+            if [[ $PROFILE_PARAMETER == method ]]; then
+                profile_benchmark="$BENCHMARK[.]$profile_value$"
+            elif [[ -n $PROFILE_PARAMETER ]]; then
                 profile_option=(-p "$PROFILE_PARAMETER=$profile_value")
             fi
             local native_profiler_dir="$PROJECT_DIR/target/async-profiler-native-$result_name-$java_dir-$profile_value"
@@ -264,7 +284,7 @@ run_profiled_benchmarks() {
                 "$chunk_destination/results-nativemem.json"
 
             announce "$result_name on $java_dir: native-memory profile (${PROFILE_PARAMETER:-case} $profile_value)"
-            run_inhibited "$DEFAULT_JAVA" -jar "$BENCHMARK_JAR" "$THROUGHPUT_BENCHMARK" \
+            run_inhibited "$DEFAULT_JAVA" -jar "$BENCHMARK_JAR" "$profile_benchmark" \
                 "${profile_option[@]}" \
                 -prof "async:libPath=$ASYNC_PROFILER_LIB;event=nativemem;output=text;dir=$native_profiler_dir" \
                 -f 1 -wi 3 -i 3 -rf json -rff "$chunk_destination/results-nativemem.json" \
@@ -303,7 +323,10 @@ run_profiled_benchmarks() {
     if [[ $MODE == ALL || $MODE == FLAMEGRAPH ]]; then
         for profile_value in "${PROFILE_VALUES[@]}"; do
             profile_option=()
-            if [[ -n $PROFILE_PARAMETER ]]; then
+            profile_benchmark=$THROUGHPUT_BENCHMARK
+            if [[ $PROFILE_PARAMETER == method ]]; then
+                profile_benchmark="$BENCHMARK[.]$profile_value$"
+            elif [[ -n $PROFILE_PARAMETER ]]; then
                 profile_option=(-p "$PROFILE_PARAMETER=$profile_value")
             fi
             local profiler_dir="$PROJECT_DIR/target/async-profiler-$result_name-$java_dir-$profile_value"
@@ -314,7 +337,7 @@ run_profiled_benchmarks() {
             rm -f -- "$flamegraph_destination/flame-cpu-forward.html"
 
             announce "$result_name on $java_dir: CPU flamegraph (${PROFILE_PARAMETER:-case} $profile_value)"
-            run_inhibited "$DEFAULT_JAVA" -jar "$BENCHMARK_JAR" "$THROUGHPUT_BENCHMARK" \
+            run_inhibited "$DEFAULT_JAVA" -jar "$BENCHMARK_JAR" "$profile_benchmark" \
                 "${profile_option[@]}" \
                 -prof "async:libPath=$ASYNC_PROFILER_LIB;event=cpu;output=flamegraph;direction=forward;dir=$profiler_dir" \
                 "${jvm_option[@]}"

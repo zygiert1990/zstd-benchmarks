@@ -1,0 +1,16 @@
+Benchmark                                                                                        Mode  Cnt     Score    Error   Units
+ZstdDictDecompressLifecycleBenchmark.createDirectCopyAndCloseThroughput                          avgt   15     6.325 ±  0.120   us/op
+ZstdDictDecompressLifecycleBenchmark.createDirectCopyAndCloseThroughput:gc.alloc.rate            avgt   15    10.859 ±  0.207  MB/sec
+ZstdDictDecompressLifecycleBenchmark.createDirectCopyAndCloseThroughput:gc.alloc.rate.norm       avgt   15    72.009 ±  0.001    B/op
+ZstdDictDecompressLifecycleBenchmark.createDirectCopyAndCloseThroughput:gc.count                 avgt   15     9.000           counts
+ZstdDictDecompressLifecycleBenchmark.createDirectCopyAndCloseThroughput:gc.time                  avgt   15  1662.000               ms
+ZstdDictDecompressLifecycleBenchmark.createDirectReferenceAndCloseThroughput                     avgt   15     5.944 ±  0.128   us/op
+ZstdDictDecompressLifecycleBenchmark.createDirectReferenceAndCloseThroughput:gc.alloc.rate       avgt   15    11.557 ±  0.251  MB/sec
+ZstdDictDecompressLifecycleBenchmark.createDirectReferenceAndCloseThroughput:gc.alloc.rate.norm  avgt   15    72.008 ±  0.001    B/op
+ZstdDictDecompressLifecycleBenchmark.createDirectReferenceAndCloseThroughput:gc.count            avgt   15     9.000           counts
+ZstdDictDecompressLifecycleBenchmark.createDirectReferenceAndCloseThroughput:gc.time             avgt   15  1705.000               ms
+ZstdDictDecompressLifecycleBenchmark.createHeapAndCloseThroughput                                avgt   15     6.310 ±  0.131   us/op
+ZstdDictDecompressLifecycleBenchmark.createHeapAndCloseThroughput:gc.alloc.rate                  avgt   15    10.885 ±  0.227  MB/sec
+ZstdDictDecompressLifecycleBenchmark.createHeapAndCloseThroughput:gc.alloc.rate.norm             avgt   15    72.009 ±  0.001    B/op
+ZstdDictDecompressLifecycleBenchmark.createHeapAndCloseThroughput:gc.count                       avgt   15     9.000           counts
+ZstdDictDecompressLifecycleBenchmark.createHeapAndCloseThroughput:gc.time                        avgt   15  1660.000               ms

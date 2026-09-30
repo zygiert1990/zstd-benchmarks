@@ -49,6 +49,40 @@ class ComparisonFormatsTest(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "Expected parameters"):
                     discover(root)
 
+    def test_separate_method_profiles(self):
+        methods = ["createHeapAndCloseThroughput", "createDirectCopyAndCloseThroughput",
+                   "createDirectReferenceAndCloseThroughput"]
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for name in ["orig", "candidate"]:
+                variant = root / "jdk-25-test" / name
+                rows = ["Benchmark Mode Cnt Score Error Units"]
+                for method in methods:
+                    profile = variant / f"method-{method}"
+                    profile.mkdir(parents=True)
+                    rows += [f"Example.{method} avgt 6 1.0 ± 0.1 us/op",
+                             f"Example.{method}:gc.alloc.rate.norm avgt 6 0.0 ± 0.0 B/op"]
+                    (profile / "summary-nativemem.txt").write_text("0 0.0% 0 malloc\n")
+                    (profile / "flame-cpu-forward.html").write_text("<html></html>")
+                    (profile / "results-nativemem.json").write_text(json.dumps([{
+                        "benchmark": f"org.zygiert.Example.{method}",
+                        "mode": "avgt", "measurementIterations": 3, "measurementTime": "5 s",
+                        "primaryMetric": {"score": 1.0, "scoreError": 0.1, "scoreUnit": "us/op"},
+                    }]))
+                (variant / "results.txt").write_text("\n".join(rows) + "\n")
+            variants = discover(root)
+            self.assertEqual(set(variants[0].native_profiles), set(methods))
+            paths = generate_jdk25_charts(root, variants, variants[0])
+            for path in paths:
+                for method in methods:
+                    self.assertIn(method, path.read_text())
+            path = variants[0].native_path.parent / "results-nativemem.json"
+            data = json.loads(path.read_text())
+            data[0]["benchmark"] = "Example.wrongThroughput"
+            path.write_text(json.dumps(data))
+            with self.assertRaisesRegex(ValueError, "Expected benchmark method"):
+                discover(root)
+
     def test_near_zero_heap_allocation(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "results.txt"

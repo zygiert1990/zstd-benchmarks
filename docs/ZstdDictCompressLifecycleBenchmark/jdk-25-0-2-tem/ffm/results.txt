@@ -1,0 +1,16 @@
+Benchmark                                                                                      Mode  Cnt    Score   Error   Units
+ZstdDictCompressLifecycleBenchmark.createDirectCopyAndCloseThroughput                          avgt   15   18.046 ± 0.614   us/op
+ZstdDictCompressLifecycleBenchmark.createDirectCopyAndCloseThroughput:gc.alloc.rate            avgt   15    3.810 ± 0.126  MB/sec
+ZstdDictCompressLifecycleBenchmark.createDirectCopyAndCloseThroughput:gc.alloc.rate.norm       avgt   15   72.025 ± 0.001    B/op
+ZstdDictCompressLifecycleBenchmark.createDirectCopyAndCloseThroughput:gc.count                 avgt   15    3.000          counts
+ZstdDictCompressLifecycleBenchmark.createDirectCopyAndCloseThroughput:gc.time                  avgt   15  978.000              ms
+ZstdDictCompressLifecycleBenchmark.createDirectReferenceAndCloseThroughput                     avgt   15   17.638 ± 0.548   us/op
+ZstdDictCompressLifecycleBenchmark.createDirectReferenceAndCloseThroughput:gc.alloc.rate       avgt   15    3.897 ± 0.116  MB/sec
+ZstdDictCompressLifecycleBenchmark.createDirectReferenceAndCloseThroughput:gc.alloc.rate.norm  avgt   15   72.025 ± 0.001    B/op
+ZstdDictCompressLifecycleBenchmark.createDirectReferenceAndCloseThroughput:gc.count            avgt   15    3.000          counts
+ZstdDictCompressLifecycleBenchmark.createDirectReferenceAndCloseThroughput:gc.time             avgt   15  946.000              ms
+ZstdDictCompressLifecycleBenchmark.createHeapAndCloseThroughput                                avgt   15   17.936 ± 0.523   us/op
+ZstdDictCompressLifecycleBenchmark.createHeapAndCloseThroughput:gc.alloc.rate                  avgt   15    3.832 ± 0.107  MB/sec
+ZstdDictCompressLifecycleBenchmark.createHeapAndCloseThroughput:gc.alloc.rate.norm             avgt   15   72.025 ± 0.001    B/op
+ZstdDictCompressLifecycleBenchmark.createHeapAndCloseThroughput:gc.count                       avgt   15    3.000          counts
+ZstdDictCompressLifecycleBenchmark.createHeapAndCloseThroughput:gc.time                        avgt   15  922.000              ms

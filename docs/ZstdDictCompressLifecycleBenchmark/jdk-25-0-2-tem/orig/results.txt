@@ -1,0 +1,16 @@
+Benchmark                                                                                      Mode  Cnt     Score   Error   Units
+ZstdDictCompressLifecycleBenchmark.createDirectCopyAndCloseThroughput                          avgt   15    19.540 ± 0.712   us/op
+ZstdDictCompressLifecycleBenchmark.createDirectCopyAndCloseThroughput:gc.alloc.rate            avgt   15     3.519 ± 0.124  MB/sec
+ZstdDictCompressLifecycleBenchmark.createDirectCopyAndCloseThroughput:gc.alloc.rate.norm       avgt   15    72.027 ± 0.001    B/op
+ZstdDictCompressLifecycleBenchmark.createDirectCopyAndCloseThroughput:gc.count                 avgt   15     3.000          counts
+ZstdDictCompressLifecycleBenchmark.createDirectCopyAndCloseThroughput:gc.time                  avgt   15  1037.000              ms
+ZstdDictCompressLifecycleBenchmark.createDirectReferenceAndCloseThroughput                     avgt   15    19.137 ± 0.653   us/op
+ZstdDictCompressLifecycleBenchmark.createDirectReferenceAndCloseThroughput:gc.alloc.rate       avgt   15     3.592 ± 0.117  MB/sec
+ZstdDictCompressLifecycleBenchmark.createDirectReferenceAndCloseThroughput:gc.alloc.rate.norm  avgt   15    72.027 ± 0.001    B/op
+ZstdDictCompressLifecycleBenchmark.createDirectReferenceAndCloseThroughput:gc.count            avgt   15     3.000          counts
+ZstdDictCompressLifecycleBenchmark.createDirectReferenceAndCloseThroughput:gc.time             avgt   15  1058.000              ms
+ZstdDictCompressLifecycleBenchmark.createHeapAndCloseThroughput                                avgt   15    19.328 ± 0.687   us/op
+ZstdDictCompressLifecycleBenchmark.createHeapAndCloseThroughput:gc.alloc.rate                  avgt   15     3.557 ± 0.121  MB/sec
+ZstdDictCompressLifecycleBenchmark.createHeapAndCloseThroughput:gc.alloc.rate.norm             avgt   15    72.027 ± 0.001    B/op
+ZstdDictCompressLifecycleBenchmark.createHeapAndCloseThroughput:gc.count                       avgt   15     3.000          counts
+ZstdDictCompressLifecycleBenchmark.createHeapAndCloseThroughput:gc.time                        avgt   15  1071.000              ms
