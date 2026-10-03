@@ -18,8 +18,8 @@
 <text x="950.0" y="221" text-anchor="middle" class="tick">100%</text>
 <line x1="300.0" y1="93" x2="300.0" y2="198" stroke="#6b7280" stroke-width="1.5"/>
 <text x="288" y="142.0" text-anchor="end" class="label">decompressionThroughput</text>
-<rect x="300.0" y="117.5" width="643.3" height="18" rx="2" fill="#2563eb"/>
-<text x="949.3" y="130.5" text-anchor="start" class="value">★ 111.387 ± 0.209 us/op (0.00%)</text>
+<rect x="300.0" y="117.5" width="643.4" height="18" rx="2" fill="#2563eb"/>
+<text x="949.4" y="130.5" text-anchor="start" class="value">★ 111.551 ± 0.341 us/op (0.00%)</text>
 <rect x="300.0" y="140.5" width="650.0" height="18" rx="2" fill="#ea580c"/>
-<text x="956.0" y="153.5" text-anchor="start" class="value">112.553 ± 0.516 us/op (+1.05%)</text>
+<text x="956.0" y="153.5" text-anchor="start" class="value">112.699 ± 0.376 us/op (+1.03%)</text>
 </svg>

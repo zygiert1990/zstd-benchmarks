@@ -1,0 +1,6 @@
+Benchmark                                                         Mode  Cnt    Score    Error   Units
+ZstdErrorNameBenchmark.getErrorNameThroughput                     avgt   15    0.087 ±  0.001   us/op
+ZstdErrorNameBenchmark.getErrorNameThroughput:gc.alloc.rate       avgt   15  784.851 ±  2.411  MB/sec
+ZstdErrorNameBenchmark.getErrorNameThroughput:gc.alloc.rate.norm  avgt   15   72.000 ±  0.001    B/op
+ZstdErrorNameBenchmark.getErrorNameThroughput:gc.count            avgt   15   48.000           counts
+ZstdErrorNameBenchmark.getErrorNameThroughput:gc.time             avgt   15   75.000               ms

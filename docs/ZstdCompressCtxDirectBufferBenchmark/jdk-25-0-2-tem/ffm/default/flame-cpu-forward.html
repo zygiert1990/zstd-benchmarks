@@ -26,7 +26,7 @@
 	#status {left: 0}
 	#match {right: 0}
 	#reset {cursor: pointer}
-	#canvas {width: 100%; height: 736px}
+	#canvas {width: 100%; height: 656px}
 </style>
 <script>
 {
@@ -93,7 +93,7 @@
 	let inverted = false;
 	const U = undefined;
 	const maxdiff = /*maxdiff:*/-1;
-	const levels = Array(46);
+	const levels = Array(41);
 	for (let h = 0; h < levels.length; h++) {
 		levels[h] = [];
 	}
@@ -398,29 +398,23 @@ const cpool = [
 ',4X_repeat',
 ',CTable_internal.lto_priv.0',
 ',_internal',
-'$optimalTableLog',
 '$simpleQuickSort',
 '$writeCTable_wksp',
 ' JavaThread::thread_main_inner',
-' Node::replace_edge',
-' Parse::Parse',
-'\'do_all_blocks',
-'*call',
-'*exits',
-'*one_block',
-'%Generator::generate',
+' LoadNode::Ideal',
+' MemNode::find_previous_store',
+')maybe_all_controls_dominate',
+' Node::dominates',
+' Parker::park',
 '!haseChaitin::Register_Allocate',
-'.add_input_to_liveout',
-'.build_ifg_physical',
-'.gather_lrg_masks',
-'%GVN::transform',
+'.elide_copy',
+'.post_allocate_copy_removal',
 '%IterGVN::optimize',
-'.remove_globally_dead_node',
-'"iNode::Ideal',
-'!redictedCallGenerator::generate',
-' RegMask::is_misaligned_pair',
+'.transform_old',
 ' Thread::call_run',
+' Unsafe_Park',
 ' ZSTD_CCtx_init_compressStream2',
+'*trace',
 '%buildCTable',
 '*SeqStore',
 '-uencesStatistics.lto_priv.0',
@@ -434,30 +428,45 @@ const cpool = [
 '-_frameChunk',
 '%encodeSequences_bmi2',
 '%getCParamsFromCCtxParams',
-'%seqToCodes',
-' [break_stack_range]',
-' __memmove_avx_unaligned_erms',
+'/_internal.lto_priv.0',
+'%selectEncodingType',
+'\'qToCodes',
+' ___pthread_cond_wait',
+'"futex_abstimed_wait_cancelable64',
 ' clone3',
-'!om/github/luben/zstd/ZstdBinding.compress2',
+'!om/github/luben/zstd/ZstdBinding.compress2Native',
+'BresetCCtx',
 ':CompressCtx.compressDirectByteBuffer',
 '^0',
 ' java/lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'1LambdaForm$DMH.0x00000000320d6000.invokeStatic',
-'<MH.0x0000000032061c00.invoke',
+'1LambdaForm$DMH.0x000000000c0ddc00.invokeStatic',
+'Me7400.invokeStatic',
+'<MH.0x000000000c061c00.invoke',
 'M2000.invokeExact_MT',
-'Le5400.invokeExact_MT',
-'Nc00.invokeExact_MT',
-'M6800.invoke',
+'K104000.invokeExact_MT',
+'M5000.invokeExact_MT',
+'N800.invokeExact_MT',
+'M6400.invoke',
 'Nc00.invoke',
+'M7000.invoke',
+'1MethodHandle.invokeBasic',
 '*reflect/Method.invoke',
 '%util/concurrent/Executors$RunnableAdapter.call',
-'5FutureTask.run',
+'5ForkJoinPool.managedBlock',
+'BunmanagedBlock',
+'6utureTask.run',
+'5LinkedBlockingQueue.take',
 '5ThreadPoolExecutor$Worker.run',
-'G.runWorker',
-'!dk/internal/foreign/abi/DowncallStub.0x00000000320d5c00.invoke',
-'-misc/Unsafe.getAndAddInt',
+'G.getTask',
+'HrunWorker',
+'5locks/AbstractQueuedSynchronizer$ConditionNode.block',
+'_Object.await',
+';LockSupport.park',
+'!dk/internal/foreign/abi/DowncallStub.0x000000000c0dd800.invoke',
+'Se9800.invoke',
+'-misc/Unsafe.park',
 '-reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
 ' nep_invoker_blob',
@@ -470,125 +479,107 @@ const cpool = [
 ];
 unpack(cpool);
 
-n(3,2504)
-u(435,1)
-u(608)
-f(451,1,1,4)
-u(675)
-u(684)
-u(308)
-u(164)
+n(3,2502)
+u(419,2)
+u(747)
+u(756)
+u(244)
+u(156)
 u(44)
 u(52)
 u(12)
 u(28)
-u(20,2)
-u(228)
-u(244,1)
-u(236)
-f(252,12,1)
-u(300)
-f(36,10,1)
-u(268)
-u(276)
-u(172)
-f(220,10,1)
-u(180)
-u(188)
-u(212)
-u(196)
-u(220)
-u(180)
-u(188)
-u(212)
-u(196)
-u(220)
-u(180)
-u(188)
-u(212)
-u(196)
-u(220)
-u(180)
-u(188)
-u(212)
-u(196)
-u(220)
-u(180)
-u(188)
-u(212)
-u(196)
-u(220)
-u(180)
-u(188)
-u(212)
-u(196)
-u(292)
-u(220)
-u(180)
+u(20,1)
 u(204)
-u(260)
-u(284)
-f(480,1,1,2499)
-u(488)
-u(584)
-u(592)
-u(576)
-u(568)
-u(576)
-u(640)
-u(640)
-u(560)
+u(220)
+u(212)
+f(36,10,1)
+u(228)
+u(236)
+u(164)
+u(172)
+u(180)
+u(188)
+f(456,1,1,2500)
+u(464)
 u(616)
-u(624)
-u(520)
-u(512)
+u(632)
+u(600,2499)
+u(576)
+u(600)
+u(712)
+u(712)
+u(568)
+u(688)
+u(696)
+u(504)
 u(496)
-u(656)
-u(670,2499,0,1350,1149)
-u(650,2499,1350,0,0)
-u(466,2499,1149,34,0)
-u(474,2499,2465,34,0)
-u(458,2499,2465,0,0)
-u(530)
+u(472)
+u(728)
+u(742,2499,0,1263,1236)
+f(722,18,1,2498,1263,0,0)
+u(442,2498,1235,34,0)
+u(450,2498,1235,5,0)
+u(426,2497,2492,5,0)
+u(522)
 u(546)
-u(506)
-u(602)
-u(538)
+u(490)
+u(674)
+u(530)
 u(554)
-u(635)
-f(347,29,1,2498)
-u(395)
-u(387)
-f(315,32,1,1)
-u(419)
-f(371,32,1,2496)
-u(403)
-f(363,34,2,2494)
-f(331,35,1,1761)
-u(355)
-f(339,35,1761,179)
-f(91,36,4,74)
-n(323,57)
-u(59,38)
+u(561,1)
+n(707,2496)
+u(299)
+f(347,30,1,2495)
+u(339)
+u(259,1)
+u(371)
+u(379)
+f(323,32,1,2494)
+u(267,1)
+n(355,2493)
+u(315)
+f(283,35,4,1725)
+u(307)
+f(291,35,1725,176)
+u(91,55)
+n(275,65)
+u(59,46)
 n(75,8)
 n(83,11)
-f(427,36,11,44)
-f(379,35,44,209)
-f(115,36,1,208)
+f(387,36,11,1)
+n(395,55)
+f(331,35,55,207)
+f(115,36,5,202)
 u(131)
-f(91,38,3,69)
-f(443,39,68,1)
-f(99,38,1,31)
-f(147,39,25,6)
-f(147,40,5,1)
-f(123,38,1,94)
+f(91,38,4,68)
+n(99,21)
+f(139,39,16,5)
+f(139,40,3,2)
+f(123,38,2,95)
 u(107)
-f(139,38,94,1)
-n(155,10)
-f(67,39,2,5)
-n(75,1)
-n(83,2)
-f(411,35,2,344)
+f(147,38,95,14)
+f(59,39,3,4)
+n(67,6)
+n(83,1)
+f(363,35,1,381)
+f(434,21,381,1)
+u(514)
+u(538)
+u(482)
+u(666)
+f(624,5,1)
+u(608)
+u(648)
+u(584)
+u(592)
+u(640)
+u(656)
+u(680)
+u(251)
+u(196)
+u(403)
+u(411)
 
 search();
 </script></body></html>

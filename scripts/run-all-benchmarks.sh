@@ -11,7 +11,7 @@ readonly -a BENCHMARK_RUNS=(
     "ZstdBufferDecompressingStreamNoFinalizerBenchmark 1.5.7-16-V3 ffm"
     "ZstdDirectBufferDecompressingStreamNoFinalizerBenchmark 1.5.7-16-V3 ffm"
     "ZstdCompressCtxByteArrayBenchmark 1.5.7-17-V5 ffm"
-    "ZstdCompressCtxDirectBufferBenchmark 1.5.7-17-V5 ffm"
+    "ZstdCompressCtxDirectBufferBenchmark 1.5.7-20-V8 ffm"
     "ZstdCompressCtxStreamHeapBenchmark 1.5.7-17-V5 ffm"
     "ZstdCompressCtxStreamDirectBenchmark 1.5.7-17-V5 ffm"
     "ZstdCompressCtxStreamHeapToDirectBenchmark 1.5.7-17-V5 ffm"
@@ -20,13 +20,18 @@ readonly -a BENCHMARK_RUNS=(
     "ZstdCompressCtxLifecycleBenchmark 1.5.7-17-V5 ffm"
     "ZstdCompressCtxFrameProgressionBenchmark 1.5.7-17-V5 ffm"
     "ZstdDecompressCtxByteArrayBenchmark 1.5.7-20-V6 ffm"
-    "ZstdDecompressCtxDirectBufferBenchmark 1.5.7-20-V6 ffm"
+    "ZstdDecompressCtxDirectBufferBenchmark 1.5.7-20-V8 ffm"
     "ZstdDecompressCtxByteArrayToDirectBufferBenchmark 1.5.7-20-V6 ffm"
     "ZstdDecompressCtxDirectBufferToByteArrayBenchmark 1.5.7-20-V6 ffm"
     "ZstdDecompressCtxStreamDirectBenchmark 1.5.7-20-V6 ffm"
     "ZstdDecompressCtxLifecycleBenchmark 1.5.7-20-V6 ffm"
     "ZstdDictDecompressLifecycleBenchmark 1.5.7-20-V7 ffm"
     "ZstdDictCompressLifecycleBenchmark 1.5.7-20-V7 ffm"
+    "ZstdFrameSizeBenchmark 1.5.7-20-V8 ffm"
+    "ZstdCompressUnsafeBenchmark 1.5.7-20-V8 ffm"
+    "ZstdDecompressUnsafeBenchmark 1.5.7-20-V8 ffm"
+    "ZstdTrainFromBufferBenchmark 1.5.7-20-V8 ffm"
+    "ZstdErrorNameBenchmark 1.5.7-20-V8 ffm"
 )
 
 usage() {

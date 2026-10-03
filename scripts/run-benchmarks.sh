@@ -95,6 +95,16 @@ case $BENCHMARK in
         PROFILE_PREFIX=method-
         PROFILE_VALUES=(createHeapAndCloseThroughput createDirectCopyAndCloseThroughput createDirectReferenceAndCloseThroughput)
         ;;
+    ZstdFrameSizeBenchmark)
+        PROFILE_PARAMETER=method
+        PROFILE_PREFIX=method-
+        PROFILE_VALUES=(getFrameContentSizeHeapThroughput getFrameContentSizeHeapMagiclessThroughput getFrameContentSizeDirectThroughput findDirectByteBufferFrameCompressedSizeThroughput)
+        ;;
+    ZstdTrainFromBufferBenchmark)
+        PROFILE_PARAMETER=method
+        PROFILE_PREFIX=method-
+        PROFILE_VALUES=(trainFromBufferThroughput trainFromBufferDirectThroughput)
+        ;;
     ZstdCompressCtxStreamHeapBufferSizeBenchmark)
         PROFILE_PARAMETER=bufferSize
         PROFILE_PREFIX=buffer-
@@ -103,7 +113,7 @@ case $BENCHMARK in
     ZstdCompressCtxByteArrayBenchmark|ZstdCompressCtxDirectBufferBenchmark|ZstdCompressCtxFrameProgressionBenchmark|ZstdCompressCtxLifecycleBenchmark|\
     ZstdDecompressCtxByteArrayBenchmark|ZstdDecompressCtxDirectBufferBenchmark|\
     ZstdDecompressCtxByteArrayToDirectBufferBenchmark|ZstdDecompressCtxDirectBufferToByteArrayBenchmark|\
-    ZstdDecompressCtxLifecycleBenchmark)
+    ZstdDecompressCtxLifecycleBenchmark|ZstdErrorNameBenchmark|ZstdCompressUnsafeBenchmark|ZstdDecompressUnsafeBenchmark)
         PROFILE_PARAMETER=
         PROFILE_PREFIX=
         PROFILE_VALUES=(default)

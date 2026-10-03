@@ -382,16 +382,6 @@
 
 const cpool = [
 'all',
-' C2Compiler::compile_method',
-'!ompLevel CompilationPolicy::common<LoopPredicate>',
-'$ilationPolicy::event',
-'3highest_compile_level',
-'3method_back_branch_event',
-'&e::Compile',
-')Optimize',
-')optimize_loops',
-'\'Broker::compiler_thread_loop',
-'/invoke_compiler_on_method',
 ' FSE_buildDTable_internal.lto_priv.0',
 '$decompress_wksp_body_bmi2.constprop.0',
 '$readNCount_body_bmi2.lto_priv.0',
@@ -399,157 +389,131 @@ const cpool = [
 ' HUF_decompress4X2_usingDTable_internal_fast.lto_priv.0',
 '$readDTableX2_wksp',
 '(Stats_body_bmi2.constprop.0',
-' InterpreterRuntime::frequency_counter_overflow',
-'N_inner',
-' JavaThread::thread_main_inner',
-' PhaseIdealLoop::build_and_optimize',
-'6loop_late',
-'?_post_work',
-' RuntimePredicate::is_predicate',
-' Thread::call_run',
-' ZSTD_buildFSETable_body_bmi2.constprop.0',
+' ZSTD_buildFSETable',
+'2_body_bmi2.constprop.0',
 '*SeqTable.constprop.0',
-'%decodeLiteralsBlock',
+'%checkContinuity',
+'%decodeFrameHeader',
+'+LiteralsBlock',
 '+SeqHeaders',
 ')mpressBlock_internal',
 '/MultiFrame',
 '/Sequences_bmi2.constprop.0',
 '/_usingDDict',
 '%execSequenceEnd.lto_priv.0',
-'%getcBlockSize',
+'%getFrameHeader_advanced',
 '%initFseState.lto_priv.0',
 '%safecopy',
 ' _HUF_decompress4X2_usingDTable_internal_fast_asm_loop',
 '!_memmove_avx_unaligned_erms',
 '%set_avx2_unaligned_erms',
-' clone3',
-'!om/github/luben/zstd/AutoCloseBase.acquireSharedLock',
-'6Zstd.isError',
-':Binding.decompressDCtx',
-'BresetDCtx',
+' com/github/luben/zstd/Zstd.isError',
+':Binding.decompressDCtxNative',
+'BisErrorCode',
 ':DecompressCtx.decompressDirectByteBuffer',
 'b0',
 ' java/lang/Thread.run',
 '4With',
 '*invoke/DirectMethodHandle$Holder.invokeSpecial',
-'1LambdaForm$DMH.0x000000003b0c9c00.invokeStatic',
-'Md6000.invokeStatic',
-'<MH.0x000000003b061c00.invoke',
+'1LambdaForm$DMH.0x000000002e0cd000.invokeStatic',
+'Me7400.invokeStatic',
+'<MH.0x000000002e061c00.invoke',
 'M2000.invokeExact_MT',
-'Le4400.invokeExact_MT',
-'Nc00.invokeExact_MT',
-'M5400.invokeExact_MT',
-'Nc00.invokeExact_MT',
-'M7000.invoke',
-'N400.invoke',
+'Lc5000.invokeExact_MT',
+'K105000.invokeExact_MT',
+'M6000.invokeExact_MT',
+'M7000.invokeExact_MT',
 'N800.invoke',
 'Nc00.invoke',
+'M8400.invoke',
+'N800.invoke',
+'1MethodHandle.invokeBasic',
 '*reflect/Method.invoke',
 '%util/concurrent/Executors$RunnableAdapter.call',
 '5FutureTask.run',
 '5ThreadPoolExecutor$Worker.run',
 'G.runWorker',
-'5atomic/AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl.compareAndSet',
-'!dk/internal/foreign/abi/DowncallStub.0x000000003b0c9800.invoke',
-'Sd5c00.invoke',
+'!dk/internal/foreign/abi/DowncallStub.0x000000002e0ccc00.invoke',
+'Se9800.invoke',
 '-reflect/DirectMethodHandleAccessor.invoke',
 'VImpl',
 ' nep_invoker_blob',
-' org/openjdk/jmh/runner/BenchmarkHandler$BenchmarkTask.call',
+' org/openjdk/jmh/infra/Blackhole.consume',
+'0runner/BenchmarkHandler$BenchmarkTask.call',
 '$zygiert/ZstdDecompressCtxDirectBufferBenchmark.decompressionThroughput',
 ',jmh_generated/ZstdDecompressCtxDirectBufferBenchmark_decompressionThroughput_jmhTest.decompressionThroughput_AverageTime',
-'t.decompressionThroughput_avgt_jmhStub',
-' start_thread',
-' thread_native_entry'
+'t.decompressionThroughput_avgt_jmhStub'
 ];
 unpack(cpool);
 
-n(3,2500)
-u(307,207)
-n(331,1)
-u(627)
-u(636)
-u(204)
-u(164)
-u(76)
-u(84)
-u(12)
-u(52)
-u(60)
-u(68)
-u(172)
-u(180)
-u(188)
-u(196)
-f(384,1,1,2292)
-u(392)
-u(528)
-u(536)
-u(520)
-u(512)
-u(520)
-u(592)
-u(592)
-u(504)
-u(568)
-u(576)
-u(432)
-u(424)
+n(3,2499)
+u(248)
+u(256)
 u(400)
-u(608)
-u(617,2292,0,310,12)
-u(148,1)
-u(156)
-u(28)
-u(44)
-u(20)
-u(36)
-f(602,18,1,2291,2280,0,0)
-u(370,2291,1981,0,0)
-u(338,1)
-u(546)
-f(345,20,1)
-n(377,2289,11,0,0)
-f(354,21,1,2284)
-u(458)
-u(498)
+u(408)
+u(392)
+u(384)
+u(392)
+u(464)
+u(464)
+u(376)
+u(432)
+u(440)
+u(296)
+u(288)
+u(264)
+u(480)
+u(489,2499,0,335,11)
+u(458,1)
+n(474,2498,2487,0,0)
+f(233,19,1,2497,11,0,0)
+u(210,1)
+u(226)
+u(306)
+u(338)
+u(274)
 u(418)
-u(562)
-u(466)
-u(482)
-u(587)
-u(267)
-u(251)
-f(243,31,1,2282)
-u(227,86)
-f(123,33,4,14)
-n(131,68)
-f(139,34,52,16)
-f(99,35,5,11)
-f(91,36,6,2)
-n(107,3)
-f(323,37,1,2)
-f(235,32,2,184)
-f(115,33,3,7)
-n(211,62)
-n(219,112)
-u(115,15)
-f(323,35,13,2)
-f(211,34,2,97)
-f(259,32,97,2012)
-f(275,33,2007,3)
-u(299)
-f(291,33,3,1)
-n(315)
-f(283,31,1)
-f(362,21,1,4)
-u(442)
-u(490)
-u(410)
-u(554)
-f(450,26,1,3)
-u(474)
-u(587)
+u(322)
+u(346)
+f(242,20,1,2496)
+u(218)
+u(314)
+u(354)
+u(282)
+u(426)
+u(330)
+u(362)
+u(369,1)
+n(451,2495)
+f(147,29,1,2245)
+u(131)
+f(91,31,1,1)
+n(99)
+u(163)
+f(123,31,1,2242)
+u(107,88)
+f(43,33,2,10)
+n(51,76)
+f(59,34,52,24)
+f(19,35,4,20)
+f(11,36,12,7)
+n(27,1)
+u(203)
+f(115,32,1,150)
+u(35,5)
+f(203,34,4,1)
+f(67,33,1)
+n(75,48)
+n(83,96)
+f(35,34,1,17)
+f(203,35,13,4)
+f(75,34,4,78)
+f(139,32,78,2004)
+f(155,33,2000,2)
+f(179,34,1,1)
+f(171,33,1)
+n(195)
+f(187,29,1,249)
 
 search();
 </script></body></html>

@@ -1,0 +1,5 @@
+Benchmark                                                             Mode  Cnt    Score   Error   Units
+ZstdCompressUnsafeBenchmark.compressionThroughput                     avgt   15  339.462 ± 4.998   us/op
+ZstdCompressUnsafeBenchmark.compressionThroughput:gc.alloc.rate       avgt   15    0.006 ± 0.010  MB/sec
+ZstdCompressUnsafeBenchmark.compressionThroughput:gc.alloc.rate.norm  avgt   15    2.150 ± 3.718    B/op
+ZstdCompressUnsafeBenchmark.compressionThroughput:gc.count            avgt   15      ≈ 0          counts

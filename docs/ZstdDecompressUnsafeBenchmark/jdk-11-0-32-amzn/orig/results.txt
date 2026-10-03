@@ -1,0 +1,5 @@
+Benchmark                                                                 Mode  Cnt    Score    Error   Units
+ZstdDecompressUnsafeBenchmark.decompressionThroughput                     avgt   15  111.879 ±  0.352   us/op
+ZstdDecompressUnsafeBenchmark.decompressionThroughput:gc.alloc.rate       avgt   15    0.001 ±  0.001  MB/sec
+ZstdDecompressUnsafeBenchmark.decompressionThroughput:gc.alloc.rate.norm  avgt   15    0.132 ±  0.001    B/op
+ZstdDecompressUnsafeBenchmark.decompressionThroughput:gc.count            avgt   15      ≈ 0           counts

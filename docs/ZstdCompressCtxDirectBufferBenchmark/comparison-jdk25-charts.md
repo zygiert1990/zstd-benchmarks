@@ -1,6 +1,6 @@
 # ZstdCompressCtxDirectBufferBenchmark benchmark comparison — JDK 25
 
-Implementations: `orig` — zstd-jni `1.5.7-16-LOCAL`; `ffm` — branch [support-ffm-api-v5](https://github.com/zygiert1990/zstd-jni/tree/support-ffm-api-v5).
+Implementations: `orig` — zstd-jni `1.5.7-16-LOCAL`; `ffm` — branch [support-ffm-api-v8](https://github.com/zygiert1990/zstd-jni/tree/support-ffm-api-v8).
 
 Input file: **223,634 bytes**.
 
