@@ -1,9 +1,9 @@
 Benchmark                                                                        Mode  Cnt      Score     Error   Units
-ZstdTrainFromBufferBenchmark.trainFromBufferDirectThroughput                     avgt   15  14245.805 ± 291.729   us/op
+ZstdTrainFromBufferBenchmark.trainFromBufferDirectThroughput                     avgt   15  14183.309 ±  55.484   us/op
 ZstdTrainFromBufferBenchmark.trainFromBufferDirectThroughput:gc.alloc.rate       avgt   15      0.031 ±   0.001  MB/sec
-ZstdTrainFromBufferBenchmark.trainFromBufferDirectThroughput:gc.alloc.rate.norm  avgt   15    460.320 ±   1.354    B/op
+ZstdTrainFromBufferBenchmark.trainFromBufferDirectThroughput:gc.alloc.rate.norm  avgt   15    460.249 ±   1.315    B/op
 ZstdTrainFromBufferBenchmark.trainFromBufferDirectThroughput:gc.count            avgt   15        ≈ 0            counts
-ZstdTrainFromBufferBenchmark.trainFromBufferThroughput                           avgt   15  14216.117 ±  64.984   us/op
+ZstdTrainFromBufferBenchmark.trainFromBufferThroughput                           avgt   15  14312.207 ± 123.723   us/op
 ZstdTrainFromBufferBenchmark.trainFromBufferThroughput:gc.alloc.rate             avgt   15      0.024 ±   0.001  MB/sec
-ZstdTrainFromBufferBenchmark.trainFromBufferThroughput:gc.alloc.rate.norm        avgt   15    364.349 ±   1.166    B/op
+ZstdTrainFromBufferBenchmark.trainFromBufferThroughput:gc.alloc.rate.norm        avgt   15    364.491 ±   1.229    B/op
 ZstdTrainFromBufferBenchmark.trainFromBufferThroughput:gc.count                  avgt   15        ≈ 0            counts

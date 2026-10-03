@@ -1,4 +1,4 @@
        bytes  percent  samples  top
   ----------  -------  -------  ---
- 25422476186   62.79%    70915  malloc_hook
+ 25421811199   62.79%    70877  malloc_hook
  15063551424   37.21%     7182  calloc_hook

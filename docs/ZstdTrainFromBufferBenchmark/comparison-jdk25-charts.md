@@ -6,6 +6,8 @@ Input file: **223,634 bytes**.
 
 Benchmark host: **Ubuntu 22.04.5 LTS** (amd64); **Intel Core i5-8500 @ 3.00 GHz**, 6 physical / 6 logical CPU cores; **16 GB RAM**.
 
+For this benchmark `GLIBC_TUNABLES=glibc.malloc.mmap_threshold=33554432:glibc.malloc.trim_threshold=268435456` was added to make results more predictable.
+
 Every JDK 25 implementation is shown. Bar lengths are proportional to the measured value within each workload row, with the worst result as the longest bar. Labels show the absolute value and change versus JDK 25 `orig`; negative percentages mean less execution time or allocation and are better.
 
 ![Relative execution cost bar chart](comparison-jdk25-performance.svg)
